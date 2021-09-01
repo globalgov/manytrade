@@ -4,7 +4,10 @@ Version: 0.0.1
 Authors@R: 
     c(person(given = "Jael",
              family = "Tan",
-             role = c("aut", "cre", "ctb")))
+             role = c("aut", "cre", "ctb")),
+      person(given = "Henrique",
+             family = "Sposito",
+             role = "ctb"))
 Description: Collection, correction, and connection.
 License: CC BY 4.0
 Depends: 
