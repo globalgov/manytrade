@@ -1,5 +1,9 @@
 # qTrade 0.0.1
 
+2021-09-01
+
+## Package
+
 * Set up qTrade package using qData::setup_package()
   * Added `DESCRIPTION` file
   * Added `R` folder
@@ -21,3 +25,7 @@
   * Added `tests` folder
   * Added `testthat` folder
   * Added `testthat` file
+  
+## Data
+
+* Imported DESTA dataset

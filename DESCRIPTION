@@ -29,14 +29,14 @@ Description: qTrade provides an ensemble of data on international trade agreemen
 License: CC BY 4.0
 Depends: 
     R (>= 2.10),
-    tibble
+    tibble,
+    pointblank
 Imports: 
     qData,
     dplyr,
     lubridate,
     roxygen2,
-    usethis,
-    pointblank
+    usethis
 Suggests: 
     purrr,
     rlang,
