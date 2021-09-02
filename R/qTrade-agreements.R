@@ -1,0 +1,12 @@
+#' agreements database documentation
+#'
+#' @format The agreements database is a list that contains the
+#' following 1 datasets: DESTA.
+#' For more information and references to each of the datasets used,
+#' please use the `data_source()`, `data_contrast()`, and `data_evolution()`
+#' functions.
+#'\describe{
+#' \item{DESTA: }{A dataset with 1217 observations and the following
+#' 195 variables: base_treaty, Title, entry_type, consolidated, language, Document.type, regioncon, wto_listed, wto_name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40, c41, c42, c43, c44, c45, c46, c47, c48, c49, c50, c51, c52, c53, c54, c55, c56, c57, c58, c59, c60, c61, c62, c63, c64, c65, c66, c67, c68, c69, c70, c71, c72, c73, c74, c75, c76, c77, c78, c79, c80, c81, c82, c83, c84, c85, c86, c87, c88, c89, c90, c91, mc1, mc2, mc3, mc4, mc5, mc6, mc7, mc8, mc9, mc10, mc11, mc12, mc13, mc14, mc15, mc16, mc17, mc18, mc19, mc20, mc21, mc22, mc23, mc24, mc25, mc26, mc27, mc28, mc29, mc30, mc31, mc32, mc33, mc34, mc35, mc36, mc37, mc38, mc39, mc40, mc41, mc42, mc43, mc44, mc45, mc46, mc47, mc48, mc49, mc50, mc51, mc52, mc53, mc54, mc55, mc56, mc57, mc58, mc59, mc60, mc61, mc62, mc63, mc64, mc65, mc66, mc67, mc68, mc69, mc70, mc71, mc72, mc73, mc74, mc75, mc76, mc77, mc78, mc79, mc80, mc81, mc82, mc83, mc84, mc85, mc86, mc87, mc88, mc89, mc90, mc91, DESTA_ID, Signature, Force, Beg.}
+#' }
+ "agreements"

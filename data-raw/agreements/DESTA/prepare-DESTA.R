@@ -15,8 +15,8 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::rename("Document.type" = "typememb") %>%
   dplyr::mutate(Document.type = dplyr::recode(Document.type, "1" = "B", "2"= "P", "3"="P", "4"="R", "5"="A", "6"="A", "7"="W")) %>% 
   qData::transmutate(DESTA_ID = `number`,
-                     Signature = qCreate::standardise_dates(lubridate::mdy(`year`)),
-                     Force = qCreate::standardise_dates(lubridate::mdy(`entryforceyear`))) %>%
+                     Signature = qCreate::standardise_dates(as.character(year)),
+                     Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
   dplyr::arrange(Beg)
 
@@ -28,7 +28,7 @@ DESTA <- as_tibble(DESTA) %>%
 
 # Stage three: Connecting data
 # Next run the following line to make DESTA available within the qPackage.
-qCreate::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/", package = "qEnviron")
+qCreate::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/", package = "qTrade")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to certain standards.
 # You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows) to run these tests locally at any point.
