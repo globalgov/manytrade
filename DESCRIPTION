@@ -1,6 +1,7 @@
 Package: qTrade
-Title: A Package for the qData Ecosystem
+Title: Trade agreements for qData
 Version: 0.0.1
+Date: 2021-09-01
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -23,7 +24,8 @@ Authors@R:
              family = "Peev",
              role = "ctb",
              comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
-Description: Collection, correction, and connection.
+Description: qTrade provides an ensemble of data on international trade agreements,
+    and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
     R (>= 2.10),
