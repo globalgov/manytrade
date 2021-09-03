@@ -30,15 +30,15 @@ License: CC BY 4.0
 Depends: 
     R (>= 2.10),
     tibble,
-    dplyr,
     pointblank
 Imports: 
     qData,
     lubridate,
+    dplyr,
     roxygen2,
-    usethis
-Suggests: 
-    purrr,
+    usethis,
+    purrr
+Suggests:
     rlang,
     testthat (>= 3.0.0)
 Encoding: UTF-8
