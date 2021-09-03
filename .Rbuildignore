@@ -5,3 +5,5 @@
 ^data-raw/agreements$
 ^data-raw/agreements/DESTA$
 ^data-raw/agreements/TREND$
+^.github$
+^README.Rmd
