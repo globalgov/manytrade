@@ -4,7 +4,7 @@
 
 ## Package
 
-* Set up qTrade package using qData::setup_package()
+* Set up qTrade package using `qCreate::setup_package()`
   * Added `DESCRIPTION` file
   * Added `R` folder
   * Added `LICENSE` file
@@ -28,4 +28,6 @@
   
 ## Data
 
-* Imported DESTA dataset
+* Imported initial `DESTA` and `TREND` datasets in qTrade, cleaned and exported into databases.
+* Cleaned datasets by standardising the dates
+* Modified description file to add pointblank as dependency
