@@ -4,7 +4,7 @@ output: github_document
 
 # qTrade
 
-qTrade is the sixth qPackage in the [qData](https://github.com/globalgov/qData) ecosystem.
+qTrade is a qPackage in the [qData](https://github.com/globalgov/qData) ecosystem.
 It currently includes an ensemble of datasets on international trade agreements,
 and [states](https://github.com/globalgov/qStates)' membership or other relationships to those agreements.
 
