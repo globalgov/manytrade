@@ -1,5 +1,5 @@
 Package: qTrade
-Title: Trade agreements for qData
+Title: Trade Agreements for qData
 Version: 0.0.1
 Date: 2021-09-01
 Authors@R: 
@@ -24,7 +24,7 @@ Authors@R:
              family = "Peev",
              role = "ctb",
              comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
-Description: qTrade provides an ensemble of data on international trade agreements,
+Description: Package qTrade provides an ensemble of data on international trade agreements,
     and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
