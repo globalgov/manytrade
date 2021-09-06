@@ -2,7 +2,8 @@
 % Please edit documentation in R/sumNA.R
 \name{sumNA}
 \alias{sumNA}
-\title{Sum NAs}
+\title{Sum NAs
+Sums the number of NAs across the columns for each row in the dataset}
 \usage{
 sumNA(data)
 }
@@ -13,6 +14,7 @@ sumNA(data)
 A vector with the sum of 'NA's for each row
 }
 \description{
+Sum NAs
 Sums the number of NAs across the columns for each row in the dataset
 }
 \examples{

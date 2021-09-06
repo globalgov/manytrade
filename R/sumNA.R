@@ -1,5 +1,4 @@
 #' Sum NAs
-#' 
 #' Sums the number of NAs across the columns for each row in the dataset
 #' @param data name of dataset
 #' @importFrom purrr map
@@ -10,10 +9,8 @@
 #' data$missing <- sumNA(data)
 #' @export
 sumNA <- function(data) {
-
   if (missing(data)) {
     stop("Please declare a dataset")
   }
-
   purrr::map(data, ~sum(is.na(.)))
 }
