@@ -12,10 +12,11 @@ TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xl
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
 TREND <- as_tibble(TREND) %>%
-  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "Title", "year1"), sep="_") %>%
+  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>%
   tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
-  tidyr::unite(col="Title", c("T1", "T2", "Title", "year1"), na.rm=T) %>%
-  qData::transmutate(Signature=qCreate::standardise_dates(as.character(Year)),
+  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  qData::transmutate(Title = qCreate::standardise_titles(name),
+                     Signature=qCreate::standardise_dates(as.character(Year)),
                      Force = qCreate::standardise_dates(as.character(Year))) %>%                                     
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
   dplyr::arrange(Beg)
