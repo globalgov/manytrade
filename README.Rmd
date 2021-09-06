@@ -25,7 +25,6 @@ qData::get_packages("qTrade") # this downloads and installs the named package
 Once you have installed the package, you can see the different databases and datasets included in the package using the following function.
 
 ```{r datasets, warning = FALSE}
-report_data("qTrade")
 qData::data_contrast("qTrade")
 ```
 
