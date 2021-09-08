@@ -28,11 +28,12 @@ Description: Package qTrade provides an ensemble of data on international trade 
     and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 2.10),
+    R (>= 3.5.0),
     tibble,
     pointblank
 Imports: 
     qData,
+    qCreate,
     lubridate,
     dplyr,
     roxygen2,
