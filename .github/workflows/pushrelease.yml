@@ -175,7 +175,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          devtools::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE)
           install.packages("rmarkdown", type = "binary")
         shell: Rscript {0}
 
