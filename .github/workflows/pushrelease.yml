@@ -174,12 +174,9 @@ jobs:
           asset_name: winOS_version.zip
           asset_content_type: application/zip
     
-  render:
+ render:
     name: Update README.md and push
-    needs: [build, release]    
     runs-on: macOS-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
