@@ -93,6 +93,9 @@ jobs:
           name: ${{ matrix.config.asset_name }}
           path: build/
 
+      - name: Calculate code coverage
+        run: Rscript -e "covr::codecov()"
+
   release:
     name: Bump version and release
     needs: build
@@ -133,7 +136,7 @@ jobs:
         run: mv ./macOS/*.tgz macOS_version.tgz
 
       - name: Upload Mac binary
-        id: upload-mac
+        id: upload-binary
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -147,7 +150,7 @@ jobs:
         run: mv ./linuxOS/*.tar.gz linuxOS_version.tar.gz
 
       - name: Upload Linux binary
-        id: upload-linux
+        id: upload-binary
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -161,7 +164,7 @@ jobs:
         run: mv ./winOS/*.zip winOS_version.zip
 
       - name: Upload Windows binary
-        id: upload-win
+        id: upload-binary
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -170,10 +173,9 @@ jobs:
           asset_path: winOS_version.zip
           asset_name: winOS_version.zip
           asset_content_type: application/zip
-
-  render:
+    
+ render:
     name: Update README.md and push
-    needs: [build, release]
     runs-on: macOS-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -183,13 +185,9 @@ jobs:
 
       # install packages needed
       - name: install required packages
-        run: Rscript -e 'install.packages(c("rmarkdown","remotes"))'
+        run: Rscript -e 'install.packages(c("rmarkdown","gratia"))'
 
-      # install packages needed
-      - name: install qData
-        run: Rscript -e 'remotes::install_github("globalgov/qData")'
-
-      # Render README.md using rmarkdown
+      # Render READEME.md using rmarkdown
       - name: render README
         run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
 
