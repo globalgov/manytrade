@@ -1,3 +1,12 @@
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+<<<<<<< HEAD
+=======
+^data-raw$
+^data-raw/agreements$
+^data-raw/agreements/DESTA$
+^data-raw/agreements/TREND$
+^.github$
+^README.Rmd
+>>>>>>> f04d17e1de6429daa95c63984c92ad50a322f88f
