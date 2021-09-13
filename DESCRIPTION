@@ -38,12 +38,10 @@ Imports:
     dplyr,
     roxygen2,
     usethis,
-    purrr,
-    remotes
+    purrr
 Suggests:
     rlang,
-    testthat (>= 3.0.0),
-    rmarkdown
+    testthat (>= 3.0.0)
 Remotes:
     globalgov/qCreate,
     globalgov/qData
