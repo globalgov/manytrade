@@ -33,6 +33,7 @@ Depends:
     pointblank
 Imports: 
     qData,
+    qCreate,
     lubridate,
     dplyr,
     roxygen2,
