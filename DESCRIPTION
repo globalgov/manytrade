@@ -39,13 +39,11 @@ Imports:
     usethis,
     purrr,
     remotes,
-    qCreate
+    rmarkdown
 Suggests:
     rlang,
-    testthat (>= 3.0.0),
-    rmarkdown
+    testthat (>= 3.0.0)
 Remotes:
-    globalgov/qCreate,
     globalgov/qData
 Encoding: UTF-8
 LazyData: true
