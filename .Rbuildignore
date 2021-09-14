@@ -7,3 +7,5 @@
 ^data-raw/agreements/TREND$
 ^.github$
 ^README.Rmd
+^data-raw/agreements/LABPTA$
+^data-raw/agreements/GPTAD$

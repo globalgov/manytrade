@@ -21,7 +21,7 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::arrange(Beg)
 
 # Add qID column
-
+DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg)
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.

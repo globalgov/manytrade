@@ -22,6 +22,7 @@ TREND <- as_tibble(TREND) %>%
   dplyr::arrange(Beg)
 
 # Add qID column
+TREND$qID <- qCreate::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.
