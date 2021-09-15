@@ -22,9 +22,9 @@ test_that("datasets have the required variables", {
 
 # Date columns should be in messydt class
 test_that("Columns are not in date, POSIXct or POSIXlt class", {
-  expect_false(lubridate::is.Date(agreements[["DESTA"]]))
-  expect_false(lubridate::is.POSIXct(agreements[["DESTA"]]))
-  expect_false(lubridate::is.POSIXlt(agreements[["DESTA"]]))
+  expect_false(any(lubridate::is.Date(agreements[["DESTA"]])))
+  expect_false(any(lubridate::is.POSIXct(agreements[["DESTA"]])))
+  expect_false(any(lubridate::is.POSIXlt(agreements[["DESTA"]])))
 })
 
 # Dates are standardized for mandatory column

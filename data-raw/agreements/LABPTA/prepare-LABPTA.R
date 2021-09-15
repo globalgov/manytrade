@@ -11,11 +11,12 @@ LABPTA <- readr::read_csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  qData::transmutate(ID = `Number`,
+  qData::transmutate(LABPTA_ID = `Number`,
                      Title = qCreate::standardise_titles(Name),
                      Signature = qCreate::standardise_dates(as.character(year)),
                      Force = qCreate::standardise_dates(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
@@ -28,7 +29,7 @@ LABPTA$qID <- qCreate::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available
 # within the qPackage.
-qCreate::export_data(LABPTA, database = "agreements")
+qCreate::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z", package = "qTrade")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

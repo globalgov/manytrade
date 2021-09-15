@@ -19,6 +19,7 @@ TREND <- as_tibble(TREND) %>%
                      Signature=qCreate::standardise_dates(as.character(Year)),
                      Force = qCreate::standardise_dates(as.character(Year))) %>%                                     
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column

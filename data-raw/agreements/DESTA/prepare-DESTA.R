@@ -11,13 +11,16 @@ DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 # formats of the 'DESTA' object until the object created
 # below (in stage three) passes all the tests.
 DESTA <- as_tibble(DESTA) %>%
-  dplyr::rename("Document.type" = "typememb") %>%
-  dplyr::mutate(Document.type = dplyr::recode(Document.type, "1" = "B", "2"= "P", "3"="P", "4"="R", "5"="A", "6"="A", "7"="W")) %>% 
-  qData::transmutate(DESTA_ID = `number`,
+  dplyr::rename("Document type" = "typememb", "Agreement type" = "entry_type", "WTO" = "wto_listed") %>%
+  dplyr::mutate(`Document type` = dplyr::recode(`Document type`, "1" = "B", "2"= "P", "3"="P+1", "4"="R", "5"="A", "6"="A", "7"="W")) %>%
+  dplyr::mutate(`Agreement type` = dplyr::recode(`Agreement type`, "base_treaty" = "A", "accession" = "Ac", "withdrawal" ="W", "protocol or amendment" = "P/E", "consolidated" = "C", "negotiation" = "N")) %>%
+  dplyr::mutate(WTO = dplyr::recode(WTO, "0" = "N", "1" = "Y")) %>%
+  qData::transmutate(DESTA_ID = `base_treaty`,
                      Title = qCreate::standardise_titles(name),
                      Signature = qCreate::standardise_dates(as.character(year)),
                      Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(Title, Beg, Signature, Force, `Agreement type`, `Document type`, WTO) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
