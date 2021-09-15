@@ -1,5 +1,15 @@
 # qTrade 0.0.1
 
+2021-09-15
+
+## Data
+
+* Closes #2 by adding GPTAD dataset
+* Closes #4 by adding LABPTA dataset
+* Cleaned datasets by standardizing titles and dates
+* Included variables for agreement type, document type, and listing in WTO
+* Added tests for LABPTA and GPTAD datasets with `qCreate::export_data()`
+
 2021-09-01
 
 ## Package
