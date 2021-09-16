@@ -62,9 +62,6 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-#      - name: Document
-#        run: Rscript -e 'roxygen2::roxygenise()'
-
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
@@ -91,9 +88,6 @@ jobs:
         with:
           name: ${{ matrix.config.asset_name }}
           path: build/
-
-#      - name: Calculate code coverage
-#        run: Rscript -e "covr::codecov()"
 
   release:
     name: Bump version and release
