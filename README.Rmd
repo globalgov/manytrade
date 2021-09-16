@@ -1,8 +1,13 @@
 ---
 output: github_document
 ---
+# qEnviron
 
-# qTrade
+<!-- badges: start -->
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/globalgov/qTrade)
+![GitHub Release Date](https://img.shields.io/github/release-date/globalgov/qTrade)
+<!-- badges: end -->
 
 qTrade is a qPackage in the [qData](https://github.com/globalgov/qData) ecosystem.
 It currently includes an ensemble of datasets on international trade agreements,
