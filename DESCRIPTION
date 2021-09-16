@@ -37,8 +37,7 @@ Imports:
     dplyr,
     roxygen2,
     usethis,
-    remotes,
-    covr
+    remotes
 Suggests:
     rlang,
     testthat (>= 3.0.0)
