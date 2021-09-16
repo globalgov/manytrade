@@ -1,5 +1,5 @@
 
-# qEnviron
+# qEnviron <img src="inst/qTradeLogoContainerTextureSimple.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
