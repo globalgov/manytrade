@@ -1,5 +1,14 @@
 
-# qTrade
+# qEnviron
+
+<!-- badges: start -->
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+![GitHub release (latest by
+date)](https://img.shields.io/github/v/release/globalgov/qTrade)
+![GitHub Release
+Date](https://img.shields.io/github/release-date/globalgov/qTrade)
+<!-- badges: end -->
 
 qTrade is a qPackage in the [qData](https://github.com/globalgov/qData)
 ecosystem. It currently includes an ensemble of datasets on
@@ -31,12 +40,16 @@ qData::data_contrast("qTrade")
 ```
 
     ## agreements :
-    ##       Unique ID Missing Data Rows Columns  Beg End
-    ## DESTA         0      87.44 % 1217     195 1948  NA
-    ## TREND         0       0.68 %  730     300 1947  NA
-    ##                                                      URL
-    ## DESTA https://www.designoftradeagreements.org/downloads/
-    ## TREND           http://www.chaire-epi.ulaval.ca/en/trend
+    ##        Unique ID Missing Data Rows Columns        Beg End
+    ## DESTA          0       7.05 % 1217       7       1948  NA
+    ## TREND          0       0.34 %  730       6       1947  NA
+    ## LABPTA         0          0 %  483       6       1990  NA
+    ## GPTAD          0          6 %  352       8 1957-25-03  NA
+    ##                                                       URL
+    ## DESTA  https://www.designoftradeagreements.org/downloads/
+    ## TREND            http://www.chaire-epi.ulaval.ca/en/trend
+    ## LABPTA          https://doi.org/10.1007/s11558-018-9301-z
+    ## GPTAD       https://wits.worldbank.org/gptad/library.aspx
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
