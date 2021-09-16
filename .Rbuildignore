@@ -1,11 +1,7 @@
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^data-raw$
-^data-raw/agreements$
-^data-raw/agreements/DESTA$
-^data-raw/agreements/TREND$
-^.github$
-^README.Rmd
-^data-raw/agreements/LABPTA$
-^data-raw/agreements/GPTAD$
+^data-raw
+^.github
+^README\.Rmd
+^LICENSE\.md
