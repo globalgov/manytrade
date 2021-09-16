@@ -38,13 +38,15 @@ Imports:
     dplyr,
     roxygen2,
     usethis,
-    purrr
+    purrr,
+    remotes
 Suggests:
     rlang,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    rmarkdown
 Remotes:
-    globalgov/qCreate,
-    globalgov/qData
+    globalgov/qData,
+    globalgov/qCreate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
