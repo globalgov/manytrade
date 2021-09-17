@@ -1,4 +1,4 @@
-citHeader("To cite qEnviron in publications use:")
+citHeader("To cite qTrade in publications use:")
 
 citEntry(
   entry    = "Manual",
@@ -6,6 +6,6 @@ citEntry(
   author   = "James Hollway",
   year     = "2021",
   url      = "https://github.com/globalgov/qTrade",
-  textVersion = paste("J. Hollway. Environmental agreements for qData. 2021."
+  textVersion = paste("J. Hollway. Trade agreements for qData. 2021."
   )
 )

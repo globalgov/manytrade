@@ -4,7 +4,7 @@
 # ready for the qPackage.
 
 # Stage one: Collecting data
-LABPTA <- readr::read_csv("data-raw/agreements/LABPTA/LABPTA.csv")
+LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
@@ -29,7 +29,7 @@ LABPTA$qID <- qCreate::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available
 # within the qPackage.
-qCreate::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z", package = "qTrade")
+qCreate::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

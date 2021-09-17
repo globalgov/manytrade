@@ -30,7 +30,7 @@ TREND$qID <- qCreate::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # Stage three: Connecting data
 # Next run the following line to make TREND available within the qPackage.
-qCreate::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend", package = "qTrade")
+qCreate::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

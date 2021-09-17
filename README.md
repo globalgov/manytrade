@@ -1,5 +1,5 @@
 
-# qEnviron <img src="inst/qTradeLogoContainerTextureSimple.png" align="right" width="220"/>
+# qTrade <img src="inst/qTradeLogoContainerTextureSimple.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -68,18 +68,17 @@ citation("qTrade")
 ```
 
     ## 
-    ## To cite package 'qTrade' in publications use:
+    ## To cite qEnviron in publications use:
     ## 
-    ##   James Hollway (2021). qTrade: Trade Agreements for qData. R package
-    ##   version 0.0.1.
+    ##   J. Hollway. Environmental agreements for qData. 2021.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Manual{,
-    ##     title = {qTrade: Trade Agreements for qData},
+    ##     title = {qTrade: International Trade Agreements for qData},
     ##     author = {James Hollway},
     ##     year = {2021},
-    ##     note = {R package version 0.0.1},
+    ##     url = {https://github.com/globalgov/qTrade},
     ##   }
 
 ## Contributing
