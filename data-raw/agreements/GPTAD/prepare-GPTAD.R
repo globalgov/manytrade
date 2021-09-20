@@ -13,7 +13,10 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # below (in stage three) passes all the tests.
 GPTAD <- as_tibble(GPTAD) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
+<<<<<<< HEAD
   dplyr::mutate(GPTAD_ID = row_number()) %>%
+=======
+>>>>>>> e6041c7a549f8b50f8ef1c1b512db0d01f4f7879
   dplyr::mutate(L = dplyr::recode(`Type`, "Association Free Trade Agreement" = "P", "Bilateral Free Trade Agreement"= "B", "Customs Union Primary Agreement"="P", "Regional/Plurilateral Free Trade Agreement"="R/P", "Framework Agreement" = "M")) %>%
   dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", "Bilateral Free Trade Agreement"= "A", "Customs Union Primary Agreement"="A", "Regional/Plurilateral Free Trade Agreement"="A", "Framework Agreement" = "A")) %>%
   dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
@@ -23,7 +26,11 @@ GPTAD <- as_tibble(GPTAD) %>%
                      Signature = qCreate::standardise_dates(`Date.of.Signature`),
                      Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+<<<<<<< HEAD
   dplyr::select(GPTAD_ID, Title, Beg, Signature, Force, D, L, WTO) %>% 
+=======
+  dplyr::select(Title, Beg, Signature, Force, D, L, WTO) %>% 
+>>>>>>> e6041c7a549f8b50f8ef1c1b512db0d01f4f7879
   dplyr::arrange(Beg)
 
 # Add qID column
