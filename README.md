@@ -1,5 +1,5 @@
 
-# qTrade <img src="inst/qTradeLogo.png" align="right" width="220"/>
+# qTrade <img src="https://raw.githubusercontent.com/globalgov/qTrade/develop/inst/qTradeLogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
