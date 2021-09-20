@@ -12,18 +12,18 @@ DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 # below (in stage three) passes all the tests.
 DESTA <- as_tibble(DESTA) %>%
   dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
-  dplyr::rename("L" = "typememb", "D" = "entry_type") %>%
-  dplyr::mutate(L = dplyr::recode(L, "1" = "B", "2"= "P", "3"="P+3", "4"="PP")) %>%
-  dplyr::mutate(D = dplyr::recode(`D`, "base_treaty" = "A", "protocol or amendment" = "P/E", "consolidated" = "P/E", "negotiation" = "A")) %>%
-  dplyr::rename("WTO" = "wto_listed", "J" = "regioncon") %>%
+  dplyr::rename("Document type" = "typememb", "Agreement type" = "entry_type") %>%
+  dplyr::mutate(`Document type` = dplyr::recode(`Document type`, "1" = "B", "2"= "P", "3"="P+3", "4"="PP")) %>%
+  dplyr::mutate(`Agreement type` = dplyr::recode(`Agreement type`, "base_treaty" = "A", "protocol or amendment" = "P/E", "consolidated" = "P/E", "negotiation" = "A")) %>%
+  dplyr::rename("WTO" = "wto_listed", "Geographic area" = "regioncon") %>%
   dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
-  dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
+  dplyr::mutate(`Geographic area` = dplyr::recode(`Geographic area`, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
   qData::transmutate(DESTA_ID = `base_treaty`,
                      Title = qCreate::standardise_titles(name),
                      Signature = qCreate::standardise_dates(as.character(year)),
                      Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO) %>% 
+  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, `Agreement type`, `Document type`, `Geographic area`, WTO) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
