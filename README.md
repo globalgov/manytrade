@@ -1,5 +1,5 @@
 
-# qTrade <img src="inst/qTradeLogoContainerTextureSimple.png" align="right" width="220"/>
+# qTrade <img src="inst/qTradeLogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -10,11 +10,14 @@ date)](https://img.shields.io/github/v/release/globalgov/qTrade)
 Date](https://img.shields.io/github/release-date/globalgov/qTrade)
 <!-- badges: end -->
 
-qTrade is a qPackage in the [qData](https://github.com/globalgov/qData)
-ecosystem. It currently includes an ensemble of datasets on
-international trade agreements, and
-[states](https://github.com/globalgov/qStates)’ membership or other
-relationships to those agreements.
+qTrade is a data package in the
+[qData](https://github.com/globalgov/qData) ecosystem of qPackages. It
+currently includes an ensemble of datasets on international trade
+agreements, and [states](https://github.com/globalgov/qStates)’
+membership or other relationships to those agreements.
+
+Please also check out [`{qData}`](https://github.com/globalgov) for more
+about the other packages in the `{qData}` ecosystem.
 
 ## How to install:
 
@@ -33,7 +36,8 @@ qData::get_packages("qTrade") # this downloads and installs the named package
 ## Data included
 
 Once you have installed the package, you can see the different databases
-and datasets included in the package using the following function.
+and datasets included in the {qTrade} package using the following
+function.
 
 ``` r
 qData::data_contrast("qTrade")
@@ -41,10 +45,10 @@ qData::data_contrast("qTrade")
 
     ## agreements :
     ##        Unique ID Missing Data Rows Columns        Beg End
-    ## DESTA          0       7.05 % 1217       7       1948  NA
+    ## DESTA          0       4.71 %  987      10       1948  NA
     ## TREND          0       0.34 %  730       6       1947  NA
     ## LABPTA         0          0 %  483       6       1990  NA
-    ## GPTAD          0          6 %  352       8 1957-25-03  NA
+    ## GPTAD          0       4.72 %  346       9 1957-25-03  NA
     ##                                                       URL
     ## DESTA  https://www.designoftradeagreements.org/downloads/
     ## TREND            http://www.chaire-epi.ulaval.ca/en/trend
@@ -55,22 +59,29 @@ Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/qData/articles/user.html).
 
+## qPackages
+
+The [qData](https://github.com/globalgov/qData) ecosystem is aimed at
+collecting, connecting and correcting network data across issue-domains
+of global governance.
+
 While some qPackages can and do include novel data, much of what they
 offer involves standing on the shoulders of giants. qPackages endeavour
 to be as transparent as possible about where data comes from, how it has
 been coded and/or relabeled, and who has done the work. As such, we make
 it easy to cite both the particular datasets you use by listing the
 official references in the function above, as well as the package
-providers for their work assembling the data using the function below.
+providers for their work assembling the data by using the function
+below.
 
 ``` r
 citation("qTrade")
 ```
 
     ## 
-    ## To cite qEnviron in publications use:
+    ## To cite qTrade in publications use:
     ## 
-    ##   J. Hollway. Environmental agreements for qData. 2021.
+    ##   J. Hollway. Trade agreements for qData. 2021.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
