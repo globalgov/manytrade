@@ -13,8 +13,8 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # below (in stage three) passes all the tests.
 GPTAD <- as_tibble(GPTAD) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
-  dplyr::mutate(`Document type` = dplyr::recode(`Type`, "Association Free Trade Agreement" = "P", "Bilateral Free Trade Agreement"= "B", "Customs Union Primary Agreement"="P", "Regional/Plurilateral Free Trade Agreement"="R/P", "Framework Agreement" = "M")) %>%
-  dplyr::mutate(`Agreement type` = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", "Bilateral Free Trade Agreement"= "A", "Customs Union Primary Agreement"="A", "Regional/Plurilateral Free Trade Agreement"="A", "Framework Agreement" = "A")) %>%
+  dplyr::mutate(L = dplyr::recode(`Type`, "Association Free Trade Agreement" = "P", "Bilateral Free Trade Agreement"= "B", "Customs Union Primary Agreement"="P", "Regional/Plurilateral Free Trade Agreement"="R/P", "Framework Agreement" = "M")) %>%
+  dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", "Bilateral Free Trade Agreement"= "A", "Customs Union Primary Agreement"="A", "Regional/Plurilateral Free Trade Agreement"="A", "Framework Agreement" = "A")) %>%
   dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
@@ -22,7 +22,7 @@ GPTAD <- as_tibble(GPTAD) %>%
                      Signature = qCreate::standardise_dates(`Date.of.Signature`),
                      Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(Title, Beg, Signature, Force, `Agreement type`, `Document type`, WTO) %>% 
+  dplyr::select(Title, Beg, Signature, Force, D, L, WTO) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
