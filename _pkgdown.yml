@@ -49,22 +49,10 @@ navbar:
           href: https://globalgov.github.io/qStates/
         - text: qEnviron
           href: https://globalgov.github.io/qEnviron/
-# To be filled out before first PR
-# reference:
-#   - title: "Functions to code states"
-#     desc: "These functions are here to assist in creating ID's for states:"
-#     contents:
-#     # - code_modern_states Commented out in code
-#     - code_states
-#   - title: "Functions to import CShapes 2.0 data"
-#     desc: "These functions are here to assist users in importing correctly formatted CShapes 2.0 data:"
-#     contents:
-#     - import_cshapes
-#     - import_distlist
-#     - import_distmatrix
-#   - title: "States Data"
-#     desc: "qStates contains the following databases on states or state related concepts"
-#     contents:
-#     - states
-#     - leaders
-#     - regimes
+
+reference:
+   - title: "Data"
+     desc: "qTrade contains the following databases"
+     contents:
+     - agreements
+#     - memberships
