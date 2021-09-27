@@ -6,3 +6,7 @@
 ^README\.Rmd
 ^LICENSE\.md
 ^inst
+^data-raw$
+^data-raw/memberships$
+^data-raw/memberships/GPTAD_MEM$
+^data-raw/memberships/DESTA_MEM$
