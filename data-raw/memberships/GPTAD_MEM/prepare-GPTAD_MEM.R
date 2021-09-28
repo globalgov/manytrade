@@ -35,7 +35,7 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(M12 = trimws(M11, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>%
   dplyr::mutate(Country = ifelse(M12 == "", NA, M12)) %>%
   dplyr::filter(Country != "NA") %>%
-  dplyr::mutate(Country_ID = countrycode(Country, origin = 'country.name', destination = 'iso3c')) %>%
+  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3c')) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
