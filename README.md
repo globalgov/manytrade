@@ -43,18 +43,6 @@ function.
 qData::data_contrast("qTrade")
 ```
 
-    ## agreements :
-    ##        Unique ID Missing Data Rows Columns        Beg End
-    ## DESTA          0       4.71 %  987      10       1948  NA
-    ## TREND          0       0.34 %  730       6       1947  NA
-    ## LABPTA         0          0 %  483       6       1990  NA
-    ## GPTAD          0       4.72 %  346       9 1957-25-03  NA
-    ##                                                       URL
-    ## DESTA  https://www.designoftradeagreements.org/downloads/
-    ## TREND            http://www.chaire-epi.ulaval.ca/en/trend
-    ## LABPTA          https://doi.org/10.1007/s11558-018-9301-z
-    ## GPTAD       https://wits.worldbank.org/gptad/library.aspx
-
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/qData/articles/user.html).
@@ -79,17 +67,18 @@ citation("qTrade")
 ```
 
     ## 
-    ## To cite qTrade in publications use:
+    ## To cite package 'qTrade' in publications use:
     ## 
-    ##   J. Hollway. Trade agreements for qData. 2021.
+    ##   James Hollway (2021). qTrade: Trade Agreements for qData. R package
+    ##   version 0.0.1.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Manual{,
-    ##     title = {qTrade: International Trade Agreements for qData},
+    ##     title = {qTrade: Trade Agreements for qData},
     ##     author = {James Hollway},
     ##     year = {2021},
-    ##     url = {https://github.com/globalgov/qTrade},
+    ##     note = {R package version 0.0.1},
     ##   }
 
 ## Contributing
