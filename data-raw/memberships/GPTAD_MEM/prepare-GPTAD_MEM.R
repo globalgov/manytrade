@@ -3,7 +3,7 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for the qPackage.
 
-# Stage one: Collecting data
+# Stage one: Collecting data 
 GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 
 # Stage two: Correcting data
@@ -14,7 +14,7 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(M1 = gsub("\\\\r\\\\n", "", Membership)) %>%
   dplyr::mutate(M2 = gsub("[()]", ",", M1)) %>%
   dplyr::mutate(M3a = gsub("[;]", ",", M2)) %>%
-  dplyr::mutate(M3 = gsub("[-]", ",", M3a)) %>% 
+  dplyr::mutate(M3 = gsub("[-]", ",", M3a)) %>%
   dplyr::mutate(M4 = stringr::str_replace(M3, "Thailand Vietnam", "Thailand, Vietnam")) %>%
   dplyr::mutate(M4a = stringr::str_replace(M4, "Finland France", "Finland, France")) %>%
   dplyr::mutate(M4b = stringr::str_replace(M4a, "Norway and Switzerland", "Norway, Switzerland")) %>%
@@ -31,11 +31,26 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(M9 = stringr::str_replace(M8, "and Montenegro", "Montenegro")) %>%
   dplyr::mutate(M10 = stringr::str_replace(M9, "and Norway", "Norway")) %>%
   dplyr::mutate(M11 = stringr::str_replace(M10, "and Tunisia", "Tunisia")) %>%
-  tidyr::separate_rows(M11, sep=",") %>%
-  dplyr::mutate(M12 = trimws(M11, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>%
-  dplyr::mutate(Country = ifelse(M12 == "", NA, M12)) %>%
-  dplyr::filter(Country != "NA") %>%
-  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3c')) %>%
+  dplyr::mutate(M12 = stringr::str_replace(M10, "Kitts-Nevis-Anguilla", "Saint Kitts and Nevis, Anguilla")) %>%
+  tidyr::separate_rows(M12, sep=",") %>%
+  dplyr::mutate(M13 = trimws(M12, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>%
+  dplyr::mutate(M14 = ifelse(M13 == "", NA, M13)) %>%
+  dplyr::filter(M14 != "NA") %>%
+  dplyr::mutate(Country = dplyr::recode(M14, "Autriche" = "Austria", "Belgique" = "Belgium", "Bénin" = "Benin",
+                                    "Allemagne" = "Germany", "Buglaria" = "Bulgaria", "Cameroun" = "Cameroon", 
+                                    "Centrafricaine" = "Central African Republic", "Communauté européenne" = "European Community",
+                                    "Danemark" = "Denmark", "Espagne" = "Spain", "Grèce" = "Greece", 
+                                    "Guinée Équatoriale" = "Equitorial Guinea", "Italie" = "Italy", 
+                                    "Jordon" = "Jordan", "Lichtenstein" = "Liechtenstein", 
+                                    "Malte" = "Malta", "Pays" = "Netherlands", "Royaume" = "United Kingdom",
+                                    "Sénégal" = "Senegal", "Suède" = "Sweden", "Tchad" = "Chad",
+                                    "Virgin Islands" = "British Virgin Islands", "Yugoslavia." = "Yugoslavia",
+                                    "Micronesia" = "the Federated States of Micronesia", "Netherlands Antilles"="Netherlands Antilles")) %>%
+  dplyr::filter(Country != "Bas",
+                Country != "Uni",
+                Country != "British",
+                Country != "Overseas Countries and Territories") %>%
+  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
