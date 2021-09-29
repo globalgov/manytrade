@@ -4,11 +4,14 @@
 
 ## Data
 
-* Closes #2 by adding GPTAD dataset
-* Closes #4 by adding LABPTA dataset
-* Cleaned datasets by standardizing titles and dates
-* Included variables for agreement type, document type, and listing in WTO
-* Added tests for LABPTA and GPTAD datasets with `qCreate::export_data()`
+* Closes Add GPTAD dataset #2 by adding GPTAD dataset to agreements database
+* Closes Add LABPTA dataset #4 by adding LABPTA dataset to agreements database
+* Cleaned datasets by standardizing titles and dates in agreements databse
+* Included variables for agreement type, document type, and listing in WTO for datasets in agreements database
+* Added tests for LABPTA and GPTAD datasets with qCreate::export_data() in agreements database
+* Arranged DESTA and GPTAD datasets to reflect membership data
+* Added .bib files with qCreate::add_bib() for DESTA and GPTAD datasets in memberships database
+* Added tests for DESTA and GPTAD datasets with qCreate::export_data() in memberships database
 
 2021-09-01
 
