@@ -55,4 +55,4 @@ reference:
      desc: "qTrade contains the following databases"
      contents:
      - agreements
-#     - memberships
+     - memberships
