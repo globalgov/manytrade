@@ -12,7 +12,8 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # below (in stage three) passes all the tests.
 GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(M1 = gsub("\\\\r\\\\n", "", Membership)) %>%
-  dplyr::mutate(M2 = gsub("[()]", ",", M1)) %>%
+  dplyr::mutate(M1a = stringr::str_replace(M1, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
+  dplyr::mutate(M2 = gsub("[()]", ",", M1a)) %>%
   dplyr::mutate(M3a = gsub("[;]", ",", M2)) %>%
   dplyr::mutate(M3 = gsub("[-]", ",", M3a)) %>%
   dplyr::mutate(M4 = stringr::str_replace(M3, "Thailand Vietnam", "Thailand, Vietnam")) %>%
@@ -45,12 +46,18 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
                                     "Malte" = "Malta", "Pays" = "Netherlands", "Royaume" = "United Kingdom",
                                     "Sénégal" = "Senegal", "Suède" = "Sweden", "Tchad" = "Chad",
                                     "Virgin Islands" = "British Virgin Islands", "Yugoslavia." = "Yugoslavia",
-                                    "Micronesia" = "the Federated States of Micronesia", "Netherlands Antilles"="Netherlands Antilles")) %>%
+                                    "Micronesia" = "the Federated States of Micronesia", "Netherlands Antilles"="Netherlands Antilles",
+                                    "EC" = "European Community", "European Communitiy" = "European Community", "BIMST" = "BIMST-EC")) %>%
   dplyr::filter(Country != "Bas",
                 Country != "Uni",
                 Country != "British",
-                Country != "Overseas Countries and Territories") %>%
+                Country != "Overseas Countries and Territories") %>% 
+  #Kept the names of IOs in the 'country' column because for some treaties the list of countries within the organisation is not listed (eg. CARICOM-Colombia)
   dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>%
+  #IOs and some countries (Kosovo, Northern Ireland, Sahrawi) do not have their own iso code
+  #dplyr::mutate(ID1 = ifelse(Country = "Netherlands Antilles", 530, ID)) %>%
+  #dplyr::mutate(Country_ID = ifelse(Country = "Yugoslavia", 891, ID1)) %>%
+  #could not detect country names Yugoslavia and Netherlands Antilles
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
