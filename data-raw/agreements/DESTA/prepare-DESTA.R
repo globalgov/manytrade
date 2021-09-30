@@ -12,6 +12,7 @@ DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 # below (in stage three) passes all the tests.
 DESTA <- as_tibble(DESTA) %>%
   dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
+  #categories removed because they relate to changes in membership that are reflected in the memberships database
   dplyr::rename("L" = "typememb", "D" = "entry_type") %>%
   dplyr::mutate(L = dplyr::recode(L, "1" = "B", "2"= "P", "3"="P+3", "4"="PP")) %>%
   dplyr::mutate(D = dplyr::recode(D, "base_treaty" = "A", "protocol or amendment" = "P/E", "consolidated" = "P/E", "negotiation" = "A")) %>%

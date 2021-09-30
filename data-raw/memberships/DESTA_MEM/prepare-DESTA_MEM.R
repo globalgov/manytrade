@@ -12,6 +12,7 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 # below (in stage three) passes all the tests.
 DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country", values_drop_na = TRUE) %>%
+  #arrange columns containing countries into one column, with each country in rows corresponding to the treaty it is party to
   qData::transmutate(DESTA_ID = `base_treaty`,
                      Title = qCreate::standardise_titles(name),
                      Signature = qCreate::standardise_dates(as.character(year)),
