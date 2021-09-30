@@ -1,4 +1,4 @@
-#' Memberships database documentation
+#' memberships database documentation
 #'
 #' @format The memberships database is a list that contains the
 #' following 2 datasets: GPTAD_MEM, DESTA_MEM.
