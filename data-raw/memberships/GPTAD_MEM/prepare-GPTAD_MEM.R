@@ -11,60 +11,51 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # formats of the 'GPTAD_MEM' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
-  dplyr::mutate(M1 = gsub("\\\\r\\\\n", "", Membership)) %>%
-  dplyr::mutate(M1a = stringr::str_replace(M1, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
-  dplyr::mutate(M2 = gsub("[()]", ",", M1a)) %>%
-  dplyr::mutate(M3a = gsub("[;]", ",", M2)) %>%
-  dplyr::mutate(M3 = gsub("[-]", ",", M3a)) %>%
-  dplyr::mutate(M4 = stringr::str_replace(M3, "Thailand Vietnam", "Thailand, Vietnam")) %>%
-  dplyr::mutate(M4a = stringr::str_replace(M4, "Finland France", "Finland, France")) %>%
-  dplyr::mutate(M4b = stringr::str_replace(M4a, "Norway and Switzerland", "Norway, Switzerland")) %>%
-  dplyr::mutate(M4c = stringr::str_replace(M4b, "Paraguay and Uruguay", "Paraguay, Uruguay")) %>%
-  dplyr::mutate(M4d = stringr::str_replace(M4c, "Russian Federation and Ukraine", "Russian Federation, Ukraine")) %>%
-  dplyr::mutate(M4e = stringr::str_replace(M4d, "Slovak Republic and Slovenia", "Slovak Republic, Slovenia")) %>%
-  dplyr::mutate(M4f = stringr::str_replace(M4e, "Spain Sweden", "Spain, Sweden")) %>%
-  dplyr::mutate(M4g = stringr::str_replace(M4f, "Ukraine and Uzbekistan", "Ukraine, Uzbekistan")) %>%
-  dplyr::mutate(M4h = stringr::str_replace(M4g, "Uzbekistan and Ukraine", "Ukraine, Uzbekistan")) %>%
-  dplyr::mutate(M5 = stringr::str_replace(M4h, "Suriname and Trinidad and Tobago", "Suriname, Trinidad and Tobago")) %>%
-  dplyr::mutate(M6 = stringr::str_replace(M5, "and Venezuela", "Venezuela")) %>%
-  dplyr::mutate(M7 = stringr::str_replace(M6, "and European Community", "European Community")) %>%
-  dplyr::mutate(M8 = stringr::str_replace(M7, "and Lebanon", "Lebanon")) %>%
-  dplyr::mutate(M9 = stringr::str_replace(M8, "and Montenegro", "Montenegro")) %>%
-  dplyr::mutate(M10 = stringr::str_replace(M9, "and Norway", "Norway")) %>%
-  dplyr::mutate(M11 = stringr::str_replace(M10, "and Tunisia", "Tunisia")) %>%
-  dplyr::mutate(M12 = stringr::str_replace(M10, "Kitts-Nevis-Anguilla", "Saint Kitts and Nevis, Anguilla")) %>%
-  tidyr::separate_rows(M12, sep=",") %>%
-  dplyr::mutate(M13 = trimws(M12, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>%
-  dplyr::mutate(M14 = ifelse(M13 == "", NA, M13)) %>%
-  dplyr::filter(M14 != "NA") %>%
-  dplyr::mutate(Country = dplyr::recode(M14, "Autriche" = "Austria", "Belgique" = "Belgium", "Bénin" = "Benin",
-                                    "Allemagne" = "Germany", "Buglaria" = "Bulgaria", "Cameroun" = "Cameroon", 
-                                    "Centrafricaine" = "Central African Republic", "Communauté européenne" = "European Community",
-                                    "Danemark" = "Denmark", "Espagne" = "Spain", "Grèce" = "Greece", 
-                                    "Guinée Équatoriale" = "Equitorial Guinea", "Italie" = "Italy", 
-                                    "Jordon" = "Jordan", "Lichtenstein" = "Liechtenstein", 
-                                    "Malte" = "Malta", "Pays" = "Netherlands", "Royaume" = "United Kingdom",
-                                    "Sénégal" = "Senegal", "Suède" = "Sweden", "Tchad" = "Chad",
-                                    "Virgin Islands" = "British Virgin Islands", "Yugoslavia." = "Yugoslavia",
-                                    "Micronesia" = "the Federated States of Micronesia", "Netherlands Antilles"="Netherlands Antilles",
-                                    "EC" = "European Community", "European Communitiy" = "European Community", "BIMST" = "BIMST-EC")) %>%
-  dplyr::filter(Country != "Bas",
-                Country != "Uni",
-                Country != "British",
-                Country != "Overseas Countries and Territories") %>% 
-  #Kept the names of IOs in the 'country' column because for some treaties the list of countries within the organisation is not listed (eg. CARICOM-Colombia)
-  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>%
-  #IOs and some countries (Kosovo, Northern Ireland, Sahrawi) do not have their own iso code
-  #dplyr::mutate(ID1 = ifelse(Country = "Netherlands Antilles", 530, ID)) %>%
-  #dplyr::mutate(Country_ID = ifelse(Country = "Yugoslavia", 891, ID1)) %>%
-  #could not detect country names Yugoslavia and Netherlands Antilles
+  dplyr::mutate(Country = gsub("\\\\r\\\\n", "", Membership)) %>% #remove \r\n line break entries
+  dplyr::mutate(Country = stringr::str_replace(Country, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
+  #standardize delimitation of values by commas
+  dplyr::mutate(Country = stringr::str_replace(Country, "Kitts-Nevis-Anguilla", "Saint Kitts and Nevis, Anguilla")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, " St. Saint Kitts Nevis", "Saint Kitts and Nevis")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Singapore - Korea", "Singapore, Korea")) %>%
+  dplyr::mutate(Country = gsub("[()]", ",", Country)) %>%
+  dplyr::mutate(Country = gsub("[;]", ",", Country)) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Thailand Vietnam", "Thailand, Vietnam")) %>% #add comma between country names
+  dplyr::mutate(Country = stringr::str_replace(Country, "Finland France", "Finland, France")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Paraguay and Uruguay", "Paraguay, Uruguay")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Russian Federation and Ukraine", "Russian Federation, Ukraine")) %>% 
+  dplyr::mutate(Country = stringr::str_replace(Country, "Slovak Republic and Slovenia", "Slovak Republic, Slovenia")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Spain Sweden", "Spain, Sweden")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Ukraine and Uzbekistan", "Ukraine, Uzbekistan")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Uzbekistan and Ukraine", "Ukraine, Uzbekistan")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Suriname and Trinidad and Tobago", "Suriname, Trinidad and Tobago")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "Norway and Switzerland", "Norway, Switzerland")) %>%
+  #remove 'and' between country names
+  tidyr::separate_rows(Country, sep=",") %>% #separate column into rows by each country
+  dplyr::mutate(Country = stringr::str_replace(Country, "and Venezuela", "Venezuela")) %>% #remove 'and' before country name
+  dplyr::mutate(Country = stringr::str_replace(Country, "and European Community", "European Community")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "and Lebanon", "Lebanon")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "and Montenegro", "Montenegro")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "and Norway", "Norway")) %>%
+  dplyr::mutate(Country = stringr::str_replace(Country, "and Tunisia", "Tunisia")) %>%
+  dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>% #standardize empty rows and 
+  dplyr::mutate(Country = ifelse(Country == " ", NA, Country)) %>% #rows with only whitespace to NA
+  dplyr::filter(Country != "NA") %>% #remove missing rows
+  dplyr::mutate(Country = qCreate::standardise_titles(Country)) %>%
+  dplyr::mutate(Country = dplyr::recode(Country, "Communauté européenne" = "European Community", "Lichtenstein" = "Liechtenstein", 
+                                        "Virgin Islands" = "British Virgin Islands", "Yugoslavia." = "Yugoslavia", 
+                                        "Micronesia" = "the Federated States of Micronesia", "EC" = "European Community",
+                                        "European Communitiy" = "European Community")) %>% #corrected spelling of country and IO names
+  dplyr::mutate(Country = qTrade::code_countryname(Country)) %>% #translate French country names
+  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>% #add iso code for country names
+  dplyr::mutate(Abbrv = qTrade::code_countryabbrv(Country)) %>% #insert abbreviation of country name
+  dplyr::mutate(IO = ifelse(Country_Abbrv == "NA", Country, NA)) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
                      Signature = qCreate::standardise_dates(`Date.of.Signature`),
                      Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(Country_ID, Country, Title, Beg, Signature, Force) %>% 
+  dplyr::select(Country_ID, Abbrv, Country, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 # qCreate includes several functions that should help cleaning
 # and standardising your data.
