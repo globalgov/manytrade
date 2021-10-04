@@ -12,7 +12,7 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # formats of the 'GPTAD' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD <- as_tibble(GPTAD) %>%
-  dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
+  dplyr::filter(Type != "Customs Union Accession Agreement" ) %>% #removing entries relating to membership as membership changes will be logged in memberships database
   dplyr::mutate(GPTAD_ID = row_number()) %>%
   dplyr::mutate(L = dplyr::recode(`Type`, "Association Free Trade Agreement" = "P", "Bilateral Free Trade Agreement"= "B", "Customs Union Primary Agreement"="P", "Regional/Plurilateral Free Trade Agreement"="R/P", "Framework Agreement" = "M")) %>%
   dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", "Bilateral Free Trade Agreement"= "A", "Customs Union Primary Agreement"="A", "Regional/Plurilateral Free Trade Agreement"="A", "Framework Agreement" = "A")) %>%

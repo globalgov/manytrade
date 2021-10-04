@@ -13,9 +13,9 @@ code_countryname(name)
 A character vector of country name
 }
 \description{
-Standardize country names from other languages, abbreviations, or codes.
+Standardize country names from other languages.
 }
 \examples{
-name <- c("argentine", "albanie", "BÃ©larus")
+name <- c("argentine", "albanie", "Bélarus")
 code_countryname(name)
 }
