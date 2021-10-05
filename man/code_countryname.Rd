@@ -4,18 +4,24 @@
 \alias{code_countryname}
 \title{Code Country Names}
 \usage{
-code_countryname(name)
+code_countryname(name, abbrev = FALSE)
 }
 \arguments{
 \item{name}{A character vector of country name}
+
+\item{abbrev}{Do you want 3 letter country
+abbreviations to be returned?
+False by default.}
 }
 \value{
 A character vector of country name
 }
 \description{
-Standardize country names from other languages.
+Standardize spellings for country names,
+as well as country names in other languages.
 }
 \examples{
-name <- c("argentine", "albanie", "Bélarus")
+name <- c("argentine", "albanie", "BÃ©larus")
 code_countryname(name)
+code_countryname(name, abbrev = TRUE)
 }
