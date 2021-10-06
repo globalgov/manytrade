@@ -40,22 +40,24 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>% #standardize empty rows and 
   dplyr::mutate(Country = ifelse(Country == " ", NA, Country)) %>% #rows with only whitespace to NA
   dplyr::filter(Country != "NA") %>% #remove missing rows
-  dplyr::mutate(Country = qCreate::standardise_titles(Country)) %>%
+  dplyr::mutate(Country = trimws(Country, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>% #remove whitespace
+  dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>%
+  dplyr::filter(Country != "NA") %>% #remove empty rows
   dplyr::mutate(Country = dplyr::recode(Country, "Communauté européenne" = "European Community", "Lichtenstein" = "Liechtenstein", 
                                         "Virgin Islands" = "British Virgin Islands", "Yugoslavia." = "Yugoslavia", 
                                         "Micronesia" = "the Federated States of Micronesia", "EC" = "European Community",
-                                        "European Communitiy" = "European Community")) %>% #corrected spelling of country and IO names
+                                        "European Communitiy" = "European Community", "Buglaria" = "Bulgaria", "Jordon" = "Jordan",
+                                        "TUnited KingdOmand Caicos Islands" = "Turks and Caicos Islands", "Luxembourt" = "Luxembourg")) %>% #corrected spelling of country and IO names
   dplyr::mutate(Country = qTrade::code_countryname(Country)) %>% #translate French country names
   dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>% #add iso code for country names
-  dplyr::mutate(Abbrv = qTrade::code_countryabbrv(Country)) %>% #insert abbreviation of country name
-  dplyr::mutate(IO = ifelse(Country_Abbrv == "NA", Country, NA)) %>%
+  # dplyr::mutate(Abbrv = qTrade::code_countryname(Country, abbrev = TRUE)) %>% #insert abbreviation of country name
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
                      Signature = qCreate::standardise_dates(`Date.of.Signature`),
                      Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(Country_ID, Abbrv, Country, Title, Beg, Signature, Force) %>% 
+  dplyr::select(Country_ID, Country, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 # qCreate includes several functions that should help cleaning
 # and standardising your data.
