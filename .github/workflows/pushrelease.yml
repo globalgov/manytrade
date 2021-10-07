@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 name: Check and release
 
@@ -59,6 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("globalgov/qData")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
@@ -91,9 +93,6 @@ jobs:
         with:
           name: ${{ matrix.config.asset_name }}
           path: build/
-
-#      - name: Calculate code coverage
-#        run: Rscript -e "covr::codecov()"
 
   release:
     name: Bump version and release
@@ -131,63 +130,72 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
 
-      - name: Zip up
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r qTrade_AllOS.zip . -i ./macOS/* ./winOS/* ./linuxOS/*
+      - name: Rename Mac release
+        run: mv ./macOS/*.tgz macOS_version.tgz
 
-      - name: Display structure of downloaded files again
-        run: ls -R
-
-      - name: Upload binary
-        id: upload-binary 
+      - name: Upload Mac binary
+        id: upload-binary
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: qTrade_AllOS.zip
-          asset_name: qTrade_AllOS.zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: macOS_version.tgz
+          asset_name: macOS_version.tgz
+          asset_content_type: application/zip
+
+      - name: Rename Linux release
+        run: mv ./linuxOS/*.tar.gz linuxOS_version.tar.gz
+
+      - name: Upload Linux binary
+        id: upload-binary
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: linuxOS_version.tar.gz
+          asset_name: linuxOS_version.tar.gz
+          asset_content_type: application/zip
+
+      - name: Rename Windows release
+        run: mv ./winOS/*.zip winOS_version.zip
+
+      - name: Upload Windows binary
+        id: upload-binary
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: winOS_version.zip
+          asset_name: winOS_version.zip
           asset_content_type: application/zip
 
   render:
     name: Update README.md and push
+    needs: build
     runs-on: macOS-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
-      # Query and install dependencies as well as rmarkdown package since its a new runner
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
 
-      - name: Cache R packages
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+      # install packages needed
+      - name: install required packages
+        run: Rscript -e 'install.packages("rmarkdown")'
 
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          install.packages("rmarkdown", type = "binary")
-        shell: Rscript {0}
+      # install qData
+      #- name: install qCreate package
+      #  run: Rscript -e 'remotes::install_github("globalgov/qData")'
 
-      - name: Install package
-        run: R CMD INSTALL .
-
-      # Render READEME.md using rmarkdown
+      # Render README.md using rmarkdown
       - name: render README
         run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
 
       - name: commit rendered README
         run: |
-          git add README.md man/figures/README-*
+          git add README.md
           git commit -m "Re-build README.md" || echo "No changes to commit"
           git push origin master || echo "No changes to commit"

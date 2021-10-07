@@ -11,24 +11,31 @@ DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 # formats of the 'DESTA' object until the object created
 # below (in stage three) passes all the tests.
 DESTA <- as_tibble(DESTA) %>%
-  dplyr::rename("Document.type" = "typememb") %>%
-  dplyr::mutate(Document.type = dplyr::recode(Document.type, "1" = "B", "2"= "P", "3"="P", "4"="R", "5"="A", "6"="A", "7"="W")) %>% 
-  qData::transmutate(DESTA_ID = `number`,
+  dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
+  #categories removed because they relate to changes in membership that are reflected in the memberships database
+  dplyr::rename("L" = "typememb", "D" = "entry_type") %>%
+  dplyr::mutate(L = dplyr::recode(L, "1" = "B", "2"= "P", "3"="P+3", "4"="PP")) %>%
+  dplyr::mutate(D = dplyr::recode(D, "base_treaty" = "A", "protocol or amendment" = "P/E", "consolidated" = "P/E", "negotiation" = "A")) %>%
+  dplyr::rename("WTO" = "wto_listed", "J" = "regioncon") %>%
+  dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
+  dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
+  qData::transmutate(DESTA_ID = `base_treaty`,
                      Title = qCreate::standardise_titles(name),
                      Signature = qCreate::standardise_dates(as.character(year)),
                      Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
-
+DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg)
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make DESTA available within the qPackage.
-qCreate::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/", package = "qTrade")
+qCreate::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to certain standards.
 # You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows) to run these tests locally at any point.

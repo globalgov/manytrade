@@ -1,6 +1,6 @@
 # qTrade 0.0.1
 
-2021-09-01
+2021-10-07
 
 ## Package
 
@@ -9,13 +9,18 @@
   * Added `.github` folder and files
   * Added `tests` folder and files
 * Modified description file to add pointblank as dependency
-  
+* Closed #12 by adding package website
+
 ## Data
 
-* Imported initial `DESTA` and `TREND` datasets in qTrade, cleaned and exported into databases.
-* Closed #1 by adding `DESTA` dataset
-* Closed #3 by adding `TREND` dataset
-* Cleaned datasets by standardising the dates
-* Added `standardise_titles()` function to the Title variables
-* Added tests for `DESTA` and `TREND` datasets with `qCreate::export_data()`
+* Imported initial `DESTA` and `TREND` datasets in qTrade, cleaned and exported into agreements database.
+* Closed #1 by adding `DESTA` dataset to agreements database
+* Closed #3 by adding `TREND` dataset to agreements database
+* Closed #2 by adding `GPTAD` dataset to agreements database
+* Closed #4 by adding `LABPTA` dataset to agreements database
+* Cleaned datasets by standardizing titles and dates in databases using `standardise_titles()` and  `standardise_dates()` functions
+* Included variables for agreement type, document type, and listing in WTO for datasets in agreements database
+* Added tests for datasets with `qCreate::export_data()` in agreements database
+* Arranged DESTA and GPTAD datasets to reflect treaty membership data by country
+* Added tests for DESTA and GPTAD datasets with `qCreate::export_data()` in memberships database
 

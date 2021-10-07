@@ -1,7 +1,7 @@
 Package: qTrade
 Title: Trade Agreements for qData
 Version: 0.0.1
-Date: 2021-09-01
+Date: 2021-10-07
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -28,25 +28,23 @@ Description: Package qTrade provides an ensemble of data on international trade 
     and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 2.10),
+    R (>= 3.5.0),
     tibble,
     pointblank
-Imports: 
+Imports:
     qData,
-    qCreate,
     lubridate,
     dplyr,
     roxygen2,
     usethis,
-    purrr,
-    remotes
+    remotes,
+    pkgdown,
+    stringi
 Suggests:
     rlang,
-    testthat (>= 3.0.0),
-    rmarkdown
+    testthat (>= 3.0.0)
 Remotes:
-    globalgov/qData,
-    globalgov/qCreate
+    globalgov/qData
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -12,23 +12,25 @@ TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xl
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
 TREND <- as_tibble(TREND) %>%
-  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>%
+  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>% #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
   tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
-  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>% #combining variables to obtain full name of treaty
   qData::transmutate(Title = qCreate::standardise_titles(name),
                      Signature=qCreate::standardise_dates(as.character(Year)),
                      Force = qCreate::standardise_dates(as.character(Year))) %>%                                     
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
+TREND$qID <- qCreate::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make TREND available within the qPackage.
-qCreate::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend", package = "qTrade")
+qCreate::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

@@ -1,0 +1,58 @@
+url: https://globalgov.github.io/qTrade/
+development:
+    mode: auto
+template:
+  params:
+    bootswatch: paper
+authors:
+  James Hollway:
+    href: https://jameshollway.com
+  Bernhard Bieri:
+    href: https://bernhardbieri.ch
+navbar:
+  structure:
+    left:
+    - home
+    - reference
+    - articles
+    - news
+    right:
+    - packages
+    - github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    # Edit this section and add it in the navbar when adding vignettes
+    # articles:
+    #   text: Articles
+    #   menu:
+    #   - text: Creating historical maps
+    #     href: articles/CShapesMaps.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/globalgov/qTrade
+    packages:
+      text: Other packages
+      menu:
+        - text: qData
+          href: https://globalgov.github.io/qData/
+        - text: qCreate
+          href: https://globalgov.github.io/qCreate/
+        - text: qStates
+          href: https://globalgov.github.io/qStates/
+        - text: qEnviron
+          href: https://globalgov.github.io/qEnviron/
+
+reference:
+   - title: "Data"
+     desc: "qTrade contains the following databases"
+     contents:
+     - agreements
+     - memberships
