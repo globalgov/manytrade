@@ -131,33 +131,15 @@ jobs:
         run: ls -R
 
       - name: Rename Mac release
-<<<<<<< HEAD
-        run: mv ./macOS/*.tgz macOS_version.tgz
-
-      - name: Upload Mac binary
-        id: upload-binary
-=======
         run: mv ./macOS/*.tgz qTrade_macOS.tgz
 
       - name: Upload Mac binary
         id: upload-mac
->>>>>>> 2444a335896a3cd25af324a5de4acbc9a7d9fb24
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-<<<<<<< HEAD
-          asset_path: macOS_version.tgz
-          asset_name: macOS_version.tgz
-          asset_content_type: application/zip
-
-      - name: Rename Linux release
-        run: mv ./linuxOS/*.tar.gz linuxOS_version.tar.gz
-
-      - name: Upload Linux binary
-        id: upload-binary
-=======
           asset_path: qTrade_macOS.tgz
           asset_name: qTrade_macOS.tgz
           asset_content_type: application/zip
@@ -181,33 +163,13 @@ jobs:
 
       - name: Upload Windows binary
         id: upload-win
->>>>>>> 2444a335896a3cd25af324a5de4acbc9a7d9fb24
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-<<<<<<< HEAD
-          asset_path: linuxOS_version.tar.gz
-          asset_name: linuxOS_version.tar.gz
-          asset_content_type: application/zip
-
-      - name: Rename Windows release
-        run: mv ./winOS/*.zip winOS_version.zip
-
-      - name: Upload Windows binary
-        id: upload-binary
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: winOS_version.zip
-          asset_name: winOS_version.zip
-=======
           asset_path: qTrade_winOS.zip
           asset_name: qTrade_winOS.zip
->>>>>>> 2444a335896a3cd25af324a5de4acbc9a7d9fb24
           asset_content_type: application/zip
 
   render:
@@ -255,8 +217,6 @@ jobs:
           git add README.md
           git commit -m "Re-build README.md" || echo "No changes to commit"
           git push origin master || echo "No changes to commit"
-<<<<<<< HEAD
-=======
 
   pkgdown:
     name: Build and deploy website
@@ -299,4 +259,3 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
->>>>>>> 2444a335896a3cd25af324a5de4acbc9a7d9fb24
