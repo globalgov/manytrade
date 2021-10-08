@@ -116,17 +116,6 @@
 <p>Once you have installed the package, you can see the different databases and datasets included in the {qTrade} package using the following function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">qData</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/qData/man/report.html">data_contrast</a></span><span class="op">(</span><span class="st">"qTrade"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## agreements :</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##        Unique ID Missing Data Rows Columns        Beg End</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## DESTA          0       4.71 %  987      10       1948  NA</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## TREND          0       0.34 %  730       6       1947  NA</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## LABPTA         0          0 %  483       6       1990  NA</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## GPTAD          0       4.72 %  346       9 1957-25-03  NA</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                       URL</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## DESTA  https://www.designoftradeagreements.org/downloads/</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## TREND            http://www.chaire-epi.ulaval.ca/en/trend</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## LABPTA          https://doi.org/10.1007/s11558-018-9301-z</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">## GPTAD       https://wits.worldbank.org/gptad/library.aspx</span></span></code></pre></div>
 <p>Working with ensembles of related data has many advantages for robust analysis. Just take a look at our vignettes <a href="https://globalgov.github.io/qData/articles/user.html">here</a>.</p>
 </div>
 <div id="qpackages" class="section level2">
@@ -134,21 +123,22 @@
 <a href="#qpackages" class="anchor"></a>qPackages</h2>
 <p>The <a href="https://github.com/globalgov/qData">qData</a> ecosystem is aimed at collecting, connecting and correcting network data across issue-domains of global governance.</p>
 <p>While some qPackages can and do include novel data, much of what they offer involves standing on the shoulders of giants. qPackages endeavour to be as transparent as possible about where data comes from, how it has been coded and/or relabeled, and who has done the work. As such, we make it easy to cite both the particular datasets you use by listing the official references in the function above, as well as the package providers for their work assembling the data by using the function below.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"qTrade"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## To cite qTrade in publications use:</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   J. Hollway. Trade agreements for qData. 2021.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## A BibTeX entry for LaTeX users is</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   @Manual{,</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##     title = {qTrade: International Trade Agreements for qData},</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     author = {James Hollway},</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     year = {2021},</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##     url = {https://github.com/globalgov/qTrade},</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   }</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## To cite package 'qTrade' in publications use:</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">## </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">##   James Hollway (2021). qTrade: Trade Agreements for qData. R package</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">##   version 0.0.1.</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">## </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">## A BibTeX entry for LaTeX users is</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">## </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">##   @Manual{,</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     title = {qTrade: Trade Agreements for qData},</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##     author = {James Hollway},</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##     year = {2021},</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">##     note = {R package version 0.0.1},</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">##   }</span></span></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">

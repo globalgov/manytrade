@@ -140,25 +140,12 @@
     <div id="qtrade-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#qtrade-001" class="anchor"></a>qTrade 0.0.1</h1>
-<p>2021-09-15</p>
-<div id="data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h2>
-<ul>
-<li>Closes #2 by adding GPTAD dataset</li>
-<li>Closes #4 by adding LABPTA dataset</li>
-<li>Cleaned datasets by standardizing titles and dates</li>
-<li>Included variables for agreement type, document type, and listing in WTO</li>
-<li>Added tests for LABPTA and GPTAD datasets with <code><a href="https://rdrr.io/pkg/qCreate/man/export_data.html">qCreate::export_data()</a></code>
-</li>
-</ul>
-<p>2021-09-01</p>
-</div>
+<p>2021-10-07</p>
 <div id="package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package" class="anchor"></a>Package</h2>
 <ul>
-<li>Closed #7 by setting up qTrade package using <code><a href="https://rdrr.io/pkg/qCreate/man/setup_package.html">qCreate::setup_package()</a></code>
+<li>Closed #7 by setting up qTrade package using <code>qCreate::setup_package()</code>
 <ul>
 <li>Added core package files</li>
 <li>Added <code>.github</code> folder and files</li>
@@ -166,19 +153,23 @@
 </ul>
 </li>
 <li>Modified description file to add pointblank as dependency</li>
+<li>Closed #12 by adding package website</li>
 </ul>
 </div>
-<div id="data-1" class="section level2">
+<div id="data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-1" class="anchor"></a>Data</h2>
+<a href="#data" class="anchor"></a>Data</h2>
 <ul>
-<li>Imported initial <code>DESTA</code> and <code>TREND</code> datasets in qTrade, cleaned and exported into databases.</li>
-<li>Closed #1 by adding <code>DESTA</code> dataset</li>
-<li>Closed #3 by adding <code>TREND</code> dataset</li>
-<li>Cleaned datasets by standardising the dates</li>
-<li>Added <code>standardise_titles()</code> function to the Title variables</li>
-<li>Added tests for <code>DESTA</code> and <code>TREND</code> datasets with <code><a href="https://rdrr.io/pkg/qCreate/man/export_data.html">qCreate::export_data()</a></code>
-</li>
+<li>Imported initial <code>DESTA</code> and <code>TREND</code> datasets in qTrade, cleaned and exported into agreements database.</li>
+<li>Closed #1 by adding <code>DESTA</code> dataset to agreements database</li>
+<li>Closed #3 by adding <code>TREND</code> dataset to agreements database</li>
+<li>Closed #2 by adding <code>GPTAD</code> dataset to agreements database</li>
+<li>Closed #4 by adding <code>LABPTA</code> dataset to agreements database</li>
+<li>Cleaned datasets by standardizing titles and dates in databases using <code>standardise_titles()</code> and <code>standardise_dates()</code> functions</li>
+<li>Included variables for agreement type, document type, and listing in WTO for datasets in agreements database</li>
+<li>Added tests for datasets with <code>qCreate::export_data()</code> in agreements database</li>
+<li>Arranged DESTA and GPTAD datasets to reflect treaty membership data by country</li>
+<li>Added tests for DESTA and GPTAD datasets with <code>qCreate::export_data()</code> in memberships database</li>
 </ul>
 </div>
 </div>
