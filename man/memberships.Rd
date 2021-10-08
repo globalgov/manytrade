@@ -11,7 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()}, \code{data_contrast()}, and \code{data_evolution()}
 functions.
 \describe{
-\item{GPTAD_MEM: }{A dataset with 2222 observations and the following
+\item{GPTAD_MEM: }{A dataset with 2221 observations and the following
 6 variables: Country_ID, Country, Title, Beg, Signature, Force.}
 \item{DESTA_MEM: }{A dataset with 7772 observations and the following
 6 variables: DESTA_ID, Country, Title, Beg, Signature, Force.}

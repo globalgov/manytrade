@@ -6,7 +6,7 @@
 #' please use the `data_source()`, `data_contrast()`, and `data_evolution()`
 #' functions.
 #'\describe{
-#' \item{GPTAD_MEM: }{A dataset with 2222 observations and the following
+#' \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
 #' 6 variables: Country_ID, Country, Title, Beg, Signature, Force.}
 #' \item{DESTA_MEM: }{A dataset with 7772 observations and the following
 #' 6 variables: DESTA_ID, Country, Title, Beg, Signature, Force.}
