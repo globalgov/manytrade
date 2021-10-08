@@ -21,7 +21,7 @@ Standardize spellings for country names,
 as well as country names in other languages.
 }
 \examples{
-name <- c("argentine", "albanie", "Bélarus")
+name <- c("argentine", "albanie", "BÃ©larus")
 code_countryname(name)
 code_countryname(name, abbrev = TRUE)
 }
