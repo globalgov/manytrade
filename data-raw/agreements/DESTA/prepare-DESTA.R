@@ -20,15 +20,17 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
   dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
   qData::transmutate(DESTA_ID = `base_treaty`,
-                     Title = qCreate::standardise_titles(name),
+                     Title = qCreate::standardise_titles(name)) %>%
+  dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
+  dplyr::arrange(beg) %>%
+  qData::transmutate(Beg = qCreate::standardise_dates(as.character(beg)),
                      Signature = qCreate::standardise_dates(as.character(year)),
                      Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
+  
 
 # Add qID column
-DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg)
+DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.

@@ -1,4 +1,4 @@
-#' Agreements database documentation
+#' agreements database documentation
 #'
 #' @format The agreements database is a list that contains the
 #' following 4 datasets: DESTA, TREND, LABPTA, GPTAD.

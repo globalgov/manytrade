@@ -7,8 +7,8 @@
 #' functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-#' 6 variables: Country_ID, Country, Title, Beg, Signature, Force.}
+#' 8 variables: qID_ref, Country_ID, Country, Title, Beg, Signature, Force, qID.}
 #' \item{DESTA_MEM: }{A dataset with 7772 observations and the following
-#' 6 variables: DESTA_ID, Country, Title, Beg, Signature, Force.}
+#' 8 variables: qID_ref, DESTA_ID, Country, Title, Beg, Signature, Force, qID.}
 #' }
  "memberships"

@@ -50,6 +50,17 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(Country_ID, Country, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
+
+#Add a qID column
+GPTAD_MEM$qID <- qCreate::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, GPTAD_MEM$Beg) #1877 duplicated IDs
+
+# Add qID_ref column
+qID_ref <- qCreate::condense_qID(qTrade::agreements)
+GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, qID_ref, by = "qID")
+
+# Re-order the columns
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, qID_ref)
+
 # qCreate includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.

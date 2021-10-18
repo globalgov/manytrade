@@ -20,6 +20,17 @@ DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(DESTA_ID, Country, Title, Beg, Signature, Force) %>% #match ISO to country name
   dplyr::arrange(Beg)
+
+#Add a qID column
+DESTA_MEM$qID <- qCreate::code_agreements(DESTA_MEM, DESTA_MEM$Title, DESTA_MEM$Beg) #6598 duplicated IDs
+
+# Add qID_ref column
+qID_ref <- qCreate::condense_qID(qTrade::agreements)
+DESTA_MEM <- dplyr::left_join(DESTA_MEM, qID_ref, by = "qID")
+
+# Re-order the columns
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, qID_ref)
+
 # qCreate includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
