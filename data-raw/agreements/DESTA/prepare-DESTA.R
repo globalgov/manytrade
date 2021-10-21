@@ -30,7 +30,7 @@ DESTA <- as_tibble(DESTA) %>%
   
 
 # Add qID column
-DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs
+DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
 # qCreate includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.

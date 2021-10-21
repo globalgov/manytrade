@@ -8,3 +8,4 @@
 ^docs$
 ^pkgdown$
 ^_pkgdown\.yml$
+^data-raw/references$
