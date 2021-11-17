@@ -14,31 +14,31 @@ DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country", values_drop_na = TRUE) %>%
   #arrange columns containing countries into one column, with each country in rows corresponding to the treaty it is party to
   qData::transmutate(DESTA_ID = `base_treaty`,
-                     Title = qCreate::standardise_titles(name),
-                     Signature = qCreate::standardise_dates(as.character(year)),
-                     Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
+                     Title = manypkgs::standardise_titles(name),
+                     Signature = manypkgs::standardise_dates(as.character(year)),
+                     Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(DESTA_ID, Country, Title, Beg, Signature, Force) %>% #match ISO to country name
   dplyr::arrange(Beg)
 
 #Add a qID column
-DESTA_MEM$qID <- qCreate::code_agreements(DESTA_MEM, DESTA_MEM$Title, DESTA_MEM$Beg) #6598 duplicated IDs
+DESTA_MEM$qID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, DESTA_MEM$Beg) #6598 duplicated IDs
 
 # Add qID_ref column
-qID_ref <- qCreate::condense_qID(qTrade::agreements)
+qID_ref <- manypkgs::condense_qID(qTrade::agreements)
 DESTA_MEM <- dplyr::left_join(DESTA_MEM, qID_ref, by = "qID")
 
 # Re-order the columns
 DESTA_MEM <- dplyr::relocate(DESTA_MEM, qID_ref)
 
-# qCreate includes several functions that should help cleaning
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make DESTA_MEM available
 # within the qPackage.
-qCreate::export_data(DESTA_MEM, database = "memberships",
+manypkgs::export_data(DESTA_MEM, database = "memberships",
                      URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
@@ -64,5 +64,5 @@ qCreate::export_data(DESTA_MEM, database = "memberships",
 # present in the data_raw folder of the package for citation purposes.
 # Please make sure that you have permission to use the dataset.
 # To add a template of .bib file to package,
-# run `qCreate::add_bib(memberships, DESTA_MEM)`.
+# run `manypkgs::add_bib(memberships, DESTA_MEM)`.
 

@@ -14,14 +14,14 @@ DESTA_REF <- as_tibble(DESTA_REF) %>%
   dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are reflected in the memberships database
   qData::transmutate(DESTA_ID = `base_treaty`,
-                     Title = qCreate::standardise_titles(name)) %>%
+                     Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  qData::transmutate(Beg = qCreate::standardise_dates(as.character(beg))) %>%
+  qData::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
   dplyr::filter(entry_type=="protocol or amendment" | entry_type=="base_treaty")
 
 # add qID column
-# DESTA_REF$qID <- qCreate::code_agreements(DESTA_REF, DESTA_REF$Title, DESTA_REF$Beg) # 1 duplicate for CARIFTA (first entry no EIF date)
+# DESTA_REF$qID <- manypkgs::code_agreements(DESTA_REF, DESTA_REF$Title, DESTA_REF$Beg) # 1 duplicate for CARIFTA (first entry no EIF date)
 destaid<- qTrade::agreements$DESTA %>%
   dplyr::select(Title, DESTA_ID, qID)
 
@@ -51,7 +51,7 @@ DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
   dplyr::ungroup() %>%
   dplyr::select(qID1, RefType, qID2) #check matches, seems to add more entries?
 
-# qCreate includes several functions that should help cleaning
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
@@ -82,6 +82,6 @@ DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
 # present in the data_raw folder of the package for citation purposes.
 # Please make sure that you have permission to use the dataset.
 # To add a template of .bib file to package,
-# run `qCreate::add_bib(references, DESTA_REF)`.
-qCreate::export_data(DESTA_REF, database = "references",
+# run `manypkgs::add_bib(references, DESTA_REF)`.
+manypkgs::export_data(DESTA_REF, database = "references",
                      URL = "https://www.designoftradeagreements.org/downloads/")

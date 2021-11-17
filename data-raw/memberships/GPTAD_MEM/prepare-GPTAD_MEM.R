@@ -44,31 +44,31 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>% #add iso code for country names
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
-  qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
-                     Signature = qCreate::standardise_dates(`Date.of.Signature`),
-                     Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
+  qData::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
+                     Signature = manypkgs::standardise_dates(`Date.of.Signature`),
+                     Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(Country_ID, Country, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
 #Add a qID column
-GPTAD_MEM$qID <- qCreate::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, GPTAD_MEM$Beg) #1877 duplicated IDs
+GPTAD_MEM$qID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, GPTAD_MEM$Beg) #1877 duplicated IDs
 
 # Add qID_ref column
-qID_ref <- qCreate::condense_qID(qTrade::agreements)
+qID_ref <- manypkgs::condense_qID(qTrade::agreements)
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, qID_ref, by = "qID")
 
 # Re-order the columns
 GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, qID_ref)
 
-# qCreate includes several functions that should help cleaning
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make GPTAD_MEM available
 # within the qPackage.
-qCreate::export_data(GPTAD_MEM, database = "memberships",
+manypkgs::export_data(GPTAD_MEM, database = "memberships",
                      URL = "https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

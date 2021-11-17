@@ -2,6 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the qPackage.
+library(manypkgs)
 
 # Stage one: Collecting data
 DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
@@ -20,24 +21,27 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
   dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
   qData::transmutate(DESTA_ID = `base_treaty`,
-                     Title = qCreate::standardise_titles(name)) %>%
+                     Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  qData::transmutate(Beg = qCreate::standardise_dates(as.character(beg)),
-                     Signature = qCreate::standardise_dates(as.character(year)),
-                     Force = qCreate::standardise_dates(as.character(entryforceyear))) %>%
+  qData::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
+                     Signature = manypkgs::standardise_dates(as.character(year)),
+                     Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
   
 
 # Add qID column
-DESTA$qID <- qCreate::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
+DESTA$qID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
-# qCreate includes several functions that should help cleaning and standardising your data.
+# add missing dates
+
+
+# manypkgs includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make DESTA available within the qPackage.
-qCreate::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/")
+manypkgs::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to certain standards.
 # You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows) to run these tests locally at any point.

@@ -43,8 +43,8 @@ navbar:
       menu:
         - text: qData
           href: https://globalgov.github.io/qData/
-        - text: qCreate
-          href: https://globalgov.github.io/qCreate/
+        - text: manypkgs
+          href: https://globalgov.github.io/manypkgs/
         - text: qStates
           href: https://globalgov.github.io/qStates/
         - text: qEnviron

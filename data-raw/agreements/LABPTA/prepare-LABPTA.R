@@ -12,24 +12,24 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
   qData::transmutate(LABPTA_ID = `Number`,
-                     Title = qCreate::standardise_titles(Name),
-                     Signature = qCreate::standardise_dates(as.character(year)),
-                     Force = qCreate::standardise_dates(as.character(year))) %>%
+                     Title = manypkgs::standardise_titles(Name),
+                     Signature = manypkgs::standardise_dates(as.character(year)),
+                     Force = manypkgs::standardise_dates(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
   dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
 # Add qID column
-LABPTA$qID <- qCreate::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+LABPTA$qID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
-# qCreate includes several functions that should help cleaning
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available
 # within the qPackage.
-qCreate::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
+manypkgs::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
