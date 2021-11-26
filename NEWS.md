@@ -6,6 +6,9 @@
 * Closed #16 by changing name from qTrade to manytrade
 * Closed #10 by updating wording in ReadME files and added new logo with new name
 
+## Data
+* Added `references` database and imported treaty lineage data using `DESTA` dataset
+
 # qTrade 0.0.1
 
 2021-10-07
