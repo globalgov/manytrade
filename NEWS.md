@@ -1,10 +1,19 @@
+# manytrade 0.1.0
+
+2021-11-25
+
+## Package
+* Closed #16 by changing name from qTrade to manytrade
+* Added new logo with name change
+* Updated documentation to reflect name change
+
 # qTrade 0.0.1
 
 2021-10-07
 
 ## Package
 
-* Closed #7 by setting up qTrade package using `manypkgs::setup_package()`
+* Closed #7 by setting up qTrade package using `qCreate::setup_package()`
   * Added core package files
   * Added `.github` folder and files
   * Added `tests` folder and files
@@ -20,9 +29,9 @@
 * Closed #4 by adding `LABPTA` dataset to agreements database
 * Cleaned datasets by standardizing titles and dates in databases using `standardise_titles()` and  `standardise_dates()` functions
 * Included variables for agreement type, document type, and listing in WTO for datasets in agreements database
-* Added tests for datasets with `manypkgs::export_data()` in agreements database
+* Added tests for datasets with `qCreate::export_data()` in agreements database
 * Arranged DESTA and GPTAD datasets to reflect treaty membership data by country
-* Added tests for DESTA and GPTAD datasets with `manypkgs::export_data()` in memberships database
+* Added tests for DESTA and GPTAD datasets with `qCreate::export_data()` in memberships database
 
 ## Functions
 * Added `code_countryname()` function and tests

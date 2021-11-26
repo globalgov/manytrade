@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contributing • qTrade</title>
+<title>Contributing • manytrade</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">qTrade</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="index.html">manytrade</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -104,7 +104,7 @@
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qStates/">qStates</a>
@@ -161,7 +161,7 @@
 <span class="fu">lintr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lintr/man/lint_package.html">lint_package</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"packageName/"</span><span class="op">)</span>
 
 <span class="co"># goodpractices checks. Exclude length 80</span>
-<span class="fu">goodpractice</span><span class="fu">::</span><span class="fu">gp</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"packageName/"</span>,
+<span class="fu">goodpractice</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/goodpractice/man/gp.html">gp</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"packageName/"</span>,
    checks <span class="op">=</span> <span class="fu">all_checks</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 
 <span class="co"># styler fix some of the styling issues</span>
@@ -173,7 +173,7 @@
 <a href="#pull-request-process" class="anchor"></a>Pull request process</h2>
 <p>The title of your PR should briefly describe the change. Please include a summary of the changes and which issues are fixed and the relevant motivation and context. List any dependencies that are required for this change, indicating whether this is a major (breaking), minor, or patch change. The body of your PR should contain <code>Fixes #issue-number</code>. Make sure the package passes R CMD check by running <code><a href="https://devtools.r-lib.org//reference/check.html">devtools::check()</a></code> before commiting changes to a pull request.</p>
 <p>If you want to make a bigger change, it’s a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request. If you’ve found a bug, please file an issue that illustrates the bug with a minimal <a href="https://www.tidyverse.org/help/#reprex">reprex</a>.</p>
-<p>Please follow the qData pull request guideline (<a href="https://github.com/globalgov/qData/blob/main/.github/pull_request_template.md" class="uri">https://github.com/globalgov/qData/blob/main/.github/pull_request_template.md</a>)</p>
+<p>Please follow the manydata pull request guideline (<a href="https://github.com/globalgov/manydata/blob/main/.github/pull_request_template.md" class="uri">https://github.com/globalgov/manydata/blob/main/.github/pull_request_template.md</a>)</p>
 <div id="branches" class="section level3">
 <h3 class="hasAnchor">
 <a href="#branches" class="anchor"></a>Branches</h3>
@@ -280,7 +280,7 @@ testthat::test_dir("tests/testthat")</code></pre>
 <p>Develops using MacOS might meet problems compiling the packages since the compiling configuration of R in MacOS is usually incorrect. If one meet an error with error info “/usr/bin/ld: cannot find -lgfortran”, then he can either correct the configuration himself or follows the following steps to solve the problem:</p>
 <ol>
 <li>Run “.libPaths()” command in R and get a path, e.g. one might get “/Library/Frameworks/R.framework/Versions/3.6/Resources/library”</li>
-<li>If the path one get in the first step is “something/library”, then open the file “something/etc/Makeconf” and comment out the line starting with “FLIBS”. e.g. one might open the file " /Library/Frameworks/R.framework/Versions/3.6/Resources/etc/Makeconf" and change the line “FLIBS = -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm” to “#FLIBS = -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath - lm”</li>
+<li>If the path one get in the first step is “something/library”, then open the file “something/etc/Makeconf” and comment out the line starting with “FLIBS”. e.g. one might open the file ” /Library/Frameworks/R.framework/Versions/3.6/Resources/etc/Makeconf” and change the line “FLIBS = -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm” to “#FLIBS = -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath - lm”</li>
 </ol>
 </div>
 </div>

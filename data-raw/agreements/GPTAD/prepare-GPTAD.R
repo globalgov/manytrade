@@ -1,7 +1,7 @@
 # GPTAD Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many packages universe.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -19,7 +19,7 @@ GPTAD <- as_tibble(GPTAD) %>%
   dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
-  qData::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
+  manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
@@ -29,13 +29,13 @@ GPTAD <- as_tibble(GPTAD) %>%
 # Add qID column
 GPTAD$qID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
 
-# qData includes several functions that should help cleaning
+# manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make GPTAD available
-# within the qPackage.
+# within the many packages universe.
 manypkgs::export_data(GPTAD, database = "agreements", URL="https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

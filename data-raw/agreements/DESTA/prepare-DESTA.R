@@ -1,7 +1,7 @@
 # DESTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many packages universe.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -20,11 +20,11 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::rename("WTO" = "wto_listed", "J" = "regioncon") %>%
   dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
   dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", "Asia" = "R", "Africa" = "R", "Americas" = "R", "Europe" = "R", "Oceania" = "R")) %>%
-  qData::transmutate(DESTA_ID = `base_treaty`,
+  manydata::transmutate(DESTA_ID = `base_treaty`,
                      Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  qData::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
+  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
@@ -40,7 +40,7 @@ DESTA$qID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 dupli
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make DESTA available within the qPackage.
+# Next run the following line to make DESTA available within the many packages universe.
 manypkgs::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to certain standards.

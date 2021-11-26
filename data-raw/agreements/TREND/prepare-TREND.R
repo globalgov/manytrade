@@ -1,7 +1,7 @@
 # TREND Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many packages universe.
 
 # Stage one: Collecting data
 TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
@@ -15,7 +15,7 @@ TREND <- as_tibble(TREND) %>%
   tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>% #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
   tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
   tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>% #combining variables to obtain full name of treaty
-  qData::transmutate(Title = manypkgs::standardise_titles(name),
+  manydata::transmutate(Title = manypkgs::standardise_titles(name),
                      Signature=manypkgs::standardise_dates(as.character(Year)),
                      Force = manypkgs::standardise_dates(as.character(Year))) %>%                                     
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
@@ -29,7 +29,7 @@ TREND$qID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg) # 1 duplic
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make TREND available within the qPackage.
+# Next run the following line to make TREND available within the many packages universe.
 manypkgs::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

@@ -1,4 +1,4 @@
-url: https://globalgov.github.io/qTrade/
+url: https://globalgov.github.io/manytrade/
 development:
     mode: auto
 template:
@@ -37,22 +37,22 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/globalgov/qTrade
+      href: https://github.com/globalgov/manytrade
     packages:
       text: Other packages
       menu:
-        - text: qData
-          href: https://globalgov.github.io/qData/
+        - text: manydata
+          href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
         - text: qStates
           href: https://globalgov.github.io/qStates/
-        - text: qEnviron
-          href: https://globalgov.github.io/qEnviron/
+        - text: manyenviron
+          href: https://globalgov.github.io/manyenviron/
 
 reference:
    - title: "Data"
-     desc: "qTrade contains the following databases"
+     desc: "manytrade contains the following databases"
      contents:
      - agreements
      - memberships

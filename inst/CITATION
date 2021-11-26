@@ -1,11 +1,11 @@
-citHeader("To cite qTrade in publications use:")
+citHeader("To cite manytrade in publications use:")
 
 citEntry(
   entry    = "Manual",
-  title    = "qTrade: International Trade Agreements for qData",
+  title    = "manytrade: International Trade Agreements for manydata",
   author   = "James Hollway",
   year     = "2021",
-  url      = "https://github.com/globalgov/qTrade",
-  textVersion = paste("J. Hollway. Trade agreements for qData. 2021."
+  url      = "https://github.com/globalgov/manytrade",
+  textVersion = paste("J. Hollway. Trade agreements for manydata. 2021."
   )
 )

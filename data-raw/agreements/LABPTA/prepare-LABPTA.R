@@ -1,7 +1,7 @@
 # LABPTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many packages universe.
 
 # Stage one: Collecting data
 LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
@@ -11,7 +11,7 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  qData::transmutate(LABPTA_ID = `Number`,
+  manydata::transmutate(LABPTA_ID = `Number`,
                      Title = manypkgs::standardise_titles(Name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(year))) %>%
@@ -28,7 +28,7 @@ LABPTA$qID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available
-# within the qPackage.
+# within the many packages universe.
 manypkgs::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
