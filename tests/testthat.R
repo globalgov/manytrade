@@ -1,4 +1,4 @@
 library(testthat)
-library(qTrade)
+library(manytrade)
 
-test_check("qTrade")
+test_check("manytrade")
