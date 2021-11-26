@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
 Version: 0.1.0
-Date: 2021-11-25
+Date: 2021-11-26
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -32,7 +32,6 @@ Depends:
     tibble,
     pointblank
 Imports:
-    manydata,
     lubridate,
     dplyr,
     roxygen2,
@@ -43,8 +42,6 @@ Imports:
 Suggests:
     rlang,
     testthat (>= 3.0.0)
-Remotes:
-    globalgov/manydata
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
