@@ -8,8 +8,7 @@
 The memberships database is a list that contains the
 following 2 datasets: GPTAD_MEM, DESTA_MEM.
 For more information and references to each of the datasets used,
-please use the \code{data_source()}, \code{data_contrast()}, and \code{data_evolution()}
-functions.
+please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
 8 variables: qID_ref, Country_ID, Country, Title, Beg, Signature, Force, qID.}

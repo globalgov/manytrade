@@ -1,7 +1,7 @@
 # DESTA_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many packages universe.
 
 # Stage one: Collecting data
 DESTA_REF <- readxl::read_excel("data-raw/references/DESTA_REF/DESTA.xlsx")
@@ -13,16 +13,16 @@ DESTA_REF <- readxl::read_excel("data-raw/references/DESTA_REF/DESTA.xlsx")
 DESTA_REF <- as_tibble(DESTA_REF) %>%
   dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are reflected in the memberships database
-  qData::transmutate(DESTA_ID = `base_treaty`,
+  manydata::transmutate(DESTA_ID = `base_treaty`,
                      Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  qData::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
+  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
   dplyr::filter(entry_type=="protocol or amendment" | entry_type=="base_treaty")
 
 # add qID column
 # DESTA_REF$qID <- manypkgs::code_agreements(DESTA_REF, DESTA_REF$Title, DESTA_REF$Beg) # 1 duplicate for CARIFTA (first entry no EIF date)
-destaid<- qTrade::agreements$DESTA %>%
+destaid<- manytrade::agreements$DESTA %>%
   dplyr::select(Title, DESTA_ID, qID)
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID")) %>%

@@ -9,15 +9,14 @@ output: github_document
 ![GitHub Release Date](https://img.shields.io/github/release-date/globalgov/manytrade)
 <!-- badges: end -->
 
-manytrade is a data package in the [many packages](https://github.com/globalgov/manydata) universe.
+manytrade is a data package in the [many packages](https://github.com/globalgov/) universe.
 It currently includes an ensemble of datasets on international trade agreements,
 and [states](https://github.com/globalgov/qStates)' membership or other relationships to those agreements.
-
-Please also check out [`{manydata}`](https://github.com/globalgov) for more about the other packages in the many packages universe. 
+Please also check out [`{manydata}`](https://github.com/globalgov/manydata) for more about the other packages in the many packages universe. 
 
 ## How to install:
 We’ve made it easier than ever to install and start analysing global governance data in R. 
-Simply install the core package, [manydata](https://github.com/globalgov/manydata), as follows, 
+Simply install the core package, [manydata](https://github.com/globalgov/manydata), 
 and then you can discover, install and update various many packages universe from the console.
 
 ```{r install, eval = FALSE}
@@ -40,7 +39,7 @@ analysis. Just take a look at our vignettes [here](https://globalgov.github.io/m
 
 ## The `many packages` universe
 
-The [many packages](https://github.com/globalgov/manydata) universe is aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
+The [many packages](https://github.com/globalgov/) universe is aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
 
 While the packages in the `many packages` universe can and do include novel data, 
 much of what they offer involves standing on the shoulders of giants. 
@@ -69,7 +68,7 @@ can be used easily.
 
 If you have collected or developed other data that may not be best for
 this package, but could be useful within the wider ecosystem,
-[manydata](https://github.com/globalgov/manydata) includes a number of
+[manypkgs](https://github.com/globalgov/manypkgs) includes a number of
 functions that make it easy to create a new package in the `many packages` universe
 and populate it with clean, consistent global governance data.
 

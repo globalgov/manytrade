@@ -8,8 +8,7 @@
 The references database is a list that contains the
 following 1 datasets: DESTA_REF.
 For more information and references to each of the datasets used,
-please use the \code{data_source()}, \code{data_contrast()}, and \code{data_evolution()}
-functions.
+please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA_REF: }{A dataset with 1000 observations and the following
 3 variables: qID1, RefType, qID2.}

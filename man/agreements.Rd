@@ -8,8 +8,7 @@
 The agreements database is a list that contains the
 following 4 datasets: DESTA, TREND, LABPTA, GPTAD.
 For more information and references to each of the datasets used,
-please use the \code{data_source()}, \code{data_contrast()}, and \code{data_evolution()}
-functions.
+please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA: }{A dataset with 987 observations and the following
 10 variables: DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO, qID.}
