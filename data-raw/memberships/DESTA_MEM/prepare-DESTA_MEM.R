@@ -13,7 +13,7 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country", values_drop_na = TRUE) %>%
   #arrange columns containing countries into one column, with each country in rows corresponding to the treaty it is party to
-  qData::transmutate(DESTA_ID = `base_treaty`,
+  manydata::transmutate(DESTA_ID = `base_treaty`,
                      Title = manypkgs::standardise_titles(name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
@@ -21,15 +21,16 @@ DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   dplyr::select(DESTA_ID, Country, Title, Beg, Signature, Force) %>% #match ISO to country name
   dplyr::arrange(Beg)
 
-#Add a qID column
-DESTA_MEM$qID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, DESTA_MEM$Beg) #6598 duplicated IDs
+#Add a treaty_ID column
+DESTA_MEM$treaty_ID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, DESTA_MEM$Beg) #6598 duplicated IDs
 
-# Add qID_ref column
-qID_ref <- manypkgs::condense_qID(qTrade::agreements)
-DESTA_MEM <- dplyr::left_join(DESTA_MEM, qID_ref, by = "qID")
+# Add many_ID column
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+DESTA_MEM <- dplyr::left_join(DESTA_MEM, many_ID, by = "treaty_ID")
 
 # Re-order the columns
-DESTA_MEM <- dplyr::relocate(DESTA_MEM, qID_ref)
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, many_ID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
