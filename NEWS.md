@@ -1,6 +1,6 @@
 # manytrade 0.1.0
 
-2021-11-29
+2021-12-01
 
 ## Package
 * Closed #16 by changing name from qTrade to manytrade
@@ -8,6 +8,10 @@
 
 ## Data
 * Added `references` database and imported treaty lineage data using `DESTA` dataset
+* Renamed `qID` column to `treaty_ID` for all datasets in `agreements`, 
+`memberships` and `references` databases
+* Added `many_ID` column to `agreements`, `memberships` and `references` databases 
+using `manypkgs::condense_agreements()`
 
 # qTrade 0.0.1
 
