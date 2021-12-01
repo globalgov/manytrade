@@ -33,6 +33,15 @@ DESTA <- as_tibble(DESTA) %>%
 # Add qID column
 DESTA$qID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
+# Add qID_ref column
+qID_ref <- manypkgs::condense_qID(manytrade::agreements)
+DESTA <- dplyr::left_join(DESTA, qID_ref, by = "qID")
+
+# Re-order the columns
+DESTA <- DESTA %>% 
+  dplyr::select(qID_ref, Title, Beg, D, L, J, Signature, Force, qID, DESTA_ID, WTO) %>% 
+  dplyr::arrange(Beg)
+
 # add missing dates
 
 

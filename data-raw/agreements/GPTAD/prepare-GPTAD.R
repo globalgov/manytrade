@@ -29,6 +29,16 @@ GPTAD <- as_tibble(GPTAD) %>%
 # Add qID column
 GPTAD$qID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
 
+# Add qID_ref column
+qID_ref <- manypkgs::condense_qID(manytrade::agreements)
+GPTAD <- dplyr::left_join(GPTAD, qID_ref, by = "qID")
+
+# Re-order the columns
+GPTAD <- GPTAD %>% 
+  dplyr::select(qID_ref, Title, Beg, D, L, Signature, Force, qID, GPTAD_ID) %>% 
+  dplyr::arrange(Beg)
+
+
 # manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.

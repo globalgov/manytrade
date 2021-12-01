@@ -25,6 +25,15 @@ TREND <- as_tibble(TREND) %>%
 # Add qID column
 TREND$qID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg) # 1 duplicated IDs
 
+# Add qID_ref column
+qID_ref <- manypkgs::condense_qID(manytrade::agreements)
+TREND <- dplyr::left_join(TREND, qID_ref, by = "qID")
+
+# Re-order the columns
+TREND <- TREND %>% 
+  dplyr::select(qID_ref, Title, Beg, Signature, Force, qID, TREND_ID) %>% 
+  dplyr::arrange(Beg)
+
 # manypkgs includes several functions that should help cleaning and standardising your data.
 # Please see the vignettes or website for more details.
 

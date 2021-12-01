@@ -22,6 +22,15 @@ LABPTA <- as_tibble(LABPTA) %>%
 # Add qID column
 LABPTA$qID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
+# Add qID_ref column
+qID_ref <- manypkgs::condense_qID(manytrade::agreements)
+LABPTA<- dplyr::left_join(LABPTA, qID_ref, by = "qID")
+
+# Re-order the columns
+LABPTA <- LABPTA %>% 
+  dplyr::select(qID_ref, Title, Beg, Signature, Force, qID, LABPTA_ID) %>% 
+  dplyr::arrange(Beg)
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
