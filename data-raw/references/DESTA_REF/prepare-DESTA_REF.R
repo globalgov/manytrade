@@ -20,36 +20,41 @@ DESTA_REF <- as_tibble(DESTA_REF) %>%
   manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
   dplyr::filter(entry_type=="protocol or amendment" | entry_type=="base_treaty")
 
-# add qID column
-# DESTA_REF$qID <- manypkgs::code_agreements(DESTA_REF, DESTA_REF$Title, DESTA_REF$Beg) # 1 duplicate for CARIFTA (first entry no EIF date)
+# add treaty_ID column
 destaid<- manytrade::agreements$DESTA %>%
-  dplyr::select(Title, DESTA_ID, qID)
+  dplyr::select(Title, DESTA_ID, treaty_ID)
 
-DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID")) %>%
-  dplyr::rename(qID1 = "qID") %>%
-  dplyr::select(number, DESTA_ID, qID1, entry_type, Beg) %>%
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+destaid <- dplyr::left_join(destaid, many_ID, by = "treaty_ID")
+
+DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID"))
+DESTA_REF <- DESTA_REF %>%
+  dplyr::rename(treaty_ID1 = "treaty_ID") %>%
+  dplyr::rename(many_ID1 = "many_ID") %>%
+  dplyr::select(number, DESTA_ID, many_ID1, treaty_ID1, entry_type, Beg) %>%
   dplyr::group_by(DESTA_ID) %>%
   dplyr::mutate(num_rows = sum(dplyr::n())) %>% 
   dplyr::mutate(RefType = ifelse(num_rows > 1, "Amends", "")) %>%
   dplyr::mutate(RefType = ifelse(entry_type == "base_treaty", dplyr::recode(RefType, "Amends" = "Amended by"), RefType))
 
-# add qID2 column
+# add treaty_ID2 column
 DESTA_REF <- DESTA_REF %>%
   dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "a", "b")) %>%
   dplyr::mutate(idref = ifelse(RefType == "", NA, idref))
 
 ref <- DESTA_REF %>%
-  dplyr::select(DESTA_ID, qID1, num_rows, RefType) %>%
+  dplyr::select(DESTA_ID, many_ID1, num_rows, RefType) %>%
   dplyr::group_by(DESTA_ID) %>%
   dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "b", "a")) %>%
   dplyr::mutate(idref = ifelse(RefType == "", NA, idref)) %>%
-  dplyr::rename(qID2 = "qID1") %>%
-  dplyr::mutate(qID2 = ifelse(idref == "NA", NA, qID2)) %>%
-  dplyr::select(DESTA_ID, idref, qID2)
+  dplyr::rename(many_ID2 = "many_ID1") %>%
+  dplyr::mutate(many_ID2 = ifelse(idref == "NA", NA, many_ID2)) %>%
+  dplyr::select(DESTA_ID, idref, many_ID2)
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
   dplyr::ungroup() %>%
-  dplyr::select(qID1, RefType, qID2) #check matches, seems to add more entries?
+  dplyr::select(many_ID1, RefType, many_ID2) #check matches, seems to add more entries?
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
