@@ -19,16 +19,17 @@ LABPTA <- as_tibble(LABPTA) %>%
   dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>% 
   dplyr::arrange(Beg)
 
-# Add qID column
-LABPTA$qID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+# Add treaty_ID column
+LABPTA$treaty_ID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
-# Add qID_ref column
-qID_ref <- manypkgs::condense_qID(manytrade::agreements)
-LABPTA<- dplyr::left_join(LABPTA, qID_ref, by = "qID")
+# Add many_ID column
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+LABPTA<- dplyr::left_join(LABPTA, many_ID, by = "treaty_ID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>% 
-  dplyr::select(qID_ref, Title, Beg, Signature, Force, qID, LABPTA_ID) %>% 
+  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID) %>% 
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning

@@ -26,16 +26,17 @@ GPTAD <- as_tibble(GPTAD) %>%
   dplyr::select(GPTAD_ID, Title, Beg, Signature, Force, D, L, WTO) %>% 
   dplyr::arrange(Beg)
 
-# Add qID column
-GPTAD$qID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
+# Add treaty_ID column
+GPTAD$treaty_ID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
 
-# Add qID_ref column
-qID_ref <- manypkgs::condense_qID(manytrade::agreements)
-GPTAD <- dplyr::left_join(GPTAD, qID_ref, by = "qID")
+# Add many_ID column
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+GPTAD <- dplyr::left_join(GPTAD, many_ID, by = "treaty_ID")
 
 # Re-order the columns
 GPTAD <- GPTAD %>% 
-  dplyr::select(qID_ref, Title, Beg, D, L, Signature, Force, qID, GPTAD_ID) %>% 
+  dplyr::select(many_ID, Title, Beg, D, L, Signature, Force, treaty_ID, GPTAD_ID) %>% 
   dplyr::arrange(Beg)
 
 
