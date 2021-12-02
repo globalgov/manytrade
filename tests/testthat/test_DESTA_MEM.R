@@ -1,4 +1,4 @@
-# Test if  meets the many packages universe requirements
+# Test if  meets the many universe requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {

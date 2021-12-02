@@ -1,7 +1,7 @@
 # LABPTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many packages universe.
+# ready for the many universe.
 
 # Stage one: Collecting data
 LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
@@ -37,8 +37,7 @@ LABPTA <- LABPTA %>%
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make LABPTA available
-# within the many packages universe.
+# Next run the following line to make LABPTA available within the many universe.
 manypkgs::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

@@ -45,8 +45,8 @@ navbar:
           href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
-        - text: qStates
-          href: https://globalgov.github.io/qStates/
+        - text: manystates
+          href: https://globalgov.github.io/manystates/
         - text: manyenviron
           href: https://globalgov.github.io/manyenviron/
 

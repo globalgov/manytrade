@@ -1,7 +1,7 @@
 # TREND Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many packages universe.
+# ready for the many universe.
 
 # Stage one: Collecting data
 TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
@@ -39,7 +39,7 @@ TREND <- TREND %>%
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make TREND available within the many packages universe.
+# Next run the following line to make TREND available within the many universe.
 manypkgs::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

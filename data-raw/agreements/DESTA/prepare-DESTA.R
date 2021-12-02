@@ -1,7 +1,7 @@
 # DESTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many packages universe.
+# ready for the many universe.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -50,7 +50,7 @@ DESTA <- DESTA %>%
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make DESTA available within the many packages universe.
+# Next run the following line to make DESTA available within the many universe.
 manypkgs::export_data(DESTA, database = "agreements", URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to certain standards.

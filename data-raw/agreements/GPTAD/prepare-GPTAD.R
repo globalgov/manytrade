@@ -1,7 +1,7 @@
 # GPTAD Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many packages universe.
+# ready for the many universe.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -46,7 +46,7 @@ GPTAD <- GPTAD %>%
 
 # Stage three: Connecting data
 # Next run the following line to make GPTAD available
-# within the many packages universe.
+# within the many universe.
 manypkgs::export_data(GPTAD, database = "agreements", URL="https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

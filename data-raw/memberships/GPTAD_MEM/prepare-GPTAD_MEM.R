@@ -1,7 +1,7 @@
 # GPTAD_MEM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many packages universe.
+# ready for the many universe.
 
 # Stage one: Collecting data 
 GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
@@ -68,8 +68,8 @@ GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, many_ID)
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make GPTAD_MEM available
-# within the qPackage.
+# Next run the following line to make GPTAD_MEM available 
+# within the many universe.
 manypkgs::export_data(GPTAD_MEM, database = "memberships",
                      URL = "https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
