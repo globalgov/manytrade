@@ -11,7 +11,8 @@ DESTA_REF <- readxl::read_excel("data-raw/references/DESTA_REF/DESTA.xlsx")
 # formats of the 'DESTA_REF' object until the object created
 # below (in stage three) passes all the tests.
 DESTA_REF <- as_tibble(DESTA_REF) %>%
-  dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", entry_type != "accession", entry_type != "withdrawal") %>%
+  dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", 
+                entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are reflected in the memberships database
   manydata::transmutate(DESTA_ID = `base_treaty`,
                      Title = manypkgs::standardise_titles(name)) %>%
@@ -24,8 +25,9 @@ DESTA_REF <- as_tibble(DESTA_REF) %>%
 destaid<- manytrade::agreements$DESTA %>%
   dplyr::select(Title, DESTA_ID, treaty_ID)
 
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
 destaid <- dplyr::left_join(destaid, many_ID, by = "treaty_ID")
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID"))
@@ -36,7 +38,9 @@ DESTA_REF <- DESTA_REF %>%
   dplyr::group_by(DESTA_ID) %>%
   dplyr::mutate(num_rows = sum(dplyr::n())) %>% 
   dplyr::mutate(RefType = ifelse(num_rows > 1, "Amends", "")) %>%
-  dplyr::mutate(RefType = ifelse(entry_type == "base_treaty", dplyr::recode(RefType, "Amends" = "Amended by"), RefType))
+  dplyr::mutate(RefType = ifelse(entry_type == "base_treaty", 
+                                 dplyr::recode(RefType, "Amends" = "Amended by"), 
+                                 RefType))
 
 # add treaty_ID2 column
 DESTA_REF <- DESTA_REF %>%
@@ -54,7 +58,8 @@ ref <- DESTA_REF %>%
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
   dplyr::ungroup() %>%
-  dplyr::select(many_ID1, RefType, many_ID2) #check matches, seems to add more entries?
+  dplyr::select(many_ID1, RefType, many_ID2)
+#check matches, seems to add more entries?
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

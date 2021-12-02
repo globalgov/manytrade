@@ -11,9 +11,11 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-9 variables: many_ID, GPTAD_ID, Country_ID, Country, Title, Beg, Signature, Force, treaty_ID.}
+9 variables: many_ID, GPTAD_ID, Country_ID, Country, Title, Beg, Signature,
+Force, treaty_ID.}
 \item{DESTA_MEM: }{A dataset with 7772 observations and the following
-8 variables: many_ID, DESTA_ID, Country, Title, Beg, Signature, Force, treaty_ID.}
+8 variables: many_ID, DESTA_ID, Country, Title, Beg, Signature, Force,
+treaty_ID.}
 }
 }
 \usage{

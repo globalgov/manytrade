@@ -12,35 +12,40 @@ TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xl
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
 TREND <- as_tibble(TREND) %>%
-  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>% #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
+  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>%
+  #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
   tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
-  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>% #combining variables to obtain full name of treaty
+  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  #combining variables to obtain full name of treaty
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
                      Signature=manypkgs::standardise_dates(as.character(Year)),
-                     Force = manypkgs::standardise_dates(as.character(Year))) %>%                                     
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
-  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>% 
+                     Force = manypkgs::standardise_dates(as.character(Year))) %>%
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
 # Add treaty_ID column
-TREND$treaty_ID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg) # 1 duplicated IDs
+TREND$treaty_ID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+many_ID <- manypkgs::condense_agreements(manytrade::agreements,
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
 TREND <- dplyr::left_join(TREND, many_ID, by = "treaty_ID")
 
 # Re-order the columns
-TREND <- TREND %>% 
+TREND <- TREND %>%
   dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, TREND_ID) %>% 
   dplyr::arrange(Beg)
 
-# manypkgs includes several functions that should help cleaning and standardising your data.
+# manypkgs includes several functions that should help cleaning and 
+# standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make TREND available within the many universe.
-manypkgs::export_data(TREND, database = "agreements", URL = "http://www.chaire-epi.ulaval.ca/en/trend")
+manypkgs::export_data(TREND, database = "agreements", 
+                      URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
@@ -53,5 +58,5 @@ manypkgs::export_data(TREND, database = "agreements", URL = "http://www.chaire-e
 # present in the data_raw folder of the package for citation purposes.
 # Therefore, please make sure that you have permission to use the dataset
 # that you're including in the package.
-# Please make sure that you cite any sources appropriately and fill in as much detail
-# about the variables etc as possible.
+# Please make sure that you cite any sources appropriately and fill in as much 
+# detail about the variables etc as possible.

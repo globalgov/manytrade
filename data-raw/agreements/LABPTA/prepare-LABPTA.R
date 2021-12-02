@@ -15,20 +15,21 @@ LABPTA <- as_tibble(LABPTA) %>%
                      Title = manypkgs::standardise_titles(Name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
-  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>% 
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
 # Add treaty_ID column
 LABPTA$treaty_ID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
 # Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
 LABPTA<- dplyr::left_join(LABPTA, many_ID, by = "treaty_ID")
 
 # Re-order the columns
-LABPTA <- LABPTA %>% 
+LABPTA <- LABPTA %>%
   dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID) %>% 
   dplyr::arrange(Beg)
 
@@ -38,7 +39,8 @@ LABPTA <- LABPTA %>%
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available within the many universe.
-manypkgs::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
+manypkgs::export_data(LABPTA, database = "agreements", 
+                      URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

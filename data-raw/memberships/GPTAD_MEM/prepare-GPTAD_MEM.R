@@ -12,7 +12,8 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # below (in stage three) passes all the tests.
 GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(GPTAD_ID = dplyr::row_number()) %>%
-  dplyr::mutate(Country = gsub("\\\\r\\\\n", "", Membership)) %>% #remove \r\n line break entries
+  dplyr::mutate(Country = gsub("\\\\r\\\\n", "", Membership)) %>%
+  #remove \r\n line break entries
   dplyr::mutate(Country = stringr::str_replace(Country, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
   #standardize delimitation of values by commas
   dplyr::mutate(Country = stringr::str_replace(Country, "St. Kitts-Nevis-Anguilla", "Saint Kitts and Nevis, Anguilla")) %>%
@@ -31,33 +32,47 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(Country = stringr::str_replace(Country, "Suriname and Trinidad and Tobago", "Suriname, Trinidad and Tobago")) %>%
   dplyr::mutate(Country = stringr::str_replace(Country, "Norway and Switzerland", "Norway, Switzerland")) %>%
   #remove 'and' between country names
-  tidyr::separate_rows(Country, sep=",") %>% #separate column into rows by each country
+  tidyr::separate_rows(Country, sep=",") %>%
+  #separate column into rows by each country
   dplyr::mutate(Country = gsub("^and | and$", "", Country)) %>%
-  dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>% #standardize empty rows and 
-  dplyr::mutate(Country = ifelse(Country == " ", NA, Country)) %>% #rows with only whitespace to NA
+  dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>%
+  #standardize empty rows and 
+  dplyr::mutate(Country = ifelse(Country == " ", NA, Country)) %>%
+  #rows with only whitespace to NA
   dplyr::filter(Country != "NA") %>% #remove missing rows
-  dplyr::mutate(Country = trimws(Country, which = c("both", "left", "right"), whitespace = "[ \t\r\n]")) %>% #remove whitespace
+  dplyr::mutate(Country = trimws(Country, which = c("both", "left", "right"), 
+                                 whitespace = "[ \t\r\n]")) %>%
+  #remove whitespace
   dplyr::mutate(Country = ifelse(Country == "", NA, Country)) %>%
   dplyr::filter(Country != "NA",
-                Country != "British") %>% #remove empty rows and redundant 'British' in data
-  dplyr::mutate(Country = manytrade::code_countryname(Country)) %>% #translate French country names and correct spelling
-  dplyr::mutate(Country = dplyr::recode(Country, "EC" = "European Community")) %>% #not included in regex list because of overlaps with other country names
-  dplyr::mutate(Country_ID = countrycode::countrycode(Country, origin = 'country.name', destination = 'iso3n')) %>% #add iso code for country names
-  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
+                Country != "British") %>%
+  #remove empty rows and redundant 'British' in data
+  dplyr::mutate(Country = manytrade::code_countryname(Country)) %>%
+  #translate French country names and correct spelling
+  dplyr::mutate(Country = dplyr::recode(Country, "EC" = "European Community")) %>%
+  #not included in regex list because of overlaps with other country names
+  dplyr::mutate(Country_ID = countrycode::countrycode(Country, 
+                                                      origin = 'country.name',
+                                                      destination = 'iso3n')) %>%
+  #add iso code for country names
+  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
+                                             NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(GPTAD_ID, Country_ID, Country, Title, Beg, Signature, Force) %>% 
+  dplyr::select(GPTAD_ID, Country_ID, Country, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
 #Add treaty_ID column
-GPTAD_MEM$treaty_ID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, GPTAD_MEM$Beg) #1877 duplicated IDs
+GPTAD_MEM$treaty_ID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
+                                                 GPTAD_MEM$Beg)
 
 # Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                                        LABPTA$treaty_ID, TREND$treaty_ID))
+many_ID <- manypkgs::condense_agreements(manytrade::agreements,
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, many_ID, by = "treaty_ID")
 
 # Re-order the columns
