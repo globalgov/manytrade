@@ -1,6 +1,6 @@
 # manytrade 0.1.0
 
-2021-12-02
+2021-12-03
 
 ## Package
 * Closed #16 by changing name from qTrade to manytrade

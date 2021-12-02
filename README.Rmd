@@ -12,7 +12,7 @@ output: github_document
 manytrade is a data package in the [many](https://github.com/globalgov/) universe.
 It currently includes an ensemble of datasets on international trade agreements,
 and [states](https://github.com/globalgov/manystates)' membership or other relationships to those agreements.
-Please also check out [`{manydata}`](https://github.com/globalgov/manydata) for more about the other packages in the 'many' universe. 
+Please also check out [`{manydata}`](https://github.com/globalgov/manydata) for more about the other packages in the many universe. 
 
 ## How to install:
 We’ve made it easier than ever to install and start analysing global governance data in R. 
@@ -37,13 +37,13 @@ manydata::data_contrast("manytrade")
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes [here](https://globalgov.github.io/manydata/articles/user.html).
 
-## The 'many' universe
+## The many universe
 
 The [many](https://github.com/globalgov/) universe is aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
 
-While the packages in the 'many' universe can and do include novel data, 
+While the packages in the many universe can and do include novel data, 
 much of what they offer involves standing on the shoulders of giants. 
-The 'many' universe endeavours to be as transparent as possible about where data 
+The many universe endeavours to be as transparent as possible about where data 
 comes from, how it has been coded and/or relabeled, and who has done the work. 
 As such, we make it easy to cite both the particular datasets you use 
 by listing the official references in the function above, 
@@ -67,10 +67,10 @@ request](https://github.com/globalgov/manytrade/pulls) so that your data
 can be used easily.
 
 If you have collected or developed other data that may not be best for
-this package, but could be useful within the wider 'many' universe,
+this package, but could be useful within the wider many universe,
 [manypkgs](https://github.com/globalgov/manypkgs) includes a number of
-functions that make it easy to create a new 'many package' in the 'many'
+functions that make it easy to create a new 'many package' in the many
 universe and populate it with clean, consistent global governance data.
 
-If you have any other ideas about how this package or the 'many' universe more broadly
+If you have any other ideas about how this package or the many universe more broadly
 might better facilitate your empirical analysis, we'd be very happy to hear from you.
