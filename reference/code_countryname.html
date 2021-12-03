@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Code Country Names — code_countryname • qTrade</title>
+<title>Code Country Names — code_countryname • manytrade</title>
 
 
 <!-- jquery -->
@@ -74,8 +74,8 @@ as well as country names in other languages." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qTrade</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="../index.html">manytrade</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -103,21 +103,21 @@ as well as country names in other languages." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://globalgov.github.io/qData/">qData</a>
+      <a href="https://globalgov.github.io/manydata/">manydata</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qStates/">qStates</a>
+      <a href="https://globalgov.github.io/manystates/">manystates</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
+      <a href="https://globalgov.github.io/manyenviron/">manyenviron</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://github.com/globalgov/qTrade">
+  <a href="https://github.com/globalgov/manytrade">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -167,10 +167,12 @@ False by default.</p></td>
     <p>A character vector of country name</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"argentine"</span>, <span class='st'>"albanie"</span>, <span class='st'>"BÃ©larus"</span><span class='op'>)</span>
-<span class='fu'>code_countryname</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Argentina"  "Albania"    "BA(C)larus"</div><div class='input'><span class='fu'>code_countryname</span><span class='op'>(</span><span class='va'>name</span>, abbrev <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ARG"        "ALB"        "BA(C)larus"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"argentine"</span>, <span class='st'>"albanie"</span>, <span class='st'>"Bélarus"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>code_countryname</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Argentina" "Albania"   "Belarus"  </span>
+<span class='r-in'><span class='fu'>code_countryname</span><span class='op'>(</span><span class='va'>name</span>, abbrev <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ARG" "ALB" "BLR"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • qTrade</title>
+<title>Changelog • manytrade</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qTrade</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="../index.html">manytrade</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -101,21 +101,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://globalgov.github.io/qData/">qData</a>
+      <a href="https://globalgov.github.io/manydata/">manydata</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qStates/">qStates</a>
+      <a href="https://globalgov.github.io/manystates/">manystates</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
+      <a href="https://globalgov.github.io/manyenviron/">manyenviron</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://github.com/globalgov/qTrade">
+  <a href="https://github.com/globalgov/manytrade">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -137,13 +137,36 @@
       
     </div>
 
+    <div id="manytrade-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#manytrade-010" class="anchor"></a>manytrade 0.1.0</h1>
+<p>2021-12-03</p>
+<div id="package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#package" class="anchor"></a>Package</h2>
+<ul>
+<li>Closed #16 by changing name from qTrade to manytrade</li>
+<li>Closed #10 by updating wording in ReadME files and added new logo with new name</li>
+</ul>
+</div>
+<div id="data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h2>
+<ul>
+<li>Added <code>references</code> database and imported treaty lineage data using <code>DESTA</code> dataset</li>
+<li>Renamed <code>qID</code> column to <code>treaty_ID</code> for all datasets in <code>agreements</code>, <code>memberships</code> and <code>references</code> databases</li>
+<li>Added <code>many_ID</code> column to <code>agreements</code>, <code>memberships</code> and <code>references</code> databases using <code>manypkgs::condense_agreements()</code>
+</li>
+</ul>
+</div>
+</div>
     <div id="qtrade-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#qtrade-001" class="anchor"></a>qTrade 0.0.1</h1>
 <p>2021-10-07</p>
-<div id="package" class="section level2">
+<div id="package-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package" class="anchor"></a>Package</h2>
+<a href="#package-1" class="anchor"></a>Package</h2>
 <ul>
 <li>Closed #7 by setting up qTrade package using <code>qCreate::setup_package()</code>
 <ul>
@@ -156,9 +179,9 @@
 <li>Closed #12 by adding package website</li>
 </ul>
 </div>
-<div id="data" class="section level2">
+<div id="data-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h2>
+<a href="#data-1" class="anchor"></a>Data</h2>
 <ul>
 <li>Imported initial <code>DESTA</code> and <code>TREND</code> datasets in qTrade, cleaned and exported into agreements database.</li>
 <li>Closed #1 by adding <code>DESTA</code> dataset to agreements database</li>
@@ -170,6 +193,13 @@
 <li>Added tests for datasets with <code>qCreate::export_data()</code> in agreements database</li>
 <li>Arranged DESTA and GPTAD datasets to reflect treaty membership data by country</li>
 <li>Added tests for DESTA and GPTAD datasets with <code>qCreate::export_data()</code> in memberships database</li>
+</ul>
+</div>
+<div id="functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#functions" class="anchor"></a>Functions</h2>
+<ul>
+<li>Added <code><a href="../reference/code_countryname.html">code_countryname()</a></code> function and tests</li>
 </ul>
 </div>
 </div>
