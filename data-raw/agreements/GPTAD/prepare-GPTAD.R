@@ -1,8 +1,8 @@
 # GPTAD Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
-library(qCreate)
+# ready for the many universe.
+library(manypkgs)
 
 # Stage one: Collecting data
 GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
@@ -12,38 +12,63 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # formats of the 'GPTAD' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD <- as_tibble(GPTAD) %>%
-  dplyr::filter(Type != "Customs Union Accession Agreement" ) %>% #removing entries relating to membership as membership changes will be logged in memberships database
   dplyr::mutate(GPTAD_ID = dplyr::row_number()) %>%
-  dplyr::mutate(L = dplyr::recode(`Type`, "Association Free Trade Agreement" = "P", "Bilateral Free Trade Agreement"= "B", "Customs Union Primary Agreement"="P", "Regional/Plurilateral Free Trade Agreement"="R/P", "Framework Agreement" = "M")) %>%
-  dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", "Bilateral Free Trade Agreement"= "A", "Customs Union Primary Agreement"="A", "Regional/Plurilateral Free Trade Agreement"="A", "Framework Agreement" = "A")) %>%
+  dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
+  #removing entries relating to membership as membership changes will be logged in memberships database
+  dplyr::mutate(L = dplyr::recode(`Type`, 
+                                  "Association Free Trade Agreement" = "P", 
+                                  "Bilateral Free Trade Agreement"= "B", 
+                                  "Customs Union Primary Agreement"="P", 
+                                  "Regional/Plurilateral Free Trade Agreement"="R/P", 
+                                  "Framework Agreement" = "M")) %>%
+  dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", 
+                                  "Bilateral Free Trade Agreement"= "A", 
+                                  "Customs Union Primary Agreement"="A", 
+                                  "Regional/Plurilateral Free Trade Agreement"="A", 
+                                  "Framework Agreement" = "A")) %>%
   dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
-  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", NA, `Date.of.Signature`)) %>%
-  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", NA, `Date.of.Entry.into.Force`)) %>%
-  qData::transmutate(Title = qCreate::standardise_titles(`Common.Name`),
-                     Signature = qCreate::standardise_dates(`Date.of.Signature`),
-                     Force = qCreate::standardise_dates(`Date.of.Entry.into.Force`)) %>%
+  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
+                                             NA, `Date.of.Signature`)) %>%
+  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
+                                                    NA, `Date.of.Entry.into.Force`)) %>%
+  manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
+                     Signature = manypkgs::standardise_dates(`Date.of.Signature`),
+                     Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(GPTAD_ID, Title, Beg, Signature, Force, D, L, WTO) %>% 
+  dplyr::select(GPTAD_ID, Title, Beg, Signature, Force, D, L, WTO) %>%
   dplyr::arrange(Beg)
 
-# Add qID column
-GPTAD$qID <- qCreate::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
+# Add treaty_ID column
+GPTAD$treaty_ID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
 
-# qData includes several functions that should help cleaning
+# Add many_ID column
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
+GPTAD <- dplyr::left_join(GPTAD, many_ID, by = "treaty_ID")
+
+# Re-order the columns
+GPTAD <- GPTAD %>%
+  dplyr::select(many_ID, Title, Beg, D, L, Signature, Force, treaty_ID, GPTAD_ID) %>% 
+  dplyr::arrange(Beg)
+
+
+# manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make GPTAD available
-# within the qPackage.
-qCreate::export_data(GPTAD, database = "agreements", URL="https://wits.worldbank.org/gptad/library.aspx")
+# within the many universe.
+manypkgs::export_data(GPTAD, database = "agreements", 
+                      URL="https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
 # to run these tests locally at any point.
 # Any test failures should be pretty self-explanatory and may require
 # you to return to stage two and further clean, standardise, or wrangle
-# your data into the expected format.
+# your data into the expected format.
 # Second, it also creates a documentation file for you to fill in.
 # Please make sure that you cite any sources appropriately and fill in as
 # much detail about the variables etc as possible.

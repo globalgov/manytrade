@@ -1,7 +1,7 @@
 # LABPTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for the many universe.
 
 # Stage one: Collecting data
 LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
@@ -11,25 +11,36 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  qData::transmutate(LABPTA_ID = `Number`,
-                     Title = qCreate::standardise_titles(Name),
-                     Signature = qCreate::standardise_dates(as.character(year)),
-                     Force = qCreate::standardise_dates(as.character(year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
-  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>% 
+  manydata::transmutate(LABPTA_ID = `Number`,
+                     Title = manypkgs::standardise_titles(Name),
+                     Signature = manypkgs::standardise_dates(as.character(year)),
+                     Force = manypkgs::standardise_dates(as.character(year))) %>%
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-# Add qID column
-LABPTA$qID <- qCreate::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+# Add treaty_ID column
+LABPTA$treaty_ID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
-# qCreate includes several functions that should help cleaning
+# Add many_ID column
+many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
+                                                 LABPTA$treaty_ID, TREND$treaty_ID))
+LABPTA<- dplyr::left_join(LABPTA, many_ID, by = "treaty_ID")
+
+# Re-order the columns
+LABPTA <- LABPTA %>%
+  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID) %>% 
+  dplyr::arrange(Beg)
+
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make LABPTA available
-# within the qPackage.
-qCreate::export_data(LABPTA, database = "agreements", URL = "https://doi.org/10.1007/s11558-018-9301-z")
+# Next run the following line to make LABPTA available within the many universe.
+manypkgs::export_data(LABPTA, database = "agreements", 
+                      URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

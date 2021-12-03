@@ -1,3 +1,18 @@
+# manytrade 0.1.0
+
+2021-12-03
+
+## Package
+* Closed #16 by changing name from qTrade to manytrade
+* Closed #10 by updating wording in ReadME files and added new logo with new name
+
+## Data
+* Added `references` database and imported treaty lineage data using `DESTA` dataset
+* Renamed `qID` column to `treaty_ID` for all datasets in `agreements`, 
+`memberships` and `references` databases
+* Added `many_ID` column to `agreements`, `memberships` and `references` databases 
+using `manypkgs::condense_agreements()`
+
 # qTrade 0.0.1
 
 2021-10-07
@@ -23,4 +38,7 @@
 * Added tests for datasets with `qCreate::export_data()` in agreements database
 * Arranged DESTA and GPTAD datasets to reflect treaty membership data by country
 * Added tests for DESTA and GPTAD datasets with `qCreate::export_data()` in memberships database
+
+## Functions
+* Added `code_countryname()` function and tests
 
