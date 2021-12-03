@@ -98,55 +98,53 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>manytrade is a data package in the <a href="https://github.com/globalgov/qData">qData</a> ecosystem of qPackages. It currently includes an ensemble of datasets on international trade agreements, and <a href="https://github.com/globalgov/qStates">states</a>’ membership or other relationships to those agreements.</p>
-<p>Please also check out <a href="https://github.com/globalgov"><code>{qData}</code></a> for more about the other packages in the <code>{qData}</code> ecosystem.</p>
+<p>manytrade is a data package in the <a href="https://github.com/globalgov/">many packages</a> universe. It currently includes an ensemble of datasets on international trade agreements, and <a href="https://github.com/globalgov/manystates">states</a>’ membership or other relationships to those agreements. Please also check out <a href="https://github.com/globalgov/manydata"><code>{manydata}</code></a> for more about the other packages in the ‘many packages’ universe.</p>
 <div id="how-to-install" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-to-install" class="anchor"></a>How to install:</h2>
-<p>We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, <a href="https://github.com/globalgov/qData">qData</a>, as follows, and then you can discover, install and update various qPackages from the console.</p>
+<p>We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, <a href="https://github.com/globalgov/manydata">manydata</a>, and then you can discover, install and update various ‘many packages’ from the console.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages(remotes)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"globalgov/qData"</span><span class="op">)</span> <span class="co"># this installs our core package, the only one you need to do independently</span>
-<span class="fu">qData</span><span class="fu">::</span><span class="fu">get_packages</span><span class="op">(</span><span class="op">)</span> <span class="co"># this prints a list of the publicly available data packages currently available</span>
-<span class="fu">qData</span><span class="fu">::</span><span class="fu">get_packages</span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span> <span class="co"># this downloads and installs the named package</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"globalgov/manydata"</span><span class="op">)</span> <span class="co"># this installs our core package, the only one you need to do independently</span>
+<span class="fu">manydata</span><span class="fu">::</span><span class="fu">get_packages</span><span class="op">(</span><span class="op">)</span> <span class="co"># this prints a list of the publicly available data packages currently available</span>
+<span class="fu">manydata</span><span class="fu">::</span><span class="fu">get_packages</span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span> <span class="co"># this downloads and installs the named package</span></code></pre></div>
 </div>
 <div id="data-included" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-included" class="anchor"></a>Data included</h2>
-<p>Once you have installed the package, you can see the different databases and datasets included in the {manytrade} package using the following function.</p>
+<p>Once you have installed the package, you can see the different databases and datasets included in the {<code>manytrade</code>} package using the following function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">qData</span><span class="fu">::</span><span class="fu">data_contrast</span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span></code></pre></div>
-<p>Working with ensembles of related data has many advantages for robust analysis. Just take a look at our vignettes <a href="https://globalgov.github.io/qData/articles/user.html">here</a>.</p>
+<code class="sourceCode R"><span class="fu">manydata</span><span class="fu">::</span><span class="fu">data_contrast</span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span></code></pre></div>
+<p>Working with ensembles of related data has many advantages for robust analysis. Just take a look at our vignettes <a href="https://globalgov.github.io/manydata/articles/user.html">here</a>.</p>
 </div>
-<div id="qpackages" class="section level2">
+<div id="the-many-packages-universe" class="section level2">
 <h2 class="hasAnchor">
-<a href="#qpackages" class="anchor"></a>qPackages</h2>
-<p>The <a href="https://github.com/globalgov/qData">qData</a> ecosystem is aimed at collecting, connecting and correcting network data across issue-domains of global governance.</p>
-<p>While some qPackages can and do include novel data, much of what they offer involves standing on the shoulders of giants. qPackages endeavour to be as transparent as possible about where data comes from, how it has been coded and/or relabeled, and who has done the work. As such, we make it easy to cite both the particular datasets you use by listing the official references in the function above, as well as the package providers for their work assembling the data by using the function below.</p>
+<a href="#the-many-packages-universe" class="anchor"></a>The ‘many packages’ universe</h2>
+<p>The <a href="https://github.com/globalgov/">many packages</a> universe is aimed at collecting, connecting and correcting network data across issue-domains of global governance.</p>
+<p>While the packages in the many universe can and do include novel data, much of what they offer involves standing on the shoulders of giants. The ‘many packages’ universe endeavours to be as transparent as possible about where data comes from, how it has been coded and/or relabeled, and who has done the work. As such, we make it easy to cite both the particular datasets you use by listing the official references in the function above, as well as the package providers for their work assembling the data by using the function below.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## To cite package 'manytrade' in publications use:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## To cite manytrade in publications use:</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">## </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">##   James Hollway (2021). manytrade: Trade Agreements for qData. R package</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">##   version 0.0.1.</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">## </span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">## A BibTeX entry for LaTeX users is</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">## </span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">##   @Manual{,</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     title = {manytrade: Trade Agreements for qData},</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##     author = {James Hollway},</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##     year = {2021},</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">##     note = {R package version 0.0.1},</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">##   }</span></span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">##   J. Hollway. Trade agreements for manydata. 2021.</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">## </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">## A BibTeX entry for LaTeX users is</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">## </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">##   @Manual{,</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">##     title = {manytrade: International Trade Agreements for manydata},</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##     author = {James Hollway},</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##     year = {2021},</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##     url = {https://github.com/globalgov/manytrade},</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">##   }</span></span></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h2>
-<p><a href="https://github.com/globalgov/qData">qData</a> also makes it easy to contribute in lots of different ways.</p>
+<p><a href="https://github.com/globalgov/manydata">manydata</a> also makes it easy to contribute in lots of different ways.</p>
 <p>If you have already developed a dataset salient to this package, please reach out by flagging this as an <a href="https://github.com/globalgov/manytrade/issues">issue</a> for us, or by forking, further developing the package yourself, and opening a <a href="https://github.com/globalgov/manytrade/pulls">pull request</a> so that your data can be used easily.</p>
-<p>If you have collected or developed other data that may not be best for this package, but could be useful within the wider ecosystem, <a href="https://github.com/globalgov/qData">qData</a> includes a number of functions that make it easy to create a new qPackage and populate with clean, consistent global governance data.</p>
-<p>If you have any other ideas about how this package or the qData ecosystem more broadly might better facilitate your empirical analysis, we’d be very happy to hear from you.</p>
+<p>If you have collected or developed other data that may not be best for this package, but could be useful within the wider ‘many packages’ universe, <a href="https://github.com/globalgov/manypkgs">manypkgs</a> includes a number of functions that make it easy to create a new ‘many package’ and populate it with clean, consistent global governance data.</p>
+<p>If you have any other ideas about how this package or the ‘many packages’ universe more broadly might better facilitate your empirical analysis, we’d be very happy to hear from you.</p>
 </div>
 </div>
   </div>
