@@ -1,9 +1,0 @@
-pandoc: 2.14.0.3
-pkgdown: 2.0.0
-pkgdown_sha: ~
-articles: {}
-last_built: 2021-12-02T11:08Z
-urls:
-  reference: https://globalgov.github.io/manytrade/reference
-  article: https://globalgov.github.io/manytrade/articles
-
