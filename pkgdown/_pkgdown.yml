@@ -2,8 +2,9 @@ url: https://globalgov.github.io/manytrade/
 development:
     mode: auto
 template:
+  bootstrap: 5
   params:
-    bootswatch: paper
+    bootswatch: litera
 authors:
   James Hollway:
     href: https://jameshollway.com
@@ -49,7 +50,6 @@ navbar:
           href: https://globalgov.github.io/manystates/
         - text: manyenviron
           href: https://globalgov.github.io/manyenviron/
-
 reference:
    - title: "Data"
      desc: "manytrade contains the following databases"
@@ -57,3 +57,10 @@ reference:
      - agreements
      - memberships
      - references
+footer:
+  structure:
+    left: devs
+    right: panarchic
+  components:
+    devs: Developed by [James Hollway](https://jameshollway.com/).
+    panarchic: Part of the [PANARCHIC project](https://panarchic.ch/).

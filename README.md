@@ -1,5 +1,5 @@
 
-# manytrade <img src="https://raw.githubusercontent.com/globalgov/manytrade/develop/inst/manytradeContainer.png" align="right" width="220"/>
+# manytrade <img src="man/figures/manytradeContainer.png" align="right"/>
 
 <!-- badges: start -->
 
