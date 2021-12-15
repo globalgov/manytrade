@@ -8,6 +8,12 @@
 date)](https://img.shields.io/github/v/release/globalgov/manytrade)
 ![GitHub Release
 Date](https://img.shields.io/github/release-date/globalgov/manytrade)
+![GitHub
+issues](https://img.shields.io/github/issues-raw/globalgov/manytrade)
+[![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manytrade/badge/main)](https://www.codefactor.io/repository/github/globalgov/manytrade/overview/main)
+<!-- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867) -->
+[![Codecov test
+coverage](https://codecov.io/gh/globalgov/qTrade/branch/main/graph/badge.svg)](https://app.codecov.io/gh/globalgov/qTrade?branch=main)
 <!-- badges: end -->
 
 manytrade is a data package in the [many
