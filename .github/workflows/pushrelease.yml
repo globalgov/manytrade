@@ -61,6 +61,7 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_cran("covr")
         shell: Rscript {0}
 
 #      - name: Document
@@ -92,6 +93,9 @@ jobs:
         with:
           name: ${{ matrix.config.asset_name }}
           path: build/
+
+      - name: Calculate code coverage
+        run: Rscript -e "covr::codecov()"
 
   release:
     name: Bump version and release
