@@ -11,7 +11,7 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  manydata::transmutate(LABPTA_ID = `Number`,
+  manydata::transmutate(LABPTA_ID = as.character(`Number`),
                      Title = manypkgs::standardise_titles(Name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(year))) %>%

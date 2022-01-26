@@ -1,4 +1,4 @@
-# Test if  meets the many universe requirements
+# Test if  meets the many packages universe requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {
@@ -17,7 +17,6 @@ test_that("datasets have the required variables", {
   expect_col_exists(agreements[["DESTA"]], vars(Beg))
   expect_true(any(grepl("ID$", colnames(agreements[["DESTA"]]))))
   expect_col_exists(agreements[["DESTA"]], vars(Signature))
-  expect_col_exists(agreements[["DESTA"]], vars(Force))
 })
 
 # Date columns should be in messydt class
@@ -52,19 +51,6 @@ test_that("Column `Signature` has standardised dates", {
                          agreements[["DESTA"]]$Signature)))
   expect_false(any(grepl("^[:digit:]{1}$",
                          agreements[["DESTA"]]$Signature)))
-})
-
-test_that("Column `Force` has standardised dates", {
-  expect_equal(class(agreements[["DESTA"]]$Force), "messydt")
-  expect_false(any(grepl("/", agreements[["DESTA"]]$Force)))
-  expect_false(any(grepl("^[:alpha:]$",
-                         agreements[["DESTA"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}$",
-                         agreements[["DESTA"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{3}$",
-                         agreements[["DESTA"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{1}$",
-                         agreements[["DESTA"]]$Force)))
 })
 
 # Dataset should be ordered according to the "Beg" column

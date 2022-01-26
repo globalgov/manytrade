@@ -24,6 +24,8 @@ TREND <- as_tibble(TREND) %>%
   dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
+TREND$TREND_ID <- as.character(TREND$TREND_ID)
+
 # Add treaty_ID column
 TREND$treaty_ID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 

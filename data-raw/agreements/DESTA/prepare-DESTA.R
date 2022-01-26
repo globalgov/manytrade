@@ -28,7 +28,7 @@ DESTA <- as_tibble(DESTA) %>%
                                   "Asia" = "R", "Africa" = "R", 
                                   "Americas" = "R", "Europe" = "R", 
                                   "Oceania" = "R")) %>%
-  manydata::transmutate(DESTA_ID = `base_treaty`,
+  manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
                      Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
