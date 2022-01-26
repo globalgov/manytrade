@@ -11,16 +11,16 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 # formats of the 'DESTA_MEM' object until the object created
 # below (in stage three) passes all the tests.
 DESTA_MEM <- as_tibble(DESTA_MEM) %>%
-  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country", 
+  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country_ID", 
                       values_drop_na = TRUE) %>%
-  #arrange columns containing countries into one column, with each country in rows corresponding to the treaty it is party to
+  #arrange columns containing countries into one column, with each Country_ID in rows corresponding to the treaty it is party to
   manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
                      Title = manypkgs::standardise_titles(name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(DESTA_ID, Country, Title, Beg, Signature, Force) %>%
-  #match ISO to country name
+  dplyr::select(DESTA_ID, Country_ID, Title, Beg, Signature, Force) %>%
+  #match ISO to Country_ID name
   dplyr::arrange(Beg)
 
 #Add a treaty_ID column
