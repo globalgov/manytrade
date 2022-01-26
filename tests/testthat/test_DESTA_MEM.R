@@ -1,4 +1,4 @@
-# Test if  meets the many universe requirements
+# Test if  meets the many packages universe requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {
@@ -13,8 +13,7 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists(memberships[["DESTA_MEM"]], vars(Country))
-  expect_col_exists(memberships[["DESTA_MEM"]], vars(Beg))
+  expect_col_exists(memberships[["DESTA_MEM"]], c("Beg", ".*ID$"))
 })
 
 # Date columns should be in messydt class

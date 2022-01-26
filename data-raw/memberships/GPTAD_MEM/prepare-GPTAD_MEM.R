@@ -11,7 +11,7 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # formats of the 'GPTAD_MEM' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
-  dplyr::mutate(GPTAD_ID = dplyr::row_number()) %>%
+  dplyr::mutate(GPTAD_ID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(Country = gsub("\\\\r\\\\n", "", Membership)) %>%
   #remove \r\n line break entries
   dplyr::mutate(Country = stringr::str_replace(Country, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
@@ -70,9 +70,7 @@ GPTAD_MEM$treaty_ID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title,
                                                  GPTAD_MEM$Beg)
 
 # Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements,
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
+many_ID <- manypkgs::condense_agreements(manytrade::memberships)
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, many_ID, by = "treaty_ID")
 
 # Re-order the columns
