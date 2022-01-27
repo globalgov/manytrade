@@ -65,6 +65,8 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::select(GPTAD_ID, Country_ID, Country, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
+GPTAD_MEM$Country_ID <- countrycode::countrycode(GPTAD_MEM$Country_ID, origin = "iso3n", destination = "iso3c")
+
 #Add treaty_ID column
 GPTAD_MEM$treaty_ID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
                                                  GPTAD_MEM$Beg)
