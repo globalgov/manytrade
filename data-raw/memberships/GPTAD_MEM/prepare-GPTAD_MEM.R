@@ -76,7 +76,7 @@ many_ID <- manypkgs::condense_agreements(manytrade::memberships)
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, many_ID, by = "treaty_ID")
 
 # Re-order the columns
-GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, many_ID)
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, many_ID, Country_ID, Title, Beg, Signature, Force, Country, GPTAD_ID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
