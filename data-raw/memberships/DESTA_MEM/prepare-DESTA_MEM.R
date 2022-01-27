@@ -23,6 +23,8 @@ DESTA_MEM <- as_tibble(DESTA_MEM) %>%
   #match ISO to Country_ID name
   dplyr::arrange(Beg)
 
+DESTA_MEM$Country_ID <- countrycode::countrycode(DESTA_MEM$Country_ID, origin = "iso3n", destination = "iso3c")
+
 #Add a treaty_ID column
 DESTA_MEM$treaty_ID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, 
                                                  DESTA_MEM$Beg)
