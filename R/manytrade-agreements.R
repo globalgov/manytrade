@@ -14,4 +14,9 @@
 #' \item{GPTAD: }{A dataset with 346 observations and the following
 #' 9 variables: many_ID, Title, Beg, D, L, Signature, Force, treaty_ID, GPTAD_ID.}
 #' }
+#' 
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(agreements, skimr::skim_without_charts)
+#' ```
  "agreements"

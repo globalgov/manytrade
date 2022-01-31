@@ -10,4 +10,9 @@
 #' \item{DESTA_MEM: }{A dataset with 7772 observations and the following
 #' 8 variables: many_ID, Country_ID, Title, Beg, Signature, Force, DESTA_ID, treaty_ID.}
 #' }
+#' 
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(memberships, skimr::skim_without_charts)
+#' ```
  "memberships"
