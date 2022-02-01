@@ -33,12 +33,12 @@ Depends:
     pointblank
 Imports:
     lubridate,
+    messydates,
     dplyr,
     roxygen2,
     usethis,
     remotes,
-    pkgdown,
-    stringi
+    pkgdown
 Suggests:
     rlang,
     testthat (>= 3.0.0)
