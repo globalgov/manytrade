@@ -21,31 +21,9 @@ texts
 texts database documentation
 }
 \details{
-\preformatted{## $AGR_TXT
-## -- Data Summary ------------------------
-##                            Values
-## Name                       X[[i]]
-## Number of rows             352   
-## Number of columns          3     
-## _______________________          
-## Column type frequency:           
-##   character                2     
-##   list                     1     
-## ________________________         
-## Group variables            None  
-## 
-## -- Variable type: character --------------------------------------------------------------------------------------------------------------------------------------------------------
-## # A tibble: 2 x 8
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## * <chr>             <int>         <dbl> <int> <int> <int>    <int>      <int>
-## 1 Title                 0         1         3    77     0      349          0
-## 2 Beg                  30         0.915    10    10     0      292          0
-## 
-## -- Variable type: list -------------------------------------------------------------------------------------------------------------------------------------------------------------
-## # A tibble: 1 x 6
-##   skim_variable n_missing complete_rate n_unique min_length max_length
-## * <chr>             <int>         <dbl>    <int>      <int>      <int>
-## 1 TreatyText            0             1      321          1       1953
+\subsection{NA}{
+
+NA
 }
 }
 \keyword{datasets}
