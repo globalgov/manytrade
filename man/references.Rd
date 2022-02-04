@@ -11,7 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA_REF: }{A dataset with 1000 observations and the following
-3 variables: many_ID1, RefType, many_ID2.}
+3 variables: manyID1, RefType, manyID2.}
 }
 }
 \usage{
