@@ -11,30 +11,35 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 # formats of the 'DESTA_MEM' object until the object created
 # below (in stage three) passes all the tests.
 DESTA_MEM <- as_tibble(DESTA_MEM) %>%
-  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "Country_ID", 
+  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "CountryID", 
                       values_drop_na = TRUE) %>%
-  #arrange columns containing countries into one column, with each Country_ID in rows corresponding to the treaty it is party to
+  #arrange columns containing countries into one column, with each CountryID in rows corresponding to the treaty it is party to
   manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
                      Title = manypkgs::standardise_titles(name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(DESTA_ID, Country_ID, Title, Beg, Signature, Force) %>%
-  #match ISO to Country_ID name
+  dplyr::select(DESTA_ID, CountryID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-DESTA_MEM$Country_ID <- countrycode::countrycode(DESTA_MEM$Country_ID, origin = "iso3n", destination = "iso3c")
+DESTA_MEM$Country <- countrycode::countrycode(DESTA_MEM$CountryID, origin = "iso3n", destination = "country.name")
+DESTA_MEM <- DESTA_MEM %>%
+  dplyr::mutate(Country = ifelse(CountryID == 530, "Netherlands Antilles", Country)) %>%
+  dplyr::mutate(Country = ifelse(CountryID == 900, "Kosovo", Country))
 
-#Add a treaty_ID column
-DESTA_MEM$treaty_ID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, 
-                                                 DESTA_MEM$Beg)
+DESTA_MEM$CountryID <- countrycode::countrycode(DESTA_MEM$CountryID, origin = "iso3n", destination = "iso3c")
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::memberships)
-DESTA_MEM <- dplyr::left_join(DESTA_MEM, many_ID, by = "treaty_ID")
+#Add a treatyID column
+DESTA_MEM$treatyID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, 
+                                                DESTA_MEM$Beg)
+
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::memberships,
+                                        var = c(DESTA_MEM$treatyID, GPTAD_MEM$treatyID))
+DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
-DESTA_MEM <- dplyr::relocate(DESTA_MEM, many_ID, Country_ID, Title, Beg, Signature, Force, DESTA_ID, treaty_ID)
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, CountryID, Title, Beg, Signature, Force, Country, DESTA_ID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

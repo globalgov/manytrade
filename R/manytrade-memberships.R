@@ -6,13 +6,14 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-#' 9 variables: many_ID, Country_ID, Title, Beg, Signature, Force, Country, GPTAD_ID, treaty_ID.}
+#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, GPTAD_ID, treatyID.}
 #' \item{DESTA_MEM: }{A dataset with 7772 observations and the following
-#' 8 variables: many_ID, Country_ID, Title, Beg, Signature, Force, DESTA_ID, treaty_ID.}
+#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, DESTA_ID, treatyID.}
 #' }
-#' 
+
+#'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
 #' lapply(memberships, skimr::skim_without_charts)
 #' ```
- "memberships"
+"memberships"

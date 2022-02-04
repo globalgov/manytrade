@@ -47,13 +47,13 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::filter(Country != "NA",
                 Country != "British") %>%
   #remove empty rows and redundant 'British' in data
-  dplyr::mutate(Country = manytrade::code_countryname(Country)) %>%
+  dplyr::mutate(Country = manystates::code_states(Country)) %>%
   #translate French country names and correct spelling
   dplyr::mutate(Country = dplyr::recode(Country, "EC" = "European Community")) %>%
   #not included in regex list because of overlaps with other country names
-  dplyr::mutate(Country_ID = countrycode::countrycode(Country, 
-                                                      origin = 'country.name',
-                                                      destination = 'iso3n')) %>%
+  dplyr::mutate(CountryID = countrycode::countrycode(Country, 
+                                                     origin = 'country.name',
+                                                     destination = 'iso3c')) %>%
   #add iso code for country names
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
@@ -62,21 +62,20 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(GPTAD_ID, Country_ID, Country, Title, Beg, Signature, Force) %>%
+  dplyr::select(GPTAD_ID, CountryID, Country, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-GPTAD_MEM$Country_ID <- countrycode::countrycode(GPTAD_MEM$Country_ID, origin = "iso3n", destination = "iso3c")
+#Add treatyID column
+GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
+                                                GPTAD_MEM$Beg)
 
-#Add treaty_ID column
-GPTAD_MEM$treaty_ID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
-                                                 GPTAD_MEM$Beg)
-
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::memberships)
-GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::memberships,
+                                        var = c(DESTA_MEM$treatyID, GPTAD_MEM$treatyID))
+GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
-GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, many_ID, Country_ID, Title, Beg, Signature, Force, Country, GPTAD_ID)
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, CountryID, Title, Beg, Signature, Force, Country, GPTAD_ID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
