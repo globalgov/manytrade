@@ -2,6 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the many universe.
+library(manypkgs)
 
 # Stage one: Collecting data
 TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
@@ -26,18 +27,18 @@ TREND <- as_tibble(TREND) %>%
 
 TREND$TREND_ID <- as.character(TREND$TREND_ID)
 
-# Add treaty_ID column
-TREND$treaty_ID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
+# Add treatyID column
+TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements,
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-TREND <- dplyr::left_join(TREND, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements,
+                                        var = c(DESTA$treatyID, GPTAD$treatyID,
+                                                LABPTA$treatyID, TREND$treatyID))
+TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
-  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, TREND_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, TREND_ID) %>% 
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning and 

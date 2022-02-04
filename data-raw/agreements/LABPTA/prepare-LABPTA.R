@@ -2,6 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the many universe.
+library(manypkgs)
 
 # Stage one: Collecting data
 LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
@@ -19,18 +20,18 @@ LABPTA <- as_tibble(LABPTA) %>%
   dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-# Add treaty_ID column
-LABPTA$treaty_ID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+# Add treatyID column
+LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-LABPTA<- dplyr::left_join(LABPTA, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                        var = c(DESTA$treatyID, GPTAD$treatyID,
+                                                LABPTA$treatyID, TREND$treatyID))
+LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, LABPTA_ID) %>% 
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning

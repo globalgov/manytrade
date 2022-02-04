@@ -38,18 +38,19 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
   
 
-# Add treaty_ID column
-DESTA$treaty_ID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
+# Add treatyID column
+DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID, 
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-DESTA <- dplyr::left_join(DESTA, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements,
+                                        var=c(DESTA$treatyID, GPTAD$treatyID,
+                                              LABPTA$treatyID, TREND$treatyID))
+
+DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 
 # Re-order the columns
 DESTA <- DESTA %>% 
-  dplyr::select(many_ID, Title, Beg, D, L, J, Signature, Force, treaty_ID, DESTA_ID, WTO) %>% 
+  dplyr::select(manyID, Title, Beg, D, L, J, Signature, Force, treatyID, DESTA_ID, WTO) %>% 
   dplyr::arrange(Beg)
 
 # add missing dates
