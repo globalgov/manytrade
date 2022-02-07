@@ -5,6 +5,7 @@
 
 url <- "https://raw.github.com/mappingtreaties/tota/master/xml/"
 
+# Prepare URL column
 TOTA_ID <- tibble::as_tibble(1:450)
 colnames(TOTA_ID) <- "num"
 TOTA_ID$head <- "pta"
@@ -15,7 +16,13 @@ TOTA_TXT <- TOTA_ID %>%
   tidyr::unite(col = "ID", ID, tail, sep = "")
 
 TOTA_TXT$ID <- paste0(url, TOTA_TXT$ID)
-TOTA_TXT$TreatyText <- apply(TOTA_TXT, 1, function(x) xml2::read_xml(x))
+
+# Web scrape texts into database
+TOTA_TXT$TreatyText <- lapply(TOTA_TXT$ID,
+                             function(s) purrr::map(s,
+                                                    . %>%
+                                                      httr::GET() %>%
+                                                      httr::content(as = "text")))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
