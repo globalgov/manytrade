@@ -9,3 +9,4 @@
 ^pkgdown$
 ^_pkgdown\.yml$
 ^codecov\.yml$
+^data-raw/texts$
