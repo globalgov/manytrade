@@ -12,12 +12,12 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  manydata::transmutate(LABPTA_ID = as.character(`Number`),
+  manydata::transmutate(labptaID = as.character(`Number`),
                      Title = manypkgs::standardise_titles(Name),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>%
+  dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
 # Add treatyID column
@@ -25,13 +25,15 @@ LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                        var = c(DESTA$treatyID, GPTAD$treatyID,
-                                                LABPTA$treatyID, TREND$treatyID))
+                                        var = c(manytrade::agreements$DESTA$treatyID, 
+                                                manytrade::agreements$GPTAD$treatyID,
+                                                manytrade::agreements$LABPTA$treatyID, 
+                                                manytrade::agreements$TREND$treatyID))
 LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, LABPTA_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, labptaID) %>% 
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning

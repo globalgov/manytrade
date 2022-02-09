@@ -11,7 +11,7 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # formats of the 'GPTAD_MEM' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
-  dplyr::mutate(GPTAD_ID = as.character(dplyr::row_number())) %>%
+  dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(Country = gsub("\\\\r\\\\n", "", Membership)) %>%
   #remove \r\n line break entries
   dplyr::mutate(Country = stringr::str_replace(Country, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
@@ -62,7 +62,7 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(GPTAD_ID, CountryID, Country, Title, Beg, Signature, Force) %>%
+  dplyr::select(gptadID, CountryID, Country, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
 #Add treatyID column
@@ -71,11 +71,12 @@ GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title,
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::memberships,
-                                        var = c(DESTA_MEM$treatyID, GPTAD_MEM$treatyID))
+                                        var = c(manytrade::memberships$DESTA_MEM$treatyID, 
+                                                manytrade::memberships$GPTAD_MEM$treatyID))
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
-GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, CountryID, Title, Beg, Signature, Force, Country, GPTAD_ID)
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, CountryID, Title, Beg, Signature, Force, Country, gptadID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

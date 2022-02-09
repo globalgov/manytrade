@@ -28,14 +28,14 @@ DESTA <- as_tibble(DESTA) %>%
                                   "Asia" = "R", "Africa" = "R", 
                                   "Americas" = "R", "Europe" = "R", 
                                   "Oceania" = "R")) %>%
-  manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
+  manydata::transmutate(destaID = as.character(`base_treaty`),
                      Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
   manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
                      Signature = manypkgs::standardise_dates(as.character(year)),
                      Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
+  dplyr::select(destaID, Title, Beg, Signature, Force, D, L, J, WTO)
   
 
 # Add treatyID column
@@ -43,14 +43,16 @@ DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements,
-                                        var=c(DESTA$treatyID, GPTAD$treatyID,
-                                              LABPTA$treatyID, TREND$treatyID))
+                                        var=c(manytrade::agreements$DESTA$treatyID, 
+                                              manytrade::agreements$GPTAD$treatyID,
+                                              manytrade::agreements$LABPTA$treatyID, 
+                                              manytrade::agreements$TREND$treatyID))
 
 DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 
 # Re-order the columns
 DESTA <- DESTA %>% 
-  dplyr::select(manyID, Title, Beg, D, L, J, Signature, Force, treatyID, DESTA_ID, WTO) %>% 
+  dplyr::select(manyID, Title, Beg, D, L, J, Signature, Force, treatyID, destaID, WTO) %>% 
   dplyr::arrange(Beg)
 
 # add missing dates

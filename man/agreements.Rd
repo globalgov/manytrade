@@ -11,13 +11,13 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA: }{A dataset with 987 observations and the following
-11 variables: manyID, Title, Beg, D, L, J, Signature, Force, treatyID, DESTA_ID, WTO.}
+11 variables: manyID, Title, Beg, D, L, J, Signature, Force, treatyID, destaID, WTO.}
 \item{TREND: }{A dataset with 730 observations and the following
-7 variables: manyID, Title, Beg, Signature, Force, treatyID, TREND_ID.}
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 \item{LABPTA: }{A dataset with 483 observations and the following
-7 variables: manyID, Title, Beg, Signature, Force, treatyID, LABPTA_ID.}
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 \item{GPTAD: }{A dataset with 346 observations and the following
-9 variables: manyID, Title, Beg, D, L, Signature, Force, treatyID, GPTAD_ID.}
+9 variables: manyID, Title, Beg, D, L, Signature, Force, treatyID, gptadID.}
 }
 }
 \usage{

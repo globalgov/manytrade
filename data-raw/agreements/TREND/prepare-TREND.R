@@ -13,32 +13,34 @@ TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xl
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
 TREND <- as_tibble(TREND) %>%
-  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>%
+  tidyr::separate(Trade.Agreement, into= c("trendID", "name", "year1"), sep="_") %>%
   #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
-  tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
+  tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
   tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
   #combining variables to obtain full name of treaty
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
                      Signature=manypkgs::standardise_dates(as.character(Year)),
                      Force = manypkgs::standardise_dates(as.character(Year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>%
+  dplyr::select(trendID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-TREND$TREND_ID <- as.character(TREND$TREND_ID)
+TREND$trendID <- as.character(TREND$trendID)
 
 # Add treatyID column
 TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements,
-                                        var = c(DESTA$treatyID, GPTAD$treatyID,
-                                                LABPTA$treatyID, TREND$treatyID))
+                                        var = c(manytrade::agreements$DESTA$treatyID, 
+                                                manytrade::agreements$GPTAD$treatyID,
+                                                manytrade::agreements$LABPTA$treatyID, 
+                                                manytrade::agreements$TREND$treatyID))
 TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, TREND_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, trendID) %>% 
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning and 

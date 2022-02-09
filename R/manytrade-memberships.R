@@ -6,9 +6,9 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, GPTAD_ID, treatyID.}
+#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, gptadID, treatyID.}
 #' \item{DESTA_MEM: }{A dataset with 7772 observations and the following
-#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, DESTA_ID, treatyID.}
+#' 9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, destaID, treatyID.}
 #' }
 
 #'
