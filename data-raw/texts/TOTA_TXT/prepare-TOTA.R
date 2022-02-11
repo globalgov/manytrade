@@ -18,11 +18,31 @@ TOTA_TXT <- TOTA_ID %>%
 TOTA_TXT$ID <- paste0(url, TOTA_TXT$ID)
 
 # Web scrape texts into database
-TOTA_TXT$TreatyText <- lapply(TOTA_TXT$ID,
-                             function(s) purrr::map(s,
-                                                    . %>%
-                                                      httr::GET() %>%
-                                                      httr::content(as = "text")))
+TOTA_TXT$TreatyText <- apply(TOTA_TXT, 1, function(x) xml2::as_list(xml2::read_xml(x)))
+
+# Extract title and date information
+texts <- TOTA_TXT[[2]]
+TOTA_TXT$Title <- lapply(texts, function(x) paste0(x$treaty$meta$name))
+TOTA_TXT$Signature <- lapply(texts, function(x) paste0(x$treaty$meta$date_signed))
+TOTA_TXT$Force <- lapply(texts, function(x) paste0(x$treaty$meta$date_into_force))
+TOTA_TXT <- TOTA_TXT %>%
+  dplyr::mutate(Title = manypkgs::standardise_titles(as.character(Title))) %>%
+  dplyr::mutate(Signature = manypkgs::standardise_dates(as.character(Signature)),
+                Force = manypkgs::standardise_dates(as.character(Force))) %>%
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force))
+
+# Add treatyID column
+TOTA_TXT$treatyID <- manypkgs::code_agreements(TOTA_TXT, TOTA_TXT$Title, TOTA_TXT$Beg)
+
+# Add manyID column
+
+# Re-order the columns
+TOTA_TXT <- TOTA_TXT %>%
+  dplyr::rename(url = ID) %>%
+  dplyr::select(Title, Beg, Signature, Force, TreatyText, treatyID, url) %>% 
+  dplyr::arrange(Beg)
+
+TOTA_TXT <- tibble::as_tibble(TOTA_TXT)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

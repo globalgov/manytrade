@@ -8,7 +8,7 @@
 #' \item{AGR_TXT: }{A dataset with 352 observations and the following
 #' 3 variables: Title, Beg, TreatyText.}
 #' \item{TOTA_TXT: }{A dataset with 450 observations and the following
-#' 2 variables: ID, TreatyText.}
+#' 7 variables: Title, Beg, Signature, Force, TreatyText, treatyID, url.}
 #' }
 
 #'
