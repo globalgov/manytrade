@@ -27,10 +27,10 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
-    # Edit this section and add it in the navbar when adding vignettes
-    # articles:
-    #   text: Articles
-    #   menu:
+      text: Articles
+      menu:
+      - text: Memberships of Trade Treaties
+        href: articles/dashboard.html
     #   - text: Creating historical maps
     #     href: articles/CShapesMaps.html
     news:
