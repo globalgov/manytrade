@@ -1,8 +1,8 @@
 ---
-title: "Memberships of Trade Treaties"
+title: "Trade Treaties by Country and Year"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Memberships of Trade Treaties}
+  %\VignetteIndexEntry{Trade Treaties by Country and Year}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,6 +22,6 @@ vignette: >
 }
 </style>
 <div class="dashboard"> 
-<iframe src="{insert URL to shinyapp}">
+<iframe src="https://genevaglobalgov.shinyapps.io/trade_treaties_year/">
 </iframe>
 </div>
