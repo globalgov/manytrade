@@ -1,0 +1,13 @@
+name: trade_treaties_year
+title: trade_treaties_year
+username:
+account: genevaglobalgov
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5710084
+bundleId: 5606166
+url: https://genevaglobalgov.shinyapps.io/trade_treaties_year/
+when: 1645548256.75938
+lastSyncTime: 1645548256.75938
+asMultiple: FALSE
+asStatic: FALSE
