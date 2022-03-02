@@ -3,10 +3,10 @@
 # Due to the specificities of the text database,
 # the usual script preparation format has been adapted.
 
-#Stage one: extract useful columns from original GPTAD dataset
-GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
+# Extract useful columns from original GPTAD dataset
+GPTAD_TXT <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 
-GPTAD <- GPTAD %>% 
+GPTAD_TXT <- GPTAD_TXT %>% 
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
@@ -17,7 +17,24 @@ GPTAD <- GPTAD %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
   dplyr::select(Title, Beg)
 
-# Stage one: extract URL links that lead to treaty texts from GPTAD website
+# Add treatyID column
+GPTAD_TXT$treatyID <- manypkgs::code_agreements(GPTAD_TXT, GPTAD_TXT$Title, 
+                                                GPTAD_TXT$Beg)
+
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                        var = c(manytrade::agreements$DESTA$treatyID, 
+                                                manytrade::agreements$GPTAD$treatyID,
+                                                manytrade::agreements$LABPTA$treatyID, 
+                                                manytrade::agreements$TREND$treatyID))
+GPTAD_TXT <- dplyr::left_join(GPTAD_TXT, manyID, by = "treatyID")
+
+# Re-order the columns
+GPTAD_TXT <- GPTAD_TXT %>%
+  dplyr::select(manyID, Title, Beg, D, L, Signature, Force, treatyID, gptadID) %>% 
+  dplyr::arrange(Beg)
+
+# Extract URL links that lead to treaty texts from GPTAD website
 library(httr)
 
 url <- "https://wits.worldbank.org/gptad/library.aspx#"
@@ -31,55 +48,45 @@ links <- stringr::str_remove_all(links, "'")
 # Extract the PDF treaty texts
 TreatyText <- lapply(links, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
 
-# Add it to GPTAD and then AGR_TXT
-GPTAD$TreatyText <- TreatyText
+# Add it to GPTAD_TXT and then AGR_TXT
+GPTAD_TXT$TreatyText <- TreatyText
 AGR_TXT <- as_tibble(GPTAD)
 
-# Stage one: create a consolidated version of the qTrade agreements database
-# AGR_TXT <- dplyr::full_join(qTrade::agreements$DESTA, qTrade::agreements$GPTAD, 
-#                             by = c("qID")) %>%
-#   dplyr::select(qID, Title.x, Beg.x, Signature.x, Force.x, WTO.x, DESTA_ID, 
-#                  Title.y, Beg.y, Signature.y, Force.y, WTO.y, GPTAD_ID) %>%
-#   dplyr::mutate(Title = ifelse(Title.x == "NA", Title.y, Title.x)) %>%
-#   dplyr::mutate(Beg = ifelse(Beg.y != "NA", Beg.y, Beg.x))
-# 
-# qData::consolidate doesn't seem to work - issue with 'resolve' argument?
+# Extract data from DESTA dataset that does not overlap with GPTAD
+DESTA_TXT <- dplyr::full_join(manytrade::agreements$DESTA, manytrade::agreements$GPTAD, 
+                          by = c("manyID")) %>%
+  subset(is.na(Title.y)) %>%
+  dplyr::select(manyID, Title.x, Beg.x, Signature.x, Force.x, WTO, destaID) %>%
+  dplyr::rename(Title = Title.x, Beg = Beg.x, Signature = Signature.x,
+                Force = Force.x)
+DESTA_TXT <- dplyr::full_join(DESTA_TXT, subset(manytrade::agreements$DESTA,
+                                        is.na(manytrade::agreements$DESTA$manyID)),
+                          by = c("manyID", "Title", "Beg", "Signature", "Force", 
+                                "destaID")) %>%
+  dplyr::select(manyID, Title, Beg, Signature, Force, destaID) %>%
+  dplyr::arrange(Beg)
 
-# Step two: extract treaty texts from GLOBAL PREFERENTIAL TRADE AGREEMENTS 
-# DATABASE online
-# GPTAD_original <- readr::read_csv("data-raw/agreements/GPTAD/GPTAD.csv")
-# GPTAD_original <- as_tibble(GPTAD_original) %>%
-#   dplyr::mutate(GPTAD_ID = dplyr::row_number()) %>%
-#   dplyr::rename(Title = `Common.Name`) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Title, "Macedonia (FYROM)", "FYROM")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Andean Community", "Andean")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Andean Community (CAN)", "Cartagena")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "ASEAN (AFTA)", "ASEAN")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "ASEAN - Australia - New Zealand", "ASEAN-Australia-NZ")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Australia - New Zealand (ANZCERTA)", "CER")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Australia - Papua New Guinea (PATCRA)", "Australia-PapuaNewGuinea")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Arab Maghreb Union", "MAGHREB")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, "Armenia - Kyrgyz", "Armenia-Kyrgyz Rep")) %>%
-#   dplyr::mutate(Treaty_ID = stringr::str_replace(Treaty_ID, " - ", "-")) %>%
-#   dplyr::select(GPTAD_ID, Title, Treaty_ID)
-# # rvest package is used to web scrap GPTAD treaty texts page
-# 
-# src <- "https://wits.worldbank.org/GPTAD/PDF/archive/"
-# GPTAD_original$TreatyText <- lapply(GPTAD_original$Treaty_ID, function(s) tryCatch(pdftools::pdf_text(paste0(src, s, ".pdf")), error = function(e){as.character("Not found")}))
-# 
-# 
-# # Step three: join GPTAD treaty text column with the consolidated version of qTrade
-# AGR_TXT <- dplyr::left_join(AGR_TXT, GPTAD_original, by = "GPTAD_ID")
-# AGR_TXT <- as_tibble(AGR_TXT) %>% 
-#   dplyr::select(qID, DESTA_ID, GPTAD_ID, Title, Beg, TreatyText, Source)
-#   
+# Manually input URL links (sourced from WTO RTAs database and EDIT database)
+write.csv(DESTA_TXT, file = "/Volumes/128GB/PANARCHIC/manytrade data/DESTA_TXT.csv")
+# DESTA_TXT <- read.csv("data-raw/agreements/AGR_TXT/DESTA_TXT.csv")
+
+DESTA_TXT <- readxl::read_xlsx("/Volumes/128GB/PANARCHIC/manytrade data/DESTA_TXT.xlsx")
+DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
+  if (grepl("pdf", x, ignore.case = TRUE) == TRUE) {
+    pdftools::pdf_text(x)
+  }
+})
+
+httr::GET("https://edit.wti.org/app.php/document/show/pdf/dab1b96e-fc42-42a9-8737-21246c72accb") %>%
+  httr::content(as="text")
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make AGR_TXT available
-# within the qPackage.
+# within the manypackage.
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
@@ -95,4 +102,6 @@ AGR_TXT <- as_tibble(GPTAD)
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("texts", "AGR_TXT")`.
 manypkgs::export_data(AGR_TXT, database = "texts",
-                     URL = "https://wits.worldbank.org/gptad/library.aspx")
+                     URL = c("https://wits.worldbank.org/gptad/library.aspx",
+                             "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
+                             "https://edit.wti.org/app.php/document/investment-treaty/search")
