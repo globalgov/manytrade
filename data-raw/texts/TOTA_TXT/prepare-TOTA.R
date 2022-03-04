@@ -35,6 +35,9 @@ TOTA_TXT <- TOTA_TXT %>%
 TOTA_TXT$treatyID <- manypkgs::code_agreements(TOTA_TXT, TOTA_TXT$Title, TOTA_TXT$Beg)
 
 # Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::texts, 
+                                        var = c(AGR_TXT$treatyID, 
+                                                TOTA_TXT$treatyID))
 
 # Re-order the columns
 TOTA_TXT <- TOTA_TXT %>%

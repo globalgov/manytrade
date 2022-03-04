@@ -3,10 +3,11 @@
 # Due to the specificities of the text database,
 # the usual script preparation format has been adapted.
 
-# Extract useful columns from original GPTAD dataset
+# Extract useful columns from original GPTAD dataset and add treatyID column
 GPTAD_TXT <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 
 GPTAD_TXT <- GPTAD_TXT %>% 
+  dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
@@ -15,24 +16,45 @@ GPTAD_TXT <- GPTAD_TXT %>%
                         Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                         Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
-  dplyr::select(Title, Beg)
+  dplyr::select(Title, Beg, Signature, Force, gptadID) %>%
+  dplyr::arrange(Beg)
 
-# Add treatyID column
 GPTAD_TXT$treatyID <- manypkgs::code_agreements(GPTAD_TXT, GPTAD_TXT$Title, 
                                                 GPTAD_TXT$Beg)
 
-# Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                        var = c(manytrade::agreements$DESTA$treatyID, 
-                                                manytrade::agreements$GPTAD$treatyID,
-                                                manytrade::agreements$LABPTA$treatyID, 
-                                                manytrade::agreements$TREND$treatyID))
-GPTAD_TXT <- dplyr::left_join(GPTAD_TXT, manyID, by = "treatyID")
+# Extract useful columns from original DESTA dataset and add treatyID column
+DESTA_TXT <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 
-# Re-order the columns
-GPTAD_TXT <- GPTAD_TXT %>%
-  dplyr::select(manyID, Title, Beg, D, L, Signature, Force, treatyID, gptadID) %>% 
-  dplyr::arrange(Beg)
+DESTA_TXT <- DESTA_TXT %>%
+  dplyr::filter(typememb != "5", typememb != "6",  typememb != "7", 
+                entry_type != "accession", entry_type != "withdrawal") %>%
+  manydata::transmutate(destaID = as.character(`base_treaty`),
+                        Title = manypkgs::standardise_titles(name)) %>%
+  dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
+  dplyr::arrange(beg) %>%
+  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
+                        Signature = manypkgs::standardise_dates(as.character(year)),
+                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+  dplyr::select(destaID, Title, Beg, Signature, Force)
+
+DESTA_TXT$treatyID <- manypkgs::code_agreements(DESTA_TXT, DESTA_TXT$Title, 
+                                                DESTA_TXT$Beg)
+
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::texts, 
+                                        var = c(DESTA_TXT$treatyID, 
+                                                GPTAD_TXT$treatyID))
+
+GPTAD_TXT <- dplyr::left_join(GPTAD_TXT, manyID, by = "treatyID")
+DESTA_TXT <- dplyr::left_join(DESTA_TXT, manyID, by = "treatyID")
+
+# Extract data from DESTA dataset that does not overlap with GPTAD
+DESTA_TXT <- dplyr::full_join(DESTA_TXT, GPTAD_TXT, 
+                              by = c("manyID")) %>%
+  subset(is.na(Title.y)) %>%
+  dplyr::select(manyID, Title.x, Beg.x, Signature.x, Force.x, destaID) %>%
+  dplyr::rename(Title = Title.x, Beg = Beg.x, Signature = Signature.x,
+                Force = Force.x)
 
 # Extract URL links that lead to treaty texts from GPTAD website
 library(httr)
@@ -45,40 +67,41 @@ output <- httr::content(page, as = "text")
 links <- unlist(stringr::str_extract_all(output, "https\\:\\/\\/wits\\.worldbank.org\\/GPTAD\\/PDF\\/archive\\/.+?(?<=')"))
 links <- stringr::str_remove_all(links, "'")
 
-# Extract the PDF treaty texts
+# Extract the PDF treaty texts and add to GPTAD_TXT
 TreatyText <- lapply(links, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
-
-# Add it to GPTAD_TXT and then AGR_TXT
 GPTAD_TXT$TreatyText <- TreatyText
-AGR_TXT <- as_tibble(GPTAD)
 
-# Extract data from DESTA dataset that does not overlap with GPTAD
-DESTA_TXT <- dplyr::full_join(manytrade::agreements$DESTA, manytrade::agreements$GPTAD, 
-                          by = c("manyID")) %>%
-  subset(is.na(Title.y)) %>%
-  dplyr::select(manyID, Title.x, Beg.x, Signature.x, Force.x, WTO, destaID) %>%
-  dplyr::rename(Title = Title.x, Beg = Beg.x, Signature = Signature.x,
-                Force = Force.x)
-DESTA_TXT <- dplyr::full_join(DESTA_TXT, subset(manytrade::agreements$DESTA,
-                                        is.na(manytrade::agreements$DESTA$manyID)),
-                          by = c("manyID", "Title", "Beg", "Signature", "Force", 
-                                "destaID")) %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, destaID) %>%
-  dplyr::arrange(Beg)
+# Extract treaty texts for DESTA_TXT from manually input URL links 
+# (sourced from WTO RTAs database, EDIT database and country/IGO websites)
+DESTA_TXT <- readxl::read_excel("data-raw/texts/AGR_TXT/DESTA_TXT.xlsx")
 
-# Manually input URL links (sourced from WTO RTAs database and EDIT database)
-write.csv(DESTA_TXT, file = "/Volumes/128GB/PANARCHIC/manytrade data/DESTA_TXT.csv")
-# DESTA_TXT <- read.csv("data-raw/agreements/AGR_TXT/DESTA_TXT.csv")
+# remove NAs and invalid urls
+DESTA_TXT[682, 7] <- NA
+DESTA_TXT[532, 7] <- NA
+DESTA_TXT <- DESTA_TXT %>%
+  dplyr::filter(!is.na(url))
 
-DESTA_TXT <- readxl::read_xlsx("/Volumes/128GB/PANARCHIC/manytrade data/DESTA_TXT.xlsx")
 DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
   if (grepl("pdf", x, ignore.case = TRUE) == TRUE) {
-    pdftools::pdf_text(x)
+      tryCatch(pdftools::pdf_text(x), error = function(e){as.character("Not found")})
+  }
+  else {
+    purrr::map(x,
+               . %>% 
+                 httr::GET() %>%
+                 httr::content(as = "text") %>%
+                 unlist())
   }
 })
 
-httr::GET("https://edit.wti.org/app.php/document/show/pdf/dab1b96e-fc42-42a9-8737-21246c72accb") %>%
-  httr::content(as="text")
+## might need to extract links then extract text for some entries
+
+# Combine into AGR_TXT
+AGR_TXT <- manydata::consolidate(manytrade::agreements,
+                                 "any",
+                                 "any",
+                                 resolve = "coalesce",
+                                 key = "manyID") ## gives error 'subscript out of bounds'
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
@@ -104,4 +127,4 @@ httr::GET("https://edit.wti.org/app.php/document/show/pdf/dab1b96e-fc42-42a9-873
 manypkgs::export_data(AGR_TXT, database = "texts",
                      URL = c("https://wits.worldbank.org/gptad/library.aspx",
                              "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
-                             "https://edit.wti.org/app.php/document/investment-treaty/search")
+                             "https://edit.wti.org/app.php/document/investment-treaty/search"))
