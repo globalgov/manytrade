@@ -60,7 +60,7 @@ citation("manytrade")
 
 ## Contributing
 
-[manydata](https://github.com/globalgov/manydata) also makes it easy to
+[`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy to
 contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package, please
