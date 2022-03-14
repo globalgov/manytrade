@@ -1,3 +1,22 @@
+# manytrade 0.1.1
+
+2022-03-17
+
+## Package
+
+* Closed #19 by merging `manytrade::code_countryname()` functionality into `manystates::code_states()`.
+* Fixed #21 by redirecting reference to master branch to main branch in pushrelease workflow.
+* Closed #14 by adding codecov, codefactor, lintr to package workflows and as badges.
+
+## Data
+
+* Fixed #23 by amending regex list stored in package and modifying `manystates::code_states()` to return original names if unmatched in regex list.
+* Fixed #22 and #24 by renaming and reformatting variables in databases.
+  * Renamed "treaty_ID" and "many_ID" across all databases to "treatyID" and "manyID" respectively.
+  * Renamed "L", "D", and "J" in the agreements database "DocType", "AgreementType", and "GeogArea" respectively.
+  * Reformatted "Beg", "Signature", "Force" variables from YYYY format to YYYY-MM-DD format in `DESTA`, `TREND`, `LABPTA` datasets to be consistent across the `agreements` database.
+* Closed #9 by adding `ToTA` to `texts` database.
+
 # manytrade 0.1.0
 
 2021-12-03
