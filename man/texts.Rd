@@ -13,7 +13,7 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 \item{AGR_TXT: }{A dataset with 352 observations and the following
 3 variables: Title, Beg, TreatyText.}
 \item{TOTA_TXT: }{A dataset with 450 observations and the following
-2 variables: ID, TreatyText.}
+7 variables: Title, Beg, Signature, Force, TreatyText, treatyID, url.}
 }
 }
 \usage{
@@ -23,9 +23,53 @@ texts
 texts database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
+\preformatted{## $AGR_TXT
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             352   
+## Number of columns          3     
+## _______________________          
+## Column type frequency:           
+##   character                2     
+##   list                     1     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 Title                 0         1         3    77     0      349          0
+## 2 Beg                  30         0.915    10    10     0      292          0
+## 
+## ── Variable type: list ───────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_unique min_length max_length
+## 1 TreatyText            0             1      321          1       1953
+## 
+## $TOTA_TXT
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             450   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   character                6     
+##   list                     1     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 Title                 0             1     4    91     0      448          0
+## 2 Beg                   0             1    10    10     0      407          0
+## 3 Signature             0             1    10    10     0      407          0
+## 4 Force                 0             1    10    12     0      318          0
+## 5 treatyID              0             1    10    27     0      449          0
+## 6 url                   0             1    64    66     0      450          0
+## 
+## ── Variable type: list ───────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_unique min_length max_length
+## 1 TreatyText            0             1      450          1          1
 }
 }
 \keyword{datasets}

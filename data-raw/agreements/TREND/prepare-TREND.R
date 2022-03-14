@@ -16,16 +16,16 @@ TREND <- as_tibble(TREND) %>%
   tidyr::separate(Trade.Agreement, into= c("trendID", "name", "year1"), sep="_") %>%
   #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
   tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
-  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
   #combining variables to obtain full name of treaty
+  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  # standardise date formats across agreements database
+  dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
-                     Signature=manypkgs::standardise_dates(as.character(Year)),
-                     Force = manypkgs::standardise_dates(as.character(Year))) %>%
+                        Signature=manypkgs::standardise_dates(as.character(Year)),
+                        Force = manypkgs::standardise_dates(as.character(Year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(trendID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
-
-TREND$trendID <- as.character(TREND$trendID)
 
 # Add treatyID column
 TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)

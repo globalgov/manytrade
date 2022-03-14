@@ -21,9 +21,23 @@ references
 references database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
+\preformatted{## $DESTA_REF
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             1000  
+## Number of columns          3     
+## _______________________          
+## Column type frequency:           
+##   character                3     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID1               6         0.994     8    37     0      866          0
+## 2 RefType               0         1         0    10   812        3          0
+## 3 manyID2             822         0.178     8    37     0       59          0
 }
 }
 \keyword{datasets}

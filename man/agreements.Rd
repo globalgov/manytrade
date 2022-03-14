@@ -11,13 +11,13 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA: }{A dataset with 987 observations and the following
-11 variables: manyID, Title, Beg, D, L, J, Signature, Force, treatyID, destaID, WTO.}
+11 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, destaID, WTO.}
 \item{TREND: }{A dataset with 730 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 \item{LABPTA: }{A dataset with 483 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 \item{GPTAD: }{A dataset with 346 observations and the following
-9 variables: manyID, Title, Beg, D, L, Signature, Force, treatyID, gptadID.}
+9 variables: manyID, Title, Beg, AgreementType, DocType, Signature, Force, treatyID, gptadID.}
 }
 }
 \usage{
@@ -27,9 +27,99 @@ agreements
 agreements database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
+\preformatted{## $DESTA
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             987   
+## Number of columns          11    
+## _______________________          
+## Column type frequency:           
+##   character                11    
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+##  1 manyID               81         0.918     8    37     0      872          0
+##  2 Title                 0         1         2   129     0      862          0
+##  3 Beg                  81         0.918    10    10     0       70          0
+##  4 AgreementType         0         1         1     3     0        2          0
+##  5 DocType               0         1         1     3     0        4          0
+##  6 GeogArea              0         1         1     1     0        2          0
+##  7 Signature            81         0.918    10    10     0       70          0
+##  8 Force               248         0.749    10    10     0       66          0
+##  9 treatyID              0         1         8    37     0      957          0
+## 10 destaID               0         1         1     4     0      927          0
+## 11 WTO                  55         0.944     1     1     0        2          0
+## 
+## $TREND
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             730   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   character                7     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                5         0.993     8    37     0      718          0
+## 2 Title                 0         1         6    93     0      728          0
+## 3 Beg                   5         0.993    10    10     0       68          0
+## 4 Signature             5         0.993    10    10     0       68          0
+## 5 Force                 5         0.993    10    10     0       68          0
+## 6 treatyID              0         1         8    37     0      729          0
+## 7 trendID               0         1         1     5     0      724          0
+## 
+## $LABPTA
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             483   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   character                7     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                0             1    10    37     0      480          0
+## 2 Title                 0             1     6    89     0      468          0
+## 3 Beg                   0             1    10    10     0       27          0
+## 4 Signature             0             1    10    10     0       27          0
+## 5 Force                 0             1    10    10     0       27          0
+## 6 treatyID              0             1    10    37     0      483          0
+## 7 labptaID              0             1     1     3     0      483          0
+## 
+## $GPTAD
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             346   
+## Number of columns          9     
+## _______________________          
+## Column type frequency:           
+##   character                9     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID               30         0.913     8    37     0      308          0
+## 2 Title                 0         1         3    74     0      343          0
+## 3 Beg                  30         0.913    10    10     0      286          0
+## 4 AgreementType         0         1         0     1     5        2          0
+## 5 DocType               0         1         0     3     5        5          0
+## 6 Signature            53         0.847    10    10     0      266          0
+## 7 Force                64         0.815    10    10     0      199          0
+## 8 treatyID              0         1         8    35     0      340          0
+## 9 gptadID               0         1         1     3     0      346          0
 }
 }
 \keyword{datasets}

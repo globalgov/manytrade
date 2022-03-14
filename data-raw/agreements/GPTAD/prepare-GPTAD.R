@@ -15,17 +15,18 @@ GPTAD <- as_tibble(GPTAD) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
   #removing entries relating to membership as membership changes will be logged in memberships database
-  dplyr::mutate(L = dplyr::recode(`Type`, 
-                                  "Association Free Trade Agreement" = "P", 
-                                  "Bilateral Free Trade Agreement"= "B", 
-                                  "Customs Union Primary Agreement"="P", 
-                                  "Regional/Plurilateral Free Trade Agreement"="R/P", 
-                                  "Framework Agreement" = "M")) %>%
-  dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", 
-                                  "Bilateral Free Trade Agreement"= "A", 
-                                  "Customs Union Primary Agreement"="A", 
-                                  "Regional/Plurilateral Free Trade Agreement"="A", 
-                                  "Framework Agreement" = "A")) %>%
+  dplyr::mutate(DocType = dplyr::recode(`Type`, 
+                                        "Association Free Trade Agreement" = "P", 
+                                        "Bilateral Free Trade Agreement"= "B", 
+                                        "Customs Union Primary Agreement"="P", 
+                                        "Regional/Plurilateral Free Trade Agreement"="R/P", 
+                                        "Framework Agreement" = "M")) %>%
+  dplyr::mutate(AgreementType = dplyr::recode(`Type`, 
+                                              "Association Free Trade Agreement" = "A", 
+                                              "Bilateral Free Trade Agreement"= "A", 
+                                              "Customs Union Primary Agreement"="A", 
+                                              "Regional/Plurilateral Free Trade Agreement"="A", 
+                                              "Framework Agreement" = "A")) %>%
   dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
@@ -35,7 +36,7 @@ GPTAD <- as_tibble(GPTAD) %>%
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(gptadID, Title, Beg, Signature, Force, D, L, WTO) %>%
+  dplyr::select(gptadID, Title, Beg, Signature, Force, AgreementType, DocType, WTO) %>%
   dplyr::arrange(Beg)
 
 # Add treatyID column
@@ -51,7 +52,7 @@ GPTAD <- dplyr::left_join(GPTAD, manyID, by = "treatyID")
 
 # Re-order the columns
 GPTAD <- GPTAD %>%
-  dplyr::select(manyID, Title, Beg, D, L, Signature, Force, treatyID, gptadID) %>% 
+  dplyr::select(manyID, Title, Beg, AgreementType, DocType, Signature, Force, treatyID, gptadID) %>% 
   dplyr::arrange(Beg)
 
 
