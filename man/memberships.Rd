@@ -11,9 +11,9 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, gptadID, treatyID.}
+9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, gptadID, treatyID.}
 \item{DESTA_MEM: }{A dataset with 7772 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, Country, destaID, treatyID.}
+9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, destaID, treatyID.}
 }
 }
 \usage{
@@ -43,7 +43,7 @@ memberships database documentation
 ## 4 Beg                 100         0.955    10    10     0      291          0
 ## 5 Signature           332         0.851    10    10     0      271          0
 ## 6 Force               288         0.870    10    10     0      200          0
-## 7 Country               0         1         3    48     0      249          0
+## 7 CountryName           0         1         3    48     0      249          0
 ## 8 gptadID               0         1         1     3     0      351          0
 ## 9 treatyID              0         1         8    37     0      345          0
 ## 
@@ -67,7 +67,7 @@ memberships database documentation
 ## 4 Beg                 631         0.919     4     4     0       70          0
 ## 5 Signature           631         0.919     4     4     0       70          0
 ## 6 Force              2960         0.619     4     4     0       66          0
-## 7 Country               0         1         4    38     0      222          0
+## 7 CountryName           0         1         4    38     0      222          0
 ## 8 destaID               0         1         1     4     0      931          0
 ## 9 treatyID              0         1        12    37     0     1174          0
 }
