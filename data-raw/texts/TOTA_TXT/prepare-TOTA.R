@@ -36,16 +36,15 @@ TOTA_TXT$treatyID <- manypkgs::code_agreements(TOTA_TXT, TOTA_TXT$Title, TOTA_TX
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::texts, 
-                                        var = c(AGR_TXT$treatyID, 
-                                                TOTA_TXT$treatyID))
+                                        var = c(manytrade::texts$AGR_TXT$treatyID, 
+                                                manytrade::texts$TOTA_TXT$treatyID))
+TOTA_TXT <- dplyr::left_join(TOTA_TXT, manyID, by = "treatyID")
 
 # Re-order the columns
 TOTA_TXT <- TOTA_TXT %>%
   dplyr::rename(url = ID) %>%
-  dplyr::select(Title, Beg, Signature, Force, TreatyText, treatyID, url) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url) %>% 
   dplyr::arrange(Beg)
-
-TOTA_TXT <- tibble::as_tibble(TOTA_TXT)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

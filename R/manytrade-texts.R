@@ -5,10 +5,10 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
-#' \item{AGR_TXT: }{A dataset with 352 observations and the following
-#' 3 variables: Title, Beg, TreatyText.}
+#' \item{AGR_TXT: }{A dataset with 1170 observations and the following
+#' 9 variables: manyID, Title, Beg, Signature, Force, treatyID, destaID, gptadID, TreatyText.}
 #' \item{TOTA_TXT: }{A dataset with 450 observations and the following
-#' 7 variables: Title, Beg, Signature, Force, TreatyText, treatyID, url.}
+#' 8 variables: manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url.}
 #' }
 
 #'
