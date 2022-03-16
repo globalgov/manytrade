@@ -15,18 +15,20 @@ DESTA_MEM <- as_tibble(DESTA_MEM) %>%
                       values_drop_na = TRUE) %>%
   #arrange columns containing countries into one column, with each CountryID in rows corresponding to the treaty it is party to
   manydata::transmutate(destaID = as.character(`base_treaty`),
-                     Title = manypkgs::standardise_titles(name),
-                     Signature = manypkgs::standardise_dates(as.character(year)),
-                     Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+                        Title = manypkgs::standardise_titles(name),
+                        Signature = manypkgs::standardise_dates(as.character(year)),
+                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(destaID, CountryID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-DESTA_MEM$Country <- countrycode::countrycode(DESTA_MEM$CountryID, origin = "iso3n", destination = "country.name")
+DESTA_MEM$CountryName <- countrycode::countrycode(DESTA_MEM$CountryID, 
+                                                  origin = "iso3n", destination = "country.name")
 DESTA_MEM <- DESTA_MEM %>%
-  dplyr::mutate(Country = ifelse(CountryID == 530, "Netherlands Antilles", Country)) %>%
-  dplyr::mutate(Country = ifelse(CountryID == 900, "Kosovo", Country))
+  dplyr::mutate(CountryName = ifelse(CountryID == 530, "Netherlands Antilles", CountryName)) %>%
+  dplyr::mutate(CountryName = ifelse(CountryID == 900, "Kosovo", CountryName))
 
+#Change iso numeric to iso character code
 DESTA_MEM$CountryID <- countrycode::countrycode(DESTA_MEM$CountryID, origin = "iso3n", destination = "iso3c")
 
 #Add a treatyID column
@@ -40,7 +42,8 @@ manyID <- manypkgs::condense_agreements(manytrade::memberships,
 DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
-DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, CountryID, Title, Beg, Signature, Force, Country, destaID)
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, CountryID, Title, Beg, 
+                             Signature, Force, CountryName, destaID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
