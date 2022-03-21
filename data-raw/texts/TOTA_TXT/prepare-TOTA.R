@@ -36,8 +36,8 @@ TOTA_TXT$treatyID <- manypkgs::code_agreements(TOTA_TXT, TOTA_TXT$Title, TOTA_TX
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::texts, 
-                                        var = c(manytrade::texts$AGR_TXT$treatyID, 
-                                                manytrade::texts$TOTA_TXT$treatyID))
+                                        var = c(AGR_TXT$treatyID, 
+                                                TOTA_TXT$treatyID))
 TOTA_TXT <- dplyr::left_join(TOTA_TXT, manyID, by = "treatyID")
 
 # Re-order the columns
@@ -69,3 +69,6 @@ TOTA_TXT <- TOTA_TXT %>%
 # run `manypkgs::add_bib("texts", "TOTA_TXT")`.
 manypkgs::export_data(TOTA_TXT, database = "texts",
                       URL = "https://github.com/mappingtreaties/tota.git")
+# Make sure to delete the database before exporting the data,
+# and do not re-write the texts documentation.
+# usethis::use_data(TOTA_TXT, internal = T, overwrite = T)
