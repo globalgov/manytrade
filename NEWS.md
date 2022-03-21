@@ -6,7 +6,7 @@
 
 * Closed #19 by merging `manytrade::code_countryname()` functionality into `manystates::code_states()`.
 * Fixed #21 by redirecting reference to master branch to main branch in pushrelease workflow.
-* Closed #14 by adding codecov, codefactor, lintr to package workflows and as badges.
+* Closed #14 by adding codefactor and lintr to package workflows and as badges.
 
 ## Data
 
