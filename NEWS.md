@@ -1,6 +1,6 @@
 # manytrade 0.1.1
 
-2022-03-17
+2022-03-22
 
 ## Package
 
@@ -11,11 +11,13 @@
 ## Data
 
 * Fixed #23 by amending regex list stored in package and modifying `manystates::code_states()` to return original names if unmatched in regex list.
-* Fixed #22 and #24 by renaming and reformatting variables in databases.
+* Fixed #22 and #24 by renaming variables in databases.
   * Renamed "treaty_ID" and "many_ID" across all databases to "treatyID" and "manyID" respectively.
   * Renamed "L", "D", and "J" in the agreements database "DocType", "AgreementType", and "GeogArea" respectively.
   * Reformatted "Beg", "Signature", "Force" variables from YYYY format to YYYY-MM-DD format in `DESTA`, `TREND`, `LABPTA` datasets to be consistent across the `agreements` database.
-* Closed #9 by adding `ToTA` to `texts` database.
+  * Recoded `DocType` variable in `GPTAD` dataset to remove ambiguity in coding
+  * Added `GeogArea` variable in `GPTAD` dataset to remove
+  * Checked for duplicate entries in `agreements` and `memberships` datasets using `manyID`, `treatyID`, `CountryID`, `CountryName` and `Beg` variables and removed duplicate entries
 
 # manytrade 0.1.0
 
