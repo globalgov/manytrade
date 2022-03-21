@@ -36,7 +36,7 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID               81         0.931     8    37     0     1027          0
 ## 2 Title                 0         1         2   129     0      990          0
@@ -47,7 +47,7 @@ texts database documentation
 ## 7 destaID             160         0.863     1     4     0      927          0
 ## 8 gptadID             795         0.321     1     3     0      352          0
 ## 
-## ── Variable type: list ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      294          0       1953
 ## 
@@ -64,7 +64,7 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      448          0
 ## 2 Title                 0             1     4    91     0      448          0
@@ -74,7 +74,7 @@ texts database documentation
 ## 6 treatyID              0             1    10    27     0      449          0
 ## 7 url                   0             1    64    66     0      450          0
 ## 
-## ── Variable type: list ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      450          1          1
 }
