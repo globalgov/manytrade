@@ -6,12 +6,10 @@
 \title{texts database documentation}
 \format{
 The texts database is a list that contains the
-following 2 datasets: AGR_TXT, TOTA_TXT.
+following dataset: TOTA_TXT.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{AGR_TXT: }{A dataset with 1170 observations and the following
-9 variables: manyID, Title, Beg, Signature, Force, treatyID, destaID, gptadID, TreatyText.}
 \item{TOTA_TXT: }{A dataset with 450 observations and the following
 8 variables: manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url.}
 }
@@ -23,35 +21,7 @@ texts
 texts database documentation
 }
 \details{
-\preformatted{## $AGR_TXT
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             1170  
-## Number of columns          9     
-## _______________________          
-## Column type frequency:           
-##   character                8     
-##   list                     1     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID               81         0.931     8    37     0     1027          0
-## 2 Title                 0         1         2   129     0      990          0
-## 3 Beg                 111         0.905    10    10     0      355          0
-## 4 Signature           134         0.885    10    10     0      342          0
-## 5 Force               314         0.732    10    10     0      243          0
-## 6 treatyID              0         1         8    37     0     1111          0
-## 7 destaID             160         0.863     1     4     0      927          0
-## 8 gptadID             795         0.321     1     3     0      352          0
-## 
-## ── Variable type: list ─────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_unique min_length max_length
-## 1 TreatyText            0             1      294          0       1953
-## 
-## $TOTA_TXT
+\preformatted{## $TOTA_TXT
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
@@ -64,7 +34,7 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      448          0
 ## 2 Title                 0             1     4    91     0      448          0
@@ -74,7 +44,7 @@ texts database documentation
 ## 6 treatyID              0             1    10    27     0      449          0
 ## 7 url                   0             1    64    66     0      450          0
 ## 
-## ── Variable type: list ─────────────────────────────────────────────────────────
+## ── Variable type: list ───────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      450          1          1
 }
