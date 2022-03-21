@@ -35,7 +35,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID              100         0.955     8    37     0      315          0
 ## 2 CountryID           101         0.955     3     3     0      214          0
@@ -59,7 +59,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ──────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID              631         0.919    12    37     0     1082          0
 ## 2 CountryID            11         0.999     3     3     0      220          0
