@@ -32,16 +32,24 @@ TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements,
-                                        var = c(manytrade::agreements$DESTA$treatyID, 
-                                                manytrade::agreements$GPTAD$treatyID,
-                                                manytrade::agreements$LABPTA$treatyID, 
-                                                manytrade::agreements$TREND$treatyID))
+                                        var = c(DESTA$treatyID, 
+                                                GPTAD$treatyID,
+                                                LABPTA$treatyID, 
+                                                TREND$treatyID))
 TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
   dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, trendID) %>% 
   dplyr::arrange(Beg)
+
+# Check for duplicates in manyID
+# duplicates <- TREND %>%
+#   dplyr::mutate(duplicates = duplicated(TREND[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+TREND <- subset(TREND, subset = !duplicated(TREND[, c(1,3,6)]))
 
 # manypkgs includes several functions that should help cleaning and 
 # standardising your data.
