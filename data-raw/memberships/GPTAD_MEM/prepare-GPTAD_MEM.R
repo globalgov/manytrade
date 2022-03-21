@@ -73,13 +73,21 @@ GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title,
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::memberships,
-                                        var = c(manytrade::memberships$DESTA_MEM$treatyID, 
-                                                manytrade::memberships$GPTAD_MEM$treatyID))
+                                        var = c(DESTA_MEM$treatyID, 
+                                                GPTAD_MEM$treatyID))
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
 GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, CountryID, Title, Beg, 
                              Signature, Force, CountryName, gptadID)
+
+# Check for duplicates in manyID
+# duplicates <- GPTAD_MEM %>%
+#   dplyr::mutate(duplicates = duplicated(GPTAD_MEM[, c(1,2)])) %>%
+#   dplyr::relocate(manyID, CountryID,  duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+GPTAD_MEM <- subset(GPTAD_MEM, subset = !duplicated(GPTAD_MEM[, c(1,2,4,7,9)]))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
