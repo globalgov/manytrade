@@ -1,5 +1,5 @@
 
-# manytrade <img src="man/figures/manytradeContainer.png" align="right"/>
+# manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
 
 <!-- badges: start -->
 

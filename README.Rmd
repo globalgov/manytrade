@@ -1,7 +1,7 @@
 ---
 output: github_document
 ---
-# manytrade <img src="man/figures/manytradeContainer.png" align="right"/>
+# manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
