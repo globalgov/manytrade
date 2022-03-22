@@ -3,18 +3,13 @@ library(shiny)
 library(shinydashboard)
 
 # Prepare data
-# trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
-#     dplyr::select(manyID, CountryID, Title, Beg)
-# trade_mem2 <- manytrade::memberships$DESTA_MEM %>%
-#     dplyr::select(manyID, CountryID, Title, Beg)
-# trade_mem <- dplyr::full_join(trade_mem1, trade_mem2) %>%
-#     unique() %>% dplyr::arrange(Beg) %>%
-#     dplyr::filter(Beg != "NA")
-# write.csv(trade_mem, "trade_mem.csv")
-
-# Get data
-trade_mem <- read.csv("trade_mem.csv") %>%
+trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
     dplyr::select(manyID, CountryID, Title, Beg)
+trade_mem2 <- manytrade::memberships$DESTA_MEM %>%
+    dplyr::select(manyID, CountryID, Title, Beg)
+trade_mem <- dplyr::full_join(trade_mem1, trade_mem2) %>%
+    unique() %>% dplyr::arrange(Beg) %>%
+    dplyr::filter(Beg != "NA")
 
 # Define dashboard interface
 ui <- dashboardPage(
