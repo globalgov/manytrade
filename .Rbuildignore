@@ -12,3 +12,5 @@
 ^codecov\.yml$
 ^data-raw/texts$
 ^shinyapp$
+^.DS_Store
+^.RDataTmp
