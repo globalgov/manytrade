@@ -11,9 +11,11 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2201 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, gptadID, treatyID.}
+9 variables: manyID, CountryID, Title, Beg, Signature, Force,
+CountryName, gptadID, treatyID.}
 \item{DESTA_MEM: }{A dataset with 7492 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, destaID, treatyID.}
+9 variables: manyID, CountryID, Title, Beg, Signature, Force,
+CountryName, destaID, treatyID.}
 }
 }
 \usage{
@@ -35,7 +37,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      345          0
 ## 2 CountryID           101         0.954     3     3     0      214          0
@@ -59,7 +61,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1        12    37     0     1164          0
 ## 2 CountryID            10         0.999     3     3     0      220          0
