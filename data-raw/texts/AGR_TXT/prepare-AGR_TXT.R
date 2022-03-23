@@ -75,6 +75,14 @@ leftdesta <- merged %>%
 AGR_TXT <- dplyr::bind_rows(overlap, leftgptad, leftdesta) %>%
   dplyr::arrange(Beg)
 
+# Check for duplicates in manyID
+# duplicates <- AGR_TXT %>%
+#   dplyr::mutate(duplicates = duplicated(AGR_TXT[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+AGR_TXT <- subset(AGR_TXT, subset = !duplicated(AGR_TXT[, c(1)]))
+
 # Extract URL links that lead to treaty texts from GPTAD website
 library(httr)
 
@@ -104,15 +112,7 @@ DESTA_TXT <- readxl::read_excel("data-raw/texts/AGR_TXT/DESTA_TXT.xlsx")
 DESTA_TXT[682, 7] <- NA
 DESTA_TXT[532, 7] <- NA
 DESTA_TXT <- DESTA_TXT %>%
-  dplyr::filter(!is.na(url), !is.na(base))
-
-# get links from base
-links <- httr::GET(DESTA_TXT$base) %>%
-  httr::content(as = "text")
-DESTA_TXT <- DESTA_TXT %>%
-  dplyr::mutate(url = ifelse(!is.na(base), 
-                             httr::content(httr::GET(base), as = "text"),
-                             url))
+  dplyr::filter(!is.na(url))
 
 # Web scrape treaty texts
 DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
@@ -121,25 +121,49 @@ DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
   }
   # scrap web pages
   else {
-    if (grepl(".ca")) {
-      xxx
-    } else{
-      if (grepl("eur-lex"))
+    if (grepl(".ca", x)) {
+      text <- httr::GET(x) %>%
+        httr::content(as = "text")
+      text <- stringr::str_remove_all(text, "\\\n")
+      text <- stringr::str_remove_all(text, "\\\r")
+      text <- stringr::str_remove_all(text, "\\\t")
+      text <- stringr::str_remove_all(text, "<h3>")
+      text <- stringr::str_remove_all(text, "</h3>")
+      text <- stringr::str_remove_all(text, "</p>")
+      text <- stringr::str_remove_all(text, "<p>")
+      text <- stringr::str_remove_all(text, "summary=\"Table1.*")
+      as.character(text)
+    } else {
+      if (grepl("eur-lex", x)) {
+        text <- httr::GET(x) %>%
+          httr::content(as = "text")
+        text <- stringr::str_remove_all(text, "<p>ANNEX I.*")
+        as.character(text)
+      } else {
+        if (grepl(".doc", x)) {
+          out <- tryCatch(readtext::readtext(x),
+                          error = function(e){as.character("Not found")}) 
+          text <- ifelse(out != "Not found", out[1,2], "Not found")
+          text <- stringr::str_remove_all(text, "\\\n")
+          as.character(text)
+        } else {
+          text <- httr::GET(x) %>%
+            httr::content(as = "text")
+          text <- stringr::str_remove_all(text, "\\\n")
+          text <- stringr::str_remove_all(text, "\\\r")
+          text <- stringr::str_remove_all(text, "\\\t")
+          text <- stringr::str_remove_all(text, "<h3>")
+          text <- stringr::str_remove_all(text, "</h3>")
+          text <- stringr::str_remove_all(text, "</p>")
+          text <- stringr::str_remove_all(text, "<p>")
+          as.character(text)
+        }
+      }
     }
-    as.character(purrr::map(x,
-               . %>% 
-                 httr::GET() %>%
-                 httr::content(as = "text")))
   }
 })
 
 DESTA_TXT$Text <- unlist(as.character(DESTA_TXT$Text))
-
-# extract links in the Text column into a separate column
-DESTA_TXT$links <- sapply(DESTA_TXT$Text, function(x){
-  stringr::str_extract_all(x, "http.*com")
-})
-DESTA_TXT$links <- as.character(test1$links)
 
 # clean text
 DESTA_TXT$Text <- sapply(DESTA_TXT$Text, function(x) {
@@ -179,3 +203,10 @@ manypkgs::export_data(AGR_TXT, database = "texts",
                      URL = c("https://wits.worldbank.org/gptad/library.aspx",
                              "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
                              "https://edit.wti.org/app.php/document/investment-treaty/search"))
+
+# To reduce size of text data stored in package:
+# 1. after exporting AGR_TXT and TOTA_TXT to texts database, 
+# load 'texts.rda' in environment.
+# 2. Delete 'texts.rda' in 'data' folder.
+# 3. Run `usethis::use_data(texts, internal = F, overwrite = T, compress = "xz")`
+# to save compressed text data.

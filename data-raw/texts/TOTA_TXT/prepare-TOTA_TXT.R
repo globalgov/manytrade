@@ -69,6 +69,10 @@ TOTA_TXT <- TOTA_TXT %>%
 # run `manypkgs::add_bib("texts", "TOTA_TXT")`.
 manypkgs::export_data(TOTA_TXT, database = "texts",
                       URL = "https://github.com/mappingtreaties/tota.git")
-# Make sure to delete the database before exporting the data,
-# and do not re-write the texts documentation.
-# usethis::use_data(TOTA_TXT, internal = T, overwrite = T)
+
+# To reduce size of text data stored in package:
+# 1. after exporting AGR_TXT and TOTA_TXT to texts database, 
+# load 'texts.rda' in environment.
+# 2. Delete 'texts.rda' in 'data' folder.
+# 3. Run `usethis::use_data(texts, internal = F, overwrite = T, compress = "xz")`
+# to save compressed text data.
