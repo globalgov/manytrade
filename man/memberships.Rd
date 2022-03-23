@@ -10,12 +10,12 @@ following 2 datasets: GPTAD_MEM, DESTA_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{GPTAD_MEM: }{A dataset with 2221 observations and the following
-9 variables: many_ID, GPTAD_ID, Country_ID, Country, Title, Beg, Signature,
-Force, treaty_ID.}
-\item{DESTA_MEM: }{A dataset with 7772 observations and the following
-8 variables: many_ID, DESTA_ID, Country, Title, Beg, Signature, Force,
-treaty_ID.}
+\item{GPTAD_MEM: }{A dataset with 2201 observations and the following
+9 variables: manyID, CountryID, Title, Beg, Signature, Force,
+CountryName, gptadID, treatyID.}
+\item{DESTA_MEM: }{A dataset with 7492 observations and the following
+9 variables: manyID, CountryID, Title, Beg, Signature, Force,
+CountryName, destaID, treatyID.}
 }
 }
 \usage{
@@ -23,5 +23,55 @@ memberships
 }
 \description{
 memberships database documentation
+}
+\details{
+\preformatted{## $GPTAD_MEM
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             2201  
+## Number of columns          9     
+## _______________________          
+## Column type frequency:           
+##   character                9     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                0         1         8    37     0      345          0
+## 2 CountryID           101         0.954     3     3     0      214          0
+## 3 Title                 0         1         3    74     0      345          0
+## 4 Beg                 100         0.955    10    10     0      291          0
+## 5 Signature           331         0.850    10    10     0      271          0
+## 6 Force               285         0.871    10    10     0      200          0
+## 7 CountryName           0         1         3    48     0      249          0
+## 8 gptadID               0         1         1     3     0      346          0
+## 9 treatyID              0         1         8    37     0      345          0
+## 
+## $DESTA_MEM
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             7492  
+## Number of columns          9     
+## _______________________          
+## Column type frequency:           
+##   character                9     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                0         1        12    37     0     1164          0
+## 2 CountryID            10         0.999     3     3     0      220          0
+## 3 Title                 0         1         2   146     0     1090          0
+## 4 Beg                 630         0.916     4     4     0       70          0
+## 5 Signature           630         0.916     4     4     0       70          0
+## 6 Force              2886         0.615     4     4     0       66          0
+## 7 CountryName           0         1         4    38     0      222          0
+## 8 destaID               0         1         1     4     0      931          0
+## 9 treatyID              0         1        12    37     0     1174          0
+}
 }
 \keyword{datasets}

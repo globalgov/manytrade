@@ -6,5 +6,11 @@
 ^LICENSE\.md
 ^inst$
 ^docs$
+^vignettes$
 ^pkgdown$
 ^_pkgdown\.yml$
+^codecov\.yml$
+^data-raw/texts$
+^shinyapp$
+^.DS_Store
+^.RDataTmp

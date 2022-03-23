@@ -2,8 +2,9 @@ url: https://globalgov.github.io/manytrade/
 development:
     mode: auto
 template:
+  bootstrap: 5
   params:
-    bootswatch: paper
+    bootswatch: litera
 authors:
   James Hollway:
     href: https://jameshollway.com
@@ -26,12 +27,11 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
-    # Edit this section and add it in the navbar when adding vignettes
-    # articles:
-    #   text: Articles
-    #   menu:
-    #   - text: Creating historical maps
-    #     href: articles/CShapesMaps.html
+    articles:
+      text: Articles
+      menu:
+      - text: Trade Treaties by Country and Year
+        href: articles/trade_treaty_year_dashboard.html
     news:
       text: News
       href: news/index.html
@@ -49,7 +49,6 @@ navbar:
           href: https://globalgov.github.io/manystates/
         - text: manyenviron
           href: https://globalgov.github.io/manyenviron/
-
 reference:
    - title: "Data"
      desc: "manytrade contains the following databases"
@@ -57,3 +56,11 @@ reference:
      - agreements
      - memberships
      - references
+     - texts
+footer:
+  structure:
+    left: devs
+    right: panarchic
+  components:
+    devs: Developed by [James Hollway](https://jameshollway.com/).
+    panarchic: Part of the [PANARCHIC project](https://panarchic.ch/).

@@ -1,5 +1,5 @@
 
-# manytrade <img src="https://raw.githubusercontent.com/globalgov/manytrade/develop/inst/manytradeContainer.png" align="right" width="220"/>
+# manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -8,6 +8,10 @@
 date)](https://img.shields.io/github/v/release/globalgov/manytrade)
 ![GitHub Release
 Date](https://img.shields.io/github/release-date/globalgov/manytrade)
+![GitHub
+issues](https://img.shields.io/github/issues-raw/globalgov/manytrade)
+[![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manytrade/badge/main)](https://www.codefactor.io/repository/github/globalgov/manytrade/overview/main)
+<!-- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867) -->
 <!-- badges: end -->
 
 manytrade is a data package in the [many
@@ -81,8 +85,8 @@ citation("manytrade")
 
 ## Contributing
 
-[manydata](https://github.com/globalgov/manydata) also makes it easy to
-contribute in lots of different ways.
+[`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy
+to contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package, please
 reach out by flagging this as an

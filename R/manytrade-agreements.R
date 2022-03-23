@@ -5,15 +5,21 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
-#' \item{DESTA: }{A dataset with 987 observations and the following
-#' 11 variables: many_ID, Title, Beg, D, L, J, Signature, Force, treaty_ID, 
-#' DESTA_ID, WTO.}
-#' \item{TREND: }{A dataset with 730 observations and the following
-#' 7 variables: many_ID, Title, Beg, Signature, Force, treaty_ID, TREND_ID.}
+#' \item{DESTA: }{A dataset with 959 observations and the following
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+#' Signature, Force, treatyID, destaID.}
+#' \item{TREND: }{A dataset with 729 observations and the following
+#' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 #' \item{LABPTA: }{A dataset with 483 observations and the following
-#' 7 variables: many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID.}
-#' \item{GPTAD: }{A dataset with 346 observations and the following
-#' 9 variables: many_ID, Title, Beg, D, L, Signature, Force, treaty_ID, 
-#' GPTAD_ID.}
+#' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
+#' \item{GPTAD: }{A dataset with 340 observations and the following
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+#' Signature, Force, treatyID, gptadID.}
 #' }
- "agreements"
+
+#'
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(agreements, skimr::skim_without_charts)
+#' ```
+"agreements"

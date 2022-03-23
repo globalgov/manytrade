@@ -12,21 +12,28 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # formats of the 'GPTAD' object until the object created
 # below (in stage three) passes all the tests.
 GPTAD <- as_tibble(GPTAD) %>%
-  dplyr::mutate(GPTAD_ID = dplyr::row_number()) %>%
+  dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
   #removing entries relating to membership as membership changes will be logged in memberships database
-  dplyr::mutate(L = dplyr::recode(`Type`, 
-                                  "Association Free Trade Agreement" = "P", 
-                                  "Bilateral Free Trade Agreement"= "B", 
-                                  "Customs Union Primary Agreement"="P", 
-                                  "Regional/Plurilateral Free Trade Agreement"="R/P", 
-                                  "Framework Agreement" = "M")) %>%
-  dplyr::mutate(D = dplyr::recode(`Type`, "Association Free Trade Agreement" = "A", 
-                                  "Bilateral Free Trade Agreement"= "A", 
-                                  "Customs Union Primary Agreement"="A", 
-                                  "Regional/Plurilateral Free Trade Agreement"="A", 
-                                  "Framework Agreement" = "A")) %>%
-  dplyr::mutate(WTO = dplyr::recode(`WTO.notified`, "no" = "N", "yes" = "Y")) %>%
+  dplyr::mutate(DocType = dplyr::recode(`Type`, 
+                                        "Association Free Trade Agreement" = "P", 
+                                        "Bilateral Free Trade Agreement"= "B", 
+                                        "Customs Union Primary Agreement"="P", 
+                                        "Regional/Plurilateral Free Trade Agreement"="P", 
+                                        "Framework Agreement" = "M")) %>%
+  dplyr::mutate(AgreementType = dplyr::recode(`Type`, 
+                                              "Association Free Trade Agreement" = "A", 
+                                              "Bilateral Free Trade Agreement"= "A", 
+                                              "Customs Union Primary Agreement"="A", 
+                                              "Regional/Plurilateral Free Trade Agreement"="A", 
+                                              "Framework Agreement" = "A")) %>%
+  dplyr::mutate(GeogArea = dplyr::recode(`Type`,
+                                         "Association Free Trade Agreement" = "NA",
+                                         "Bilateral Free Trade Agreement" = "L",
+                                         "Customs Union Primary Agreement" = "NA",
+                                         "Regional/Plurilateral Free Trade Agreement" = "R",
+                                         "Framework Agreement" = "NA")) %>%
+  dplyr::mutate(GeogArea = ifelse(GeogArea == "NA", NA, GeogArea)) %>%
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
@@ -35,22 +42,32 @@ GPTAD <- as_tibble(GPTAD) %>%
                      Signature = manypkgs::standardise_dates(`Date.of.Signature`),
                      Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(GPTAD_ID, Title, Beg, Signature, Force, D, L, WTO) %>%
+  dplyr::select(gptadID, Title, Beg, Signature, Force, AgreementType, DocType, GeogArea) %>%
   dplyr::arrange(Beg)
 
-# Add treaty_ID column
-GPTAD$treaty_ID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
+# Add treatyID column
+GPTAD$treatyID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-GPTAD <- dplyr::left_join(GPTAD, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                        var = c(DESTA$treatyID, 
+                                                GPTAD$treatyID,
+                                                LABPTA$treatyID, 
+                                                TREND$treatyID))
+GPTAD <- dplyr::left_join(GPTAD, manyID, by = "treatyID")
 
 # Re-order the columns
 GPTAD <- GPTAD %>%
-  dplyr::select(many_ID, Title, Beg, D, L, Signature, Force, treaty_ID, GPTAD_ID) %>% 
+  dplyr::select(manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID) %>% 
   dplyr::arrange(Beg)
+
+# Check for duplicates in manyID
+# duplicates <- GPTAD %>%
+#   dplyr::mutate(duplicates = duplicated(GPTAD[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+GPTAD <- subset(GPTAD, subset = !duplicated(GPTAD[, c(1,3,4,9)]))
 
 
 # manydata includes several functions that should help cleaning

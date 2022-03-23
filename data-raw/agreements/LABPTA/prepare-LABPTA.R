@@ -2,6 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the many universe.
+library(manypkgs)
 
 # Stage one: Collecting data
 LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
@@ -11,27 +12,39 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- as_tibble(LABPTA) %>%
-  manydata::transmutate(LABPTA_ID = `Number`,
-                     Title = manypkgs::standardise_titles(Name),
-                     Signature = manypkgs::standardise_dates(as.character(year)),
-                     Force = manypkgs::standardise_dates(as.character(year))) %>%
+  # standardise date formats across agreements database
+  dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
+  manydata::transmutate(labptaID = as.character(`Number`),
+                        Title = manypkgs::standardise_titles(Name),
+                        Signature = manypkgs::standardise_dates(as.character(year)),
+                        Force = manypkgs::standardise_dates(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(LABPTA_ID, Title, Beg, Signature, Force) %>%
+  dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-# Add treaty_ID column
-LABPTA$treaty_ID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+# Add treatyID column
+LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-LABPTA<- dplyr::left_join(LABPTA, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                        var = c(DESTA$treatyID, 
+                                                GPTAD$treatyID,
+                                                LABPTA$treatyID, 
+                                                TREND$treatyID))
+LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, LABPTA_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, labptaID) %>% 
   dplyr::arrange(Beg)
+
+# Check for duplicates in manyID
+# duplicates <- LABPTA %>%
+#   dplyr::mutate(duplicates = duplicated(LABPTA[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1,3,6)]))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

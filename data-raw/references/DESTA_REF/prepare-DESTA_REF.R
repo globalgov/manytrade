@@ -14,27 +14,29 @@ DESTA_REF <- as_tibble(DESTA_REF) %>%
   dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", 
                 entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are reflected in the memberships database
-  manydata::transmutate(DESTA_ID = `base_treaty`,
+  manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
                      Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
   manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
   dplyr::filter(entry_type=="protocol or amendment" | entry_type=="base_treaty")
 
-# add treaty_ID column
+# add treatyID column
 destaid<- manytrade::agreements$DESTA %>%
-  dplyr::select(Title, DESTA_ID, treaty_ID)
+  dplyr::select(Title, DESTA_ID, treatyID)
 
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-destaid <- dplyr::left_join(destaid, many_ID, by = "treaty_ID")
+manyID <- manypkgs::condense_agreements(manytrade::agreements, 
+                                        var = c(manytrade::agreements$DESTA$treatyID, 
+                                                manytrade::agreements$GPTAD$treatyID,
+                                                manytrade::agreements$LABPTA$treatyID, 
+                                                manytrade::agreements$TREND$treatyID))
+destaid <- dplyr::left_join(destaid, manyID, by = "treatyID")
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID"))
 DESTA_REF <- DESTA_REF %>%
-  dplyr::rename(treaty_ID1 = "treaty_ID") %>%
-  dplyr::rename(many_ID1 = "many_ID") %>%
-  dplyr::select(number, DESTA_ID, many_ID1, treaty_ID1, entry_type, Beg) %>%
+  dplyr::rename(treatyID1 = "treatyID") %>%
+  dplyr::rename(manyID1 = "manyID") %>%
+  dplyr::select(number, DESTA_ID, manyID1, treatyID1, entry_type, Beg) %>%
   dplyr::group_by(DESTA_ID) %>%
   dplyr::mutate(num_rows = sum(dplyr::n())) %>% 
   dplyr::mutate(RefType = ifelse(num_rows > 1, "Amends", "")) %>%
@@ -42,23 +44,23 @@ DESTA_REF <- DESTA_REF %>%
                                  dplyr::recode(RefType, "Amends" = "Amended by"), 
                                  RefType))
 
-# add treaty_ID2 column
+# add treatyID2 column
 DESTA_REF <- DESTA_REF %>%
   dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "a", "b")) %>%
   dplyr::mutate(idref = ifelse(RefType == "", NA, idref))
 
 ref <- DESTA_REF %>%
-  dplyr::select(DESTA_ID, many_ID1, num_rows, RefType) %>%
+  dplyr::select(DESTA_ID, manyID1, num_rows, RefType) %>%
   dplyr::group_by(DESTA_ID) %>%
   dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "b", "a")) %>%
   dplyr::mutate(idref = ifelse(RefType == "", NA, idref)) %>%
-  dplyr::rename(many_ID2 = "many_ID1") %>%
-  dplyr::mutate(many_ID2 = ifelse(idref == "NA", NA, many_ID2)) %>%
-  dplyr::select(DESTA_ID, idref, many_ID2)
+  dplyr::rename(manyID2 = "manyID1") %>%
+  dplyr::mutate(manyID2 = ifelse(idref == "NA", NA, manyID2)) %>%
+  dplyr::select(DESTA_ID, idref, manyID2)
 
 DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
   dplyr::ungroup() %>%
-  dplyr::select(many_ID1, RefType, many_ID2)
+  dplyr::select(manyID1, RefType, manyID2)
 #check matches, seems to add more entries?
 
 # manypkgs includes several functions that should help cleaning

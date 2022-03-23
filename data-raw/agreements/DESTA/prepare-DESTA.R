@@ -16,44 +16,56 @@ DESTA <- as_tibble(DESTA) %>%
                 entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are 
   #reflected in the memberships database
-  dplyr::rename("L" = "typememb", "D" = "entry_type") %>%
-  dplyr::mutate(L = dplyr::recode(L, "1" = "B", "2"= "P", "3"="P+3", "4"="PP")) %>%
-  dplyr::mutate(D = dplyr::recode(D, "base_treaty" = "A", 
-                                  "protocol or amendment" = "P/E", 
-                                  "consolidated" = "P/E", 
-                                  "negotiation" = "A")) %>%
-  dplyr::rename("WTO" = "wto_listed", "J" = "regioncon") %>%
-  dplyr::mutate(`WTO` = dplyr::recode(`WTO`, "0" = "N", "1" = "Y")) %>%
-  dplyr::mutate(J = dplyr::recode(J, "Intercontinental" = "G", 
-                                  "Asia" = "R", "Africa" = "R", 
-                                  "Americas" = "R", "Europe" = "R", 
-                                  "Oceania" = "R")) %>%
-  manydata::transmutate(DESTA_ID = `base_treaty`,
-                     Title = manypkgs::standardise_titles(name)) %>%
+  dplyr::rename("DocType" = "typememb", "AgreementType" = "entry_type") %>%
+  dplyr::mutate(DocType = dplyr::recode(DocType, "1" = "B", "2"= "P", "3"="P", "4"="M")) %>%
+  dplyr::mutate(AgreementType = dplyr::recode(AgreementType, "base_treaty" = "A", 
+                                              "protocol or amendment" = "P/E", 
+                                              "consolidated" = "P/E", 
+                                              "negotiation" = "A")) %>%
+  dplyr::rename("GeogArea" = "regioncon") %>%
+  dplyr::mutate(GeogArea = dplyr::recode(GeogArea, "Intercontinental" = "G", 
+                                         "Asia" = "R", "Africa" = "R", 
+                                         "Americas" = "R", "Europe" = "R",
+                                         "Oceania" = "R")) %>%
+  manydata::transmutate(destaID = as.character(`base_treaty`),
+                        Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
+  # standardise date formats across agreements database
+  dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
+  dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
+  dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
   manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
-                     Signature = manypkgs::standardise_dates(as.character(year)),
-                     Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::select(DESTA_ID, Title, Beg, Signature, Force, D, L, J, WTO)
-  
+                        Signature = manypkgs::standardise_dates(as.character(year)),
+                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+  dplyr::select(destaID, Title, Beg, Signature, Force, AgreementType, DocType, 
+                GeogArea)
 
-# Add treaty_ID column
-DESTA$treaty_ID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
+# Add treatyID column
+DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID, 
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-DESTA <- dplyr::left_join(DESTA, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements,
+                                        var=c(DESTA$treatyID, 
+                                              GPTAD$treatyID,
+                                              LABPTA$treatyID, 
+                                              TREND$treatyID))
+
+DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 
 # Re-order the columns
 DESTA <- DESTA %>% 
-  dplyr::select(many_ID, Title, Beg, D, L, J, Signature, Force, treaty_ID, DESTA_ID, WTO) %>% 
+  dplyr::select(manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, 
+                Force, treatyID, destaID) %>% 
   dplyr::arrange(Beg)
 
-# add missing dates
+# Check for duplicates in manyID
+# duplicates <- DESTA %>%
+#   dplyr::mutate(duplicates = duplicated(DESTA[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
 
+# delete rows that only have diff title but same Beg and other variables
+DESTA <- subset(DESTA, subset = !duplicated(DESTA[, c(1,3,4,9)]))
 
 # manypkgs includes several functions that should help cleaning and 
 # standardising your data.

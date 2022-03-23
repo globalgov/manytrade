@@ -2,6 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the many universe.
+library(manypkgs)
 
 # Stage one: Collecting data
 TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
@@ -12,31 +13,43 @@ TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xl
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
 TREND <- as_tibble(TREND) %>%
-  tidyr::separate(Trade.Agreement, into= c("TREND_ID", "name", "year1"), sep="_") %>%
+  tidyr::separate(Trade.Agreement, into= c("trendID", "name", "year1"), sep="_") %>%
   #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
-  tidyr::separate(TREND_ID, into=c("TREND_ID", "T1", "T2"), sep=" ") %>%
-  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
   #combining variables to obtain full name of treaty
+  tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
+  # standardise date formats across agreements database
+  dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
-                     Signature=manypkgs::standardise_dates(as.character(Year)),
-                     Force = manypkgs::standardise_dates(as.character(Year))) %>%
+                        Signature=manypkgs::standardise_dates(as.character(Year)),
+                        Force = manypkgs::standardise_dates(as.character(Year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(TREND_ID, Title, Beg, Signature, Force) %>%
+  dplyr::select(trendID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-# Add treaty_ID column
-TREND$treaty_ID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
+# Add treatyID column
+TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
 
-# Add many_ID column
-many_ID <- manypkgs::condense_agreements(manytrade::agreements,
-                                         var = c(DESTA$treaty_ID, GPTAD$treaty_ID,
-                                                 LABPTA$treaty_ID, TREND$treaty_ID))
-TREND <- dplyr::left_join(TREND, many_ID, by = "treaty_ID")
+# Add manyID column
+manyID <- manypkgs::condense_agreements(manytrade::agreements,
+                                        var = c(DESTA$treatyID, 
+                                                GPTAD$treatyID,
+                                                LABPTA$treatyID, 
+                                                TREND$treatyID))
+TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
-  dplyr::select(many_ID, Title, Beg, Signature, Force, treaty_ID, TREND_ID) %>% 
+  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, trendID) %>% 
   dplyr::arrange(Beg)
+
+# Check for duplicates in manyID
+# duplicates <- TREND %>%
+#   dplyr::mutate(duplicates = duplicated(TREND[, 1])) %>%
+#   dplyr::relocate(manyID, duplicates)
+
+# delete rows that only have diff title but same Beg and other variables
+TREND <- subset(TREND, subset = !duplicated(TREND[, c(1,3,6)]))
 
 # manypkgs includes several functions that should help cleaning and 
 # standardising your data.

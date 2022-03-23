@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
-Version: 0.1.0
-Date: 2021-12-03
+Version: 0.1.1
+Date: 2022-03-23
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -33,12 +33,13 @@ Depends:
     pointblank
 Imports:
     lubridate,
+    messydates,
     dplyr,
     roxygen2,
     usethis,
     remotes,
     pkgdown,
-    stringi
+    xml2
 Suggests:
     rlang,
     testthat (>= 3.0.0)
