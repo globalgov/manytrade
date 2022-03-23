@@ -1,9 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
-articles: {}
-last_built: 2021-12-03T11:32Z
+articles:
+  trade_treaty_year_dashboard: trade_treaty_year_dashboard.html
+last_built: 2022-03-23T09:11Z
 urls:
-  reference: https://globalgov.github.io/manytrade//reference
-  article: https://globalgov.github.io/manytrade//articles
+  reference: https://globalgov.github.io/manytrade/reference
+  article: https://globalgov.github.io/manytrade/articles
 
