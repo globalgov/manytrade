@@ -3,85 +3,88 @@
 # Due to the specificities of the text database,
 # the usual script preparation format has been adapted.
 
+# Create consolidated version of agreements database
+AGR_TXT <- manydata::favour(manytrade::agreements, "GPTAD") %>% 
+  manydata::consolidate("any",
+                        "any",
+                        "coalesce",
+                        key = "manyID")
+
+# Download texts for GPTAD dataset
+GPTAD_TXT <- AGR_TXT %>%
+  dplyr::filter(!is.na(gptadID))
+
 # Extract useful columns from original GPTAD dataset and add treatyID column
-GPTAD_TXT <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
-
-GPTAD_TXT <- GPTAD_TXT %>% 
-  dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
-  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
-                                             NA, `Date.of.Signature`)) %>%
-  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
-                                                    NA, `Date.of.Entry.into.Force`)) %>%
-  manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                        Signature = manypkgs::standardise_dates(`Date.of.Signature`),
-                        Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
-  dplyr::select(Title, Beg, Signature, Force, gptadID) %>%
-  dplyr::arrange(Beg)
-
-GPTAD_TXT$treatyID <- manypkgs::code_agreements(GPTAD_TXT, GPTAD_TXT$Title, 
-                                                GPTAD_TXT$Beg)
+# GPTAD_TXT <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
+# 
+# GPTAD_TXT <- GPTAD_TXT %>% 
+#   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
+#   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
+#                                              NA, `Date.of.Signature`)) %>%
+#   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
+#                                                     NA, `Date.of.Entry.into.Force`)) %>%
+#   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
+#                         Signature = manypkgs::standardise_dates(`Date.of.Signature`),
+#                         Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
+#   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>% 
+#   dplyr::select(Title, Beg, Signature, Force, gptadID) %>%
+#   dplyr::arrange(Beg)
+# 
+# GPTAD_TXT$treatyID <- manypkgs::code_agreements(GPTAD_TXT, GPTAD_TXT$Title, 
+#                                                 GPTAD_TXT$Beg)
 
 # Extract useful columns from original DESTA dataset and add treatyID column
-DESTA_TXT <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
-
-DESTA_TXT <- DESTA_TXT %>%
-  dplyr::filter(typememb != "5", typememb != "6",  typememb != "7", 
-                entry_type != "accession", entry_type != "withdrawal") %>%
-  manydata::transmutate(destaID = as.character(`base_treaty`),
-                        Title = manypkgs::standardise_titles(name)) %>%
-  dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
-  dplyr::arrange(beg) %>%
-  dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
-  dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
-  dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
-  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
-                        Signature = manypkgs::standardise_dates(as.character(year)),
-                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
-  dplyr::select(destaID, Title, Beg, Signature, Force)
-
-DESTA_TXT$treatyID <- manypkgs::code_agreements(DESTA_TXT, DESTA_TXT$Title, 
-                                                DESTA_TXT$Beg)
+# DESTA_TXT <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
+# 
+# DESTA_TXT <- DESTA_TXT %>%
+#   dplyr::filter(typememb != "5", typememb != "6",  typememb != "7", 
+#                 entry_type != "accession", entry_type != "withdrawal") %>%
+#   manydata::transmutate(destaID = as.character(`base_treaty`),
+#                         Title = manypkgs::standardise_titles(name)) %>%
+#   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
+#   dplyr::arrange(beg) %>%
+#   dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
+#   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
+#   dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
+#   manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
+#                         Signature = manypkgs::standardise_dates(as.character(year)),
+#                         Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+#   dplyr::select(destaID, Title, Beg, Signature, Force)
+# 
+# DESTA_TXT$treatyID <- manypkgs::code_agreements(DESTA_TXT, DESTA_TXT$Title, 
+#                                                 DESTA_TXT$Beg)
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::texts, 
-                                        var = c(DESTA_TXT$treatyID, 
-                                                GPTAD_TXT$treatyID))
-
-GPTAD_TXT <- dplyr::left_join(GPTAD_TXT, manyID, by = "treatyID")
-DESTA_TXT <- dplyr::left_join(DESTA_TXT, manyID, by = "treatyID")
+# manyID <- manypkgs::condense_agreements(manytrade::texts, 
+#                                         var = c(DESTA_TXT$treatyID, 
+#                                                 GPTAD_TXT$treatyID))
+# 
+# GPTAD_TXT <- dplyr::left_join(GPTAD_TXT, manyID, by = "treatyID")
+# DESTA_TXT <- dplyr::left_join(DESTA_TXT, manyID, by = "treatyID")
 
 # Combine into AGR_TXT
-merged <- dplyr::full_join(DESTA_TXT, GPTAD_TXT, 
-                            by = c("manyID"))
-overlap <- merged %>%
-  dplyr::filter(Title.x != "NA") %>%
-  dplyr::filter(Title.y != "NA") %>%
-  dplyr::select(manyID, Title.y, Beg.y, Signature.y, Force.y, treatyID.y, destaID, gptadID) %>%
-  dplyr::rename(Title = Title.y, Beg = Beg.y, Signature = Signature.y, 
-                Force = Force.y, treatyID = treatyID.y)
-
-leftgptad <- merged %>%
-  subset(is.na(Title.x)) %>%
-  dplyr::select(manyID, Title.y, Beg.y, Signature.y, Force.y, treatyID.y, destaID, gptadID) %>%
-  dplyr::rename(Title = Title.y, Beg = Beg.y, Signature = Signature.y, 
-                Force = Force.y, treatyID = treatyID.y)
-leftdesta <- merged %>%
-  subset(is.na(Title.y)) %>%
-  dplyr::select(manyID, Title.x, Beg.x, Signature.x, Force.x, treatyID.x, destaID, gptadID) %>%
-  dplyr::rename(Title = Title.x, Beg = Beg.x, Signature = Signature.x,
-                Force = Force.x, treatyID = treatyID.x)
-
-AGR_TXT <- dplyr::bind_rows(overlap, leftgptad, leftdesta) %>%
-  dplyr::arrange(Beg)
-
-# Check for duplicates in manyID
-# duplicates <- AGR_TXT %>%
-#   dplyr::mutate(duplicates = duplicated(AGR_TXT[, 1])) %>%
-#   dplyr::relocate(manyID, duplicates)
-
-# delete rows that only have diff title but same Beg and other variables
-AGR_TXT <- subset(AGR_TXT, subset = !duplicated(AGR_TXT[, c(1)]))
+# merged <- dplyr::full_join(DESTA_TXT, GPTAD_TXT, 
+#                             by = c("manyID"))
+# overlap <- merged %>%
+#   dplyr::filter(Title.x != "NA") %>%
+#   dplyr::filter(Title.y != "NA") %>%
+#   dplyr::select(manyID, Title.y, Beg.y, Signature.y, Force.y, treatyID.y, destaID, gptadID) %>%
+#   dplyr::rename(Title = Title.y, Beg = Beg.y, Signature = Signature.y, 
+#                 Force = Force.y, treatyID = treatyID.y)
+# 
+# leftgptad <- merged %>%
+#   subset(is.na(Title.x)) %>%
+#   dplyr::select(manyID, Title.y, Beg.y, Signature.y, Force.y, treatyID.y, destaID, gptadID) %>%
+#   dplyr::rename(Title = Title.y, Beg = Beg.y, Signature = Signature.y, 
+#                 Force = Force.y, treatyID = treatyID.y)
+# leftdesta <- merged %>%
+#   subset(is.na(Title.y)) %>%
+#   dplyr::select(manyID, Title.x, Beg.x, Signature.x, Force.x, treatyID.x, destaID, gptadID) %>%
+#   dplyr::rename(Title = Title.x, Beg = Beg.x, Signature = Signature.x,
+#                 Force = Force.x, treatyID = treatyID.x)
+# 
+# AGR_TXT <- dplyr::bind_rows(overlap, leftgptad, leftdesta) %>%
+#   dplyr::arrange(Beg)
 
 # Extract URL links that lead to treaty texts from GPTAD website
 library(httr)
@@ -104,35 +107,41 @@ GPTAD_TXT <- GPTAD_TXT %>%
 AGR_TXT <- dplyr::left_join(AGR_TXT, GPTAD_TXT,
                             by = "manyID")
 
-# Extract treaty texts for DESTA_TXT from manually input URL links 
+# Extract remaining treaty texts from manually added URLs 
 # (sourced from WTO RTAs database, EDIT database and country/IGO websites)
-DESTA_TXT <- readxl::read_excel("data-raw/texts/AGR_TXT/DESTA_TXT.xlsx")
+REM_TXT <- readxl::read_excel("data-raw/texts/AGR_TXT/REM_TXT.xlsx")
 
 # remove NAs and invalid urls
-DESTA_TXT[682, 7] <- NA
-DESTA_TXT[532, 7] <- NA
-DESTA_TXT <- DESTA_TXT %>%
-  dplyr::filter(!is.na(url))
+# DESTA_TXT[682, 7] <- NA
+# DESTA_TXT[532, 7] <- NA
+# DESTA_TXT <- DESTA_TXT %>%
+#   dplyr::filter(!is.na(url))
 
-# Web scrape treaty texts
-DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
+# Web scrape treaty texts and clean by type
+REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
   if (grepl("pdf", x, ignore.case = TRUE) == TRUE) {
       as.character(tryCatch(pdftools::pdf_text(x), error = function(e){as.character("Not found")}))
   }
   # scrap web pages
   else {
-    if (grepl(".ca", x)) {
-      text <- httr::GET(x) %>%
+    if (grepl("dfat.gov.au", x)) {
+      page <- httr::GET(x) %>% 
         httr::content(as = "text")
-      text <- stringr::str_remove_all(text, "\\\n")
-      text <- stringr::str_remove_all(text, "\\\r")
-      text <- stringr::str_remove_all(text, "\\\t")
-      text <- stringr::str_remove_all(text, "<h3>")
-      text <- stringr::str_remove_all(text, "</h3>")
-      text <- stringr::str_remove_all(text, "</p>")
-      text <- stringr::str_remove_all(text, "<p>")
-      text <- stringr::str_remove_all(text, "summary=\"Table1.*")
-      as.character(text)
+      links <- stringr::str_extract_all(page,
+                                        "https://www.dfat.gov.au/sites/default/files/aukfta-official-documents_.*.docx")
+      links <- lapply(links, function(s){
+        out <- stringr::str_remove_all(s, "title=.*docx")
+        out <- stringr::str_remove_all(out, "\\\"")
+        out <- stringr::str_remove_all(out, " ")
+        out
+      })
+      text <- lapply(links, function(h){
+        out <- tryCatch(readtext::readtext(h),
+                        error = function(e){as.character("Not found")})
+        y <- ifelse(out != "Not found", out[1,2], "Not found")
+        y <- as.character(y)
+        y <- stringr::str_remove_all(y, "\\\n")
+      })
     } else {
       if (grepl("eur-lex", x)) {
         text <- httr::GET(x) %>%
@@ -147,36 +156,63 @@ DESTA_TXT$Text <- lapply(DESTA_TXT$url, function(x) {
           text <- stringr::str_remove_all(text, "\\\n")
           as.character(text)
         } else {
-          text <- httr::GET(x) %>%
-            httr::content(as = "text")
-          text <- stringr::str_remove_all(text, "\\\n")
-          text <- stringr::str_remove_all(text, "\\\r")
-          text <- stringr::str_remove_all(text, "\\\t")
-          text <- stringr::str_remove_all(text, "<h3>")
-          text <- stringr::str_remove_all(text, "</h3>")
-          text <- stringr::str_remove_all(text, "</p>")
-          text <- stringr::str_remove_all(text, "<p>")
-          as.character(text)
+          if (grepl("tid.gov.hk", x)) {
+            page <- httr::GET(x) %>% 
+              httr::content(as = "text")
+            links <- stringr::str_extract_all(page, "english/ita/fta/.*pdf")
+            links <- lapply(links, function(s){
+              out <- paste0("https://www.tid.gov.hk/",s)
+              out <- stringr::str_remove_all(out, ">.*pdf")
+              out
+            })
+            links <- unlist(links)
+            text <- lapply(links, function(h){
+              y <- as.character(tryCatch(pdftools::pdf_text(h), 
+                                    error = function(e){as.character("Not found")}))
+              y <- stringr::str_remove_all(y, "\\\n")
+            })
+          } else {
+            if(grepl("sice.oas.org\/Trade\/PAN_ISR", x)){
+              page <- httr::GET(x) %>% 
+                httr::content(as = "text")
+              links <- stringr::str_extract_all(page, "English/.*pdf")
+              links <- lapply(links, function(s){
+                out <- paste0("http://www.sice.oas.org/Trade/PAN_ISR/",s)
+                out
+              })
+              links <- unlist(links)
+              text <- lapply(links, function(h){
+                y <- as.character(tryCatch(pdftools::pdf_text(h), 
+                                           error = function(e){as.character("Not found")}))
+                y <- stringr::str_remove_all(y, "\\\n")
+              })
+            } else {
+              text <- httr::GET(x) %>%
+                httr::content(as = "text")
+              text <- stringr::str_remove_all(text, "\\\n")
+              text <- stringr::str_remove_all(text, "\\\r")
+              text <- stringr::str_remove_all(text, "\\\t")
+              text <- stringr::str_remove_all(text, "<h3>")
+              text <- stringr::str_remove_all(text, "</h3>")
+              text <- stringr::str_remove_all(text, "</p>")
+              text <- stringr::str_remove_all(text, "<p>")
+              text <- stringr::str_remove_all(text, "summary=\"Table1.*")
+              text <- stringr::str_remove_all(test1$Text, "java script|javascript")
+              as.character(text)
+            }
+          }
         }
       }
     }
   }
 })
 
-DESTA_TXT$Text <- unlist(as.character(DESTA_TXT$Text))
-
-# clean text
-DESTA_TXT$Text <- sapply(DESTA_TXT$Text, function(x) {
-  stringr::str_remove_all(x, "<.*>")
-})
-DESTA_TXT$Text <- stringr::str_remove_all(DESTA_TXT$Text, "\\\n")
-DESTA_TXT$Text <- stringr::str_remove_all(DESTA_TXT$Text, "\\\r")
-DESTA_TXT$Text <- stringr::str_remove_all(DESTA_TXT$Text, "\\\t")
-DESTA_TXT$Text <- stringr::str_remove_all(DESTA_TXT$Text, "Javascript|java script|java")
-
 # Add treaty texts into AGR_TXT
+REM_TXT <- REM_TXT %>%
+  dplyr::select(manyID, Text)
 AGR_TXT <- dplyr::left_join(AGR_TXT, DESTA_TXT,
                             by = "manyID")
+# merge text columns from GPTAD_TXT (TreatyText) and REM_TXT (Text)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
