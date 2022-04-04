@@ -11,7 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{AGR_TXT: }{A dataset with 1264 observations and the following
-14 variables: manyID, gptadID, AgreementType, DocType, GeogArea, destaID, trendID, Title, Beg, Signature, Force, treatyID, labptaID, TreatyText.}
+11 variables: manyID, gptadID, destaID, trendID, Title, Beg, Signature, Force, treatyID, labptaID, TreatyText.}
 \item{TOTA_TXT: }{A dataset with 450 observations and the following
 8 variables: manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url.}
 }
@@ -28,10 +28,10 @@ texts database documentation
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             1264  
-## Number of columns          14    
+## Number of columns          11    
 ## _______________________          
 ## Column type frequency:           
-##   character                13    
+##   character                10    
 ##   list                     1     
 ## ________________________         
 ## Group variables            None  
@@ -40,21 +40,18 @@ texts database documentation
 ##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ##  1 manyID                0         1         8    37     0     1208          0
 ##  2 gptadID             880         0.304     1     3     0      340          0
-##  3 AgreementType       105         0.917     0     3     5        3          0
-##  4 DocType             105         0.917     0     1     5        4          0
-##  5 GeogArea            147         0.884     0     1     5        4          0
-##  6 destaID             256         0.797     1     4     0      926          0
-##  7 trendID             487         0.615     1     5     0      723          0
-##  8 Title                 0         1         2   129     0     1081          0
-##  9 Beg                 116         0.908    10    10     0      350          0
-## 10 Signature           137         0.892    10    10     0      337          0
-## 11 Force               255         0.798    10    10     0      246          0
-## 12 treatyID              0         1         8    37     0     1212          0
-## 13 labptaID            736         0.418     1     3     0      483          0
+##  3 destaID             256         0.797     1     4     0      926          0
+##  4 trendID             487         0.615     1     5     0      723          0
+##  5 Title                 0         1         2   129     0     1081          0
+##  6 Beg                 116         0.908    10    10     0      350          0
+##  7 Signature           137         0.892    10    10     0      337          0
+##  8 Force               255         0.798    10    10     0      246          0
+##  9 treatyID              0         1         8    37     0     1212          0
+## 10 labptaID            736         0.418     1     3     0      483          0
 ## 
 ## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
-## 1 TreatyText            0             1      316          0       1953
+## 1 TreatyText            0             1      661          0       2605
 ## 
 ## $TOTA_TXT
 ## ── Data Summary ────────────────────────
