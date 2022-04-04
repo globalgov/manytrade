@@ -38,7 +38,6 @@ links <- links[-314] # remove duplicate entry for New Zealand - Singapore
 # Extract the PDF treaty texts and add to GPTAD_TXT
 TreatyText <- lapply(links, function(s){
   out <- tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")})
-  out <- stringr::str_remove_all(out, "\\\n") 
 })
 GPTAD_TXT$TreatyText <- TreatyText
 GPTAD_TXT <- GPTAD_TXT %>%
@@ -77,7 +76,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
                         error = function(e){as.character("Not found")})
         y <- ifelse(out != "Not found", out[1,2], "Not found")
         y <- as.character(y)
-        y <- stringr::str_remove_all(y, "\\\n")
       })
     } else {
       if (grepl("eur-lex", x)) {
@@ -86,11 +84,10 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
         text <- stringr::str_remove_all(text, "<p>ANNEX I.*")
         as.character(text)
       } else {
-        if (grepl(".doc", x)) {
+        if (grepl(".doc$|.docx$", x)) {
           out <- tryCatch(readtext::readtext(x),
                           error = function(e){as.character("Not found")}) 
           text <- ifelse(out != "Not found", out[1,2], "Not found")
-          text <- stringr::str_remove_all(text, "\\\n")
           as.character(text)
         } else {
           if (grepl("tid.gov.hk", x)) {
@@ -106,36 +103,41 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
             text <- lapply(links, function(h){
               y <- as.character(tryCatch(pdftools::pdf_text(h), 
                                     error = function(e){as.character("Not found")}))
-              y <- stringr::str_remove_all(y, "\\\n")
             })
           } else {
-            if(grepl("PAN_ISR", x)){
-              page <- httr::GET(x) %>% 
-                httr::content(as = "text")
-              links <- stringr::str_extract_all(page, "English/.*pdf")
-              links <- lapply(links, function(s){
-                out <- paste0("http://www.sice.oas.org/Trade/PAN_ISR/",s)
-                out
-              })
-              links <- unlist(links)
-              text <- lapply(links, function(h){
-                y <- as.character(tryCatch(pdftools::pdf_text(h), 
-                                           error = function(e){as.character("Not found")}))
-                y <- stringr::str_remove_all(y, "\\\n")
-              })
-            } else {
-              text <- httr::GET(x) %>%
-                httr::content(as = "text")
-              text <- stringr::str_remove_all(text, "\\\n")
-              text <- stringr::str_remove_all(text, "\\\r")
-              text <- stringr::str_remove_all(text, "\\\t")
-              text <- stringr::str_remove_all(text, "<h3>")
-              text <- stringr::str_remove_all(text, "</h3>")
-              text <- stringr::str_remove_all(text, "</p>")
-              text <- stringr::str_remove_all(text, "<p>")
-              text <- stringr::str_remove_all(text, "summary=\"Table1.*")
-              text <- stringr::str_remove_all(text, "java script|javascript")
-              as.character(text)
+            if(grepl("gc.ca", x)) {
+              text <- rvest::read_html(x) %>%
+                rvest::html_elements("h2, p, h3, li") %>%
+                rvest::html_text()
+            }
+            else {
+              if(grepl("PAN_ISR", x)){
+                page <- httr::GET(x) %>% 
+                  httr::content(as = "text")
+                links <- stringr::str_extract_all(page, "English/.*pdf")
+                links <- lapply(links, function(s){
+                  out <- paste0("http://www.sice.oas.org/Trade/PAN_ISR/",s)
+                  out
+                })
+                links <- unlist(links)
+                text <- lapply(links, function(h){
+                  y <- as.character(tryCatch(pdftools::pdf_text(h), 
+                                             error = function(e){as.character("Not found")}))
+                })
+              } else {
+                text <- httr::GET(x) %>%
+                  httr::content(as = "text")
+                text <- stringr::str_remove_all(text, "\\\r")
+                text <- stringr::str_remove_all(text, "\\\t")
+                text <- stringr::str_remove_all(text, "<.*>")
+                text <- stringr::str_remove_all(text, "<h3>")
+                text <- stringr::str_remove_all(text, "</h3>")
+                text <- stringr::str_remove_all(text, "</p>")
+                text <- stringr::str_remove_all(text, "<p>")
+                text <- stringr::str_remove_all(text, "summary=\"Table1.*")
+                text <- stringr::str_remove_all(text, "java script|javascript")
+                as.character(text)
+              }
             }
           }
         }
@@ -146,14 +148,16 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
 
 # Add treaty texts into AGR_TXT
 REM_TXT <- REM_TXT %>%
-  dplyr::select(manyID, Text)
+  dplyr::select(manyID, Text) %>%
+  dplyr::mutate(Text = ifelse(!grepl("^[A-Za-z]+$|[[:digit:]]", Text), "Not found", Text))
 
 AGR_TXT <- dplyr::left_join(AGR_TXT, REM_TXT,
                             by = "manyID")
+
 # merge text columns from GPTAD_TXT (TreatyText) and REM_TXT (Text)
 AGR_TXT <- AGR_TXT %>%
-  dplyr::mutate(TreatyText = ifelse(!is.na(TreatyText), TreatyText, Text)) %>%
-  dplyr::select(-Text) %>%
+  dplyr::mutate(TreatyText = ifelse(TreatyText == "NULL", Text, TreatyText)) %>% # make sure texts transfer over properly
+  dplyr::select(-Text, -AgreementType, -DocType, -GeogArea) %>%
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning
