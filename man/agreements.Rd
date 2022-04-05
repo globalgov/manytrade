@@ -41,7 +41,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ##  1 manyID                0         1         8    37     0      952          0
 ##  2 Title                 0         1         2   129     0      862          0
@@ -66,7 +66,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      723          0
 ## 2 Title                 0         1         6    93     0      728          0
@@ -88,7 +88,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      480          0
 ## 2 Title                 0             1     6    89     0      468          0
@@ -110,7 +110,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
 ##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ##  1 manyID                0         1         8    37     0      338          0
 ##  2 Title                 0         1         3    74     0      339          0
