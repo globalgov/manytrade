@@ -30,10 +30,37 @@ governance data in R. Simply install the core package,
 discover, install and update various ‘many packages’ from the console.
 
 ``` r
-# install.packages(remotes)
-remotes::install_github("globalgov/manydata") # this installs our core package, the only one you need to do independently
 manydata::get_packages() # this prints a list of the publicly available data packages currently available
-manydata::get_packages("manytrade") # this downloads and installs the named package
+```
+
+    ## # A tibble: 6 × 6
+    ##   name        full_name            
+    ##   <chr>       <chr>                
+    ## 1 manydata    globalgov/manydata   
+    ## 2 manyenviron globalgov/manyenviron
+    ## 3 manyhealth  globalgov/manyhealth 
+    ## 4 manypkgs    globalgov/manypkgs   
+    ## 5 manystates  globalgov/manystates 
+    ## 6 manytrade   globalgov/manytrade  
+    ##   description                                                          
+    ##   <chr>                                                                
+    ## 1 An R portal for ensembled global governance data                     
+    ## 2 R Package for ensembled data on environmental agreements             
+    ## 3 An R package for ensembled data on international health organisations
+    ## 4 Support for creating new manyverse packages                          
+    ## 5 An R package for ensembled data on sovereign states                  
+    ## 6 An R package for ensembled data on trade agreements                  
+    ##   installed latest        updated
+    ##   <chr>     <chr>         <date> 
+    ## 1 0.7.3     0.7.3         NA     
+    ## 2 0.1.2     0.1.2         NA     
+    ## 3 <NA>      0.1.1-272ea19 NA     
+    ## 4 0.2.1     0.2.1         NA     
+    ## 5 0.1.0     0.0.6         NA     
+    ## 6 0.1.1     0.1.1         NA
+
+``` r
+#manydata::get_packages("manytrade") # this downloads and installs the named package
 ```
 
 ## Data included
@@ -45,6 +72,32 @@ function.
 ``` r
 manydata::data_contrast("manytrade")
 ```
+
+    ## agreements :
+    ##        Unique ID Missing Data Rows Columns        Beg End
+    ## DESTA          0       4.21 %  959      10 1948-01-01  NA
+    ## TREND          0       0.29 %  729       7 1947-01-01  NA
+    ## LABPTA         0          0 %  483       7 1990-01-01  NA
+    ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
+    ##                                                       URL
+    ## DESTA  https://www.designoftradeagreements.org/downloads/
+    ## TREND            http://www.chaire-epi.ulaval.ca/en/trend
+    ## LABPTA          https://doi.org/10.1007/s11558-018-9301-z
+    ## GPTAD       https://wits.worldbank.org/gptad/library.aspx
+    ## 
+    ## memberships :
+    ##           Unique ID Missing Data Rows Columns        Beg End
+    ## GPTAD_MEM         0       4.12 % 2201       9 1957-03-25  NA
+    ## DESTA_MEM         0       6.16 % 7492       9 1948-01-01  NA
+    ##                                                          URL
+    ## GPTAD_MEM      https://wits.worldbank.org/gptad/library.aspx
+    ## DESTA_MEM https://www.designoftradeagreements.org/downloads/
+    ## 
+    ## references :
+    ##           Unique ID Missing Data Rows Columns Beg End
+    ## DESTA_REF         0       27.6 % 1000       3  NA  NA
+    ##                                                          URL
+    ## DESTA_REF https://www.designoftradeagreements.org/downloads/
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
@@ -70,17 +123,18 @@ citation("manytrade")
 ```
 
     ## 
-    ## To cite manytrade in publications use:
+    ## To cite package 'manytrade' in publications use:
     ## 
-    ##   J. Hollway. Trade agreements for manydata. 2021.
+    ##   James Hollway (2022). manytrade: Trade Agreements for manydata. R
+    ##   package version 0.1.1.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Manual{,
-    ##     title = {manytrade: International Trade Agreements for manydata},
+    ##     title = {manytrade: Trade Agreements for manydata},
     ##     author = {James Hollway},
-    ##     year = {2021},
-    ##     url = {https://github.com/globalgov/manytrade},
+    ##     year = {2022},
+    ##     note = {R package version 0.1.1},
     ##   }
 
 ## Contributing

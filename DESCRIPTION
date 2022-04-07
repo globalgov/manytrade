@@ -32,6 +32,7 @@ Depends:
     tibble,
     pointblank
 Imports:
+    manydata,
     lubridate,
     messydates,
     dplyr,
