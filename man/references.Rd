@@ -33,7 +33,11 @@ references database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
+<<<<<<< HEAD
 ## ── Variable type: character ────────────────────────────────────────────────────
+=======
+## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+>>>>>>> bd41d15a42737051c342559317184afecd8f51e6
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID1               6         0.994     8    37     0      866          0
 ## 2 RefType               0         1         0    10   812        3          0
