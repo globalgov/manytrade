@@ -37,22 +37,26 @@ agreements database documentation
 ## Number of columns          10    
 ## _______________________          
 ## Column type frequency:           
-##   character                10    
+##   character                7     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
-##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-##  1 manyID                0         1         8    37     0      952          0
-##  2 Title                 0         1         2   129     0      862          0
-##  3 Beg                  81         0.916    10    10     0       70          0
-##  4 AgreementType         0         1         1     3     0        2          0
-##  5 DocType               0         1         1     1     0        3          0
-##  6 GeogArea              0         1         1     1     0        2          0
-##  7 Signature            81         0.916    10    10     0       70          0
-##  8 Force               242         0.748    10    10     0       66          0
-##  9 treatyID              0         1         8    37     0      957          0
-## 10 destaID               0         1         1     4     0      926          0
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                0             1     8    37     0      952          0
+## 2 Title                 0             1     2   129     0      862          0
+## 3 AgreementType         0             1     1     3     0        2          0
+## 4 DocType               0             1     1     1     0        3          0
+## 5 GeogArea              0             1     1     1     0        2          0
+## 6 treatyID              0             1     8    37     0      957          0
+## 7 destaID               0             1     1     4     0      926          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                  81         0.916       0       70
+## 2 Signature            81         0.916       0       70
+## 3 Force               242         0.748       0       66
 ## 
 ## $TREND
 ## ── Data Summary ────────────────────────
@@ -62,19 +66,23 @@ agreements database documentation
 ## Number of columns          7     
 ## _______________________          
 ## Column type frequency:           
-##   character                7     
+##   character                4     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1         8    37     0      723          0
-## 2 Title                 0         1         6    93     0      728          0
-## 3 Beg                   5         0.993    10    10     0       68          0
-## 4 Signature             5         0.993    10    10     0       68          0
-## 5 Force                 5         0.993    10    10     0       68          0
-## 6 treatyID              0         1         8    37     0      729          0
-## 7 trendID               0         1         1     5     0      723          0
+## 1 manyID                0             1     8    37     0      723          0
+## 2 Title                 0             1     6    93     0      728          0
+## 3 treatyID              0             1     8    37     0      729          0
+## 4 trendID               0             1     1     5     0      723          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                   5         0.993       0       68
+## 2 Signature             5         0.993       0       68
+## 3 Force                 5         0.993       0       68
 ## 
 ## $LABPTA
 ## ── Data Summary ────────────────────────
@@ -84,19 +92,23 @@ agreements database documentation
 ## Number of columns          7     
 ## _______________________          
 ## Column type frequency:           
-##   character                7     
+##   character                4     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      480          0
 ## 2 Title                 0             1     6    89     0      468          0
-## 3 Beg                   0             1    10    10     0       27          0
-## 4 Signature             0             1    10    10     0       27          0
-## 5 Force                 0             1    10    10     0       27          0
-## 6 treatyID              0             1    10    37     0      483          0
-## 7 labptaID              0             1     1     3     0      483          0
+## 3 treatyID              0             1    10    37     0      483          0
+## 4 labptaID              0             1     1     3     0      483          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                   0             1       0       27
+## 2 Signature             0             1       0       27
+## 3 Force                 0             1       0       27
 ## 
 ## $GPTAD
 ## ── Data Summary ────────────────────────
@@ -106,22 +118,26 @@ agreements database documentation
 ## Number of columns          10    
 ## _______________________          
 ## Column type frequency:           
-##   character                10    
+##   character                7     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
-##    skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-##  1 manyID                0         1         8    37     0      338          0
-##  2 Title                 0         1         3    74     0      339          0
-##  3 Beg                  30         0.912    10    10     0      286          0
-##  4 AgreementType         0         1         0     1     5        2          0
-##  5 DocType               0         1         0     1     5        4          0
-##  6 GeogArea             75         0.779     0     1     5        3          0
-##  7 Signature            53         0.844    10    10     0      266          0
-##  8 Force                63         0.815    10    10     0      199          0
-##  9 treatyID              0         1         8    35     0      340          0
-## 10 gptadID               0         1         1     3     0      340          0
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                0         1         8    37     0      338          0
+## 2 Title                 0         1         3    74     0      339          0
+## 3 AgreementType         0         1         0     1     5        2          0
+## 4 DocType               0         1         0     1     5        4          0
+## 5 GeogArea             75         0.779     0     1     5        3          0
+## 6 treatyID              0         1         8    35     0      340          0
+## 7 gptadID               0         1         1     3     0      340          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                  30         0.912       0      286
+## 2 Signature            53         0.844       0      266
+## 3 Force                63         0.815       0      199
 }
 }
 \keyword{datasets}

@@ -33,21 +33,25 @@ memberships database documentation
 ## Number of columns          9     
 ## _______________________          
 ## Column type frequency:           
-##   character                9     
+##   character                6     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      345          0
 ## 2 CountryID           101         0.954     3     3     0      214          0
 ## 3 Title                 0         1         3    74     0      345          0
-## 4 Beg                 100         0.955    10    10     0      291          0
-## 5 Signature           331         0.850    10    10     0      271          0
-## 6 Force               285         0.871    10    10     0      200          0
-## 7 CountryName           0         1         3    48     0      249          0
-## 8 gptadID               0         1         1     3     0      346          0
-## 9 treatyID              0         1         8    37     0      345          0
+## 4 CountryName           0         1         3    48     0      249          0
+## 5 gptadID               0         1         1     3     0      346          0
+## 6 treatyID              0         1         8    37     0      345          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                 100         0.955       0      291
+## 2 Signature           331         0.850       0      271
+## 3 Force               285         0.871       0      200
 ## 
 ## $DESTA_MEM
 ## ── Data Summary ────────────────────────
@@ -57,21 +61,25 @@ memberships database documentation
 ## Number of columns          9     
 ## _______________________          
 ## Column type frequency:           
-##   character                9     
+##   character                6     
+##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1        12    37     0     1164          0
 ## 2 CountryID            10         0.999     3     3     0      220          0
 ## 3 Title                 0         1         2   146     0     1090          0
-## 4 Beg                 630         0.916     4     4     0       70          0
-## 5 Signature           630         0.916     4     4     0       70          0
-## 6 Force              2886         0.615     4     4     0       66          0
-## 7 CountryName           0         1         4    38     0      222          0
-## 8 destaID               0         1         1     4     0      931          0
-## 9 treatyID              0         1        12    37     0     1174          0
+## 4 CountryName           0         1         4    38     0      222          0
+## 5 destaID               0         1         1     4     0      931          0
+## 6 treatyID              0         1        12    37     0     1174          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                 630         0.916       0       70
+## 2 Signature           630         0.916       0       70
+## 3 Force              2886         0.615       0       66
 }
 }
 \keyword{datasets}
