@@ -28,9 +28,7 @@ Description: The manytrade package provides an ensemble of data on international
     and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 3.5.0),
-    tibble,
-    pointblank
+    R (>= 3.5.0)
 Imports:
     manydata,
     lubridate,
@@ -40,7 +38,9 @@ Imports:
     usethis,
     remotes,
     pkgdown,
-    xml2
+    xml2,
+    tibble,
+    pointblank
 Suggests:
     rlang,
     testthat (>= 3.0.0)
