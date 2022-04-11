@@ -182,9 +182,9 @@ AGR_TXT <- AGR_TXT %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("texts", "AGR_TXT")`.
 manypkgs::export_data(AGR_TXT, database = "texts",
-                     URL = c("https://wits.worldbank.org/gptad/library.aspx",
-                             "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
-                             "https://edit.wti.org/app.php/document/investment-treaty/search"))
+                      URL = c("https://wits.worldbank.org/gptad/library.aspx",
+                              "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
+                              "https://edit.wti.org/app.php/document/investment-treaty/search"))
 
 # To reduce size of text data stored in package:
 # 1. after exporting AGR_TXT and TOTA_TXT to texts database, 

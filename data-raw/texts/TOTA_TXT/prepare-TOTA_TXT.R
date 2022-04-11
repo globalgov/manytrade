@@ -46,6 +46,9 @@ TOTA_TXT <- TOTA_TXT %>%
   dplyr::select(manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url) %>% 
   dplyr::arrange(Beg)
 
+# Add totaID column
+TOTA_TXT$totaID <- rownames(TOTA_TXT)
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
