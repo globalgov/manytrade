@@ -38,7 +38,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      345          0
 ## 2 CountryID           101         0.954     3     3     0      214          0
@@ -47,7 +47,7 @@ memberships database documentation
 ## 5 gptadID               0         1         1     3     0      346          0
 ## 6 treatyID              0         1         8    37     0      345          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                 100         0.955       0      291
 ## 2 Signature           331         0.850       0      271
@@ -66,7 +66,7 @@ memberships database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1        12    37     0     1164          0
 ## 2 CountryID            10         0.999     3     3     0      220          0
@@ -75,7 +75,7 @@ memberships database documentation
 ## 5 destaID               0         1         1     4     0      931          0
 ## 6 treatyID              0         1        12    37     0     1174          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                 630         0.916       0       70
 ## 2 Signature           630         0.916       0       70

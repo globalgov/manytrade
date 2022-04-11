@@ -37,7 +37,7 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0     1208          0
 ## 2 gptadID             880         0.304     1     3     0      340          0
@@ -47,11 +47,11 @@ texts database documentation
 ## 6 treatyID              0         1         8    37     0     1212          0
 ## 7 labptaID            736         0.418     1     3     0      483          0
 ## 
-## ── Variable type: list ─────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      661          0       2605
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                 116         0.908       0      350
 ## 2 Signature           137         0.892       0      337
@@ -71,18 +71,18 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      448          0
 ## 2 Title                 0             1     4    91     0      448          0
 ## 3 treatyID              0             1    10    27     0      449          0
 ## 4 url                   0             1    64    66     0      450          0
 ## 
-## ── Variable type: list ─────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      450          1          1
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                   0             1       0      407
 ## 2 Signature             0             1       0      407

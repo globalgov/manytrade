@@ -42,7 +42,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1     8    37     0      952          0
 ## 2 Title                 0             1     2   129     0      862          0
@@ -52,7 +52,7 @@ agreements database documentation
 ## 6 treatyID              0             1     8    37     0      957          0
 ## 7 destaID               0             1     1     4     0      926          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                  81         0.916       0       70
 ## 2 Signature            81         0.916       0       70
@@ -71,14 +71,14 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1     8    37     0      723          0
 ## 2 Title                 0             1     6    93     0      728          0
 ## 3 treatyID              0             1     8    37     0      729          0
 ## 4 trendID               0             1     1     5     0      723          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                   5         0.993       0       68
 ## 2 Signature             5         0.993       0       68
@@ -97,14 +97,14 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      480          0
 ## 2 Title                 0             1     6    89     0      468          0
 ## 3 treatyID              0             1    10    37     0      483          0
 ## 4 labptaID              0             1     1     3     0      483          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                   0             1       0       27
 ## 2 Signature             0             1       0       27
@@ -123,7 +123,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      338          0
 ## 2 Title                 0         1         3    74     0      339          0
@@ -133,7 +133,7 @@ agreements database documentation
 ## 6 treatyID              0         1         8    35     0      340          0
 ## 7 gptadID               0         1         1     3     0      340          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique
 ## 1 Beg                  30         0.912       0      286
 ## 2 Signature            53         0.844       0      266
