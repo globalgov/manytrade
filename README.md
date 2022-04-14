@@ -1,5 +1,5 @@
-
-# manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
+manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
+===================================================================================
 
 <!-- badges: start -->
 
@@ -22,7 +22,8 @@ relationships to those agreements. Please also check out
 [`{manydata}`](https://github.com/globalgov/manydata) for more about the
 other packages in the ‘many packages’ universe.
 
-## How to install:
+How to install:
+---------------
 
 We’ve made it easier than ever to install and start analysing global
 governance data in R. Simply install the core package,
@@ -66,15 +67,14 @@ manydata::get_packages() # this prints a list of the publicly available data pac
 #manydata::get_packages("manytrade") # this downloads and installs the named package
 ```
 
-## Data included
+Data included
+-------------
 
 Once you have installed the package, you can see the different databases
 and datasets included in the {`manytrade`} package using the following
 function.
 
-``` r
-manydata::data_contrast("manytrade")
-```
+    manydata::data_contrast("manytrade")
 
     ## agreements :
     ##        Unique ID Missing Data Rows Columns        Beg End
@@ -116,7 +116,8 @@ Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/manydata/articles/user.html).
 
-## The ‘many packages’ universe
+The ‘many packages’ universe
+----------------------------
 
 The [many packages](https://github.com/globalgov/) universe is aimed at
 collecting, connecting and correcting network data across issue-domains
@@ -131,9 +132,7 @@ particular datasets you use by listing the official references in the
 function above, as well as the package providers for their work
 assembling the data by using the function below.
 
-``` r
-citation("manytrade")
-```
+    citation("manytrade")
 
     ## 
     ## To cite manytrade in publications use:
@@ -149,7 +148,8 @@ citation("manytrade")
     ##     url = {https://github.com/globalgov/manytrade},
     ##   }
 
-## Contributing
+Contributing
+------------
 
 [`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy
 to contribute in lots of different ways.
