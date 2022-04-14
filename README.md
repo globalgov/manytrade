@@ -33,7 +33,7 @@ discover, install and update various ‘many packages’ from the console.
 manydata::get_packages() # this prints a list of the publicly available data packages currently available
 ```
 
-    ## # A tibble: 6 × 6
+    ## # A tibble: 7 × 6
     ##   name        full_name            
     ##   <chr>       <chr>                
     ## 1 manydata    globalgov/manydata   
@@ -42,6 +42,7 @@ manydata::get_packages() # this prints a list of the publicly available data pac
     ## 4 manypkgs    globalgov/manypkgs   
     ## 5 manystates  globalgov/manystates 
     ## 6 manytrade   globalgov/manytrade  
+    ## 7 messydates  globalgov/messydates 
     ##   description                                                          
     ##   <chr>                                                                
     ## 1 An R portal for ensembled global governance data                     
@@ -50,14 +51,16 @@ manydata::get_packages() # this prints a list of the publicly available data pac
     ## 4 Support for creating new manyverse packages                          
     ## 5 An R package for ensembled data on sovereign states                  
     ## 6 An R package for ensembled data on trade agreements                  
-    ##   installed latest        updated
-    ##   <chr>     <chr>         <date> 
-    ## 1 0.7.3     0.7.3         NA     
-    ## 2 0.1.2     0.1.2         NA     
-    ## 3 <NA>      0.1.1-272ea19 NA     
-    ## 4 0.2.1     0.2.1         NA     
-    ## 5 0.1.0     0.0.6         NA     
-    ## 6 0.1.1     0.1.1         NA
+    ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
+    ##   installed latest        updated   
+    ##   <chr>     <chr>         <date>    
+    ## 1 0.7.3     0.7.3         2022-03-31
+    ## 2 0.1.2     0.1.2         2022-03-16
+    ## 3 0.1.1     0.1.1-272ea19 2022-02-15
+    ## 4 0.2.1     0.2.1         2022-02-18
+    ## 5 0.1.0     0.0.6         2021-12-06
+    ## 6 0.1.1     0.1.1         2022-03-23
+    ## 7 0.2.2     0.2.1         2022-02-18
 
 ``` r
 #manydata::get_packages("manytrade") # this downloads and installs the named package
@@ -79,11 +82,13 @@ manydata::data_contrast("manytrade")
     ## TREND          0       0.29 %  729       7 1947-01-01  NA
     ## LABPTA         0          0 %  483       7 1990-01-01  NA
     ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
-    ##                                                       URL
-    ## DESTA  https://www.designoftradeagreements.org/downloads/
-    ## TREND            http://www.chaire-epi.ulaval.ca/en/trend
-    ## LABPTA          https://doi.org/10.1007/s11558-018-9301-z
-    ## GPTAD       https://wits.worldbank.org/gptad/library.aspx
+    ## GNEVAR         0      36.99 % 1678      16 1947-01-01  NA
+    ##                                                                                                                                                                                                                                        URL
+    ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
+    ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
+    ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
+    ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
+    ## GNEVAR https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git
     ## 
     ## memberships :
     ##           Unique ID Missing Data Rows Columns        Beg End
@@ -98,6 +103,14 @@ manydata::data_contrast("manytrade")
     ## DESTA_REF         0       27.6 % 1000       3  NA  NA
     ##                                                          URL
     ## DESTA_REF https://www.designoftradeagreements.org/downloads/
+    ## 
+    ## texts :
+    ##          Unique ID Missing Data Rows Columns        Beg End
+    ## AGR_TXT          0      20.62 % 1264      11 1947-01-01  NA
+    ## TOTA_TXT         0          0 %  450       9 1948-12-06  NA
+    ##                                                                                                                                                                        URL
+    ## AGR_TXT  https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search
+    ## TOTA_TXT                                                                                                                       https://github.com/mappingtreaties/tota.git
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
@@ -123,18 +136,17 @@ citation("manytrade")
 ```
 
     ## 
-    ## To cite package 'manytrade' in publications use:
+    ## To cite manytrade in publications use:
     ## 
-    ##   James Hollway (2022). manytrade: Trade Agreements for manydata. R
-    ##   package version 0.1.1.
+    ##   J. Hollway. Trade agreements for manydata. 2021.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Manual{,
-    ##     title = {manytrade: Trade Agreements for manydata},
+    ##     title = {manytrade: International Trade Agreements for manydata},
     ##     author = {James Hollway},
-    ##     year = {2022},
-    ##     note = {R package version 0.1.1},
+    ##     year = {2021},
+    ##     url = {https://github.com/globalgov/manytrade},
     ##   }
 
 ## Contributing
