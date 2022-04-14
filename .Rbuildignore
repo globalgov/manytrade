@@ -14,4 +14,3 @@
 ^shinyapp$
 ^.DS_Store
 ^.RDataTmp
-^data-raw/agreements$
