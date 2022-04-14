@@ -1,3 +1,16 @@
+# manytrade 0.1.2
+
+2022-04-14
+
+## Data
+* Added GNEVAR dataset for contributions to trade agreements datasets
+  * Created consolidated version of trade agreements datasets using `manydata::consolidate()`
+  * Added variables for membership conditions and membership procedures using `manypkgs::code_memberships()`
+* Added `texts` database with trade agreements texts
+  * Closed #9 by linking TOTA database to the `TOTA_TXT` dataset in the `texts` database.
+  * Closed #17 by adding texts for trade agreements listed in the `agreements` database. To avoid overlaps, the texts are added to a combined `AGR_TXT` dataset in the `texts` database.
+
+
 # manytrade 0.1.1
 
 2022-03-23
