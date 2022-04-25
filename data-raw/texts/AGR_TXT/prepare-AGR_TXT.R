@@ -158,6 +158,7 @@ AGR_TXT <- dplyr::left_join(AGR_TXT, REM_TXT,
 AGR_TXT <- AGR_TXT %>%
   dplyr::mutate(TreatyText = ifelse(TreatyText == "NULL", Text, TreatyText)) %>% # make sure texts transfer over properly
   dplyr::select(-Text, -AgreementType, -DocType, -GeogArea) %>%
+  dplyr::relocate(manyID, Title, Beg, Signature, Force)
   dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning
