@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
 Version: 0.1.2
-Date: 2022-04-14
+Date: 2022-05-05
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -34,18 +34,18 @@ Imports:
     lubridate,
     messydates,
     dplyr,
+    xml2
+Suggests:
+    rlang,
+    testthat (>= 3.0.0),
     roxygen2,
     usethis,
     remotes,
     pkgdown,
-    xml2,
     tibble,
     pointblank
-Suggests:
-    rlang,
-    testthat (>= 3.0.0)
 Encoding: UTF-8
-LazyData: true
+LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Config/testthat/edition: 3
