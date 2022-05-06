@@ -3,5 +3,5 @@
 .RData
 .Ruserdata
 /docs/*
-.DS_Store
+*.DS_Store
 .RDataTmp
