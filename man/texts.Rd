@@ -11,7 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{AGR_TXT: }{A dataset with 1264 observations and the following
-11 variables: manyID, gptadID, destaID, trendID, Title, Beg, Signature, Force, treatyID, labptaID, TreatyText.}
+11 variables: manyID, Title, Beg, Signature, Force, gptadID, destaID, trendID, treatyID, labptaID, TreatyText.}
 \item{TOTA_TXT: }{A dataset with 450 observations and the following
 9 variables: manyID, Title, Beg, Signature, Force, TreatyText, treatyID, url, totaID.}
 }
@@ -37,25 +37,25 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0     1208          0
-## 2 gptadID             880         0.304     1     3     0      340          0
-## 3 destaID             256         0.797     1     4     0      926          0
-## 4 trendID             487         0.615     1     5     0      723          0
-## 5 Title                 0         1         2   129     0     1081          0
+## 2 Title                 0         1         2   129     0     1081          0
+## 3 gptadID             880         0.304     1     3     0      340          0
+## 4 destaID             256         0.797     1     4     0      926          0
+## 5 trendID             487         0.615     1     5     0      723          0
 ## 6 treatyID              0         1         8    37     0     1212          0
 ## 7 labptaID            736         0.418     1     3     0      483          0
 ## 
-## ── Variable type: list ────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      661          0       2605
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                 116         0.908       0      350
-## 2 Signature           137         0.892       0      337
-## 3 Force               255         0.798       0      246
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 116         0.908       0      350 2020-01-01 1947-01-01
+## 2 Signature           137         0.892       0      337 2020-01-01 1947-01-01
+## 3 Force               255         0.798       0      246 2020-01-01 1947-01-01
 ## 
 ## $TOTA_TXT
 ## ── Data Summary ────────────────────────
@@ -71,7 +71,7 @@ texts database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      448          0
 ## 2 Title                 0             1     4    91     0      448          0
@@ -79,15 +79,15 @@ texts database documentation
 ## 4 url                   0             1    64    66     0      450          0
 ## 5 totaID                0             1     1     3     0      450          0
 ## 
-## ── Variable type: list ────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText            0             1      450          1          1
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   0             1       0      407
-## 2 Signature             0             1       0      407
-## 3 Force                 0             1       0      318
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   0             1       0      407 2016-07-28 1948-12-06
+## 2 Signature             0             1       0      407 2016-07-28 1948-12-06
+## 3 Force                 0             1       0      318 2017-08-01 1949-04-01
 }
 }
 \keyword{datasets}
