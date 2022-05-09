@@ -10,9 +10,11 @@
 #' \item{LABPTA: }{A dataset with 483 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 #' \item{GPTAD: }{A dataset with 340 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID.}
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, 
+#' Signature, Force, treatyID, gptadID.}
 #' \item{DESTA: }{A dataset with 959 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, destaID.}
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, 
+#' Signature, Force, treatyID, destaID.}
 #' }
 
 #'
