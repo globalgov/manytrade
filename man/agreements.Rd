@@ -42,7 +42,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1     8    37     0      952          0
 ## 2 Title                 0             1     2   129     0      862          0
@@ -52,11 +52,11 @@ agreements database documentation
 ## 6 treatyID              0             1     8    37     0      957          0
 ## 7 destaID               0             1     1     4     0      926          0
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                  81         0.916       0       70
-## 2 Signature            81         0.916       0       70
-## 3 Force               242         0.748       0       66
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                  81         0.916       0       70 2020-01-01 1948-01-01
+## 2 Signature            81         0.916       0       70 2020-01-01 1948-01-01
+## 3 Force               242         0.748       0       66 2020-01-01 1949-01-01
 ## 
 ## $TREND
 ## ── Data Summary ────────────────────────
@@ -71,18 +71,18 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1     8    37     0      723          0
 ## 2 Title                 0             1     6    93     0      728          0
 ## 3 treatyID              0             1     8    37     0      729          0
 ## 4 trendID               0             1     1     5     0      723          0
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   5         0.993       0       68
-## 2 Signature             5         0.993       0       68
-## 3 Force                 5         0.993       0       68
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   5         0.993       0       68 2018-01-01 1947-01-01
+## 2 Signature             5         0.993       0       68 2018-01-01 1947-01-01
+## 3 Force                 5         0.993       0       68 2018-01-01 1947-01-01
 ## 
 ## $LABPTA
 ## ── Data Summary ────────────────────────
@@ -97,18 +97,18 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0             1    10    37     0      480          0
 ## 2 Title                 0             1     6    89     0      468          0
 ## 3 treatyID              0             1    10    37     0      483          0
 ## 4 labptaID              0             1     1     3     0      483          0
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   0             1       0       27
-## 2 Signature             0             1       0       27
-## 3 Force                 0             1       0       27
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   0             1       0       27 2016-01-01 1990-01-01
+## 2 Signature             0             1       0       27 2016-01-01 1990-01-01
+## 3 Force                 0             1       0       27 2016-01-01 1990-01-01
 ## 
 ## $GPTAD
 ## ── Data Summary ────────────────────────
@@ -123,7 +123,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
 ## 1 manyID                0         1         8    37     0      338          0
 ## 2 Title                 0         1         3    74     0      339          0
@@ -133,11 +133,11 @@ agreements database documentation
 ## 6 treatyID              0         1         8    35     0      340          0
 ## 7 gptadID               0         1         1     3     0      340          0
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                  30         0.912       0      286
-## 2 Signature            53         0.844       0      266
-## 3 Force                63         0.815       0      199
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                  30         0.912       0      286 2009-07-08 1957-03-25
+## 2 Signature            53         0.844       0      266 2009-07-08 1957-03-25
+## 3 Force                63         0.815       0      199 2010-01-03 1958-01-01
 ## 
 ## $GNEVAR
 ## ── Data Summary ────────────────────────
@@ -152,7 +152,7 @@ agreements database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type: character ────────────────────────────────────────────────────
 ##    skim_variable   n_missing complete_rate   min   max empty n_unique whitespace
 ##  1 manyID                  0         1         8    37     0     1407          0
 ##  2 Title                   0         1         2   129     0     1374          0
@@ -168,11 +168,11 @@ agreements database documentation
 ## 12 Memb.conditions      1228         0.268     2    50     0       30          0
 ## 13 Memb.procedures      1228         0.268     2    40     0        7          0
 ## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                 116         0.931       0      610
-## 2 Signature           137         0.918       0      597
-## 3 Force               255         0.848       0      482
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 116         0.931       0      610 2020-01-01 1947-01-01
+## 2 Signature           137         0.918       0      597 2020-01-01 1947-01-01
+## 3 Force               255         0.848       0      482 2020-01-01 1947-01-01
 }
 }
 \keyword{datasets}

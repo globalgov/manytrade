@@ -46,6 +46,11 @@ GNEVAR <- dplyr::left_join(GNEVAR, AGR_TXT,
 GNEVAR <- GNEVAR %>%
   dplyr::arrange(Beg)
 
+# Increase precision of dates
+# new <- gnevar %>% dplyr::filter(is.na(gptadID))
+# agr_txt <- manytrade::texts$AGR_TXT
+
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
@@ -67,7 +72,7 @@ GNEVAR <- GNEVAR %>%
 # that you're including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib(agreements, GNEVAR)`.
-manypkgs::export_data(GNEVAR, database = "agreements", 
+manypkgs::export_data(GNEVAR, database = "gnevar", 
                       URL = c("https://www.designoftradeagreements.org/downloads/",
                               "https://wits.worldbank.org/gptad/library.aspx",
                               "https://doi.org/10.1007/s11558-018-9301-z",
