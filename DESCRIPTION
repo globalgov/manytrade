@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
 Version: 0.1.2
-Date: 2022-05-05
+Date: 2022-05-17
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
