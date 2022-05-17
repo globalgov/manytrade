@@ -6,43 +6,21 @@
 # Stage one: Assembling data
 
 # consolidated version of agreements database
-GNEVAR <- manydata::favour(manytrade::agreements, "GPTAD") %>% 
-  manydata::consolidate("any",
-                        "any",
-                        "coalesce",
-                        key = "manyID")
-# add TOTA database agreements
-GNEVAR <- dplyr::full_join(GNEVAR, manytrade::texts$TOTA_TXT,
-                           by = c("manyID", "Title", "Beg", "Signature", "Force", "treatyID"))
-
-GNEVAR <- GNEVAR %>%
-  dplyr::select(-"TreatyText", -"url") %>%
-  dplyr::relocate("manyID", "Title", "Beg", "Signature", "Force", 
-                  "AgreementType", "DocType", "GeogArea")
+GNEVAR <- dplyr::bind_rows(manytrade::agreements$DESTA, 
+                           manytrade::agreements$GPTAD,
+                           manytrade::agreements$LABPTA,
+                           manytrade::agreements$TREND,
+                           manytrade::agreements$TOTA)
 
 # Stage two: Adding membership conditions and procedures columns
-TOTA_TXT <- manytrade::texts$TOTA_TXT
-TOTA_TXT$Memb.conditions <- manypkgs::code_memberships(TOTA_TXT$TreatyText, 
-                                                       TOTA_TXT$Title, 
-                                                       memberships = "condition")
-TOTA_TXT$Memb.procedures <- manypkgs::code_memberships(TOTA_TXT$TreatyText, 
-                                                       memberships = "process")
-TOTA_TXT <- dplyr::select(TOTA_TXT, "manyID", "totaID", "Memb.conditions", "Memb.procedures")
-GNEVAR <- dplyr::left_join(GNEVAR, TOTA_TXT,
-                            by = c("manyID", "totaID"))
-
 AGR_TXT <- manytrade::texts$AGR_TXT
-AGR_TXT$Memb.conditions <- manypkgs::code_memberships(AGR_TXT$TreatyText, 
-                                                      AGR_TXT$Title, 
+AGR_TXT$Memb.conditions <- manypkgs::code_memberships(AGR_TXT$TreatyText, AGR_TXT$Title, 
                                                       memberships = "condition")
 AGR_TXT$Memb.procedures <- manypkgs::code_memberships(AGR_TXT$TreatyText, 
-                                                       memberships = "process")
-AGR_TXT <- dplyr::select(AGR_TXT, "manyID", "gptadID", "destaID", "labptaID", 
-                         "trendID", "Memb.conditions", "Memb.procedures")
+                                                      memberships = "process")
+AGR_TXT <- dplyr::select(AGR_TXT, "manyID", "Memb.conditions", "Memb.procedures")
 GNEVAR <- dplyr::left_join(GNEVAR, AGR_TXT,
-                           by = c("manyID", "gptadID", "destaID", "labptaID", 
-                                  "trendID", "Memb.conditions", "Memb.procedures"))
-
+                            by = c("manyID"))
 GNEVAR <- GNEVAR %>%
   dplyr::arrange(Beg)
 
@@ -50,6 +28,9 @@ GNEVAR <- GNEVAR %>%
 # new <- gnevar %>% dplyr::filter(is.na(gptadID))
 # agr_txt <- manytrade::texts$AGR_TXT
 
+# text <- stringr::str_remove_all(tolower(text),
+#                                 "[.] appendix .*$|[.] annex .*$|
+#                                 |[.] table .*$")
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
