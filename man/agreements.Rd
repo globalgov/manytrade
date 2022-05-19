@@ -6,20 +6,22 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 5 datasets: DESTA, TREND, LABPTA, GPTAD, GNEVAR.
+following 5 datasets: TREND, LABPTA, GPTAD, DESTA, TOTA.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{DESTA: }{A dataset with 959 observations and the following
-10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, destaID.}
 \item{TREND: }{A dataset with 729 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 \item{LABPTA: }{A dataset with 483 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 \item{GPTAD: }{A dataset with 340 observations and the following
-10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID.}
-\item{GNEVAR: }{A dataset with 1678 observations and the following
-16 variables: manyID, Title, Beg, Signature, Force, AgreementType, DocType, GeogArea, gptadID, destaID, trendID, treatyID, labptaID, totaID, Memb.conditions, Memb.procedures.}
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+Signature, Force, treatyID, gptadID.}
+\item{DESTA: }{A dataset with 959 observations and the following
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+Signature, Force, treatyID, destaID.}
+\item{TOTA: }{A dataset with 450 observations and the following
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
 }
 }
 \usage{
@@ -29,36 +31,7 @@ agreements
 agreements database documentation
 }
 \details{
-\preformatted{## $DESTA
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             959   
-## Number of columns          10    
-## _______________________          
-## Column type frequency:           
-##   character                7     
-##   messydt                  3     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0             1     8    37     0      952          0
-## 2 Title                 0             1     2   129     0      862          0
-## 3 AgreementType         0             1     1     3     0        2          0
-## 4 DocType               0             1     1     1     0        3          0
-## 5 GeogArea              0             1     1     1     0        2          0
-## 6 treatyID              0             1     8    37     0      957          0
-## 7 destaID               0             1     1     4     0      926          0
-## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique max        min       
-## 1 Beg                  81         0.916       0       70 2020-01-01 1948-01-01
-## 2 Signature            81         0.916       0       70 2020-01-01 1948-01-01
-## 3 Force               242         0.748       0       66 2020-01-01 1949-01-01
-## 
-## $TREND
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## $TREND
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
@@ -72,11 +45,11 @@ agreements database documentation
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0             1     8    37     0      723          0
-## 2 Title                 0             1     6    93     0      728          0
-## 3 treatyID              0             1     8    37     0      729          0
-## 4 trendID               0             1     1     5     0      723          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0             1   8  37     0      723          0
+## 2 Title                 0             1   6  93     0      728          0
+## 3 treatyID              0             1   8  37     0      729          0
+## 4 trendID               0             1   1   5     0      723          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
@@ -98,11 +71,11 @@ agreements database documentation
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0             1    10    37     0      480          0
-## 2 Title                 0             1     6    89     0      468          0
-## 3 treatyID              0             1    10    37     0      483          0
-## 4 labptaID              0             1     1     3     0      483          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0             1  10  37     0      480          0
+## 2 Title                 0             1   6  89     0      468          0
+## 3 treatyID              0             1  10  37     0      483          0
+## 4 labptaID              0             1   1   3     0      483          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
@@ -124,14 +97,14 @@ agreements database documentation
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1         8    37     0      338          0
-## 2 Title                 0         1         3    74     0      339          0
-## 3 AgreementType         0         1         0     1     5        2          0
-## 4 DocType               0         1         0     1     5        4          0
-## 5 GeogArea             75         0.779     0     1     5        3          0
-## 6 treatyID              0         1         8    35     0      340          0
-## 7 gptadID               0         1         1     3     0      340          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0         1       8  37     0      338          0
+## 2 Title                 0         1       3  74     0      339          0
+## 3 AgreementType         0         1       0   1     5        2          0
+## 4 DocType               0         1       0   1     5        4          0
+## 5 GeogArea             75         0.779   0   1     5        3          0
+## 6 treatyID              0         1       8  35     0      340          0
+## 7 gptadID               0         1       1   3     0      340          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
@@ -139,40 +112,60 @@ agreements database documentation
 ## 2 Signature            53         0.844       0      266 2009-07-08 1957-03-25
 ## 3 Force                63         0.815       0      199 2010-01-03 1958-01-01
 ## 
-## $GNEVAR
+## $DESTA
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
-## Number of rows             1678  
-## Number of columns          16    
+## Number of rows             959   
+## Number of columns          10    
 ## _______________________          
 ## Column type frequency:           
-##   character                13    
+##   character                7     
 ##   messydt                  3     
 ## ________________________         
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##    skim_variable   n_missing complete_rate   min   max empty n_unique whitespace
-##  1 manyID                  0         1         8    37     0     1407          0
-##  2 Title                   0         1         2   129     0     1374          0
-##  3 AgreementType         537         0.680     0     3     5        3          0
-##  4 DocType               537         0.680     0     1     5        4          0
-##  5 GeogArea              579         0.655     0     1     5        4          0
-##  6 gptadID              1312         0.218     1     3     0      340          0
-##  7 destaID               688         0.590     1     4     0      926          0
-##  8 trendID               919         0.452     1     5     0      723          0
-##  9 treatyID                0         1         8    37     0     1425          0
-## 10 labptaID             1168         0.304     1     3     0      483          0
-## 11 totaID               1228         0.268     1     3     0      450          0
-## 12 Memb.conditions      1228         0.268     2    50     0       30          0
-## 13 Memb.procedures      1228         0.268     2    40     0        7          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0             1   8  37     0      952          0
+## 2 Title                 0             1   2 129     0      862          0
+## 3 AgreementType         0             1   1   3     0        2          0
+## 4 DocType               0             1   1   1     0        3          0
+## 5 GeogArea              0             1   1   1     0        2          0
+## 6 treatyID              0             1   8  37     0      957          0
+## 7 destaID               0             1   1   4     0      926          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
-## 1 Beg                 116         0.931       0      610 2020-01-01 1947-01-01
-## 2 Signature           137         0.918       0      597 2020-01-01 1947-01-01
-## 3 Force               255         0.848       0      482 2020-01-01 1947-01-01
-}
+## 1 Beg                  81         0.916       0       70 2020-01-01 1948-01-01
+## 2 Signature            81         0.916       0       70 2020-01-01 1948-01-01
+## 3 Force               242         0.748       0       66 2020-01-01 1949-01-01
+## 
+## $TOTA
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             450   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   character                4     
+##   messydt                  3     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0             1  10  37     0      447          0
+## 2 Title                 0             1   4  91     0      448          0
+## 3 treatyID              0             1  10  27     0      449          0
+## 4 totaID                0             1   1   3     0      450          0
+## 
+## ── Variable type: messydt ──────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   0         1           0      407 2016-07-28 1948-12-06
+## 2 Signature             0         1           0      407 2016-07-28 1948-12-06
+## 3 Force                 3         0.993       0      317 2017-08-01 1949-04-01
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

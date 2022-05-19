@@ -25,7 +25,7 @@ memberships
 memberships database documentation
 }
 \details{
-\preformatted{## $GPTAD_MEM
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## $GPTAD_MEM
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
@@ -39,13 +39,13 @@ memberships database documentation
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1         8    37     0      345          0
-## 2 CountryID           101         0.954     3     3     0      214          0
-## 3 Title                 0         1         3    74     0      345          0
-## 4 CountryName           0         1         3    48     0      249          0
-## 5 gptadID               0         1         1     3     0      346          0
-## 6 treatyID              0         1         8    37     0      345          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0         1       8  37     0      345          0
+## 2 CountryID           101         0.954   3   3     0      214          0
+## 3 Title                 0         1       3  74     0      345          0
+## 4 CountryName           0         1       3  48     0      249          0
+## 5 gptadID               0         1       1   3     0      346          0
+## 6 treatyID              0         1       8  37     0      345          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
@@ -67,19 +67,19 @@ memberships database documentation
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1        12    37     0     1164          0
-## 2 CountryID            10         0.999     3     3     0      220          0
-## 3 Title                 0         1         2   146     0     1090          0
-## 4 CountryName           0         1         4    38     0      222          0
-## 5 destaID               0         1         1     4     0      931          0
-## 6 treatyID              0         1        12    37     0     1174          0
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0         1      12  37     0     1164          0
+## 2 CountryID            10         0.999   3   3     0      220          0
+## 3 Title                 0         1       2 146     0     1090          0
+## 4 CountryName           0         1       4  38     0      222          0
+## 5 destaID               0         1       1   4     0      931          0
+## 6 treatyID              0         1      12  37     0     1174          0
 ## 
 ## ── Variable type: messydt ──────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                 630         0.916       0       70 2020-12-31 1948-01-01
 ## 2 Signature           630         0.916       0       70 2020-12-31 1948-01-01
 ## 3 Force              2886         0.615       0       66 2020-12-31 1949-01-01
-}
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

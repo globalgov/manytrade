@@ -2,6 +2,10 @@
 
 # Due to the specificities of the texts database,
 # the usual script preparation format has been adapted.
+# To avoid overlaps in texts stored, AGR_TXT is based on a consolidated 
+# version of the agreements database, to avoid duplicate entries. 
+# Texts from the TOTA database (Alschner, Seiermann, and Skougarevskiy, 2017) 
+# are given precedence.
 
 ## Download texts from TEXTS OF TRADE AGREEMENTS (TOTA) database
 url <- "https://raw.github.com/mappingtreaties/tota/master/xml/"
