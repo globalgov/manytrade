@@ -40,7 +40,7 @@ agreements database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                4     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -51,7 +51,7 @@ agreements database documentation
 ## 3 treatyID              0             1   8  37     0      729          0
 ## 4 trendID               0             1   1   5     0      723          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                   5         0.993       0       68 2018-01-01 1947-01-01
 ## 2 Signature             5         0.993       0       68 2018-01-01 1947-01-01
@@ -66,7 +66,7 @@ agreements database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                4     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -77,7 +77,7 @@ agreements database documentation
 ## 3 treatyID              0             1  10  37     0      483          0
 ## 4 labptaID              0             1   1   3     0      483          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                   0             1       0       27 2016-01-01 1990-01-01
 ## 2 Signature             0             1       0       27 2016-01-01 1990-01-01
@@ -92,7 +92,7 @@ agreements database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                7     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -106,7 +106,7 @@ agreements database documentation
 ## 6 treatyID              0         1       8  35     0      340          0
 ## 7 gptadID               0         1       1   3     0      340          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                  30         0.912       0      286 2009-07-08 1957-03-25
 ## 2 Signature            53         0.844       0      266 2009-07-08 1957-03-25
@@ -121,7 +121,7 @@ agreements database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                7     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -135,7 +135,7 @@ agreements database documentation
 ## 6 treatyID              0             1   8  37     0      957          0
 ## 7 destaID               0             1   1   4     0      926          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                  81         0.916       0       70 2020-01-01 1948-01-01
 ## 2 Signature            81         0.916       0       70 2020-01-01 1948-01-01
@@ -150,7 +150,7 @@ agreements database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                4     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -161,7 +161,7 @@ agreements database documentation
 ## 3 treatyID              0             1  10  27     0      449          0
 ## 4 totaID                0             1   1   3     0      450          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                   0         1           0      407 2016-07-28 1948-12-06
 ## 2 Signature             0         1           0      407 2016-07-28 1948-12-06

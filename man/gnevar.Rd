@@ -31,8 +31,7 @@ gnevar database documentation
 ## Number of columns          16    
 ## _______________________          
 ## Column type frequency:           
-##   character                13    
-##   messydt                  3     
+##   character                16    
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -40,23 +39,20 @@ gnevar database documentation
 ##    skim_variable   n_missing complete_rate min max empty n_unique whitespace
 ##  1 manyID                  0         1       8  37     0     1393          0
 ##  2 Title                   0         1       2 129     0     2042          0
-##  3 AgreementType        2609         0.413   0   3     7        3          0
-##  4 DocType              2609         0.413   0   1     7        4          0
-##  5 GeogArea             2742         0.383   0   1     7        4          0
-##  6 treatyID                0         1       8  37     0     1515          0
-##  7 destaID              3107         0.301   1   4     0      926          0
-##  8 gptadID              3949         0.112   1   3     0      340          0
-##  9 labptaID             3632         0.183   1   3     0      483          0
-## 10 trendID              3351         0.246   1   5     0      723          0
-## 11 totaID               3749         0.157   1   3     0      450          0
-## 12 Memb.conditions         6         0.999   2  50     0       57          0
-## 13 Memb.procedures         6         0.999   2  40     0       11          0
-## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique max        min       
-## 1 Beg                 122         0.973       0      610 2020-01-01 1947-01-01
-## 2 Signature           147         0.967       0      597 2020-01-01 1947-01-01
-## 3 Force               326         0.927       0      484 2020-01-01 1947-01-01
+##  3 Beg                   122         0.973  10  10     0      610          0
+##  4 AgreementType        2609         0.413   0   3     7        3          0
+##  5 DocType              2609         0.413   0   1     7        4          0
+##  6 GeogArea             2742         0.383   0   1     7        4          0
+##  7 Signature             147         0.967  10  10     0      597          0
+##  8 Force                 326         0.927  10  10     0      484          0
+##  9 treatyID                0         1       8  37     0     1515          0
+## 10 destaID              3107         0.301   1   4     0      926          0
+## 11 gptadID              3949         0.112   1   3     0      340          0
+## 12 labptaID             3632         0.183   1   3     0      483          0
+## 13 trendID              3351         0.246   1   5     0      723          0
+## 14 totaID               3749         0.157   1   3     0      450          0
+## 15 Memb.conditions         6         0.999   2  50     0       57          0
+## 16 Memb.procedures         6         0.999   2  40     0       11          0
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

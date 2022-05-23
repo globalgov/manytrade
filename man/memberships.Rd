@@ -10,12 +10,10 @@ following 2 datasets: GPTAD_MEM, DESTA_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{GPTAD_MEM: }{A dataset with 2201 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force,
-CountryName, gptadID, treatyID.}
+\item{GPTAD_MEM: }{A dataset with 2198 observations and the following
+9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, gptadID, treatyID.}
 \item{DESTA_MEM: }{A dataset with 7492 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force,
-CountryName, destaID, treatyID.}
+9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, destaID, treatyID.}
 }
 }
 \usage{
@@ -29,29 +27,29 @@ memberships database documentation
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
-## Number of rows             2201  
+## Number of rows             2198  
 ## Number of columns          9     
 ## _______________________          
 ## Column type frequency:           
 ##   character                6     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1       8  37     0      345          0
-## 2 CountryID           101         0.954   3   3     0      214          0
+## 2 CountryID           130         0.941   3   3     0      207          0
 ## 3 Title                 0         1       3  74     0      345          0
-## 4 CountryName           0         1       3  48     0      249          0
+## 4 CountryName           0         1       4  48     0      242          0
 ## 5 gptadID               0         1       1   3     0      346          0
 ## 6 treatyID              0         1       8  37     0      345          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
-## 1 Beg                 100         0.955       0      291 2009-04-28 1957-03-25
-## 2 Signature           331         0.850       0      271 2009-04-28 1957-03-25
-## 3 Force               285         0.871       0      200 2010-01-03 1958-01-01
+## 1 Beg                  99         0.955       0      291 2009-04-28 1957-03-25
+## 2 Signature           328         0.851       0      271 2009-04-28 1957-03-25
+## 3 Force               283         0.871       0      200 2010-01-03 1958-01-01
 ## 
 ## $DESTA_MEM
 ## ── Data Summary ────────────────────────
@@ -62,7 +60,7 @@ memberships database documentation
 ## _______________________          
 ## Column type frequency:           
 ##   character                6     
-##   messydt                  3     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
@@ -75,7 +73,7 @@ memberships database documentation
 ## 5 destaID               0         1       1   4     0      931          0
 ## 6 treatyID              0         1      12  37     0     1174          0
 ## 
-## ── Variable type: messydt ──────────────────────────────────────────────────────
+## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
 ## 1 Beg                 630         0.916       0       70 2020-12-31 1948-01-01
 ## 2 Signature           630         0.916       0       70 2020-12-31 1948-01-01
