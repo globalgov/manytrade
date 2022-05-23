@@ -32,41 +32,27 @@ TOTA_TXT$Signature <- lapply(texts, function(x) paste0(x$treaty$meta$date_signed
 TOTA_TXT$Force <- lapply(texts, function(x) paste0(x$treaty$meta$date_into_force))
 TOTA_TXT <- TOTA_TXT %>%
   dplyr::mutate(Title = manypkgs::standardise_titles(as.character(Title))) %>%
-  dplyr::mutate(Signature = manypkgs::standardise_dates(as.character(Signature)),
-                Force = manypkgs::standardise_dates(as.character(Force))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force))
-
-# Add treatyID column
-TOTA_TXT$treatyID <- manypkgs::code_agreements(TOTA_TXT, 
-                                               TOTA_TXT$Title, TOTA_TXT$Beg)
-
-# Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::texts, 
-                                        var = TOTA_TXT$treatyID)
-TOTA_TXT <- dplyr::left_join(TOTA_TXT, manyID, by = "treatyID")
+  dplyr::mutate(Signature = messydates::make_messydate(as.character(Signature)),
+                Force = messydates::make_messydate(as.character(Force))) %>%
+  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::arrange(Beg)
 
 # Re-order the columns
 TOTA_TXT <- TOTA_TXT %>%
   dplyr::rename(url = ID) %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, 
-                TreatyText, treatyID, url) %>% 
-  dplyr::arrange(Beg)
-
-# Add totaID column
-TOTA_TXT$totaID <- rownames(TOTA_TXT)
+  dplyr::select(Title, TreatyText, url)
 
 # Merge texts from TOTA database with the rest of the datasets in the 
 # agreements database
 # consolidate agreements database so that entries across datasets are not duplicated
-AGR_TXT <- manydata::favour(manytrade::agreements, "GPTAD") %>% 
+AGR_TXT <- manydata::favour(manytrade::agreements, c("GPTAD", "TOTA")) %>% 
   manydata::consolidate("any",
                         "any",
                         "coalesce",
                         key = "manyID") 
 
-AGR_TXT <- dplyr::full_join(TOTA_TXT, AGR_TXT, 
-                            by = c("manyID", "Title", "Beg", "Signature", "Force", "treatyID")) %>%
-  dplyr::arrange(Beg)
+AGR_TXT <- dplyr::full_join(AGR_TXT, TOTA_TXT, 
+                            by = "Title")
 
 ## Download texts for GPTAD dataset
 GPTAD_TXT <- AGR_TXT %>%
