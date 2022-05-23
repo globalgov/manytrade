@@ -6,7 +6,7 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{AGR_TXT: }{A dataset with 1740 observations and the following
-#' 13 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID, 
+#' 13 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID,
 #' gptadID, trendID, labptaID, destaID, TreatyText, url.}
 #' }
 
