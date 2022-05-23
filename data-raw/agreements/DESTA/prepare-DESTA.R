@@ -11,7 +11,7 @@ DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
 # In this stage you will want to correct the variable names and
 # formats of the 'DESTA' object until the object created
 # below (in stage three) passes all the tests.
-DESTA <- as_tibble(DESTA) %>%
+DESTA <- tibble::as_tibble(DESTA) %>%
   dplyr::filter(typememb != "5", typememb != "6",  typememb != "7", 
                 entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are 
@@ -35,9 +35,9 @@ DESTA <- as_tibble(DESTA) %>%
   dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
-  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg)),
-                        Signature = manypkgs::standardise_dates(as.character(year)),
-                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+  manydata::transmutate(Beg = messydates::make_messydate(as.character(beg)),
+                        Signature = messydates::make_messydate(as.character(year)),
+                        Force = messydates::make_messydate(as.character(entryforceyear))) %>%
   dplyr::select(destaID, Title, Beg, Signature, Force, AgreementType, DocType, 
                 GeogArea)
 
@@ -49,7 +49,8 @@ manyID <- manypkgs::condense_agreements(manytrade::agreements,
                                         var=c(DESTA$treatyID, 
                                               GPTAD$treatyID,
                                               LABPTA$treatyID, 
-                                              TREND$treatyID))
+                                              TREND$treatyID,
+                                              TOTA$treatyID))
 
 DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 

@@ -17,10 +17,10 @@ TOTA <- TOTA_ID %>%
   tidyr::unite(col = "ID", head, num) %>%
   tidyr::unite(col = "ID", ID, tail, sep = "")
 
-TOTA$ID <- paste0(url, TOTA_TXT$ID)
+TOTA$ID <- paste0(url, TOTA$ID)
 
 # Web scrape texts
-TOTA$TreatyText <- apply(TOTA_TXT, 1, function(x) xml2::as_list(xml2::read_xml(x)))
+TOTA$TreatyText <- apply(TOTA, 1, function(x) xml2::as_list(xml2::read_xml(x)))
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
@@ -36,8 +36,8 @@ TOTA$Signature <- lapply(texts, function(x) paste0(x$treaty$meta$date_signed))
 TOTA$Force <- lapply(texts, function(x) paste0(x$treaty$meta$date_into_force))
 TOTA <- TOTA %>%
   dplyr::mutate(Title = manypkgs::standardise_titles(as.character(Title))) %>%
-  dplyr::mutate(Signature = manypkgs::standardise_dates(as.character(Signature)),
-                Force = manypkgs::standardise_dates(as.character(Force))) %>%
+  dplyr::mutate(Signature = messydates::make_messydate(as.character(Signature)),
+                Force = messydates::make_messydate(as.character(Force))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force))
 
 # Add treatyID column
