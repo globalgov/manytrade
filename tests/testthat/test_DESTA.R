@@ -31,7 +31,7 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(agreements[["DESTA"]]$Beg), "messydt")
+  expect_equal(class(agreements[["DESTA"]]$Beg), "mdate")
   expect_false(any(grepl("/", agreements[["DESTA"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
                          agreements[["DESTA"]]$Beg)))
@@ -44,7 +44,7 @@ test_that("Column `Beg` has standardised dates", {
 })
 
 test_that("Column `Signature` has standardised dates", {
-  expect_equal(class(agreements[["DESTA"]]$Signature), "messydt")
+  expect_equal(class(agreements[["DESTA"]]$Signature), "mdate")
   expect_false(any(grepl("/", agreements[["DESTA"]]$Signature)))
   expect_false(any(grepl("^[:alpha:]$",
                          agreements[["DESTA"]]$Signature)))

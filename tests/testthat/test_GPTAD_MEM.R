@@ -27,7 +27,7 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(memberships[["GPTAD_MEM"]]$Beg), "messydt")
+  expect_equal(class(memberships[["GPTAD_MEM"]]$Beg), "mdate")
   expect_false(any(grepl("/", memberships[["GPTAD_MEM"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
                          memberships[["GPTAD_MEM"]]$Beg)))
