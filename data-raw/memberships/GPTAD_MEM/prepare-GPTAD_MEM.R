@@ -10,7 +10,7 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
 # In this stage you will want to correct the variable names and
 # formats of the 'GPTAD_MEM' object until the object created
 # below (in stage three) passes all the tests.
-GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
+GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(CountryName = gsub("\\\\r\\\\n", "", Membership)) %>%
   #remove \r\n line break entries
@@ -61,8 +61,8 @@ GPTAD_MEM <- as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                     Signature = manypkgs::standardise_dates(`Date.of.Signature`),
-                     Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
+                     Signature = messydates::make_messydate(`Date.of.Signature`),
+                     Force = messydates::make_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, CountryID, CountryName, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)

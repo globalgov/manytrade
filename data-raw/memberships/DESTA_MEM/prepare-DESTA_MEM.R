@@ -10,14 +10,14 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 # In this stage you will want to correct the variable names and
 # formats of the 'DESTA_MEM' object until the object created
 # below (in stage three) passes all the tests.
-DESTA_MEM <- as_tibble(DESTA_MEM) %>%
+DESTA_MEM <- tibble::as_tibble(DESTA_MEM) %>%
   tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "CountryID", 
                       values_drop_na = TRUE) %>%
   #arrange columns containing countries into one column, with each CountryID in rows corresponding to the treaty it is party to
   manydata::transmutate(destaID = as.character(`base_treaty`),
                         Title = manypkgs::standardise_titles(name),
-                        Signature = manypkgs::standardise_dates(as.character(year)),
-                        Force = manypkgs::standardise_dates(as.character(entryforceyear))) %>%
+                        Signature = messydates::make_messydate(as.character(year)),
+                        Force = messydates::make_messydate(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(destaID, CountryID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
