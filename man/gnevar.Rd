@@ -10,10 +10,10 @@ following 1 datasets: GNEVAR.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{GNEVAR: }{A dataset with 4447 observations and the following
-16 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-Signature, Force, treatyID, destaID, gptadID, labptaID, trendID, totaID,
-Memb.conditions, Memb.procedures.}
+\item{GNEVAR: }{A dataset with 67723 observations and the following
+16 variables: manyID, Title, Beg, Signature, Force, AgreementType,
+DocType, GeogArea, Memb.conditions, Memb.procedures, totaID, gptadID,
+destaID, labptaID, trendID, treatyID.}
 }
 }
 \usage{
@@ -27,32 +27,36 @@ gnevar database documentation
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
-## Number of rows             4447  
+## Number of rows             67723 
 ## Number of columns          16    
 ## _______________________          
 ## Column type frequency:           
-##   character                16    
+##   character                14    
+##   mdate                    2     
 ## ________________________         
 ## Group variables            None  
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
 ##    skim_variable   n_missing complete_rate min max empty n_unique whitespace
-##  1 manyID                  0         1       8  37     0     1393          0
-##  2 Title                   0         1       2 129     0     2042          0
-##  3 Beg                   122         0.973  10  10     0      610          0
-##  4 AgreementType        2609         0.413   0   3     7        3          0
-##  5 DocType              2609         0.413   0   1     7        4          0
-##  6 GeogArea             2742         0.383   0   1     7        4          0
-##  7 Signature             147         0.967  10  10     0      597          0
-##  8 Force                 326         0.927  10  10     0      484          0
-##  9 treatyID                0         1       8  37     0     1515          0
-## 10 destaID              3107         0.301   1   4     0      926          0
-## 11 gptadID              3949         0.112   1   3     0      340          0
-## 12 labptaID             3632         0.183   1   3     0      483          0
-## 13 trendID              3351         0.246   1   5     0      723          0
-## 14 totaID               3749         0.157   1   3     0      450          0
-## 15 Memb.conditions         6         0.999   2  50     0       57          0
-## 16 Memb.procedures         6         0.999   2  40     0       11          0
+##  1 manyID                  0         1       8  37     0     1385          0
+##  2 Title                   0         1       3 129     0     1331          0
+##  3 Signature             142         0.998  10  20     0      579          0
+##  4 AgreementType         295         0.996   0   3     5        3          0
+##  5 DocType               295         0.996   0   1     5        4          0
+##  6 GeogArea              337         0.995   0   1     5        4          0
+##  7 Memb.conditions         0         1       2  50     0       58          0
+##  8 Memb.procedures         0         1       2  40     0       11          0
+##  9 totaID              34458         0.491   1   3     0      450          0
+## 10 gptadID             33879         0.500   1   3     0      340          0
+## 11 destaID               449         0.993   1   4     0      926          0
+## 12 labptaID             1154         0.983   1   3     0      483          0
+## 13 trendID               692         0.990   1   5     0      723          0
+## 14 treatyID                0         1       8  37     0     1389          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 122         0.998       0      560 2020-01-01 1947-01-01
+## 2 Force               265         0.996       0      419 2020-01-01 1947-01-01
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}
