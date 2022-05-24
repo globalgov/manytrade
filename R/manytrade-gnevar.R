@@ -5,10 +5,10 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
-#' \item{GNEVAR: }{A dataset with 4447 observations and the following
-#' 16 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-#' Signature, Force, treatyID, destaID, gptadID, labptaID, trendID, totaID,
-#' Memb.conditions, Memb.procedures.}
+#' \item{GNEVAR: }{A dataset with 67723 observations and the following
+#' 16 variables: manyID, Title, Beg, Signature, Force, AgreementType,
+#' DocType, GeogArea, Memb.conditions, Memb.procedures, totaID, gptadID,
+#' destaID, labptaID, trendID, treatyID.}
 #' }
 
 #'
