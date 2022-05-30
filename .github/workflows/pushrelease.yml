@@ -1,7 +1,6 @@
 on:
   push:
     branches:
-      - main
       - master
 
 name: Check and release
@@ -70,7 +69,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@master
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
@@ -108,7 +107,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: patch
-          RELEASE_BRANCHES: main
+          RELEASE_BRANCHES: master
       - name: Checkout two
         uses: actions/checkout@v2
       - name: Create Release
@@ -192,7 +191,7 @@ jobs:
         run: |
           git add README.md
           git commit -m "Re-build README.md" || echo "No changes to commit"
-          git push origin main || echo "No changes to commit"
+          git push origin master || echo "No changes to commit"
 
   pkgdown:
     name: Build and deploy website
