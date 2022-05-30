@@ -1,23 +1,24 @@
 # manytrade 0.1.2
 
-2022-05-25
+2022-05-30
 
 ## Data
-* Added `gnevar` database.
-  * Combined all datasets in `agreements` database in `gnevar` dataset.
-  * Added variables for membership conditions and membership procedures using
-  `manypkgs::code_memberships()` for trade agreements listed in `agreements` database.
-  * Closed #6 by adding more precise dates of signature, derived from trade 
-  agreements texts, to GNEVAR dataset.
+* Added `GNEVAR` database.
+  * The`GNEVAR` dataset builds on existing data in the agreements database 
+  (from GPTAD, DESTA, LABPTA, and TREND datasets), adding variables for 
+  membership conditions and membership procedures using
+  `manypkgs::code_memberships()`.
+  * Closed #6 by adding more precise dates of signature to GNEVAR dataset.
+  These dates are extracted from trade agreements texts stored in the `texts`
+  database.
 * Added `texts` database with trade agreements texts.
   * Closed #9 by incorporating TOTA database to the `AGR_TXT` dataset in the 
   `texts` database and added metadata to `TOTA` dataset in `agreements` database.
   * Closed #17 by adding texts for trade agreements listed in the `agreements` 
   database. To avoid overlaps, the texts are added to a combined `AGR_TXT` 
   dataset in the `texts` database.
-* Changed class from 'messydt' to 'mdate' for `Beg`, `Signature`, and `Force` variables in datasets in `agreements`, `memberships`, and `texts` databases.
-
-
+* Changed class from 'messydt' to 'mdate' for `Beg`, `Signature`, and `Force` 
+variables in datasets in `agreements`, `memberships`, and `texts` databases.
 
 # manytrade 0.1.1
 
