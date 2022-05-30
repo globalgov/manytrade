@@ -2,12 +2,12 @@
 
 # The GNEVAR dataset collates all the trade agreements listed in the five
 # datasets in the manytrade::agreements database. To avoid having duplicate 
-# entries in the GNEVAR dataset, `manydata::consolidate()` is used to generate 
-# the dataset.
+# entries in the GNEVAR dataset, the dataset is built on the consolidated
+# version of the text used in the texts database. 
 # The GNEVAR dataset contains additional information on the trade agreements
 # listed, such as membership conditions and procedures for joining agreements, 
 # and increases the precision of Signature dates. These original data are
-# derived from the texts of the trade agreements, which are also stored in the
+# extracted from the texts of the trade agreements, which are also stored in the
 # manytrade::texts database.
 
 # This is a template for importing, cleaning, and exporting data
@@ -16,28 +16,20 @@
 # Stage one: Assembling data
 
 # consolidated version of agreements database
-GNEVAR <- manydata::favour(manytrade::agreements, c("GPTAD", "TOTA")) %>% 
-  manydata::consolidate("any",
-                        "any",
-                        "coalesce",
-                        key = "manyID") 
+GNEVAR <- manytrade::texts$AGR_TXT
 
 # Stage two: Adding membership conditions and procedures columns
-AGR_TXT <- manytrade::texts$AGR_TXT
-AGR_TXT$Memb.conditions <- manypkgs::code_memberships(AGR_TXT$TreatyText, AGR_TXT$Title, 
-                                                      memberships = "condition")
-AGR_TXT$Memb.procedures <- manypkgs::code_memberships(AGR_TXT$TreatyText, 
-                                                      memberships = "process")
-add <- dplyr::select(AGR_TXT, "manyID", "Memb.conditions", "Memb.procedures")
-GNEVAR <- dplyr::left_join(GNEVAR, add, by = "manyID")
+GNEVAR$Memb.conditions <- manypkgs::code_memberships(GNEVAR$TreatyText, GNEVAR$Title, 
+                                                     memberships = "condition")
+GNEVAR$Memb.procedures <- manypkgs::code_memberships(GNEVAR$TreatyText, 
+                                                     memberships = "process")
 GNEVAR <- GNEVAR %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, Force, AgreementType,
-                  DocType, GeogArea, Memb.conditions, Memb.procedures,
-                  totaID, gptadID, destaID, labptaID, trendID) %>%
+  dplyr::relocate(manyID, Title, Beg, Signature, Force, 
+                  Memb.conditions, Memb.procedures) %>%
   dplyr::arrange(Beg)
 
 # Add precise dates from texts
-AGR_TXT$dates <- lapply(AGR_TXT$TreatyText, function(s){
+GNEVAR$dates <- lapply(GNEVAR$TreatyText, function(s){
   s <- unlist(s)
   s <- stringr::str_c(s, collapse = " ")
   s <- tolower(s)
@@ -51,25 +43,16 @@ AGR_TXT$dates <- lapply(AGR_TXT$TreatyText, function(s){
   s <- paste0(unlist(s), collapse = "")
 })
 
-dates <- AGR_TXT %>%
-  dplyr::select(manyID, dates) %>%
-  dplyr::mutate(dates = as.character(dates))
-
-GNEVAR <- dplyr::left_join(GNEVAR, dates, by = "manyID")
-
 GNEVAR <- GNEVAR %>%
   dplyr::relocate(manyID, Title, Beg, Signature, dates) %>%
   dplyr::mutate(Sign.rev = ifelse(grepl("[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}",
                                          dates, perl = T), dates, NA)) %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, Sign.rev) %>%
-  dplyr::select(-dates)
-
-# compare dates and replace those in the same year
-GNEVAR <- GNEVAR %>%
-  dplyr::mutate(Sign.rev = messydates::make_messydate(Sign.rev)) %>%
+  dplyr::mutate(Sign.rev = unlist(Sign.rev)) %>%
   dplyr::mutate(Signature = ifelse(!is.na(Sign.rev) & messydates::year(Signature) == messydates::year(Sign.rev), 
                                    Sign.rev, Signature)) %>%
-  dplyr::select(-Sign.rev)
+  dplyr::mutate(Signature = messydates::as_messydate(Signature)) %>%
+  dplyr::select(-dates, -Sign.rev, -TreatyText, -url,
+                -totaID, -gptadID, -destaID, -labptaID, -trendID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
@@ -92,7 +75,7 @@ GNEVAR <- GNEVAR %>%
 # that you're including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib(agreements, GNEVAR)`.
-manypkgs::export_data(GNEVAR, database = "gnevar", 
+manypkgs::export_data(GNEVAR, database = "agreements", 
                       URL = c("https://www.designoftradeagreements.org/downloads/",
                               "https://wits.worldbank.org/gptad/library.aspx",
                               "https://doi.org/10.1007/s11558-018-9301-z",
