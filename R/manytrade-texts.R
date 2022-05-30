@@ -9,7 +9,6 @@
 #' 13 variables: manyID, Title, Beg, Signature, Force, totaID, gptadID,
 #' trendID, labptaID, treatyID, destaID, TreatyText, url.}
 #' }
-
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}

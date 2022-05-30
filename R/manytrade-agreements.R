@@ -18,7 +18,6 @@
 #' \item{TOTA: }{A dataset with 450 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
 #' }
-
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
