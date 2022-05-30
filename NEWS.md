@@ -1,6 +1,6 @@
 # manytrade 0.1.2
 
-2022-05-30
+2022-05-31
 
 ## Data
 * Added `GNEVAR` database.
