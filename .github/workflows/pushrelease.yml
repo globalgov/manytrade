@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 
 name: Check and release
 
@@ -27,10 +27,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-r@main
         with:
           r-version: ${{ matrix.config.r }}
-      - uses: r-lib/actions/setup-pandoc@master
+      - uses: r-lib/actions/setup-pandoc@main
 
       - name: Query dependencies
         run: |
@@ -69,7 +69,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout one
-        uses: actions/checkout@master
+        uses: actions/checkout@main
         with:
           fetch-depth: '0'
       - name: Bump version and push tag
@@ -107,7 +107,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: patch
-          RELEASE_BRANCHES: master
+          RELEASE_BRANCHES: main
       - name: Checkout two
         uses: actions/checkout@v2
       - name: Create Release
@@ -191,7 +191,7 @@ jobs:
         run: |
           git add README.md
           git commit -m "Re-build README.md" || echo "No changes to commit"
-          git push origin master || echo "No changes to commit"
+          git push origin main || echo "No changes to commit"
 
   pkgdown:
     name: Build and deploy website
