@@ -21,7 +21,6 @@
 #' 8 variables: manyID, Title, Beg, Signature, Force, Memb.conditions,
 #'  Memb.procedures, treatyID.}
 #' }
-
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}

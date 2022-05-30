@@ -6,7 +6,7 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 5 datasets: TREND, LABPTA, GPTAD, DESTA, TOTA.
+following 6 datasets: TREND, LABPTA, GPTAD, DESTA, TOTA, GNEVAR.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
@@ -22,6 +22,9 @@ Signature, Force, treatyID, gptadID.}
 Signature, Force, treatyID, destaID.}
 \item{TOTA: }{A dataset with 450 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
+\item{GNEVAR: }{A dataset with 1503 observations and the following
+8 variables: manyID, Title, Beg, Signature, Force, Memb.conditions,
+Memb.procedures, treatyID.}
 }
 }
 \usage{
@@ -31,6 +34,10 @@ agreements
 agreements database documentation
 }
 \details{
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+}\if{html}{\out{</div>}}
+
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $TREND
 ## ── Data Summary ────────────────────────
 ##                            Values
@@ -166,6 +173,33 @@ agreements database documentation
 ## 1 Beg                   0         1           0      407 2016-07-28 1948-12-06
 ## 2 Signature             0         1           0      407 2016-07-28 1948-12-06
 ## 3 Force                 3         0.993       0      317 2017-08-01 1949-04-01
+## 
+## $GNEVAR
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             1503  
+## Number of columns          8     
+## _______________________          
+## Column type frequency:           
+##   character                5     
+##   mdate                    3     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable   n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                  0             1   8  37     0     1385          0
+## 2 Title                   0             1   3 129     0     1331          0
+## 3 Memb.conditions         0             1   2  50     0       58          0
+## 4 Memb.procedures         0             1   2  40     0       11          0
+## 5 treatyID                0             1   8  37     0     1389          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 116         0.923       0      560 2020-01-01 1947-01-01
+## 2 Signature           136         0.910       0      578 2020-01-01 1947-10-30
+## 3 Force               254         0.831       0      419 2020-01-01 1947-01-01
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}
