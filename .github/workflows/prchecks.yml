@@ -2,6 +2,7 @@ on:
   pull_request:
     branches:
       - main
+      - master
 
 name: Binary checks
 
@@ -27,13 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@main
+      - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
 
-      - uses: r-lib/actions/setup-pandoc@main
+      - uses: r-lib/actions/setup-pandoc@master
 
-      - uses: r-lib/actions/setup-r-dependencies@main
+      - uses: r-lib/actions/setup-r-dependencies@master
         with:
           extra-packages: |
             lintr
