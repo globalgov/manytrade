@@ -3,7 +3,7 @@
 2022-05-31
 
 ## Data
-* Added `GNEVAR` database.
+* Added `GNEVAR` dataset to `agreements` database.
   * The`GNEVAR` dataset builds on existing data in the agreements database 
   (from GPTAD, DESTA, LABPTA, and TREND datasets), adding variables for 
   membership conditions and membership procedures using
