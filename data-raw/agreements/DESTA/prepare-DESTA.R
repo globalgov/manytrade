@@ -35,9 +35,9 @@ DESTA <- tibble::as_tibble(DESTA) %>%
   dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
-  manydata::transmutate(Beg = messydates::make_messydate(as.character(beg)),
-                        Signature = messydates::make_messydate(as.character(year)),
-                        Force = messydates::make_messydate(as.character(entryforceyear))) %>%
+  manydata::transmutate(Beg = messydates::as_messydate(as.character(beg)),
+                        Signature = messydates::as_messydate(as.character(year)),
+                        Force = messydates::as_messydate(as.character(entryforceyear))) %>%
   dplyr::select(destaID, Title, Beg, Signature, Force, AgreementType, DocType, 
                 GeogArea)
 

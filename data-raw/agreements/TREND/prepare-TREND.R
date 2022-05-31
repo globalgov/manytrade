@@ -21,8 +21,8 @@ TREND <- tibble::as_tibble(TREND) %>%
   # standardise date formats across agreements database
   dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
-                        Signature = messydates::make_messydate(as.character(Year)),
-                        Force = messydates::make_messydate(as.character(Year))) %>%
+                        Signature = messydates::as_messydate(as.character(Year)),
+                        Force = messydates::as_messydate(as.character(Year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(trendID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)

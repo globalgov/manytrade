@@ -36,8 +36,8 @@ TOTA$Signature <- lapply(texts, function(x) paste0(x$treaty$meta$date_signed))
 TOTA$Force <- lapply(texts, function(x) paste0(x$treaty$meta$date_into_force))
 TOTA <- TOTA %>%
   dplyr::mutate(Title = manypkgs::standardise_titles(as.character(Title))) %>%
-  dplyr::mutate(Signature = messydates::make_messydate(as.character(Signature)),
-                Force = messydates::make_messydate(as.character(Force))) %>%
+  dplyr::mutate(Signature = messydates::as_messydate(as.character(Signature)),
+                Force = messydates::as_messydate(as.character(Force))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force))
 
 # Add treatyID column

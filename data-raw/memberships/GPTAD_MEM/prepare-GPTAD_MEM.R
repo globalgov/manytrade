@@ -61,8 +61,8 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                     Signature = messydates::make_messydate(`Date.of.Signature`),
-                     Force = messydates::make_messydate(`Date.of.Entry.into.Force`)) %>%
+                     Signature = messydates::as_messydate(`Date.of.Signature`),
+                     Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, CountryID, CountryName, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)

@@ -16,8 +16,8 @@ DESTA_MEM <- tibble::as_tibble(DESTA_MEM) %>%
   #arrange columns containing countries into one column, with each CountryID in rows corresponding to the treaty it is party to
   manydata::transmutate(destaID = as.character(`base_treaty`),
                         Title = manypkgs::standardise_titles(name),
-                        Signature = messydates::make_messydate(as.character(year)),
-                        Force = messydates::make_messydate(as.character(entryforceyear))) %>%
+                        Signature = messydates::as_messydate(as.character(year)),
+                        Force = messydates::as_messydate(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(destaID, CountryID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)

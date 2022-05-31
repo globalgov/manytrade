@@ -16,8 +16,8 @@ LABPTA <- tibble::as_tibble(LABPTA) %>%
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   manydata::transmutate(labptaID = as.character(`Number`),
                         Title = manypkgs::standardise_titles(Name),
-                        Signature = messydates::make_messydate(as.character(year)),
-                        Force = messydates::make_messydate(as.character(year))) %>%
+                        Signature = messydates::as_messydate(as.character(year)),
+                        Force = messydates::as_messydate(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)

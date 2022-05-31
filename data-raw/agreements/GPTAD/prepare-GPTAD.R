@@ -39,8 +39,8 @@ GPTAD <- tibble::as_tibble(GPTAD) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                     Signature = messydates::make_messydate(`Date.of.Signature`),
-                     Force = messydates::make_messydate(`Date.of.Entry.into.Force`)) %>%
+                     Signature = messydates::as_messydate(`Date.of.Signature`),
+                     Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, Title, Beg, Signature, Force, AgreementType, DocType, GeogArea) %>%
   dplyr::arrange(Beg)
