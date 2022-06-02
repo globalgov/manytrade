@@ -21,8 +21,10 @@ GNEVAR <- manytrade::texts$AGR_TXT
 # Stage two: Adding membership conditions and procedures columns
 GNEVAR$Memb.conditions <- manypkgs::code_memberships(GNEVAR$TreatyText, GNEVAR$Title, 
                                                      memberships = "condition")
+GNEVAR$Memb.conditions <- gsub("NA", NA, GNEVAR$Memb.conditions)
 GNEVAR$Memb.procedures <- manypkgs::code_memberships(GNEVAR$TreatyText, 
                                                      memberships = "process")
+GNEVAR$Memb.procedures <- gsub("NA", NA, GNEVAR$Memb.procedures)
 GNEVAR <- GNEVAR %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, 
                   Memb.conditions, Memb.procedures) %>%
