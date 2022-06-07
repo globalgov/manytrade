@@ -11,8 +11,8 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{AGR_TXT: }{A dataset with 1503 observations and the following
-13 variables: manyID, Title, Beg, Signature, Force, totaID, gptadID,
-trendID, labptaID, treatyID, destaID, TreatyText, url.}
+13 variables: manyID, Title, Beg, Signature, Force, totaID,
+gptadID, trendID, labptaID, treatyID, destaID, TreatyText, url.}
 }
 }
 \usage{
@@ -50,7 +50,7 @@ texts database documentation
 ## 
 ## ── Variable type: list ─────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
-## 1 TreatyText            0             1      854          0       1953
+## 1 TreatyText          473         0.685      853          0       1953
 ## 
 ## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       

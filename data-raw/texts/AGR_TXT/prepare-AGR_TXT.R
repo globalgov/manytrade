@@ -247,12 +247,18 @@ AGR_TXT <- AGR_TXT %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
+# Change 'Not found' to NA in text column
+AGR_TXT <- AGR_TXT %>%
+  dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found",
+                                    gsub("Not found", NA, TreatyText),
+                                    TreatyText))
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make TOTA_TXT available
+# Next run the following line to make AGR_TXT available
 # within the manypackage.
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

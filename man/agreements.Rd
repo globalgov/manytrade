@@ -189,11 +189,11 @@ agreements database documentation
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable   n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                  0             1   8  37     0     1385          0
-## 2 Title                   0             1   3 129     0     1331          0
-## 3 Memb.conditions         0             1   2  50     0       58          0
-## 4 Memb.procedures         0             1   2  40     0       11          0
-## 5 treatyID                0             1   8  37     0     1389          0
+## 1 manyID                  0         1       8  37     0     1385          0
+## 2 Title                   0         1       3 129     0     1331          0
+## 3 Memb.conditions       937         0.377   4  50     0       57          0
+## 4 Memb.procedures      1155         0.232   9  40     0       10          0
+## 5 treatyID                0         1       8  37     0     1389          0
 ## 
 ## ── Variable type: mdate ────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate n_empty n_unique max        min       
