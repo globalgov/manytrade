@@ -7,11 +7,20 @@
 \format{
 The references database is a list that contains the
 following 1 datasets: DESTA_REF.
+The DESTA_REF dataset traces the treaty lineage of the trade agreements
+in the DESTA dataset. The relationship between the trade agreements
+(amends/amended by and cites/cited by) is derived from the information in
+the variables \code{entry_type}, \code{base_treaty}, and \code{number} of the original
+DESTA dataset. Trade agreements that are listed as 'protocol or amendment'
+are ordered with the 'amends/amended by' relationship with their base treaties,
+while agreements that are listed as 'accession', 'withdrawal',
+or 'consolidated' are ordered with the 'cites/cited by' relationship
+with their base treaties.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{DESTA_REF: }{A dataset with 1000 observations and the following
-3 variables: manyID1, RefType, manyID2.}
+\item{DESTA_REF: }{A dataset with 584 observations and the following
+3 variables: treatyID1, RefType, treatyID2.}
 }
 }
 \usage{
@@ -25,7 +34,7 @@ references database documentation
 ## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
-## Number of rows             1000  
+## Number of rows             584   
 ## Number of columns          3     
 ## _______________________          
 ## Column type frequency:           
@@ -35,9 +44,9 @@ references database documentation
 ## 
 ## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID1               6         0.994   8  37     0      866          0
-## 2 RefType               0         1       0  10   812        3          0
-## 3 manyID2             822         0.178   8  37     0       59          0
+## 1 treatyID1             0             1   8  37     0      378          0
+## 2 RefType               0             1   5  10     0        4          0
+## 3 treatyID2             0             1   8  37     0      378          0
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

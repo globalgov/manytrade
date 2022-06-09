@@ -11,57 +11,69 @@ DESTA_REF <- readxl::read_excel("data-raw/references/DESTA_REF/DESTA.xlsx")
 # formats of the 'DESTA_REF' object until the object created
 # below (in stage three) passes all the tests.
 DESTA_REF <- as_tibble(DESTA_REF) %>%
-  dplyr::filter(typememb != "5" , typememb != "6",  typememb != "7", 
-                entry_type != "accession", entry_type != "withdrawal") %>%
-  #categories removed because they relate to changes in membership that are reflected in the memberships database
-  manydata::transmutate(DESTA_ID = as.character(`base_treaty`),
-                     Title = manypkgs::standardise_titles(name)) %>%
+  dplyr::select(number, base_treaty, name, entry_type, year, entryforceyear) %>%
+  manydata::transmutate(destaID = as.character(`base_treaty`),
+                        Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  manydata::transmutate(Beg = manypkgs::standardise_dates(as.character(beg))) %>%
-  dplyr::filter(entry_type=="protocol or amendment" | entry_type=="base_treaty")
+  manydata::transmutate(Beg = messydates::as_messydate(as.character(beg)),
+                        Signature = messydates::as_messydate(as.character(year)),
+                        Force = messydates::as_messydate(as.character(entryforceyear)))
 
-# add treatyID column
-destaid<- manytrade::agreements$DESTA %>%
-  dplyr::select(Title, DESTA_ID, treatyID)
+# add treatyID
+DESTA_REF$treatyID <- manypkgs::code_agreements(DESTA_REF, DESTA_REF$Title,
+                                                DESTA_REF$Beg)
 
-manyID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                        var = c(manytrade::agreements$DESTA$treatyID, 
-                                                manytrade::agreements$GPTAD$treatyID,
-                                                manytrade::agreements$LABPTA$treatyID, 
-                                                manytrade::agreements$TREND$treatyID))
-destaid <- dplyr::left_join(destaid, manyID, by = "treatyID")
-
-DESTA_REF <- dplyr::left_join(DESTA_REF, destaid, by = c("Title", "DESTA_ID"))
+# if entry_type = protocol or amendment:"Amends"
+# if entry_type = accession, withdrawal or consolidated = "Cites"
 DESTA_REF <- DESTA_REF %>%
-  dplyr::rename(treatyID1 = "treatyID") %>%
-  dplyr::rename(manyID1 = "manyID") %>%
-  dplyr::select(number, DESTA_ID, manyID1, treatyID1, entry_type, Beg) %>%
-  dplyr::group_by(DESTA_ID) %>%
-  dplyr::mutate(num_rows = sum(dplyr::n())) %>% 
-  dplyr::mutate(RefType = ifelse(num_rows > 1, "Amends", "")) %>%
-  dplyr::mutate(RefType = ifelse(entry_type == "base_treaty", 
-                                 dplyr::recode(RefType, "Amends" = "Amended by"), 
-                                 RefType))
+  dplyr::rename(treatyID1 = treatyID) %>%
+  dplyr::group_by(destaID) %>%
+  dplyr::mutate(num_rows = sum(dplyr::n())) %>%
+  dplyr::filter(num_rows > 1) %>%
+  dplyr::mutate(RefType = ifelse(destaID != number & entry_type == "protocol or amendment",
+                                 "Amends",
+                                 ifelse(destaID != number & entry_type != "base_treaty",
+                                        "Cites", NA)))
 
-# add treatyID2 column
-DESTA_REF <- DESTA_REF %>%
-  dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "a", "b")) %>%
-  dplyr::mutate(idref = ifelse(RefType == "", NA, idref))
+basetreaties <- DESTA_REF %>%
+  dplyr::filter(entry_type == "base_treaty")
 
-ref <- DESTA_REF %>%
-  dplyr::select(DESTA_ID, manyID1, num_rows, RefType) %>%
-  dplyr::group_by(DESTA_ID) %>%
-  dplyr::mutate(idref = ifelse(num_rows > 1 & RefType == "Amends", "b", "a")) %>%
-  dplyr::mutate(idref = ifelse(RefType == "", NA, idref)) %>%
-  dplyr::rename(manyID2 = "manyID1") %>%
-  dplyr::mutate(manyID2 = ifelse(idref == "NA", NA, manyID2)) %>%
-  dplyr::select(DESTA_ID, idref, manyID2)
+subsqtreaties <- DESTA_REF %>%
+  dplyr::filter(entry_type != "base_treaty")
 
-DESTA_REF <- dplyr::left_join(DESTA_REF, ref, by = c("DESTA_ID", "idref")) %>%
+# Amends and Cites set
+set1 <- dplyr::left_join(subsqtreaties, basetreaties, by = "destaID") %>%
   dplyr::ungroup() %>%
-  dplyr::select(manyID1, RefType, manyID2)
-#check matches, seems to add more entries?
+  dplyr::select(number.x, destaID, entry_type.x, treatyID1.x, RefType.x, treatyID1.y) %>%
+  dplyr::rename(treatyID1 = treatyID1.x) %>%
+  dplyr::rename(treatyID2 = treatyID1.y) %>%
+  dplyr::rename(RefType = RefType.x)
+
+treatyID2_NA <- set1 %>% # fill in treatyID2 NAs where treatyID1 agreements cite subsequent agreements instead of the original treaty
+  dplyr::filter(is.na(treatyID2)) %>%
+  dplyr::select(-treatyID2) %>%
+  dplyr::rename(number = destaID) %>%
+  dplyr::left_join(subsqtreaties, by = "number") %>%
+  dplyr::select(treatyID1.x, RefType.x, treatyID1.y) %>%
+  dplyr::rename(treatyID1 = treatyID1.x) %>%
+  dplyr::rename(treatyID2 = treatyID1.y) %>%
+  dplyr::rename(RefType = RefType.x)
+
+set1 <- set1 %>%
+  dplyr::filter(!is.na(treatyID2)) %>%
+  dplyr::bind_rows(treatyID2_NA) %>%
+  dplyr::select(treatyID1, RefType, treatyID2)
+
+# Amended by and Cited by set
+set2 <- set1 %>%
+  dplyr::rename(treatyID2 = treatyID1, treatyID1 = treatyID2) %>%
+  dplyr::mutate(RefType = recode(RefType,"Amends" = "Amended by",
+                                 "Cites" = "Cited by")) %>%
+  dplyr::select(treatyID1, RefType, treatyID2)
+
+# Combine the two sets
+DESTA_REF <- dplyr::bind_rows(set1, set2)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
