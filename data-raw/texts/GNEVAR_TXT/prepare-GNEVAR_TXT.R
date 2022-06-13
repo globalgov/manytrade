@@ -243,7 +243,8 @@ GNEVAR_TXT <- dplyr::left_join(GNEVAR_TXT, REM_TXT,
 GNEVAR_TXT <- GNEVAR_TXT %>%
   # make sure texts transfer over properly
   dplyr::mutate(TreatyText = ifelse(TreatyText == "NULL", Text, TreatyText)) %>%
-  dplyr::select(-Text, -AgreementType, -DocType, -GeogArea) %>%
+  dplyr::select(-c(Text, AgreementType, DocType, GeogArea,
+                   totaID, gptadID, destaID, labptaID, trendID)) %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
