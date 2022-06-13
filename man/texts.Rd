@@ -11,8 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GNEVAR_TXT: }{A dataset with 1503 observations and the following
-13 variables: manyID, Title, Beg, Signature, Force, totaID, gptadID,
-trendID, labptaID, treatyID, destaID, TreatyText, url.}
+8 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText, url.}
 }
 }
 \usage{
@@ -23,40 +22,31 @@ texts database documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $GNEVAR_TXT
-## ── Data Summary ────────────────────────
+## -- Data Summary ------------------------
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             1503  
-## Number of columns          13    
+## Number of columns          8     
 ## _______________________          
 ## Column type frequency:           
-##   character                9     
+##   character                7     
 ##   list                     1     
-##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
+## -- Variable type: character ----------------------------------------------------
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1       8  37     0     1385          0
 ## 2 Title                 0         1       3 129     0     1331          0
-## 3 totaID             1018         0.323   1   3     0      450          0
-## 4 gptadID            1119         0.255   1   3     0      340          0
-## 5 trendID             668         0.556   1   5     0      723          0
-## 6 labptaID            916         0.391   1   3     0      483          0
-## 7 treatyID              0         1       8  37     0     1389          0
-## 8 destaID             437         0.709   1   4     0      926          0
-## 9 url                 823         0.452  52  86     0      627          0
+## 3 Beg                 116         0.923  10  10     0      560          0
+## 4 Signature           135         0.910  10  10     0      548          0
+## 5 Force               254         0.831  10  10     0      419          0
+## 6 treatyID              0         1       8  37     0     1389          0
+## 7 url                 823         0.452  52  86     0      627          0
 ## 
-## ── Variable type: list ─────────────────────────────────────────────────────────
+## -- Variable type: list ---------------------------------------------------------
 ##   skim_variable n_missing complete_rate n_unique min_length max_length
 ## 1 TreatyText          473         0.685      853          0       1953
-## 
-## ── Variable type: mdate ────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique max        min       
-## 1 Beg                 116         0.923       0      560 2020-01-01 1947-01-01
-## 2 Signature           135         0.910       0      548 2020-01-01 1947-01-01
-## 3 Force               254         0.831       0      419 2020-01-01 1947-01-01
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}
