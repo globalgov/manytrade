@@ -54,8 +54,8 @@ GNEVAR <- GNEVAR %>%
   dplyr::mutate(Signature = ifelse(!is.na(Sign.rev) & messydates::year(Signature) == messydates::year(Sign.rev), 
                                    Sign.rev, Signature)) %>%
   dplyr::mutate(Signature = messydates::as_messydate(Signature)) %>%
-  dplyr::select(-dates, -Sign.rev, -TreatyText, -url,
-                -totaID, -gptadID, -destaID, -labptaID, -trendID)
+  dplyr::select(-c(dates, Sign.rev, TreatyText, url,
+                   totaID, gptadID, destaID, labptaID, trendID))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
