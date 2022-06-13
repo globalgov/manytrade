@@ -73,7 +73,8 @@ set2 <- set1 %>%
   dplyr::select(treatyID1, RefType, treatyID2)
 
 # Combine the two sets
-DESTA_REF <- dplyr::bind_rows(set1, set2)
+DESTA_REF <- dplyr::bind_rows(set1, set2) %>%
+  dplyr::relocate(treatyID1, treatyID2, RefType)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
