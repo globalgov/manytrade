@@ -7,7 +7,8 @@
   * The`GNEVAR` dataset builds on existing data in the agreements database 
   (from GPTAD, DESTA, LABPTA, and TREND datasets), adding variables for 
   membership conditions and membership procedures using
-  `manypkgs::code_accession_terms()`.
+  `manypkgs::code_accession_terms()` and more precise dates of signature
+  for trade agreements (see bullet point below).
   * Closed #6 by adding more precise dates of signature (in YYYY-MM-DD format) 
   to GNEVAR dataset. These dates are extracted from trade agreements texts 
   stored in the `texts` database, and improve on the dates in the `DESTA`, 
