@@ -28,13 +28,8 @@ Description: The manytrade package provides an ensemble of data on international
     and states membership in them for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 3.5.0)
-Imports:
-    manydata,
-    lubridate,
-    messydates,
-    dplyr,
-    xml2
+    R (>= 3.5.0),
+    manydata
 Suggests:
     rlang,
     testthat (>= 3.0.0),
@@ -43,7 +38,12 @@ Suggests:
     remotes,
     pkgdown,
     tibble,
-    pointblank
+    pointblank,
+    dplyr,
+    lubridate,
+    messydates,
+    xml2,
+    readtext
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
