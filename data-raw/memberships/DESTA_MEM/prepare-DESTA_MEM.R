@@ -11,25 +11,25 @@ DESTA_MEM <- readxl::read_excel("data-raw/memberships/DESTA_MEM/DESTA.xlsx")
 # formats of the 'DESTA_MEM' object until the object created
 # below (in stage three) passes all the tests.
 DESTA_MEM <- tibble::as_tibble(DESTA_MEM) %>%
-  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "CountryID", 
+  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "stateID", 
                       values_drop_na = TRUE) %>%
-  #arrange columns containing countries into one column, with each CountryID in rows corresponding to the treaty it is party to
+  #arrange columns containing countries into one column, with each stateID in rows corresponding to the treaty it is party to
   manydata::transmutate(destaID = as.character(`base_treaty`),
                         Title = manypkgs::standardise_titles(name),
                         Signature = messydates::as_messydate(as.character(year)),
                         Force = messydates::as_messydate(as.character(entryforceyear))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(destaID, CountryID, Title, Beg, Signature, Force) %>%
+  dplyr::select(destaID, stateID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
 
-DESTA_MEM$CountryName <- countrycode::countrycode(DESTA_MEM$CountryID, 
+DESTA_MEM$StateName <- countrycode::countrycode(DESTA_MEM$stateID, 
                                                   origin = "iso3n", destination = "country.name")
 DESTA_MEM <- DESTA_MEM %>%
-  dplyr::mutate(CountryName = ifelse(CountryID == 530, "Netherlands Antilles", CountryName)) %>%
-  dplyr::mutate(CountryName = ifelse(CountryID == 900, "Kosovo", CountryName))
+  dplyr::mutate(StateName = ifelse(stateID == 530, "Netherlands Antilles", StateName)) %>%
+  dplyr::mutate(StateName = ifelse(stateID == 900, "Kosovo", StateName))
 
 #Change iso numeric to iso character code
-DESTA_MEM$CountryID <- countrycode::countrycode(DESTA_MEM$CountryID, origin = "iso3n", destination = "iso3c")
+DESTA_MEM$stateID <- countrycode::countrycode(DESTA_MEM$stateID, origin = "iso3n", destination = "iso3c")
 
 #Add a treatyID column
 DESTA_MEM$treatyID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title, 
@@ -42,13 +42,13 @@ manyID <- manypkgs::condense_agreements(manytrade::memberships,
 DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID")
 
 # Re-order the columns
-DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, CountryID, Title, Beg, 
-                             Signature, Force, CountryName, destaID)
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, stateID, Title, Beg, 
+                             Signature, Force, StateName, destaID)
 
 # Check for duplicates in manyID
 # duplicates <- DESTA_MEM %>%
 #   dplyr::mutate(duplicates = duplicated(DESTA_MEM[, c(1,2)])) %>%
-#   dplyr::relocate(manyID, CountryID,  duplicates)
+#   dplyr::relocate(manyID, stateID,  duplicates)
 
 # delete rows that only have diff title but same Beg and other variables
 DESTA_MEM <- subset(DESTA_MEM, subset = !duplicated(DESTA_MEM[, c(1,2,4,7,9)]))

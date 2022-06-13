@@ -11,9 +11,11 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2198 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, gptadID, treatyID.}
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+gptadID, treatyID.}
 \item{DESTA_MEM: }{A dataset with 7492 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force, CountryName, destaID, treatyID.}
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+destaID, treatyID.}
 }
 }
 \usage{
@@ -38,12 +40,12 @@ memberships database documentation
 ## -- Variable type: character ----------------------------------------------------
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1       8  37     0      345          0
-## 2 CountryID           130         0.941   3   3     0      207          0
+## 2 stateID             130         0.941   3   3     0      207          0
 ## 3 Title                 0         1       3  74     0      345          0
 ## 4 Beg                  99         0.955  10  10     0      291          0
 ## 5 Signature           328         0.851  10  10     0      271          0
 ## 6 Force               283         0.871  10  10     0      200          0
-## 7 CountryName           0         1       4  48     0      242          0
+## 7 StateName             0         1       4  48     0      242          0
 ## 8 gptadID               0         1       1   3     0      346          0
 ## 9 treatyID              0         1       8  37     0      345          0
 ## 
@@ -62,12 +64,12 @@ memberships database documentation
 ## -- Variable type: character ----------------------------------------------------
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1      12  37     0     1164          0
-## 2 CountryID            10         0.999   3   3     0      220          0
+## 2 stateID              10         0.999   3   3     0      220          0
 ## 3 Title                 0         1       2 146     0     1090          0
 ## 4 Beg                 630         0.916   4   4     0       70          0
 ## 5 Signature           630         0.916   4   4     0       70          0
 ## 6 Force              2886         0.615   4   4     0       66          0
-## 7 CountryName           0         1       4  38     0      222          0
+## 7 StateName             0         1       4  38     0      222          0
 ## 8 destaID               0         1       1   4     0      931          0
 ## 9 treatyID              0         1      12  37     0     1174          0
 }\if{html}{\out{</div>}}
