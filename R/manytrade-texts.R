@@ -6,9 +6,10 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{GNEVAR_TXT: }{A dataset with 1503 observations and the following
-#' 8 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText, url.}
+#' 13 variables: manyID, Title, Beg, Signature, Force, totaID, gptadID,
+#'  trendID, labptaID, treatyID, destaID, TreatyText, url.}
 #' }
-#' 
+#'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
 #' lapply(texts, skimr::skim_without_charts)
