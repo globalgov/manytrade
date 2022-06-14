@@ -36,11 +36,12 @@ TOTA_TXT <- TOTA_TXT %>%
                 Force = messydates::as_messydate(as.character(Force))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::arrange(Beg)
+TOTA_TXT$totaID <- rownames(TOTA_TXT)
 
 # Re-order the columns
 TOTA_TXT <- TOTA_TXT %>%
   dplyr::rename(url = ID) %>%
-  dplyr::select(Title, TreatyText, url)
+  dplyr::select(Title, TreatyText, url, totaID)
 
 # Merge texts from TOTA database with the rest of the datasets in the 
 # agreements database
@@ -52,7 +53,7 @@ GNEVAR_TXT <- manydata::favour(manytrade::agreements, c("GPTAD", "TOTA")) %>%
                         key = "manyID") 
 
 GNEVAR_TXT <- dplyr::full_join(GNEVAR_TXT, TOTA_TXT, 
-                               by = "Title")
+                               by = c("Title", "totaID"))
 
 ## Download texts for GPTAD dataset
 GPTAD_TXT <- GNEVAR_TXT %>%
@@ -223,8 +224,8 @@ GNEVAR_TXT <- GNEVAR_TXT %>%
 
 # Change 'Not found' to NA in text column
 GNEVAR_TXT <- GNEVAR_TXT %>%
-  dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found",
-                                    gsub("Not found", NA, TreatyText),
+  dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found" | TreatyText == "NULL",
+                                    gsub("Not found|NULL", NA, TreatyText),
                                     TreatyText))
 
 # manypkgs includes several functions that should help cleaning
