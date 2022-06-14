@@ -120,10 +120,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
     text <- unlist(text)
     text <- ifelse(length(text > 1),
                    stringr::str_c(text, collapse = " "), text)
-    text <- stringr::str_remove_all(text, "\n")
-    text <- stringr::str_remove_all(text, "\r")
-    text <- stringr::str_remove_all(text, "\t")
-    text <- stringr::str_squish(text)
+    text <- manypkgs::standardise_texts(text)
   }
   # scrape web pages
   else {
@@ -144,10 +141,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
         y <- ifelse(out != "Not found", out[1,2], "Not found")
         y <- as.character(unlist(y))
         y <- ifelse(length(y > 1), stringr::str_c(y, collapse = " "), y)
-        y <- stringr::str_remove_all(y, "\n")
-        y <- stringr::str_remove_all(y, "\r")
-        y <- stringr::str_remove_all(y, "\t")
-        y <- stringr::str_squish(y)
+        y <- manypkgs::standardise_texts(y)
       })
     } else {
       if (grepl("eur-lex", x)) {
@@ -156,10 +150,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
         text <- as.character(unlist(text))
         text <- ifelse(length(text > 1),
                        stringr::str_c(text, collapse = " "), text)
-        text <- stringr::str_remove_all(text, "\n")
-        text <- stringr::str_remove_all(text, "\r")
-        text <- stringr::str_remove_all(text, "\t")
-        text <- stringr::str_squish(text)
+        text <- manypkgs::standardise_texts(text)
       } else {
         if (grepl(".doc$|.docx$", x)) {
           out <- tryCatch(readtext::readtext(x),
@@ -168,10 +159,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
           text <- ifelse(length(text > 1),
                          stringr::str_c(text, collapse = " "), text)
           text <- tolower(as.character(text))
-          text <- stringr::str_remove_all(text, "\n")
-          text <- stringr::str_remove_all(text, "\r")
-          text <- stringr::str_remove_all(text, "\t")
-          text <- stringr::str_squish(text)
+          text <- manypkgs::standardise_texts(text)
         } else {
           if (grepl("tid.gov.hk", x)) {
             page <- httr::GET(x) %>% 
@@ -190,10 +178,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
             text <- unlist(text)
             text <- ifelse(length(text > 1),
                            stringr::str_c(text, collapse = " "), text)
-            text <- stringr::str_remove_all(text, "\n")
-            text <- stringr::str_remove_all(text, "\r")
-            text <- stringr::str_remove_all(text, "\t")
-            text <- stringr::str_squish(text)
+            text <- manypkgs::standardise_texts(text)
           } else {
             if(grepl("gc.ca", x)) {
               text <- rvest::read_html(x) %>%
@@ -202,10 +187,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
               text <- unlist(text)
               text <- ifelse(length(text > 1),
                              stringr::str_c(text, collapse = " "), text)
-              text <- stringr::str_remove_all(text, "\n")
-              text <- stringr::str_remove_all(text, "\r")
-              text <- stringr::str_remove_all(text, "\t")
-              text <- stringr::str_squish(text)
+              text <- manypkgs::standardise_texts(text)
             }
             else {
               text <- tryCatch(httr::content(httr::GET(x), as = "text"),
@@ -213,15 +195,7 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
               text <- unlist(text)
               text <- ifelse(length(text > 1),
                              stringr::str_c(text, collapse = " "), text)
-              text <- stringr::str_remove_all(text, "\r")
-              text <- stringr::str_remove_all(text, "\t")
-              text <- stringr::str_remove_all(text, "<.*>")
-              text <- stringr::str_remove_all(text, "<h3>")
-              text <- stringr::str_remove_all(text, "</h3>")
-              text <- stringr::str_remove_all(text, "</p>")
-              text <- stringr::str_remove_all(text, "<p>")
-              text <- stringr::str_remove_all(text, "\n")
-              text <- stringr::str_squish(text)
+              text <- manypkgs::standardise_texts(text)
             }
           }
         }
