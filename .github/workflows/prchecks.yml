@@ -63,6 +63,7 @@ jobs:
           path: build/
 
       - name: Lint
+        if: runner.os == 'macOS-latest'
         run: lintr::lint_package()
         shell: Rscript {0}
 
@@ -72,5 +73,6 @@ jobs:
       #   shell: Rscript {0}
 
       - name: Spell check
+        if: runner.os == 'macOS-latest'
         run: spelling::spell_check_package()
         shell: Rscript {0}
