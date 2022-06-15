@@ -34,144 +34,172 @@ agreements
 agreements database documentation
 }
 \details{
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+}\if{html}{\out{</div>}}
+
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $TREND
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             729   
 ## Number of columns          7     
 ## _______________________          
 ## Column type frequency:           
-##   character                7     
+##   character                4     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0         1       8  37     0      723          0
-## 2 Title                 0         1       6  93     0      728          0
-## 3 Beg                   5         0.993  10  10     0       68          0
-## 4 Signature             5         0.993  10  10     0       68          0
-## 5 Force                 5         0.993  10  10     0       68          0
-## 6 treatyID              0         1       8  37     0      729          0
-## 7 trendID               0         1       1   5     0      723          0
+## 1 manyID                0             1   8  37     0      723          0
+## 2 Title                 0             1   6  93     0      728          0
+## 3 treatyID              0             1   8  37     0      729          0
+## 4 trendID               0             1   1   5     0      723          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   5         0.993       0       68 2018-01-01 1947-01-01
+## 2 Signature             5         0.993       0       68 2018-01-01 1947-01-01
+## 3 Force                 5         0.993       0       68 2018-01-01 1947-01-01
 ## 
 ## $LABPTA
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             483   
 ## Number of columns          7     
 ## _______________________          
 ## Column type frequency:           
-##   character                7     
+##   character                4     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0             1  10  37     0      480          0
 ## 2 Title                 0             1   6  89     0      468          0
-## 3 Beg                   0             1  10  10     0       27          0
-## 4 Signature             0             1  10  10     0       27          0
-## 5 Force                 0             1  10  10     0       27          0
-## 6 treatyID              0             1  10  37     0      483          0
-## 7 labptaID              0             1   1   3     0      483          0
+## 3 treatyID              0             1  10  37     0      483          0
+## 4 labptaID              0             1   1   3     0      483          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   0             1       0       27 2016-01-01 1990-01-01
+## 2 Signature             0             1       0       27 2016-01-01 1990-01-01
+## 3 Force                 0             1       0       27 2016-01-01 1990-01-01
 ## 
 ## $GPTAD
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             340   
 ## Number of columns          10    
 ## _______________________          
 ## Column type frequency:           
-##   character                10    
+##   character                7     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
-##    skim_variable n_missing complete_rate min max empty n_unique whitespace
-##  1 manyID                0         1       8  37     0      338          0
-##  2 Title                 0         1       3  74     0      339          0
-##  3 Beg                  30         0.912  10  10     0      286          0
-##  4 AgreementType         0         1       0   1     5        2          0
-##  5 DocType               0         1       0   1     5        4          0
-##  6 GeogArea             75         0.779   0   1     5        3          0
-##  7 Signature            53         0.844  10  10     0      266          0
-##  8 Force                63         0.815  10  10     0      199          0
-##  9 treatyID              0         1       8  35     0      340          0
-## 10 gptadID               0         1       1   3     0      340          0
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0         1       8  37     0      338          0
+## 2 Title                 0         1       3  74     0      339          0
+## 3 AgreementType         0         1       0   1     5        2          0
+## 4 DocType               0         1       0   1     5        4          0
+## 5 GeogArea             75         0.779   0   1     5        3          0
+## 6 treatyID              0         1       8  35     0      340          0
+## 7 gptadID               0         1       1   3     0      340          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                  30         0.912       0      286 2009-07-08 1957-03-25
+## 2 Signature            53         0.844       0      266 2009-07-08 1957-03-25
+## 3 Force                63         0.815       0      199 2010-01-03 1958-01-01
 ## 
 ## $DESTA
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             959   
 ## Number of columns          10    
 ## _______________________          
 ## Column type frequency:           
-##   character                10    
+##   character                7     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
-##    skim_variable n_missing complete_rate min max empty n_unique whitespace
-##  1 manyID                0         1       8  37     0      952          0
-##  2 Title                 0         1       2 129     0      862          0
-##  3 Beg                  81         0.916  10  10     0       70          0
-##  4 AgreementType         0         1       1   3     0        2          0
-##  5 DocType               0         1       1   1     0        3          0
-##  6 GeogArea              0         1       1   1     0        2          0
-##  7 Signature            81         0.916  10  10     0       70          0
-##  8 Force               242         0.748  10  10     0       66          0
-##  9 treatyID              0         1       8  37     0      957          0
-## 10 destaID               0         1       1   4     0      926          0
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0             1   8  37     0      952          0
+## 2 Title                 0             1   2 129     0      862          0
+## 3 AgreementType         0             1   1   3     0        2          0
+## 4 DocType               0             1   1   1     0        3          0
+## 5 GeogArea              0             1   1   1     0        2          0
+## 6 treatyID              0             1   8  37     0      957          0
+## 7 destaID               0             1   1   4     0      926          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                  81         0.916       0       70 2020-01-01 1948-01-01
+## 2 Signature            81         0.916       0       70 2020-01-01 1948-01-01
+## 3 Force               242         0.748       0       66 2020-01-01 1949-01-01
 ## 
 ## $TOTA
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             450   
 ## Number of columns          7     
 ## _______________________          
 ## Column type frequency:           
-##   character                7     
+##   character                4     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0         1      10  37     0      447          0
-## 2 Title                 0         1       4  91     0      448          0
-## 3 Beg                   0         1      10  10     0      407          0
-## 4 Signature             0         1      10  10     0      407          0
-## 5 Force                 3         0.993  10  10     0      317          0
-## 6 treatyID              0         1      10  27     0      449          0
-## 7 totaID                0         1       1   3     0      450          0
+## 1 manyID                0             1  10  37     0      447          0
+## 2 Title                 0             1   4  91     0      448          0
+## 3 treatyID              0             1  10  27     0      449          0
+## 4 totaID                0             1   1   3     0      450          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                   0         1           0      407 2016-07-28 1948-12-06
+## 2 Signature             0         1           0      407 2016-07-28 1948-12-06
+## 3 Force                 3         0.993       0      317 2017-08-01 1949-04-01
 ## 
 ## $GNEVAR
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             1503  
 ## Number of columns          8     
 ## _______________________          
 ## Column type frequency:           
-##   character                8     
+##   character                5     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable   n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                  0         1       8  37     0     1385          0
 ## 2 Title                   0         1       3 129     0     1331          0
-## 3 Beg                   116         0.923  10  10     0      560          0
-## 4 Signature             136         0.910  10  20     0      578          0
-## 5 Force                 254         0.831  10  10     0      419          0
-## 6 Memb.conditions       937         0.377   4  50     0       57          0
-## 7 Memb.procedures      1155         0.232   9  40     0       10          0
-## 8 treatyID                0         1       8  37     0     1389          0
+## 3 Memb.conditions       937         0.377   4  50     0       57          0
+## 4 Memb.procedures      1155         0.232   9  40     0       10          0
+## 5 treatyID                0         1       8  37     0     1389          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 116         0.923       0      560 2020-01-01 1947-01-01
+## 2 Signature           136         0.910       0      578 2020-01-01 1947-10-30
+## 3 Force               254         0.831       0      419 2020-01-01 1947-01-01
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

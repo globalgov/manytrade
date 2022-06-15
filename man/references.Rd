@@ -22,7 +22,7 @@ references database documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA_REF
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             584   
@@ -33,7 +33,7 @@ references database documentation
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 treatyID1             0             1   8  37     0      378          0
 ## 2 treatyID2             0             1   8  37     0      378          0

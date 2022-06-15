@@ -25,53 +25,69 @@ memberships
 memberships database documentation
 }
 \details{
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+## Please specify 'approx_range' argument if you want approximate dates to also be expanded
+}\if{html}{\out{</div>}}
+
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $GPTAD_MEM
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             2198  
 ## Number of columns          9     
 ## _______________________          
 ## Column type frequency:           
-##   character                9     
+##   character                6     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1       8  37     0      345          0
 ## 2 stateID             130         0.941   3   3     0      207          0
 ## 3 Title                 0         1       3  74     0      345          0
-## 4 Beg                  99         0.955  10  10     0      291          0
-## 5 Signature           328         0.851  10  10     0      271          0
-## 6 Force               283         0.871  10  10     0      200          0
-## 7 StateName             0         1       4  48     0      242          0
-## 8 gptadID               0         1       1   3     0      346          0
-## 9 treatyID              0         1       8  37     0      345          0
+## 4 StateName             0         1       4  48     0      242          0
+## 5 gptadID               0         1       1   3     0      346          0
+## 6 treatyID              0         1       8  37     0      345          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                  99         0.955       0      291 2009-04-28 1957-03-25
+## 2 Signature           328         0.851       0      271 2009-04-28 1957-03-25
+## 3 Force               283         0.871       0      200 2010-01-03 1958-01-01
 ## 
 ## $DESTA_MEM
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       X[[i]]
 ## Number of rows             7492  
 ## Number of columns          9     
 ## _______________________          
 ## Column type frequency:           
-##   character                9     
+##   character                6     
+##   mdate                    3     
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character ----------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min max empty n_unique whitespace
 ## 1 manyID                0         1      12  37     0     1164          0
 ## 2 stateID              10         0.999   3   3     0      220          0
 ## 3 Title                 0         1       2 146     0     1090          0
-## 4 Beg                 630         0.916   4   4     0       70          0
-## 5 Signature           630         0.916   4   4     0       70          0
-## 6 Force              2886         0.615   4   4     0       66          0
-## 7 StateName             0         1       4  38     0      222          0
-## 8 destaID               0         1       1   4     0      931          0
-## 9 treatyID              0         1      12  37     0     1174          0
+## 4 StateName             0         1       4  38     0      222          0
+## 5 destaID               0         1       1   4     0      931          0
+## 6 treatyID              0         1      12  37     0     1174          0
+## 
+## ── Variable type: mdate ────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique max        min       
+## 1 Beg                 630         0.916       0       70 2020-12-31 1948-01-01
+## 2 Signature           630         0.916       0       70 2020-12-31 1948-01-01
+## 3 Force              2886         0.615       0       66 2020-12-31 1949-01-01
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}
