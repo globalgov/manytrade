@@ -13,14 +13,16 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  pointblank::expect_col_exists(agreements[["LABPTA"]], pointblank::vars(Title))
-  pointblank::expect_col_exists(agreements[["LABPTA"]], pointblank::vars(Beg))
+  pointblank::expect_col_exists(agreements[["LABPTA"]],
+                                pointblank::vars(Title))
+  pointblank::expect_col_exists(agreements[["LABPTA"]],
+                                pointblank::vars(Beg))
   expect_true(any(grepl("ID$", colnames(agreements[["LABPTA"]]))))
   pointblank::expect_col_exists(agreements[["LABPTA"]],
                                 pointblank::vars(Signature))
 })
 
-# Date columns should be in messydt class
+# Date columns should be in mdate class
 test_that("Columns are not in date, POSIXct or POSIXlt class", {
   expect_false(any(lubridate::is.Date(agreements[["LABPTA"]])))
   expect_false(any(lubridate::is.POSIXct(agreements[["LABPTA"]])))
