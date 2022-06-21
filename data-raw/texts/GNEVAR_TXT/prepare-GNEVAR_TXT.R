@@ -121,7 +121,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
     text <- unlist(text)
     text <- ifelse(length(text > 1),
                    stringr::str_c(text, collapse = " "), text)
-    text <- manypkgs::standardise_texts(text)
   }
   # scrape web pages
   else {
@@ -140,9 +139,8 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
         out <- tryCatch(readtext::readtext(h),
                         error = function(e){as.character("Not found")})
         y <- ifelse(out != "Not found", out[1,2], "Not found")
-        y <- as.character(unlist(y))
+        y <- unlist(y)
         y <- ifelse(length(y > 1), stringr::str_c(y, collapse = " "), y)
-        y <- manypkgs::standardise_texts(y)
       })
     } else {
       if (grepl("eur-lex", x)) {
@@ -151,7 +149,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
         text <- as.character(unlist(text))
         text <- ifelse(length(text > 1),
                        stringr::str_c(text, collapse = " "), text)
-        text <- manypkgs::standardise_texts(text)
       } else {
         if (grepl(".doc$|.docx$", x)) {
           out <- tryCatch(readtext::readtext(x),
@@ -159,8 +156,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
           text <- ifelse(out != "Not found", out[1,2], "Not found")
           text <- ifelse(length(text > 1),
                          stringr::str_c(text, collapse = " "), text)
-          text <- tolower(as.character(text))
-          text <- manypkgs::standardise_texts(text)
         } else {
           if (grepl("tid.gov.hk", x)) {
             page <- httr::GET(x) %>% 
@@ -179,7 +174,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
             text <- unlist(text)
             text <- ifelse(length(text > 1),
                            stringr::str_c(text, collapse = " "), text)
-            text <- manypkgs::standardise_texts(text)
           } else {
             if(grepl("gc.ca", x)) {
               text <- rvest::read_html(x) %>%
@@ -188,7 +182,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
               text <- unlist(text)
               text <- ifelse(length(text > 1),
                              stringr::str_c(text, collapse = " "), text)
-              text <- manypkgs::standardise_texts(text)
             }
             else {
               text <- tryCatch(httr::content(httr::GET(x), as = "text"),
@@ -196,7 +189,6 @@ REM_TXT$Text <- lapply(REM_TXT$url, function(x) {
               text <- unlist(text)
               text <- ifelse(length(text > 1),
                              stringr::str_c(text, collapse = " "), text)
-              text <- manypkgs::standardise_texts(text)
             }
           }
         }
@@ -227,6 +219,19 @@ GNEVAR_TXT <- GNEVAR_TXT %>%
   dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found" | TreatyText == "NULL",
                                     gsub("Not found|NULL", NA, TreatyText),
                                     TreatyText))
+
+# Clean texts and remove duplicates
+GNEVAR_TXT <- GNEVAR_TXT %>%
+  dplyr::mutate(TreatyText = manypkgs::standardise_texts(TreatyText)) %>%
+  dplyr::relocate(manyID, Title, Beg, Signature, Force, totaID, gptadID, destaID,
+                  labptaID, trendID, treatyID)
+
+GNEVAR_TXT <- subset(GNEVAR_TXT,
+                     subset = !duplicated(GNEVAR_TXT[, c(1,2,3,4,5,6,7,8,9,10,11,12,13)]))
+
+GNEVAR_TXT <- GNEVAR_TXT %>%
+  dplyr::relocate(manyID, Title, Beg, Signature, Force, totaID, gptadID, destaID,
+                  labptaID, trendID, treatyID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
