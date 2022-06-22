@@ -19,16 +19,18 @@
 GNEVAR <- manytrade::texts$GNEVAR_TXT
 
 # Stage two: Adding membership conditions and procedures columns
-GNEVAR$Memb.conditions <- manypkgs::code_accession_terms(GNEVAR$TreatyText,
-                                                         GNEVAR$Title,
-                                                         memberships = "condition")
-GNEVAR$Memb.conditions <- gsub("NA", NA, GNEVAR$Memb.conditions)
-GNEVAR$Memb.procedures <- manypkgs::code_accession_terms(GNEVAR$TreatyText,
-                                                         memberships = "process")
-GNEVAR$Memb.procedures <- gsub("NA", NA, GNEVAR$Memb.procedures)
+GNEVAR$accessionC <- manypkgs::code_accession_terms(GNEVAR$TreatyText,
+                                                    GNEVAR$Title,
+                                                    accession = "condition")
+GNEVAR$accessionC <- gsub("NA", NA, GNEVAR$accessionC)
+GNEVAR$accessionP <- manypkgs::code_accession_terms(GNEVAR$TreatyText,
+                                                    accession = "process")
+GNEVAR$accessionP <- gsub("NA", NA, GNEVAR$accessionP)
+
+GNEVAR$accessionP <- gsub("NA", NA, GNEVAR$accessionP)
 GNEVAR <- GNEVAR %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, 
-                  Memb.conditions, Memb.procedures) %>%
+                  accessionC, accessionP) %>%
   dplyr::arrange(Beg)
 
 # Add precise dates from texts
