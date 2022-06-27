@@ -6,7 +6,7 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 5 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND.
+following 6 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, GNEVAR.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
@@ -22,6 +22,9 @@ Signature, Force, treatyID, gptadID.}
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
 \item{TREND: }{A dataset with 729 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
+\item{GNEVAR: }{A dataset with 1440 observations and the following
+8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
+treatyID.}
 }
 }
 \usage{
@@ -146,6 +149,29 @@ agreements database documentation
 ## 5 Force                 5         0.993  10  10     0       68          0
 ## 6 treatyID              0         1       8  37     0      729          0
 ## 7 trendID               0         1       1   5     0      723          0
+## 
+## $GNEVAR
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             1440  
+## Number of columns          8     
+## _______________________          
+## Column type frequency:           
+##   character                8     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate min max empty n_unique whitespace
+## 1 manyID                0         1       8  37     0     1385          0
+## 2 Title                 0         1       2 129     0     1253          0
+## 3 Beg                 116         0.919  10  10     0      560          0
+## 4 Signature           138         0.904  10  10     0      575          0
+## 5 Force               253         0.824  10  10     0      417          0
+## 6 accessionC         1020         0.292   4  50     0       58          0
+## 7 accessionP         1159         0.195   9  55     0       14          0
+## 8 treatyID              0         1       8  37     0     1389          0
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

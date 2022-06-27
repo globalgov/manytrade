@@ -1,7 +1,7 @@
 #' agreements database documentation
 #'
 #' @format The agreements database is a list that contains the
-#' following 5 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND.
+#' following 6 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, GNEVAR.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
@@ -17,6 +17,9 @@
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
 #' \item{TREND: }{A dataset with 729 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
+#' \item{GNEVAR: }{A dataset with 1440 observations and the following
+#' 8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
+#' treatyID.}
 #' }
 #'
 #' @details

@@ -27,7 +27,6 @@ GNEVAR$accessionP <- manypkgs::code_accession_terms(GNEVAR$TreatyText,
                                                     accession = "process")
 GNEVAR$accessionP <- gsub("NA", NA, GNEVAR$accessionP)
 
-GNEVAR$accessionP <- gsub("NA", NA, GNEVAR$accessionP)
 GNEVAR <- GNEVAR %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, 
                   accessionC, accessionP) %>%
