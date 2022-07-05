@@ -24,8 +24,9 @@ Simply install the core package, [manydata](https://github.com/globalgov/manydat
 and then you can discover, install and update various 'many packages' from the console.
 
 ```{r install, warning=FALSE, message=FALSE}
-manydata::get_packages() # this prints a list of the publicly available data packages currently available
-#manydata::get_packages("manytrade") # this downloads and installs the named package
+# prints a list of the publicly available data packages currently available
+manydata::get_packages()
+# manydata::get_packages("manytrade") # downloads and installs the named package
 ```
 
 ## Data included

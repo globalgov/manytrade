@@ -1,5 +1,5 @@
-manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
-===================================================================================
+
+# manytrade <img src="man/figures/manytradeContainer.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -18,12 +18,16 @@ manytrade is a data package in the [many
 packages](https://github.com/globalgov/) universe. It currently includes
 an ensemble of datasets on international trade agreements, and
 [states](https://github.com/globalgov/manystates)’ membership or other
-relationships to those agreements. Please also check out
+relationships to those agreements. Building on existing trade datasets
+such as the Global Preferential Trade Agreements Database (GPTAD) and
+the Design of Trade Agreements Dataset (DESTA), the GNEVAR dataset in
+the `agreements` database also includes information on the membership
+conditions and procedures as well as more precise dates of signature
+extracted from the treaty texts. Please also check out
 [`{manydata}`](https://github.com/globalgov/manydata) for more about the
 other packages in the ‘many packages’ universe.
 
-How to install:
----------------
+## How to install:
 
 We’ve made it easier than ever to install and start analysing global
 governance data in R. Simply install the core package,
@@ -31,7 +35,8 @@ governance data in R. Simply install the core package,
 discover, install and update various ‘many packages’ from the console.
 
 ``` r
-manydata::get_packages() # this prints a list of the publicly available data packages currently available
+# prints a list of the publicly available data packages currently available
+manydata::get_packages()
 ```
 
     ## # A tibble: 7 × 6
@@ -55,44 +60,47 @@ manydata::get_packages() # this prints a list of the publicly available data pac
     ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
     ##   installed latest        updated   
     ##   <chr>     <chr>         <date>    
-    ## 1 0.7.3     0.7.3         2022-03-31
+    ## 1 0.7.5     0.7.5         2022-06-07
     ## 2 0.1.2     0.1.2         2022-03-16
-    ## 3 0.1.1     0.1.1-272ea19 2022-02-15
-    ## 4 0.2.1     0.2.1         2022-02-18
+    ## 3 <NA>      0.1.1-272ea19 2022-02-15
+    ## 4 0.2.2     0.2.1         2022-02-18
     ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.1     0.1.1         2022-03-23
-    ## 7 0.2.2     0.2.1         2022-02-18
+    ## 6 0.1.2     0.1.1         2022-03-23
+    ## 7 0.3.0     0.3.0         2022-07-04
 
 ``` r
-#manydata::get_packages("manytrade") # this downloads and installs the named package
+# manydata::get_packages("manytrade") # downloads and installs the named package
 ```
 
-Data included
--------------
+## Data included
 
 Once you have installed the package, you can see the different databases
 and datasets included in the {`manytrade`} package using the following
 function.
 
-    manydata::data_contrast("manytrade")
+``` r
+manydata::data_contrast("manytrade")
+```
 
     ## agreements :
     ##        Unique ID Missing Data Rows Columns        Beg End
-    ## DESTA          0       4.21 %  959      10 1948-01-01  NA
     ## TREND          0       0.29 %  729       7 1947-01-01  NA
     ## LABPTA         0          0 %  483       7 1990-01-01  NA
     ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
-    ## GNEVAR         0      36.99 % 1678      16 1947-01-01  NA
+    ## DESTA          0       4.21 %  959      10 1948-01-01  NA
+    ## TOTA           0        0.1 %  450       7 1948-12-06  NA
+    ## GNEVAR         0      21.61 % 1503       8 1947-01-01  NA
     ##                                                                                                                                                                                                                                        URL
-    ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
     ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
     ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
     ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
+    ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
+    ## TOTA                                                                                                                                                                                           https://github.com/mappingtreaties/tota.git
     ## GNEVAR https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git
     ## 
     ## memberships :
     ##           Unique ID Missing Data Rows Columns        Beg End
-    ## GPTAD_MEM         0       4.12 % 2201       9 1957-03-25  NA
+    ## GPTAD_MEM         0       4.25 % 2198       9 1957-03-25  NA
     ## DESTA_MEM         0       6.16 % 7492       9 1948-01-01  NA
     ##                                                          URL
     ## GPTAD_MEM      https://wits.worldbank.org/gptad/library.aspx
@@ -100,24 +108,21 @@ function.
     ## 
     ## references :
     ##           Unique ID Missing Data Rows Columns Beg End
-    ## DESTA_REF         0       27.6 % 1000       3  NA  NA
+    ## DESTA_REF         0          0 %  584       3  NA  NA
     ##                                                          URL
     ## DESTA_REF https://www.designoftradeagreements.org/downloads/
     ## 
     ## texts :
-    ##          Unique ID Missing Data Rows Columns        Beg End
-    ## AGR_TXT          0      20.62 % 1264      11 1947-01-01  NA
-    ## TOTA_TXT         0          0 %  450       9 1948-12-06  NA
-    ##                                                                                                                                                                        URL
-    ## AGR_TXT  https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search
-    ## TOTA_TXT                                                                                                                       https://github.com/mappingtreaties/tota.git
+    ##            Unique ID Missing Data Rows Columns        Beg End
+    ## GNEVAR_TXT         0      14.98 % 1503       8 1947-01-01  NA
+    ##                                                                                                                                                                                                                       URL
+    ## GNEVAR_TXT https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search, https://github.com/mappingtreaties/tota.git
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/manydata/articles/user.html).
 
-The ‘many packages’ universe
-----------------------------
+## The ‘many packages’ universe
 
 The [many packages](https://github.com/globalgov/) universe is aimed at
 collecting, connecting and correcting network data across issue-domains
@@ -132,7 +137,9 @@ particular datasets you use by listing the official references in the
 function above, as well as the package providers for their work
 assembling the data by using the function below.
 
-    citation("manytrade")
+``` r
+citation("manytrade")
+```
 
     ## 
     ## To cite manytrade in publications use:
@@ -148,8 +155,7 @@ assembling the data by using the function below.
     ##     url = {https://github.com/globalgov/manytrade},
     ##   }
 
-Contributing
-------------
+## Contributing
 
 [`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy
 to contribute in lots of different ways.
