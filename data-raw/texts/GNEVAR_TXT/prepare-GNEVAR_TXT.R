@@ -6,6 +6,12 @@
 # version of the agreements database, to avoid duplicate entries. 
 # Texts from the TOTA database (Alschner, Seiermann, and Skougarevskiy, 2017)
 # are given precedence.
+# Treaty texts are downloaded from the websites hosting the data,
+# please see Step 3 and the Bibliography file for the links to these websites.
+# For treaties listed in the DESTA dataset and not in the other datasets,
+# where available the links to the treaty texts are stored in the
+# 'REM_TXT.xlsx' file as the DESTA dataset does not contain the original texts
+# or links to their websites.
 
 ## Download texts from TEXTS OF TRADE AGREEMENTS (TOTA) database
 url <- "https://raw.github.com/mappingtreaties/tota/master/xml/"
