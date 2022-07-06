@@ -35,143 +35,94 @@ agreements database documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             959   
-## Number of columns          10    
-## _______________________          
-## Column type frequency:           
-##   character                10    
-## ________________________         
-## Group variables            None  
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |             959|     0     |       0       |
+## |     Title     |  character  |             959|     0     |       0       |
+## |      Beg      |    mdate    |             959|    81     |     8.45      |
+## | AgreementType |  character  |             959|     0     |       0       |
+## |    DocType    |  character  |             959|     0     |       0       |
+## |   GeogArea    |  character  |             959|     0     |       0       |
+## |   Signature   |    mdate    |             959|    81     |     8.45      |
+## |     Force     |    mdate    |             959|    242    |     25.23     |
+## |   treatyID    |  character  |             959|     0     |       0       |
+## |    destaID    |  character  |             959|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##    skim_variable n_missing complete_rate min max empty n_unique whitespace
-##  1 manyID                0         1       8  37     0      952          0
-##  2 Title                 0         1       2 129     0      862          0
-##  3 Beg                  81         0.916  10  10     0       70          0
-##  4 AgreementType         0         1       1   3     0        2          0
-##  5 DocType               0         1       1   1     0        3          0
-##  6 GeogArea              0         1       1   1     0        2          0
-##  7 Signature            81         0.916  10  10     0       70          0
-##  8 Force               242         0.748  10  10     0       66          0
-##  9 treatyID              0         1       8  37     0      957          0
-## 10 destaID               0         1       1   4     0      926          0
 ## 
 ## $GPTAD
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             340   
-## Number of columns          10    
-## _______________________          
-## Column type frequency:           
-##   character                10    
-## ________________________         
-## Group variables            None  
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |             340|     0     |       0       |
+## |     Title     |  character  |             340|     0     |       0       |
+## |      Beg      |    mdate    |             340|    30     |     8.82      |
+## | AgreementType |  character  |             340|     0     |       0       |
+## |    DocType    |  character  |             340|     0     |       0       |
+## |   GeogArea    |  character  |             340|    75     |     22.06     |
+## |   Signature   |    mdate    |             340|    53     |     15.59     |
+## |     Force     |    mdate    |             340|    63     |     18.53     |
+## |   treatyID    |  character  |             340|     0     |       0       |
+## |    gptadID    |  character  |             340|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##    skim_variable n_missing complete_rate min max empty n_unique whitespace
-##  1 manyID                0         1       8  37     0      338          0
-##  2 Title                 0         1       3  74     0      339          0
-##  3 Beg                  30         0.912  10  10     0      286          0
-##  4 AgreementType         0         1       0   1     5        2          0
-##  5 DocType               0         1       0   1     5        4          0
-##  6 GeogArea             75         0.779   0   1     5        3          0
-##  7 Signature            53         0.844  10  10     0      266          0
-##  8 Force                63         0.815  10  10     0      199          0
-##  9 treatyID              0         1       8  35     0      340          0
-## 10 gptadID               0         1       1   3     0      340          0
 ## 
 ## $LABPTA
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             483   
-## Number of columns          7     
-## _______________________          
-## Column type frequency:           
-##   character                7     
-## ________________________         
-## Group variables            None  
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |             483|     0     |       0       |
+## |     Title     |  character  |             483|     0     |       0       |
+## |      Beg      |    mdate    |             483|     0     |       0       |
+## |   Signature   |    mdate    |             483|     0     |       0       |
+## |     Force     |    mdate    |             483|     0     |       0       |
+## |   treatyID    |  character  |             483|     0     |       0       |
+## |   labptaID    |  character  |             483|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0             1  10  37     0      480          0
-## 2 Title                 0             1   6  89     0      468          0
-## 3 Beg                   0             1  10  10     0       27          0
-## 4 Signature             0             1  10  10     0       27          0
-## 5 Force                 0             1  10  10     0       27          0
-## 6 treatyID              0             1  10  37     0      483          0
-## 7 labptaID              0             1   1   3     0      483          0
 ## 
 ## $TOTA
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             450   
-## Number of columns          7     
-## _______________________          
-## Column type frequency:           
-##   character                7     
-## ________________________         
-## Group variables            None  
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |             450|     0     |       0       |
+## |     Title     |  character  |             450|     0     |       0       |
+## |      Beg      |    mdate    |             450|     0     |       0       |
+## |   Signature   |    mdate    |             450|     0     |       0       |
+## |     Force     |    mdate    |             450|     3     |     0.67      |
+## |   treatyID    |  character  |             450|     0     |       0       |
+## |    totaID     |  character  |             450|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0         1      10  37     0      447          0
-## 2 Title                 0         1       4  91     0      448          0
-## 3 Beg                   0         1      10  10     0      407          0
-## 4 Signature             0         1      10  10     0      407          0
-## 5 Force                 3         0.993  10  10     0      317          0
-## 6 treatyID              0         1      10  27     0      449          0
-## 7 totaID                0         1       1   3     0      450          0
 ## 
 ## $TREND
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             729   
-## Number of columns          7     
-## _______________________          
-## Column type frequency:           
-##   character                7     
-## ________________________         
-## Group variables            None  
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |             729|     0     |       0       |
+## |     Title     |  character  |             729|     0     |       0       |
+## |      Beg      |    mdate    |             729|     5     |     0.69      |
+## |   Signature   |    mdate    |             729|     5     |     0.69      |
+## |     Force     |    mdate    |             729|     5     |     0.69      |
+## |   treatyID    |  character  |             729|     0     |       0       |
+## |    trendID    |  character  |             729|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0         1       8  37     0      723          0
-## 2 Title                 0         1       6  93     0      728          0
-## 3 Beg                   5         0.993  10  10     0       68          0
-## 4 Signature             5         0.993  10  10     0       68          0
-## 5 Force                 5         0.993  10  10     0       68          0
-## 6 treatyID              0         1       8  37     0      729          0
-## 7 trendID               0         1       1   5     0      723          0
 ## 
 ## $GNEVAR
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             1440  
-## Number of columns          8     
-## _______________________          
-## Column type frequency:           
-##   character                8     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 manyID                0         1       8  37     0     1385          0
-## 2 Title                 0         1       2 129     0     1253          0
-## 3 Beg                 116         0.919  10  10     0      560          0
-## 4 Signature           138         0.904  10  10     0      575          0
-## 5 Force               253         0.824  10  10     0      417          0
-## 6 accessionC         1020         0.292   4  50     0       58          0
-## 7 accessionP         1159         0.195   9  55     0       14          0
-## 8 treatyID              0         1       8  37     0     1389          0
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |            1440|     0     |       0       |
+## |     Title     |  character  |            1440|     0     |       0       |
+## |      Beg      |    mdate    |            1440|    116    |     8.06      |
+## |   Signature   |    mdate    |            1440|    138    |     9.58      |
+## |     Force     |    mdate    |            1440|    253    |     17.57     |
+## |  accessionC   |  character  |            1440|   1020    |     70.83     |
+## |  accessionP   |  character  |            1440|   1159    |     80.49     |
+## |   treatyID    |  character  |            1440|     0     |       0       |
+## ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

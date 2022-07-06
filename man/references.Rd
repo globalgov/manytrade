@@ -22,22 +22,13 @@ references database documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA_REF
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             584   
-## Number of columns          3     
-## _______________________          
-## Column type frequency:           
-##   character                3     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate min max empty n_unique whitespace
-## 1 treatyID1             0             1   8  37     0      378          0
-## 2 treatyID2             0             1   8  37     0      378          0
-## 3 RefType               0             1   5  10     0        4          0
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |   treatyID1   |  character  |             584|     0     |       0       |
+## |   treatyID2   |  character  |             584|     0     |       0       |
+## |    RefType    |  character  |             584|     0     |       0       |
+## ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

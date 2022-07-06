@@ -11,6 +11,6 @@
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply(references, skimr::skim_without_charts)
+#' lapply(references, messydates::mreport)
 #' ```
 "references"

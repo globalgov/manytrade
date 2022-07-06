@@ -12,6 +12,6 @@
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply(texts, skimr::skim_without_charts)
+#' lapply(texts, messydates::mreport)
 #' ```
 "texts"

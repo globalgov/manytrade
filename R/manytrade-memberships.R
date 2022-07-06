@@ -15,6 +15,6 @@
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply(memberships, skimr::skim_without_charts)
+#' lapply(memberships, messydates::mreport)
 #' ```
 "memberships"
