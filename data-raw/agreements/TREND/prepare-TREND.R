@@ -5,8 +5,9 @@
 library(manypkgs)
 
 # Stage one: Collecting data
-TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
-                            sheet = "trend (public version)")
+# Note that the original data (in excel format) has been converted and saved as
+# a csv file with the same variables and data.
+TREND <- read.csv2("data-raw/agreements/TREND/TREND.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and

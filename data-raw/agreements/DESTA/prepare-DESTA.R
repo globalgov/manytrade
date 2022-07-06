@@ -5,7 +5,9 @@
 library(manypkgs)
 
 # Stage one: Collecting data
-DESTA <- readxl::read_excel("data-raw/agreements/DESTA/DESTA.xlsx")
+# Note that the original data (in excel format) has been converted and saved as
+# a csv file with the same variables and data.
+DESTA <- read.csv2("data-raw/agreements/DESTA/DESTA.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and

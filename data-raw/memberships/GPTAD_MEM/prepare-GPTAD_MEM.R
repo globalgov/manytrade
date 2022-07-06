@@ -4,7 +4,7 @@
 # ready for the many universe.
 
 # Stage one: Collecting data 
-GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD.csv")
+GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD_MEM.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
