@@ -5,14 +5,15 @@
 library(manypkgs)
 
 # Stage one: Collecting data
-TREND <- readxl::read_excel("data-raw/agreements/TREND/trend_2_public_version.xlsx", 
-                            sheet = "trend (public version)")
+# Note that the original data (in excel format) has been converted and saved as
+# a csv file with the same variables and data.
+TREND <- read.csv2("data-raw/agreements/TREND/TREND.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
 # formats of the 'TREND' object until the object created
 # below (in stage three) passes all the tests.
-TREND <- as_tibble(TREND) %>%
+TREND <- tibble::as_tibble(TREND) %>%
   tidyr::separate(Trade.Agreement, into= c("trendID", "name", "year1"), sep="_") %>%
   #variable is split to generate ID for each treaty and the title of the treaty as two separate variables
   tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
@@ -21,8 +22,8 @@ TREND <- as_tibble(TREND) %>%
   # standardise date formats across agreements database
   dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
-                        Signature=manypkgs::standardise_dates(as.character(Year)),
-                        Force = manypkgs::standardise_dates(as.character(Year))) %>%
+                        Signature = messydates::as_messydate(as.character(Year)),
+                        Force = messydates::as_messydate(as.character(Year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(trendID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
@@ -35,7 +36,8 @@ manyID <- manypkgs::condense_agreements(manytrade::agreements,
                                         var = c(DESTA$treatyID, 
                                                 GPTAD$treatyID,
                                                 LABPTA$treatyID, 
-                                                TREND$treatyID))
+                                                TREND$treatyID,
+                                                TOTA$treatyID))
 TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns

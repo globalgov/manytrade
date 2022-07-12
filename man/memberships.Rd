@@ -10,12 +10,12 @@ following 2 datasets: GPTAD_MEM, DESTA_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{GPTAD_MEM: }{A dataset with 2201 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force,
-CountryName, gptadID, treatyID.}
+\item{GPTAD_MEM: }{A dataset with 2198 observations and the following
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+gptadID, treatyID.}
 \item{DESTA_MEM: }{A dataset with 7492 observations and the following
-9 variables: manyID, CountryID, Title, Beg, Signature, Force,
-CountryName, destaID, treatyID.}
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+destaID, treatyID.}
 }
 }
 \usage{
@@ -25,53 +25,36 @@ memberships
 memberships database documentation
 }
 \details{
-\preformatted{## $GPTAD_MEM
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             2201  
-## Number of columns          9     
-## _______________________          
-## Column type frequency:           
-##   character                9     
-## ________________________         
-## Group variables            None  
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## $GPTAD_MEM
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |            2198|     0     |       0       |
+## |    stateID    |  character  |            2198|    130    |     5.91      |
+## |     Title     |  character  |            2198|     0     |       0       |
+## |      Beg      |    mdate    |            2198|    99     |      4.5      |
+## |   Signature   |    mdate    |            2198|    328    |     14.92     |
+## |     Force     |    mdate    |            2198|    283    |     12.88     |
+## |   StateName   |  character  |            2198|     0     |       0       |
+## |    gptadID    |  character  |            2198|     0     |       0       |
+## |   treatyID    |  character  |            2198|     0     |       0       |
+## ----------------------------------------------------------------------------
 ## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1         8    37     0      345          0
-## 2 CountryID           101         0.954     3     3     0      214          0
-## 3 Title                 0         1         3    74     0      345          0
-## 4 Beg                 100         0.955    10    10     0      291          0
-## 5 Signature           331         0.850    10    10     0      271          0
-## 6 Force               285         0.871    10    10     0      200          0
-## 7 CountryName           0         1         3    48     0      249          0
-## 8 gptadID               0         1         1     3     0      346          0
-## 9 treatyID              0         1         8    37     0      345          0
 ## 
 ## $DESTA_MEM
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             7492  
-## Number of columns          9     
-## _______________________          
-## Column type frequency:           
-##   character                9     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0         1        12    37     0     1164          0
-## 2 CountryID            10         0.999     3     3     0      220          0
-## 3 Title                 0         1         2   146     0     1090          0
-## 4 Beg                 630         0.916     4     4     0       70          0
-## 5 Signature           630         0.916     4     4     0       70          0
-## 6 Force              2886         0.615     4     4     0       66          0
-## 7 CountryName           0         1         4    38     0      222          0
-## 8 destaID               0         1         1     4     0      931          0
-## 9 treatyID              0         1        12    37     0     1174          0
-}
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |    manyID     |  character  |            7492|     0     |       0       |
+## |    stateID    |  character  |            7492|    10     |     0.13      |
+## |     Title     |  character  |            7492|     0     |       0       |
+## |      Beg      |    mdate    |            7492|    630    |     8.41      |
+## |   Signature   |    mdate    |            7492|    630    |     8.41      |
+## |     Force     |    mdate    |            7492|   2886    |     38.52     |
+## |   StateName   |  character  |            7492|     0     |       0       |
+## |    destaID    |  character  |            7492|     0     |       0       |
+## |   treatyID    |  character  |            7492|     0     |       0       |
+## ----------------------------------------------------------------------------
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

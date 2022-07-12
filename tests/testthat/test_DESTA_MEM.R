@@ -12,8 +12,10 @@ test_that("missing observations are reported correctly", {
 
 # Uniformity tests (agreements have a countryID and Beg columns)
 test_that("datasets have the required variables", {
-  expect_col_exists(memberships[["DESTA_MEM"]], vars(CountryID))
-  expect_col_exists(memberships[["DESTA_MEM"]], vars(Beg))
+  pointblank::expect_col_exists(memberships[["DESTA_MEM"]],
+                                pointblank::vars(stateID))
+  pointblank::expect_col_exists(memberships[["DESTA_MEM"]],
+                                pointblank::vars(Beg))
 })
 
 # Date columns should be in messydt class
@@ -25,7 +27,7 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(memberships[["DESTA_MEM"]]$Beg), "messydt")
+  expect_equal(class(memberships[["DESTA_MEM"]]$Beg), "mdate")
   expect_false(any(grepl("/", memberships[["DESTA_MEM"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
                          memberships[["DESTA_MEM"]]$Beg)))

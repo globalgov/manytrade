@@ -10,8 +10,8 @@ following 1 datasets: DESTA_REF.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{DESTA_REF: }{A dataset with 1000 observations and the following
-3 variables: manyID1, RefType, manyID2.}
+\item{DESTA_REF: }{A dataset with 584 observations and the following
+3 variables: treatyID1, treatyID2, RefType.}
 }
 }
 \usage{
@@ -21,23 +21,14 @@ references
 references database documentation
 }
 \details{
-\preformatted{## $DESTA_REF
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             1000  
-## Number of columns          3     
-## _______________________          
-## Column type frequency:           
-##   character                3     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID1               6         0.994     8    37     0      866          0
-## 2 RefType               0         1         0    10   812        3          0
-## 3 manyID2             822         0.178     8    37     0       59          0
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA_REF
+## ----------------------------------------------------------------------------
+## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+## ----------------------------------------------------------------------------
+## |   treatyID1   |  character  |             584|     0     |       0       |
+## |   treatyID2   |  character  |             584|     0     |       0       |
+## |    RefType    |  character  |             584|     0     |       0       |
+## ----------------------------------------------------------------------------
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
-Version: 0.1.1
-Date: 2022-03-23
+Version: 0.1.2
+Date: 2022-07-12
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -29,22 +29,15 @@ Description: The manytrade package provides an ensemble of data on international
 License: CC BY 4.0
 Depends: 
     R (>= 3.5.0),
-    tibble,
-    pointblank
 Imports:
-    lubridate,
-    messydates,
-    dplyr,
-    roxygen2,
-    usethis,
-    remotes,
-    pkgdown,
-    xml2
+    manydata
 Suggests:
-    rlang,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    pointblank,
+    lubridate
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Config/testthat/edition: 3

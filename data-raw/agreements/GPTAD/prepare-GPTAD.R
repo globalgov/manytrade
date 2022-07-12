@@ -11,7 +11,7 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 # In this stage you will want to correct the variable names and
 # formats of the 'GPTAD' object until the object created
 # below (in stage three) passes all the tests.
-GPTAD <- as_tibble(GPTAD) %>%
+GPTAD <- tibble::as_tibble(GPTAD) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
   #removing entries relating to membership as membership changes will be logged in memberships database
@@ -39,8 +39,8 @@ GPTAD <- as_tibble(GPTAD) %>%
   dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                     Signature = manypkgs::standardise_dates(`Date.of.Signature`),
-                     Force = manypkgs::standardise_dates(`Date.of.Entry.into.Force`)) %>%
+                     Signature = messydates::as_messydate(`Date.of.Signature`),
+                     Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, Title, Beg, Signature, Force, AgreementType, DocType, GeogArea) %>%
   dplyr::arrange(Beg)
@@ -53,7 +53,8 @@ manyID <- manypkgs::condense_agreements(manytrade::agreements,
                                         var = c(DESTA$treatyID, 
                                                 GPTAD$treatyID,
                                                 LABPTA$treatyID, 
-                                                TREND$treatyID))
+                                                TREND$treatyID,
+                                                TOTA$treatyID))
 GPTAD <- dplyr::left_join(GPTAD, manyID, by = "treatyID")
 
 # Re-order the columns

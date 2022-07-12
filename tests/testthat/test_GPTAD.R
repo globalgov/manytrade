@@ -13,13 +13,16 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists(agreements[["GPTAD"]], vars(Title))
-  expect_col_exists(agreements[["GPTAD"]], vars(Beg))
+  pointblank::expect_col_exists(agreements[["GPTAD"]],
+                                pointblank::vars(Title))
+  pointblank::expect_col_exists(agreements[["GPTAD"]],
+                                pointblank::vars(Beg))
   expect_true(any(grepl("ID$", colnames(agreements[["GPTAD"]]))))
-  expect_col_exists(agreements[["GPTAD"]], vars(Signature))
+  pointblank::expect_col_exists(agreements[["GPTAD"]],
+                                pointblank::vars(Signature))
 })
 
-# Date columns should be in messydt class
+# Date columns should be in mdate class
 test_that("Columns are not in date, POSIXct or POSIXlt class", {
   expect_false(any(lubridate::is.Date(agreements[["GPTAD"]])))
   expect_false(any(lubridate::is.POSIXct(agreements[["GPTAD"]])))
@@ -28,7 +31,7 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(agreements[["GPTAD"]]$Beg), "messydt")
+  expect_equal(class(agreements[["GPTAD"]]$Beg), "mdate")
   expect_false(any(grepl("/", agreements[["GPTAD"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
                          agreements[["GPTAD"]]$Beg)))
@@ -41,7 +44,7 @@ test_that("Column `Beg` has standardised dates", {
 })
 
 test_that("Column `Signature` has standardised dates", {
-  expect_equal(class(agreements[["GPTAD"]]$Signature), "messydt")
+  expect_equal(class(agreements[["GPTAD"]]$Signature), "mdate")
   expect_false(any(grepl("/", agreements[["GPTAD"]]$Signature)))
   expect_false(any(grepl("^[:alpha:]$",
                          agreements[["GPTAD"]]$Signature)))

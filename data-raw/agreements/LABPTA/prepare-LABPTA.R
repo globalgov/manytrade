@@ -11,13 +11,13 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # In this stage you will want to correct the variable names and
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
-LABPTA <- as_tibble(LABPTA) %>%
+LABPTA <- tibble::as_tibble(LABPTA) %>%
   # standardise date formats across agreements database
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   manydata::transmutate(labptaID = as.character(`Number`),
                         Title = manypkgs::standardise_titles(Name),
-                        Signature = manypkgs::standardise_dates(as.character(year)),
-                        Force = manypkgs::standardise_dates(as.character(year))) %>%
+                        Signature = messydates::as_messydate(as.character(year)),
+                        Force = messydates::as_messydate(as.character(year))) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
   dplyr::arrange(Beg)
@@ -30,7 +30,8 @@ manyID <- manypkgs::condense_agreements(manytrade::agreements,
                                         var = c(DESTA$treatyID, 
                                                 GPTAD$treatyID,
                                                 LABPTA$treatyID, 
-                                                TREND$treatyID))
+                                                TREND$treatyID,
+                                                TOTA$treatyID))
 LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
