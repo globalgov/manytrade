@@ -66,7 +66,7 @@ manydata::get_packages()
     ## 4 0.2.2     0.2.1         2022-02-18
     ## 5 0.1.0     0.0.6         2021-12-06
     ## 6 0.1.2     0.1.1         2022-03-23
-    ## 7 0.3.0     0.3.0         2022-07-04
+    ## 7 0.3.1     0.3.0         2022-07-04
 
 ``` r
 # manydata::get_packages("manytrade") # downloads and installs the named package
@@ -84,18 +84,18 @@ manydata::data_contrast("manytrade")
 
     ## agreements :
     ##        Unique ID Missing Data Rows Columns        Beg End
-    ## TREND          0       0.29 %  729       7 1947-01-01  NA
-    ## LABPTA         0          0 %  483       7 1990-01-01  NA
-    ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
     ## DESTA          0       4.21 %  959      10 1948-01-01  NA
+    ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
+    ## LABPTA         0          0 %  483       7 1990-01-01  NA
     ## TOTA           0        0.1 %  450       7 1948-12-06  NA
-    ## GNEVAR         0      21.61 % 1503       8 1947-01-01  NA
+    ## TREND          0       0.29 %  729       7 1947-01-01  NA
+    ## GNEVAR         0      23.32 % 1440       8 1947-01-01  NA
     ##                                                                                                                                                                                                                                        URL
-    ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
-    ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
-    ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
     ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
+    ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
+    ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
     ## TOTA                                                                                                                                                                                           https://github.com/mappingtreaties/tota.git
+    ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
     ## GNEVAR https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git
     ## 
     ## memberships :
@@ -114,7 +114,7 @@ manydata::data_contrast("manytrade")
     ## 
     ## texts :
     ##            Unique ID Missing Data Rows Columns        Beg End
-    ## GNEVAR_TXT         0      14.98 % 1503       8 1947-01-01  NA
+    ## GNEVAR_TXT         0      31.17 % 1440      13 1947-01-01  NA
     ##                                                                                                                                                                                                                       URL
     ## GNEVAR_TXT https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search, https://github.com/mappingtreaties/tota.git
 
