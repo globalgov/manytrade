@@ -65,7 +65,7 @@ manydata::get_packages()
     ## 3 <NA>      0.1.1-272ea19 2022-02-15
     ## 4 0.2.2     0.2.1         2022-02-18
     ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.2     0.1.1         2022-03-23
+    ## 6 0.1.2     0.1.2         2022-07-13
     ## 7 0.3.1     0.3.0         2022-07-04
 
 ``` r
@@ -81,42 +81,6 @@ function.
 ``` r
 manydata::data_contrast("manytrade")
 ```
-
-    ## agreements :
-    ##        Unique ID Missing Data Rows Columns        Beg End
-    ## DESTA          0       4.21 %  959      10 1948-01-01  NA
-    ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
-    ## LABPTA         0          0 %  483       7 1990-01-01  NA
-    ## TOTA           0        0.1 %  450       7 1948-12-06  NA
-    ## TREND          0       0.29 %  729       7 1947-01-01  NA
-    ## GNEVAR         0      23.32 % 1440       8 1947-01-01  NA
-    ##                                                                                                                                                                                                                                        URL
-    ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
-    ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
-    ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
-    ## TOTA                                                                                                                                                                                           https://github.com/mappingtreaties/tota.git
-    ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
-    ## GNEVAR https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git
-    ## 
-    ## memberships :
-    ##           Unique ID Missing Data Rows Columns        Beg End
-    ## GPTAD_MEM         0       4.25 % 2198       9 1957-03-25  NA
-    ## DESTA_MEM         0       6.16 % 7492       9 1948-01-01  NA
-    ##                                                          URL
-    ## GPTAD_MEM      https://wits.worldbank.org/gptad/library.aspx
-    ## DESTA_MEM https://www.designoftradeagreements.org/downloads/
-    ## 
-    ## references :
-    ##           Unique ID Missing Data Rows Columns Beg End
-    ## DESTA_REF         0          0 %  584       3  NA  NA
-    ##                                                          URL
-    ## DESTA_REF https://www.designoftradeagreements.org/downloads/
-    ## 
-    ## texts :
-    ##            Unique ID Missing Data Rows Columns        Beg End
-    ## GNEVAR_TXT         0      31.17 % 1440      13 1947-01-01  NA
-    ##                                                                                                                                                                                                                       URL
-    ## GNEVAR_TXT https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search, https://github.com/mappingtreaties/tota.git
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes

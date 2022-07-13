@@ -157,9 +157,7 @@ jobs:
           cache-version: 2
           extra-packages: |
             any::manydata
-          needs: |
-            build
-            check
+          needs: check
 
       # Render README.md using rmarkdown
       - name: render README
