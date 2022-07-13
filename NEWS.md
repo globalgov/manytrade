@@ -1,6 +1,6 @@
 # manytrade 0.1.2
 
-2022-07-12
+2022-07-13
 
 ## Data
 * Added `GNEVAR` dataset to `agreements` database.
