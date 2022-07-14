@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">manytrade</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,6 +66,21 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.2" id="manytrade-012">manytrade 0.1.2<a class="anchor" aria-label="anchor" href="#manytrade-012"></a></h2>
+<p>2022-07-13</p>
+<div class="section level3">
+<h3 id="data-0-1-2">Data<a class="anchor" aria-label="anchor" href="#data-0-1-2"></a></h3>
+<ul><li>Added <code>GNEVAR</code> dataset to <code>agreements</code> database.<ul><li>The<code>GNEVAR</code> dataset builds on existing data in the agreements database (from GPTAD, DESTA, LABPTA, and TREND datasets), adding variables for membership conditions and membership procedures using <code>manypkgs::code_accession_terms()</code> and more precise dates of signature for trade agreements (see bullet point below).</li>
+<li>Closed #6 by adding more precise dates of signature (in YYYY-MM-DD format) to GNEVAR dataset. These dates are extracted from trade agreements texts stored in the <code>texts</code> database, and improve on the dates in the <code>DESTA</code>, <code>LABPTA</code>, and <code>TREND</code> datasets that only contain the year of signature and entry into force. Dates from <code>TOTA</code> and <code>GPTAD</code> datasets are retained since they are precise (YYYY-MM-DD format).</li>
+</ul></li>
+<li>Added <code>texts</code> database with trade agreements texts.<ul><li>Closed #17 by adding texts for trade agreements listed in the <code>agreements</code> database. To avoid overlaps, the texts are added to a combined <code>GNEVAR_TXT</code> dataset.</li>
+<li>Closed #9 by incorporating TOTA database to the <code>GNEVAR_TXT</code> dataset in the <code>texts</code> database and added metadata to <code>TOTA</code> dataset in <code>agreements</code> database.</li>
+</ul></li>
+<li>Changed class from ‘messydt’ to ‘mdate’ for <code>Beg</code>, <code>Signature</code>, and <code>Force</code> variables in datasets in <code>agreements</code>, <code>memberships</code>, and <code>texts</code> databases.</li>
+<li>Overhaul of <code>DESTA_REF</code> dataset in <code>references</code> database. The dataset traces the relationship (amends or cites) between the trade agreements in the original DESTA dataset.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="manytrade-011">manytrade 0.1.1<a class="anchor" aria-label="anchor" href="#manytrade-011"></a></h2>
 <p>2022-03-23</p>
 <div class="section level3">
@@ -77,8 +92,7 @@
 <div class="section level3">
 <h3 id="data-0-1-1">Data<a class="anchor" aria-label="anchor" href="#data-0-1-1"></a></h3>
 <ul><li>Fixed #23 by amending regex list stored in package and modifying <code>manystates::code_states()</code> to return original names if unmatched in regex list.</li>
-<li>Fixed #22 and #24 by renaming variables in databases.
-<ul><li>Renamed “treaty_ID” and “many_ID” across all databases to “treatyID” and “manyID” respectively.</li>
+<li>Fixed #22 and #24 by renaming variables in databases.<ul><li>Renamed “treaty_ID” and “many_ID” across all databases to “treatyID” and “manyID” respectively.</li>
 <li>Renamed “L”, “D”, and “J” in the agreements database “DocType”, “AgreementType”, and “GeogArea” respectively.</li>
 <li>Reformatted “Beg”, “Signature”, “Force” variables from YYYY format to YYYY-MM-DD format in <code>DESTA</code>, <code>TREND</code>, <code>LABPTA</code> datasets to be consistent across the <code>agreements</code> database.</li>
 <li>Recoded <code>DocType</code> variable in <code>GPTAD</code> dataset to remove ambiguity in coding</li>
