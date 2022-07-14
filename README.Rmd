@@ -33,7 +33,7 @@ manydata::get_packages()
 
 Once you have installed the package, you can see the different databases and datasets included in the {`manytrade`} package using the following function.
 
-```{r datasets, eval=FALSE, warning=FALSE, message=FALSE}
+```{r datasets, warning=FALSE, message=FALSE}
 manydata::data_contrast("manytrade")
 ```
 

@@ -157,7 +157,11 @@ jobs:
           cache-version: 2
           extra-packages: |
             any::manydata
+            any::rmarkdown
           needs: check
+
+      - name: Install package
+        run: R CMD INSTALL .
 
       # Render README.md using rmarkdown
       - name: render README
