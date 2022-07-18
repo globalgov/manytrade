@@ -2,6 +2,7 @@
 #'
 #' @format The agreements database is a list that contains the
 #' following 6 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, GNEVAR.
+#' The GNEVAR dataset contains self-coded additions to the other datasets.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{

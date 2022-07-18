@@ -1,14 +1,16 @@
 # GNEVAR Preparation Script
 
-# The GNEVAR dataset collates all the trade agreements listed in the five
-# datasets in the manytrade::agreements database. To avoid having duplicate 
-# entries in the GNEVAR dataset, the dataset is built on the consolidated
-# version of the text used in the texts database. 
-# The GNEVAR dataset contains additional information on the trade agreements
-# listed, such as membership conditions and procedures for joining agreements, 
-# and increases the precision of Signature dates. These original data are
-# extracted from the texts of the trade agreements, which are also stored in the
-# manytrade::texts database.
+# The GNEVAR dataset collates all the trade agreements
+# listed in the other five datasets in the manytrade::agreements database
+# (DESTA, GPTAD, TOTA, LABPTA, TREND).
+# To avoid having duplicate entries,
+# the GNEVAR dataset is built on the consolidated version of the database,
+# as used in the texts database GNEVAR_TXT dataset. 
+# The GNEVAR dataset contains additional information on the trade agreements listed,
+# such as accession conditions and procedures for joining agreements, 
+# and increases the precision of Signature dates.
+# This information is extracted from the texts of the trade agreements,
+# which are stored in the manytrade::texts database.
 
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
@@ -63,22 +65,22 @@ GNEVAR <- GNEVAR %>%
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make GNEVAR available
-# within the package.
+# Next run the following line to make GNEVAR available within the package.
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
-# to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
+# to certain standards
+# You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
 # to run these tests locally at any point.
-# Any test failures should be pretty self-explanatory and may require
-# you to return to stage two and further clean, standardise, or wrangle
-# your data into the expected format.
+# Any test failures should be pretty self-explanatory and
+# may require you to return to stage two and further clean,
+# standardise, or wrangle your data into the expected format.
 # Second, it also creates a documentation file for you to fill in.
 # Please note that the export_data() function requires a .bib file to be
 # present in the data_raw folder of the package for citation purposes.
 # Therefore, please make sure that you have permission to use the dataset
-# that you're including in the package.
+# that you are including in the package.
 # To add a template of .bib file to the package,
-# please run `manypkgs::add_bib(agreements, GNEVAR)`.
+# please run `manypkgs::add_bib("agreements", "GNEVAR")`.
 manypkgs::export_data(GNEVAR, database = "agreements", 
                       URL = c("https://www.designoftradeagreements.org/downloads/",
                               "https://wits.worldbank.org/gptad/library.aspx",
