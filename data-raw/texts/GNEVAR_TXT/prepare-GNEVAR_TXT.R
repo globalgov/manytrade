@@ -228,7 +228,7 @@ GNEVAR_TXT <- GNEVAR_TXT %>%
 
 # Clean texts and remove duplicates
 GNEVAR_TXT <- GNEVAR_TXT %>%
-  dplyr::mutate(TreatyText = manypkgs::standardise_texts(TreatyText)) %>%
+  dplyr::mutate(TreatyText = manypkgs::standardise_treaty_text(TreatyText)) %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, totaID, gptadID, destaID,
                   labptaID, trendID, treatyID)
 
