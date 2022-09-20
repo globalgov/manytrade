@@ -21,14 +21,14 @@ references
 references database documentation
 }
 \details{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA_REF
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |   treatyID1   |  character  |             584|     0     |       0       |
-## |   treatyID2   |  character  |             584|     0     |       0       |
-## |    RefType    |  character  |             584|     0     |       0       |
-## ----------------------------------------------------------------------------
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $DESTA_REF
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |   treatyID1   |  character  |             584|     0     |       0       |
+#> |   treatyID2   |  character  |             584|     0     |       0       |
+#> |    RefType    |  character  |             584|     0     |       0       |
+#> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

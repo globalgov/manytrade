@@ -25,36 +25,36 @@ memberships
 memberships database documentation
 }
 \details{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{## $GPTAD_MEM
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |            2198|     0     |       0       |
-## |    stateID    |  character  |            2198|    130    |     5.91      |
-## |     Title     |  character  |            2198|     0     |       0       |
-## |      Beg      |    mdate    |            2198|    99     |      4.5      |
-## |   Signature   |    mdate    |            2198|    328    |     14.92     |
-## |     Force     |    mdate    |            2198|    283    |     12.88     |
-## |   StateName   |  character  |            2198|     0     |       0       |
-## |    gptadID    |  character  |            2198|     0     |       0       |
-## |   treatyID    |  character  |            2198|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $DESTA_MEM
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |            7492|     0     |       0       |
-## |    stateID    |  character  |            7492|    10     |     0.13      |
-## |     Title     |  character  |            7492|     0     |       0       |
-## |      Beg      |    mdate    |            7492|    630    |     8.41      |
-## |   Signature   |    mdate    |            7492|    630    |     8.41      |
-## |     Force     |    mdate    |            7492|   2886    |     38.52     |
-## |   StateName   |  character  |            7492|     0     |       0       |
-## |    destaID    |  character  |            7492|     0     |       0       |
-## |   treatyID    |  character  |            7492|     0     |       0       |
-## ----------------------------------------------------------------------------
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $GPTAD_MEM
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |            2198|     0     |       0       |
+#> |    stateID    |  character  |            2198|    130    |     5.91      |
+#> |     Title     |  character  |            2198|     0     |       0       |
+#> |      Beg      |    mdate    |            2198|    99     |      4.5      |
+#> |   Signature   |    mdate    |            2198|    328    |     14.92     |
+#> |     Force     |    mdate    |            2198|    283    |     12.88     |
+#> |   StateName   |  character  |            2198|     0     |       0       |
+#> |    gptadID    |  character  |            2198|     0     |       0       |
+#> |   treatyID    |  character  |            2198|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $DESTA_MEM
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |            7492|     0     |       0       |
+#> |    stateID    |  character  |            7492|    10     |     0.13      |
+#> |     Title     |  character  |            7492|     0     |       0       |
+#> |      Beg      |    mdate    |            7492|    630    |     8.41      |
+#> |   Signature   |    mdate    |            7492|    630    |     8.41      |
+#> |     Force     |    mdate    |            7492|   2886    |     38.52     |
+#> |   StateName   |  character  |            7492|     0     |       0       |
+#> |    destaID    |  character  |            7492|     0     |       0       |
+#> |   treatyID    |  character  |            7492|     0     |       0       |
+#> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}
