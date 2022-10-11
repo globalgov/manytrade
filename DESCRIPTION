@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
-Version: 0.1.2
-Date: 2022-07-13
+Version: 0.2.0
+Date: 2022-10-11
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -29,7 +29,6 @@ Description: The manytrade package provides an ensemble of data on international
 License: CC BY 4.0
 Depends: 
     R (>= 3.5.0),
-Imports:
     manydata
 Suggests:
     testthat (>= 3.0.0),
