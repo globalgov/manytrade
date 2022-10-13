@@ -225,12 +225,18 @@ HUGGO <- HUGGO %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, totaID, gptadID, destaID,
                   labptaID, trendID, treatyID)
 
-HUGGO <- subset(HUGGO,
-                     subset = !duplicated(HUGGO[, c(1,2,3,4,5,6,7,8,9,10,11,12,13)]))
-
 HUGGO <- HUGGO %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force) %>%
   dplyr::select(-c(totaID, gptadID, destaID, labptaID, trendID))
+
+HUGGO <- HUGGO %>% 
+  dplyr::mutate(across(everything(), ~stringr::str_replace_all(., "^NA$",
+                                                               NA_character_))) %>% 
+  dplyr::distinct(.keep_all = TRUE) %>% 
+  mutate(Signature = messydates::as_messydate(Signature),
+         Force = messydates::as_messydate(Force),
+         Beg = messydates::as_messydate(Beg)) %>% 
+  dplyr::distinct(.keep_all = TRUE)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

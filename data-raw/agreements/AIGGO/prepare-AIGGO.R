@@ -56,6 +56,15 @@ AIGGO <- AIGGO %>%
   dplyr::select(-c(dates, Sign.rev, TreatyText, url,
                    totaID, gptadID, destaID, labptaID, trendID))
 
+# Remove duplicates and convert NAs
+AIGGO <- AIGGO %>%
+  mutate(across(everything(), ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
+  mutate(Signature = messydates::as_messydate(Signature),
+         Force = messydates::as_messydate(Force),
+         Beg = messydates::as_messydate(Beg)) %>% 
+  dplyr::distinct(.keep_all = TRUE)
+
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
