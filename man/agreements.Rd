@@ -6,25 +6,24 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 6 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, GNEVAR.
+following 8 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, GNEVAR, HUGGO, AIGGO.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA: }{A dataset with 959 observations and the following
-10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-Signature, Force, treatyID, destaID.}
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, destaID.}
 \item{GPTAD: }{A dataset with 340 observations and the following
-10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-Signature, Force, treatyID, gptadID.}
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID.}
 \item{LABPTA: }{A dataset with 483 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 \item{TOTA: }{A dataset with 450 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
 \item{TREND: }{A dataset with 729 observations and the following
 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
-\item{GNEVAR: }{A dataset with 1440 observations and the following
-8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
-treatyID.}
+\item{HUGGO: }{A dataset with 1440 observations and the following
+8 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText, url.}
+\item{AIGGO: }{A dataset with 1440 observations and the following
+8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP, treatyID.}
 }
 }
 \usage{
@@ -34,95 +33,110 @@ agreements
 agreements database documentation
 }
 \details{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{## $DESTA
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |             959|     0     |       0       |
-## |     Title     |  character  |             959|     0     |       0       |
-## |      Beg      |    mdate    |             959|    81     |     8.45      |
-## | AgreementType |  character  |             959|     0     |       0       |
-## |    DocType    |  character  |             959|     0     |       0       |
-## |   GeogArea    |  character  |             959|     0     |       0       |
-## |   Signature   |    mdate    |             959|    81     |     8.45      |
-## |     Force     |    mdate    |             959|    242    |     25.23     |
-## |   treatyID    |  character  |             959|     0     |       0       |
-## |    destaID    |  character  |             959|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $GPTAD
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |             340|     0     |       0       |
-## |     Title     |  character  |             340|     0     |       0       |
-## |      Beg      |    mdate    |             340|    30     |     8.82      |
-## | AgreementType |  character  |             340|     0     |       0       |
-## |    DocType    |  character  |             340|     0     |       0       |
-## |   GeogArea    |  character  |             340|    75     |     22.06     |
-## |   Signature   |    mdate    |             340|    53     |     15.59     |
-## |     Force     |    mdate    |             340|    63     |     18.53     |
-## |   treatyID    |  character  |             340|     0     |       0       |
-## |    gptadID    |  character  |             340|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $LABPTA
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |             483|     0     |       0       |
-## |     Title     |  character  |             483|     0     |       0       |
-## |      Beg      |    mdate    |             483|     0     |       0       |
-## |   Signature   |    mdate    |             483|     0     |       0       |
-## |     Force     |    mdate    |             483|     0     |       0       |
-## |   treatyID    |  character  |             483|     0     |       0       |
-## |   labptaID    |  character  |             483|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $TOTA
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |             450|     0     |       0       |
-## |     Title     |  character  |             450|     0     |       0       |
-## |      Beg      |    mdate    |             450|     0     |       0       |
-## |   Signature   |    mdate    |             450|     0     |       0       |
-## |     Force     |    mdate    |             450|     3     |     0.67      |
-## |   treatyID    |  character  |             450|     0     |       0       |
-## |    totaID     |  character  |             450|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $TREND
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |             729|     0     |       0       |
-## |     Title     |  character  |             729|     0     |       0       |
-## |      Beg      |    mdate    |             729|     5     |     0.69      |
-## |   Signature   |    mdate    |             729|     5     |     0.69      |
-## |     Force     |    mdate    |             729|     5     |     0.69      |
-## |   treatyID    |  character  |             729|     0     |       0       |
-## |    trendID    |  character  |             729|     0     |       0       |
-## ----------------------------------------------------------------------------
-## 
-## 
-## $GNEVAR
-## ----------------------------------------------------------------------------
-## |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-## ----------------------------------------------------------------------------
-## |    manyID     |  character  |            1440|     0     |       0       |
-## |     Title     |  character  |            1440|     0     |       0       |
-## |      Beg      |    mdate    |            1440|    116    |     8.06      |
-## |   Signature   |    mdate    |            1440|    138    |     9.58      |
-## |     Force     |    mdate    |            1440|    253    |     17.57     |
-## |  accessionC   |  character  |            1440|   1020    |     70.83     |
-## |  accessionP   |  character  |            1440|   1159    |     80.49     |
-## |   treatyID    |  character  |            1440|     0     |       0       |
-## ----------------------------------------------------------------------------
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $DESTA
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             959|     0     |       0       |
+#> |     Title     |  character  |             959|     0     |       0       |
+#> |      Beg      |    mdate    |             959|    81     |     8.45      |
+#> | AgreementType |  character  |             959|     0     |       0       |
+#> |    DocType    |  character  |             959|     0     |       0       |
+#> |   GeogArea    |  character  |             959|     0     |       0       |
+#> |   Signature   |    mdate    |             959|    81     |     8.45      |
+#> |     Force     |    mdate    |             959|    242    |     25.23     |
+#> |   treatyID    |  character  |             959|     0     |       0       |
+#> |    destaID    |  character  |             959|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $GPTAD
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             340|     0     |       0       |
+#> |     Title     |  character  |             340|     0     |       0       |
+#> |      Beg      |    mdate    |             340|    30     |     8.82      |
+#> | AgreementType |  character  |             340|     0     |       0       |
+#> |    DocType    |  character  |             340|     0     |       0       |
+#> |   GeogArea    |  character  |             340|    75     |     22.06     |
+#> |   Signature   |    mdate    |             340|    53     |     15.59     |
+#> |     Force     |    mdate    |             340|    63     |     18.53     |
+#> |   treatyID    |  character  |             340|     0     |       0       |
+#> |    gptadID    |  character  |             340|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $LABPTA
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             483|     0     |       0       |
+#> |     Title     |  character  |             483|     0     |       0       |
+#> |      Beg      |    mdate    |             483|     0     |       0       |
+#> |   Signature   |    mdate    |             483|     0     |       0       |
+#> |     Force     |    mdate    |             483|     0     |       0       |
+#> |   treatyID    |  character  |             483|     0     |       0       |
+#> |   labptaID    |  character  |             483|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $TOTA
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             450|     0     |       0       |
+#> |     Title     |  character  |             450|     0     |       0       |
+#> |      Beg      |    mdate    |             450|     0     |       0       |
+#> |   Signature   |    mdate    |             450|     0     |       0       |
+#> |     Force     |    mdate    |             450|     3     |     0.67      |
+#> |   treatyID    |  character  |             450|     0     |       0       |
+#> |    totaID     |  character  |             450|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $TREND
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             729|     0     |       0       |
+#> |     Title     |  character  |             729|     0     |       0       |
+#> |      Beg      |    mdate    |             729|     5     |     0.69      |
+#> |   Signature   |    mdate    |             729|     5     |     0.69      |
+#> |     Force     |    mdate    |             729|     5     |     0.69      |
+#> |   treatyID    |  character  |             729|     0     |       0       |
+#> |    trendID    |  character  |             729|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $HUGGO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |            1440|     0     |       0       |
+#> |     Title     |  character  |            1440|     0     |       0       |
+#> |      Beg      |    mdate    |            1440|    116    |     8.06      |
+#> |   Signature   |    mdate    |            1440|    135    |     9.38      |
+#> |     Force     |    mdate    |            1440|    253    |     17.57     |
+#> |   treatyID    |  character  |            1440|     0     |       0       |
+#> |  TreatyText   |    list     |            1440|    526    |     36.53     |
+#> |      url      |  character  |            1440|    766    |     53.19     |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $AIGGO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |            1440|     0     |       0       |
+#> |     Title     |  character  |            1440|     0     |       0       |
+#> |      Beg      |    mdate    |            1440|    116    |     8.06      |
+#> |   Signature   |    mdate    |            1440|    138    |     9.58      |
+#> |     Force     |    mdate    |            1440|    253    |     17.57     |
+#> |  accessionC   |  character  |            1440|   1020    |     70.83     |
+#> |  accessionP   |  character  |            1440|   1159    |     80.49     |
+#> |   treatyID    |  character  |            1440|     0     |       0       |
+#> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \keyword{datasets}

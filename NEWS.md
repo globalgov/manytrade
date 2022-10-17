@@ -1,3 +1,17 @@
+# manytrade 0.2.0
+
+2022-10-17
+
+## Data
+* Added `HUGGO` and `AIGGO` datasets to the `agreements` database.
+  * `HUGGO` dataset contains manually coded or verified data and treaty texts,
+  replacing the `GNEVAR_TXT` dataset in the texts database.
+  * `AIGGO` dataset contains programatically coded information on text treaties
+  such as accession conditions and procedures that were coded using `manypkgs::code_accession()`,
+  replacing the `GNEVAR` dataset.
+* Deleted texts database since all treaty texts are now stored in `HUGGO`.
+* Treaty texts were cleaned again using the updated `manypkgs::standardise_treaty_text()`.
+
 # manytrade 0.1.2
 
 2022-07-13

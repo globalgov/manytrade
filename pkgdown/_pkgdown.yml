@@ -56,7 +56,6 @@ reference:
      - agreements
      - memberships
      - references
-     - texts
 footer:
   structure:
     left: devs

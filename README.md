@@ -18,10 +18,11 @@ manytrade is a data package in the [many
 packages](https://github.com/globalgov/) universe. It currently includes
 an ensemble of datasets on international trade agreements, and
 [states](https://github.com/globalgov/manystates)’ membership or other
-relationships to those agreements. Building on existing trade datasets
-such as the Global Preferential Trade Agreements Database (GPTAD) and
-the Design of Trade Agreements Dataset (DESTA), the GNEVAR dataset in
-the `agreements` database also includes information on the membership
+relationships to those agreements, including the original treaty texts
+stored in the HUGGO dataset. Building on existing trade datasets such as
+the Global Preferential Trade Agreements Database (GPTAD) and the Design
+of Trade Agreements Dataset (DESTA), the AIGGO dataset in the
+`agreements` database also includes information on the accession
 conditions and procedures as well as more precise dates of signature
 extracted from the treaty texts. Please also check out
 [`{manydata}`](https://github.com/globalgov/manydata) for more about the
@@ -39,34 +40,16 @@ discover, install and update various ‘many packages’ from the console.
 manydata::get_packages()
 ```
 
-    ## # A tibble: 7 × 6
-    ##   name        full_name            
-    ##   <chr>       <chr>                
-    ## 1 manydata    globalgov/manydata   
-    ## 2 manyenviron globalgov/manyenviron
-    ## 3 manyhealth  globalgov/manyhealth 
-    ## 4 manypkgs    globalgov/manypkgs   
-    ## 5 manystates  globalgov/manystates 
-    ## 6 manytrade   globalgov/manytrade  
-    ## 7 messydates  globalgov/messydates 
-    ##   description                                                          
-    ##   <chr>                                                                
-    ## 1 An R portal for ensembled global governance data                     
-    ## 2 R Package for ensembled data on environmental agreements             
-    ## 3 An R package for ensembled data on international health organisations
-    ## 4 Support for creating new manyverse packages                          
-    ## 5 An R package for ensembled data on sovereign states                  
-    ## 6 An R package for ensembled data on trade agreements                  
-    ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
-    ##   installed latest        updated   
-    ##   <chr>     <chr>         <date>    
-    ## 1 0.7.5     0.7.5         2022-06-07
-    ## 2 0.1.2     0.1.2         2022-03-16
-    ## 3 <NA>      0.1.1-272ea19 2022-02-15
-    ## 4 0.2.2     0.2.1         2022-02-18
-    ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.2     0.1.2         2022-07-13
-    ## 7 0.3.1     0.3.0         2022-07-04
+    ## # A tibble: 7 x 6
+    ##   Name        Repository            Installed Latest Updated    Description     
+    ##   <chr>       <chr>                 <chr>     <chr>  <date>     <chr>           
+    ## 1 manydata    globalgov/manydata    0.7.5     0.7.5  2022-06-07 An R portal for~
+    ## 2 manyenviron globalgov/manyenviron 0.1.3     0.2.0  2022-10-10 Ensembled data ~
+    ## 3 manyhealth  globalgov/manyhealth  <NA>      0.1.1  2022-02-15 Ensembled data ~
+    ## 4 manypkgs    globalgov/manypkgs    0.2.2     0.2.2  2022-07-21 Support for cre~
+    ## 5 manystates  globalgov/manystates  0.1.0     0.1.0  2022-08-17 Ensembled data ~
+    ## 6 manytrade   globalgov/manytrade   0.1.2     0.1.2  2022-07-14 Ensembled data ~
+    ## 7 messydates  globalgov/messydates  0.3.1     0.3.1  2022-07-21 An R package fo~
 
 ``` r
 # manydata::get_packages("manytrade") # downloads and installs the named package
@@ -81,6 +64,42 @@ function.
 ``` r
 manydata::data_contrast("manytrade")
 ```
+
+    ## agreements :
+    ##        Unique ID Missing Data Rows Columns        Beg End
+    ## DESTA          0       4.21 %  959      10 1948-01-01  NA
+    ## GPTAD          0        6.5 %  340      10 1957-03-25  NA
+    ## LABPTA         0          0 %  483       7 1990-01-01  NA
+    ## TOTA           0        0.1 %  450       7 1948-12-06  NA
+    ## TREND          0       0.29 %  729       7 1947-01-01  NA
+    ## AIGGO          0      23.32 % 1440       8 1947-01-01  NA
+    ##                                                                                                                                                                                                                                        URL
+    ## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/
+    ## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx
+    ## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z
+    ## TOTA                                                                                                                                                                                           https://github.com/mappingtreaties/tota.git
+    ## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend
+    ## AIGGO  https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git
+    ## 
+    ## memberships :
+    ##           Unique ID Missing Data Rows Columns        Beg End
+    ## GPTAD_MEM         0       4.25 % 2198       9 1957-03-25  NA
+    ## DESTA_MEM         0       6.16 % 7492       9 1948-01-01  NA
+    ##                                                          URL
+    ## GPTAD_MEM      https://wits.worldbank.org/gptad/library.aspx
+    ## DESTA_MEM https://www.designoftradeagreements.org/downloads/
+    ## 
+    ## references :
+    ##           Unique ID Missing Data Rows Columns Beg End
+    ## DESTA_REF         0          0 %  584       3  NA  NA
+    ##                                                          URL
+    ## DESTA_REF https://www.designoftradeagreements.org/downloads/
+    ## 
+    ## texts :
+    ##            Unique ID Missing Data Rows Columns        Beg End
+    ## GNEVAR_TXT         0      31.12 % 1440      13 1947-01-01  NA
+    ##                                                                                                                                                                                                                       URL
+    ## GNEVAR_TXT https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search, https://github.com/mappingtreaties/tota.git
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
