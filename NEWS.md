@@ -1,6 +1,6 @@
 # manytrade 0.2.0
 
-2022-10-14
+2022-10-17
 
 ## Data
 * Added `HUGGO` and `AIGGO` datasets to the `agreements` database.
