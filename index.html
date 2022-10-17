@@ -9,8 +9,8 @@
     and states membership in them for research use.">
 <title>Trade Agreements for manydata • manytrade</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Trade Agreements for manydata">
@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="index.html">manytrade</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@
 <div class="page-header"><h1 id="manytrade-">manytrade <img src="reference/figures/manytradeContainer.png" align="right" width="220"><a class="anchor" aria-label="anchor" href="#manytrade-"></a>
 </h1></div>
 <!-- badges: start -->
-<p>manytrade is a data package in the <a href="https://github.com/globalgov/" class="external-link">many packages</a> universe. It currently includes an ensemble of datasets on international trade agreements, and <a href="https://github.com/globalgov/manystates" class="external-link">states</a>’ membership or other relationships to those agreements. Building on existing trade datasets such as the Global Preferential Trade Agreements Database (GPTAD) and the Design of Trade Agreements Dataset (DESTA), the GNEVAR dataset in the <code>agreements</code> database also includes information on the membership conditions and procedures as well as more precise dates of signature extracted from the treaty texts. Please also check out <a href="https://github.com/globalgov/manydata" class="external-link"><code>{manydata}</code></a> for more about the other packages in the ‘many packages’ universe.</p>
+<p>manytrade is a data package in the <a href="https://github.com/globalgov/" class="external-link">many packages</a> universe. It currently includes an ensemble of datasets on international trade agreements, and <a href="https://github.com/globalgov/manystates" class="external-link">states</a>’ membership or other relationships to those agreements, including the original treaty texts stored in the HUGGO dataset. Building on existing trade datasets such as the Global Preferential Trade Agreements Database (GPTAD) and the Design of Trade Agreements Dataset (DESTA), the AIGGO dataset in the <code>agreements</code> database also includes information on the accession conditions and procedures as well as more precise dates of signature extracted from the treaty texts. Please also check out <a href="https://github.com/globalgov/manydata" class="external-link"><code>{manydata}</code></a> for more about the other packages in the ‘many packages’ universe.</p>
 <div class="section level2">
 <h2 id="how-to-install">How to install:<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h2>
@@ -96,34 +96,16 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># prints a list of the publicly available data packages currently available</span></span>
 <span><span class="fu">manydata</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/manydata/man/get_packages.html" class="external-link">get_packages</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## # A tibble: 7 × 6</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">##   name        full_name            </span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">##   &lt;chr&gt;       &lt;chr&gt;                </span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## 1 manydata    globalgov/manydata   </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">## 2 manyenviron globalgov/manyenviron</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">## 3 manyhealth  globalgov/manyhealth </span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">## 4 manypkgs    globalgov/manypkgs   </span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">## 5 manystates  globalgov/manystates </span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">## 6 manytrade   globalgov/manytrade  </span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">## 7 messydates  globalgov/messydates </span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">##   description                                                          </span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">##   &lt;chr&gt;                                                                </span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">## 1 An R portal for ensembled global governance data                     </span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">## 2 R Package for ensembled data on environmental agreements             </span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">## 3 An R package for ensembled data on international health organisations</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">## 4 Support for creating new manyverse packages                          </span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">## 5 An R package for ensembled data on sovereign states                  </span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">## 6 An R package for ensembled data on trade agreements                  </span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">## 7 An R package for ISO's Extended Date/Time Format (EDTF)              </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">##   installed latest        updated   </span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">##   &lt;chr&gt;     &lt;chr&gt;         &lt;date&gt;    </span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">## 1 0.7.5     0.7.5         2022-06-07</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">## 2 0.1.2     0.1.2         2022-03-16</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">## 3 &lt;NA&gt;      0.1.1-272ea19 2022-02-15</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">## 4 0.2.2     0.2.1         2022-02-18</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">## 5 0.1.0     0.0.6         2021-12-06</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="co">## 6 0.1.2     0.1.2         2022-07-13</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="co">## 7 0.3.1     0.3.0         2022-07-04</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## # A tibble: 7 x 6</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">##   Name        Repository            Installed Latest Updated    Description     </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">##   &lt;chr&gt;       &lt;chr&gt;                 &lt;chr&gt;     &lt;chr&gt;  &lt;date&gt;     &lt;chr&gt;           </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## 1 manydata    globalgov/manydata    0.7.5     0.7.5  2022-06-07 An R portal for~</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">## 2 manyenviron globalgov/manyenviron 0.1.3     0.2.0  2022-10-10 Ensembled data ~</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">## 3 manyhealth  globalgov/manyhealth  &lt;NA&gt;      0.1.1  2022-02-15 Ensembled data ~</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">## 4 manypkgs    globalgov/manypkgs    0.2.2     0.2.2  2022-07-21 Support for cre~</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">## 5 manystates  globalgov/manystates  0.1.0     0.1.0  2022-08-17 Ensembled data ~</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">## 6 manytrade   globalgov/manytrade   0.1.2     0.1.2  2022-07-14 Ensembled data ~</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">## 7 messydates  globalgov/messydates  0.3.1     0.3.1  2022-07-21 An R package fo~</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># manydata::get_packages("manytrade") # downloads and installs the named package</span></span></code></pre></div>
 </div>
@@ -133,6 +115,41 @@
 <p>Once you have installed the package, you can see the different databases and datasets included in the {<code>manytrade</code>} package using the following function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">manydata</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/manydata/man/report.html" class="external-link">data_contrast</a></span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## agreements :</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">##        Unique ID Missing Data Rows Columns        Beg End</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">## DESTA          0       4.21 %  959      10 1948-01-01  NA</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">## GPTAD          0        6.5 %  340      10 1957-03-25  NA</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">## LABPTA         0          0 %  483       7 1990-01-01  NA</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">## TOTA           0        0.1 %  450       7 1948-12-06  NA</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## TREND          0       0.29 %  729       7 1947-01-01  NA</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">## AIGGO          0      23.32 % 1440       8 1947-01-01  NA</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">##                                                                                                                                                                                                                                        URL</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## DESTA                                                                                                                                                                                   https://www.designoftradeagreements.org/downloads/</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">## GPTAD                                                                                                                                                                                        https://wits.worldbank.org/gptad/library.aspx</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">## LABPTA                                                                                                                                                                                           https://doi.org/10.1007/s11558-018-9301-z</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">## TOTA                                                                                                                                                                                           https://github.com/mappingtreaties/tota.git</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">## TREND                                                                                                                                                                                             http://www.chaire-epi.ulaval.ca/en/trend</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">## AIGGO  https://www.designoftradeagreements.org/downloads/, https://wits.worldbank.org/gptad/library.aspx, https://doi.org/10.1007/s11558-018-9301-z, http://www.chaire-epi.ulaval.ca/en/trend, https://github.com/mappingtreaties/tota.git</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## </span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">## memberships :</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">##           Unique ID Missing Data Rows Columns        Beg End</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">## GPTAD_MEM         0       4.25 % 2198       9 1957-03-25  NA</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co">## DESTA_MEM         0       6.16 % 7492       9 1948-01-01  NA</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co">##                                                          URL</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co">## GPTAD_MEM      https://wits.worldbank.org/gptad/library.aspx</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co">## DESTA_MEM https://www.designoftradeagreements.org/downloads/</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co">## </span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co">## references :</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="co">##           Unique ID Missing Data Rows Columns Beg End</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="co">## DESTA_REF         0          0 %  584       3  NA  NA</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="co">##                                                          URL</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="co">## DESTA_REF https://www.designoftradeagreements.org/downloads/</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="co">## </span></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="co">## texts :</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="co">##            Unique ID Missing Data Rows Columns        Beg End</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a><span class="co">## GNEVAR_TXT         0      31.12 % 1440      13 1947-01-01  NA</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="co">##                                                                                                                                                                                                                       URL</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="co">## GNEVAR_TXT https://wits.worldbank.org/gptad/library.aspx, http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://edit.wti.org/app.php/document/investment-treaty/search, https://github.com/mappingtreaties/tota.git</span></span></code></pre></div>
 <p>Working with ensembles of related data has many advantages for robust analysis. Just take a look at our vignettes <a href="https://globalgov.github.io/manydata/articles/user.html" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
@@ -140,21 +157,21 @@
 </h2>
 <p>The <a href="https://github.com/globalgov/" class="external-link">many packages</a> universe is aimed at collecting, connecting and correcting network data across issue-domains of global governance.</p>
 <p>While the packages in the many universe can and do include novel data, much of what they offer involves standing on the shoulders of giants. The ‘many packages’ universe endeavours to be as transparent as possible about where data comes from, how it has been coded and/or relabeled, and who has done the work. As such, we make it easy to cite both the particular datasets you use by listing the official references in the function above, as well as the package providers for their work assembling the data by using the function below.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"manytrade"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">## To cite manytrade in publications use:</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">## </span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">##   J. Hollway. Trade agreements for manydata. 2021.</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">## </span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">## A BibTeX entry for LaTeX users is</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">## </span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##   @Manual{,</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##     title = {manytrade: International Trade Agreements for manydata},</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">##     author = {James Hollway},</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">##     year = {2021},</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##     url = {https://github.com/globalgov/manytrade},</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##   }</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">## To cite manytrade in publications use:</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">## </span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">##   J. Hollway. Trade agreements for manydata. 2021.</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">## </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">## A BibTeX entry for LaTeX users is</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">## </span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">##   @Manual{,</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">##     title = {manytrade: International Trade Agreements for manydata},</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">##     author = {James Hollway},</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">##     year = {2021},</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">##     url = {https://github.com/globalgov/manytrade},</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">##   }</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
