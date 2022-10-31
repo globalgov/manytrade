@@ -4,6 +4,7 @@
 #' following 7 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, HUGGO, AIGGO.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
+#' @imports manydata
 #'\describe{
 #' \item{DESTA: }{A dataset with 959 observations and the following
 #' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
@@ -18,8 +19,8 @@
 #' \item{TREND: }{A dataset with 729 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 #' \item{HUGGO: }{A dataset with 1391 observations and the following
-#' 8 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText,
-#' url.}
+#' 11 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText,
+#' url, MainText, AppendixText, AnnexText.}
 #' \item{AIGGO: }{A dataset with 1391 observations and the following
 #' 8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
 #' treatyID.}

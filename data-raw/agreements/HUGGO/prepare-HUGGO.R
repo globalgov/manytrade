@@ -110,7 +110,7 @@ links <- HUGGO %>%
                 trendID, treatyID)
 
 # add links to treaty texts manually
-links <- readxl::read_excel("data-raw/texts/HUGGO/links.xlsx")
+links <- readxl::read_excel("data-raw/agreements/HUGGO/links.xlsx")
 
 # Web scrape treaty texts and clean by format, remove appendices and annexes
 links$Text <- lapply(links$url, function(x) {
@@ -198,12 +198,14 @@ links$Text <- lapply(links$url, function(x) {
 
 # Add treaty texts into HUGGO
 links <- links %>%
-  dplyr::select(manyID, Text) %>%
+  dplyr::select(manyID, Title, Text, treatyID, url) %>%
   dplyr::mutate(Text = ifelse(!grepl("^[A-Za-z]+$|[[:digit:]]", Text),
                               "Not found", Text))
 
-HUGGO <- dplyr::left_join(HUGGO, links,
-                               by = "manyID")
+HUGGO <- dplyr::left_join(HUGGO, links, by = c("manyID", "Title", "treatyID"))
+HUGGO <- HUGGO %>%
+  dplyr::mutate(url = ifelse(is.na(url.x), url.y,url.x)) %>%
+  dplyr::select(-c("url.x", "url.y"))
 
 # Merge text columns
 HUGGO <- HUGGO %>%
@@ -237,6 +239,23 @@ HUGGO <- HUGGO %>%
          Force = messydates::as_messydate(Force),
          Beg = messydates::as_messydate(Beg)) %>% 
   dplyr::distinct(.keep_all = TRUE)
+
+# Standardising treaty texts
+HUGGO <- HUGGO %>%
+  dplyr::mutate(MainText = ifelse(!grepl("APPENDIX | ANNEX", unlist(TreatyText), perl = T),
+                                  TreatyText,
+                                  stringr::str_remove(HUGGO$TreatyText,
+                                                      "APPENDIX.* | ANNEX.*")))
+HUGGO <- HUGGO %>%
+  dplyr::mutate(AppendixText = ifelse(grepl("APPENDIX", unlist(TreatyText), perl = T),
+                                      stringr::str_extract(HUGGO$TreatyText,
+                                                           "APPENDIX.*"),
+                                      NA))
+HUGGO <- HUGGO %>%
+  dplyr::mutate(AnnexText = ifelse(grepl("ANNEX", unlist(TreatyText), perl = T),
+                                   stringr::str_extract(HUGGO$TreatyText,
+                                                           "ANNEX.*"),
+                                   NA))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
