@@ -19,8 +19,8 @@
 #' \item{TREND: }{A dataset with 729 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 #' \item{HUGGO: }{A dataset with 1391 observations and the following
-#' 11 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText,
-#' url, MainText, AppendixText, AnnexText.}
+#' 14 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText,
+#' url, MainText, AppendixText, AnnexText, End, Checked_HUGGO, Confirmed_HUGGO.}
 #' \item{AIGGO: }{A dataset with 1391 observations and the following
 #' 8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
 #' treatyID.}
