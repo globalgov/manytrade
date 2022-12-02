@@ -101,13 +101,17 @@ agreements database documentation
 #> |     Title     |  character  |            1391|     0     |       0       |
 #> |      Beg      |    mdate    |            1391|    116    |     8.34      |
 #> |   Signature   |    mdate    |            1391|    135    |     9.71      |
-#> |     Force     |    mdate    |            1391|    253    |     18.19     |
+#> |     Force     |    mdate    |            1391|    247    |     17.76     |
 #> |   treatyID    |  character  |            1391|     0     |       0       |
 #> |  TreatyText   |  character  |            1391|    520    |     37.38     |
-#> |      url      |  character  |            1391|    657    |     47.23     |
-#> |   MainText    |  character  |            1391|    520    |     37.38     |
-#> | AppendixText  |  character  |            1391|   1322    |     95.04     |
-#> |   AnnexText   |  character  |            1391|    948    |     68.15     |
+#> |      url      |  character  |            1391|    650    |     46.73     |
+#> |   MainText    |  character  |            1391|    517    |     37.17     |
+#> | AppendixText  |  character  |            1391|   1321    |     94.97     |
+#> |   AnnexText   |  character  |            1391|    945    |     67.94     |
+#> |      End      |    mdate    |            1391|   1389    |     99.86     |
+#> | Checked_HUGGO |   numeric   |            1391|   1348    |     96.91     |
+#> |Confirmed_HUGGO|  character  |            1391|   1348    |     96.91     |
+#> |    Parties    |  character  |            1391|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
