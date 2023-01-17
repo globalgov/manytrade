@@ -262,6 +262,19 @@ HUGGO$End <- NA
 # Add Parties variable
 HUGGO$Parties <- ""
 
+# Add No_source variable
+#No_source_HUGGO code 1 when manual search online found no text
+# When blank it means that either a) the treaty has been checked and a source has been found or b) the treaty has not yet been checked
+
+HUGGO$No_source <- NA
+
+#Add Citation variable
+#Citation_HUGGO provides the citation when the source is from an academic journal, e.g jstor.com 
+#to help track down if URL breaks in the future
+HUGGO$Citation <- ""
+
+
+
 # Checked_HUGGO and Confirmed_HUGGO variables to track progress on manually correcting entries
 # Checked_HUGGO: code 1 when the entire row's observations have been verified and updated
 # Confirmed_HUGGO: list variables for which the observation could be verified and confirmed.
