@@ -273,6 +273,10 @@ HUGGO$No_source <- NA
 #to help track down if URL breaks in the future
 HUGGO$Citation <- ""
 
+#Add MetaData_confirmed
+#MetaData_confirmed: 1 means that metadata (Signature, Force, End, Parties) has been checked and confirmed; 2 means that metadata has been checked and confirmed, but a variable could not be confirmed and is left blank
+#Variables with values can be considered confirmed, if left blank unconfirmed (almost always end date)
+HUGGO$MetaData_confirmed <- NA
 
 
 # Checked_HUGGO and Confirmed_HUGGO variables to track progress on manually correcting entries
