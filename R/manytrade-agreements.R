@@ -7,9 +7,11 @@
 #' @imports manydata
 #'\describe{
 #' \item{DESTA: }{A dataset with 959 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, destaID.}
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+#' Signature, Force, treatyID, destaID.}
 #' \item{GPTAD: }{A dataset with 340 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID.}
+#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+#' Signature, Force, treatyID, gptadID.}
 #' \item{LABPTA: }{A dataset with 483 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
 #' \item{TOTA: }{A dataset with 450 observations and the following
@@ -17,11 +19,12 @@
 #' \item{TREND: }{A dataset with 729 observations and the following
 #' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
 #' \item{HUGGO: }{A dataset with 1391 observations and the following
-#' 15 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText, url, MainText, AppendixText, AnnexText, End, Checked_HUGGO, Confirmed_HUGGO, Parties.}
+#' 8 variables: manyID, Title, Beg, Signature, Force, treatyID, TreatyText,
+#' url.}
 #' \item{AIGGO: }{A dataset with 1391 observations and the following
-#' 8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP, treatyID.}
+#' 8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
+#' treatyID.}
 #' }
-
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
