@@ -629,7 +629,7 @@
 627;ECPPLO_1997O;EC PLO (Palestine Liberation Organization);NA;07/01/1997;https://wits.worldbank.org/GPTAD/PDF/archive/EC-PLO.pdf;NA;NA;;NA;NA;ECPPLO_1997O
 628;HUN-TUR[NA]_1997O;Hungary Turkey;08/01/1997;;https://wits.worldbank.org/GPTAD/PDF/archive/Hungary-Turkey.pdf;NA;NA;Hungary, Turkey;NA;2;HUN-TUR[NA]_1997O
 629;EST-FRO[NA]_1997O;Estonia Faroe Islands;27/11/1997;01/12/1998;https://wits.worldbank.org/GPTAD/PDF/archive/Estonia-FaroeIslands.pdf;NA;NA;Estonia, Faroe Islands;NA;2;EST-FRO[NA]_1997O
-630;PAFTA_1997O;Pan-Arab Free Trade Area (PAFTA);19/02/1997;01/01/1998;https://www.investinegypt.gov.eg/English/pages/AgreementDetails.aspx?id=9;NA;NA;Egypt, Jordan, Sudan, Oman, Kuwait, Morocco, United Arab Emirates, Tunisia, Syria, Palestine, Lebanon, Yemen, Bahrain, Saudi Arabia, Iraq, Qatar, Libya;NA;2;PNAFTA_1997O
+630;PAFTA_1997O;Pan-Arab Free Trade Area (PAFTA);19/02/1997;01/01/1998;https://www.investinegypt.gov.eg/English/pages/AgreementDetails.aspx?id=9;NA;NA;Egypt, Jordan, Sudan, Oman, Kuwait, Morocco, United Arab Emirates, Tunisia, Syria, Palestine, Lebanon, Yemen, Bahrain, Saudi Arabia, Iraq, Qatar, Libya;1;2;PNAFTA_1997O
 631;EGY-PSE[PLS]_1997O;Egypt Palestine;19/02/1997;NA;https://wits.worldbank.org/GPTAD/PDF/archive/Egypt-Palestine.pdf;NA;NA;;NA;NA;EGY-PSE[PLS]_1997O
 632;EUE-PSE[EPA]_1997O;EU Palestinian Authority;24/02/1997;01/07/1997;https://raw.github.com/mappingtreaties/tota/master/xml/pta_102.xml;NA;NA;;NA;NA;EUE-PSE[EPA]_1997O
 633;CEFTAR_1997A;Central European Free Trade Agreement (CEFTA) Accession Of Romania;12/04/1997;01/07/1997;https://raw.github.com/mappingtreaties/tota/master/xml/pta_191.xml;NA;NA;;NA;NA;CEFTAR_1997A
@@ -854,7 +854,7 @@
 852;ROU-SRB[SRB]_2003O;Romania Serbia;23/12/2003;01/07/2004;;NA;NA;Romania, Serbia and Montenegro;1;2;ROU-SRB[SRB]_2003O
 853;CHN-THA[NA]_2003O;China Thailand;01/01/2003;01/01/2003;NA;NA;NA;;NA;NA;CHN-THA[NA]_2003O
 854;LAO-USA[LAS]_2003O;Laos US;01/01/2003;01/01/2005;https://edit.wti.org/app.php/document/show/pdf/2ccd222f-8fa2-4588-a40b-1e16b081abb0;NA;NA;;NA;NA;LAO-USA[LAS]_2003O
-855;ARG-URY[NA]_2003O:ARG-URY[NA]_1982O;Argentina Uruguay;31/03/2003;01/05/2003;http://www.sice.oas.org/Trade/arguru/ACE57_s.asp;NA;NA;Argentina, Uruguay;NA;2;ARG-URY[NA]_2003O
+855;ARG-URY[NA]_2003O:ARG-URY[NA]_1982O;Argentina Uruguay;31/03/2003;01/05/2003;http://www.sice.oas.org/Trade/arguru/ACE57_s.asp;NA;NA;Argentina, Uruguay;1;NA;ARG-URY[NA]_2003O
 856;CHILUS_2003O;Chile US2003;01/01/2003;01/01/2003;https://edit.wti.org/app.php/document/show/pdf/8ac4f6ab-dfae-4cbd-9df2-86eaa14d6d8f;NA;NA;;NA;NA;CHILUS_2003O
 857;ECNCEN_2003O:ECNCEN_2003O;EC Nice (25) Enlargement2003;01/01/2003;01/01/2003;NA;NA;NA;;NA;NA;ECNCEN_2003O:ECNCEN_2003O
 858;SNGPRU_2003O;Singapore US2003;01/01/2003;01/01/2003;https://edit.wti.org/app.php/document/show/pdf/8f90a2bf-419c-482c-bc5f-5cbc26947ab0;NA;NA;;NA;NA;SNGPRU_2003O
@@ -993,7 +993,7 @@
 991;CHL-PER[NA]_2006O:CHL-PER[NA]_1998O;Peru Chile;22/08/2006;01/03/2009;http://www.sice.oas.org/Trade/CHL_PER_FTA/Index_s.asp;NA;NA;Peru, Chile;NA;2;CHL-PER[NA]_2006O
 992;ASNKRR_2006O;ASEAN Korea Republic Of;24/08/2006;01/01/2010;https://raw.github.com/mappingtreaties/tota/master/xml/pta_147.xml;NA;NA;;NA;NA;ASNKRR_2006O
 993;JPN-PHL[NA]_2006O;Japan Philippines;09/09/2006;11/12/2008;https://www.mofa.go.jp/region/asia-paci/philippine/epa0609/main.pdf;NA;NA;Japan, Philippines;NA;2;JPN-PHL[NA]_2006O
-994;COL-USA[NA]_2006O;US Colombia;22/11/2006;15/05/2012;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/2737/download;NA;NA;United States, Colombia;NA;2;COL-USA[NA]_2006O
+994;COL-USA[NA]_2006O;US Colombia;22/11/2006;15/05/2012;http://www.sice.oas.org/Trade/COL_USA_TPA_e/Text_e.asp#Preamble;NA;NA;United States, Colombia;NA;2;COL-USA[NA]_2006O
 995;CHN-PAK[NA]_2006O:CHN-PAK[NA]_2003O;Pakistan China;24/11/2006;01/07/2007;https://wits.worldbank.org/GPTAD/PDF/archive/China-Pakistan.pdf;NA;1;China, Pakistan;NA;2;CHN-PAK[NA]_2006O
 996;CHL-COL[NA]_2006O:CHL-COL[NA]_1993O;Chile Colombia;27/11/2006;08/05/2009;http://www.sice.oas.org/Trade/CHL_COL_FTA/CHL_COL_ind_s.asp;NA;NA;Chile, Colombia;NA;2;CHL-COL[NA]_2006O
 997;ALBNES_2006O;EC Albania;06/12/2006;12/01/2006;https://wits.worldbank.org/GPTAD/PDF/archive/Albania-EC.pdf;;NA;Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Albania;NA;1;ECALBN_2006O
@@ -1007,7 +1007,7 @@
 1005;CLMBNT_2007O;Colombia Northern Triangle;09/08/2007;15/03/2010;http://www.sice.oas.org/TPD/COL_Norte/Text/Index_s.asp;NA;NA;El Salvador, Guatemala, Honduras;NA;2;CLMBNT_2007O
 1006;ECLSBN_2007O;EC Lisbon;13/12/2007;01/12/2009;https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A12007L%2FTXT;NA;NA;Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden;NA;1;ECLSBN_2007O
 1007;ECMNTS_2007O;EC Montenegro SAA;15/10/2007;01/05/2010;https://edit.wti.org/app.php/document/show/e8495d4a-2c7e-4264-8229-941a3115c5ef;NA;NA;Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, United Kingdom, Montenegro;NA;1;ECMNTS_2007O
-1008;ISRLMR_2007O;Israel MERCOSUR;18/12/2007;23/12/2009;http://www.sice.oas.org/Trade/MER_ISR/Index_e.asp;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Israel;NA;2;ISRLMR_2007O
+1008;ISRLMR_2007O;Israel MERCOSUR;18/12/2007;23/12/2009;https://www.gov.il/BlobFolder/policy/israel-mercosur-free-trade-agreement/he/sahar-hutz_agreements_Mercosur-fta-EN-2010.pdf;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Israel;NA;2;ISRLMR_2007O
 1009;CRI-PAN[NA]_2007P:CRI-PAN[NA]_1973O;Costa Rica Panama Protocol;01/01/2007;01/01/2008;NA;NA;NA;;NA;NA;CRI-PAN[NA]_2007P:CRI-PAN[NA]_1973O
 1010;KOREUS_2007O;Korea US2007;01/01/2007;01/01/2007;NA;NA;NA;;NA;NA;KOREUS_2007O
 1011;PANMUS_2007O;Panama US2007;01/01/2007;01/01/2007;NA;NA;NA;;NA;NA;PANMUS_2007O
@@ -1027,7 +1027,7 @@
 1025;EUE-MNE[NA]_2007O;EU Montenegro;15/10/2007;01/01/2008;https://raw.github.com/mappingtreaties/tota/master/xml/pta_140.xml;NA;NA;;NA;NA;EUE-MNE[NA]_2007O
 1026;ECMNTN_2007O;EC Montenegro;15/10/2007;01/01/2008;https://wits.worldbank.org/GPTAD/PDF/archive/EC-Montenegro.pdf;NA;NA;;NA;NA;ECMNTN_2007O
 1027;MYS-PAK[NA]_2007O;Pakistan Malaysia;08/11/2007;01/01/2008;https://fta.miti.gov.my/miti-fta/resources/auto%20download%20images/55892379ea5d1.pdf;NA;NA;Pakistan, Malaysia;NA;2;MYS-PAK[NA]_2007O
-1028;GEO-TUR[NA]_2007O;Turkey Georgia;21/11/2007;01/11/2008;http://rtais.wto.org/rtadocs/636/TOA/English/main%20tex;NA;NA;Turkey, Georgia;NA;2;GEO-TUR[NA]_2007O
+1028;GEO-TUR[NA]_2007O;Turkey Georgia;21/11/2007;01/11/2008;https://wits.worldbank.org/GPTAD/PDF/archive/Georgia-Turkey.pdf;NA;NA;Turkey, Georgia;NA;2;GEO-TUR[NA]_2007O
 1029;TUN-ALG[NA]_2008O:TUN-ALG[NA]_1981O;Algeria Tunisia;01/01/2008;01/01/2010;NA;NA;NA;;1;NA;TUN-ALG[NA]_2008O:TUN-ALG[NA]_1981O
 1030;ASEANJ_2008O;Association Of South East Asian Nations Japan;14/04/2008;01/12/2008;https://www.mofa.go.jp/policy/economy/fta/asean/agreement.pdf;NA;NA;Brunei, Cambodia, Indonesia, Lao PDR, Malaysia, Myanmar, Philippines, Singapore, Thailand, Vietnam, Japan;NA;2;ASEANJ_2008O
 1031;CRFREE_2008O;CARIFORUM EC EPA;15/10/2008;29/12/2008;http://publications.europa.eu/resource/cellar/f5c1c99f-9d19-452b-b0b0-ed690a53dd5f.0006.05/DOC_1;NA;NA;Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Antigua and Barbuda, Bahamas, Barbados, Belize, Dominica, Dominican republic, Grenada, Guyana, Haiti, Jamaica, Saint Christopher and Nevis, Saint Lucia, Saint Vincent and the Grenadines, Suriname, Trinidad and Tobago;NA;2;CRFREE_2008O
@@ -1038,7 +1038,7 @@
 1036;ECMCCA_2008O;Economic And Monetary Community Of Central Africa (CEMAC) Revised;01/01/2008;01/01/2008;NA;NA;NA;;1;NA;ECMCCA_2008O
 1037;PRY-VEN[VNZ]_2008O;Paraguay Venezuela;01/01/2008;01/01/2008;NA;NA;NA;;1;NA;PRY-VEN[VNZ]_2008O
 1038;URY-VEN[VNZ]_2008O:URY-VEN[VNZ]_1981O;Uruguay Venezuela;17/08/2008;03/04/2009;http://www.sice.oas.org/Trade/URY_VEN/Text_s.asp;NA;NA;Uruguay, Venezuela;NA;2;URY-VEN[VNZ]_2008O:URY-VEN[VNZ]_1981O
-1039;MRSACU_2008O:MRSACU_2004O;MERCOSUR Southern African Customs Union (SACU);17/04/2008;01/04/2016;http://www.sice.oas.org/Trade/MRSRSACU/Text_2008_s.pdf;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Botswana, Lesotho, Namibia, South Africa, Swaziland;NA;2;MRSACU_2008O:MRSACU_2004O
+1039;MRSACU_2008O:MRSACU_2004O;MERCOSUR Southern African Customs Union (SACU);17/04/2008;01/04/2016;http://www.sice.oas.org/Trade/MRSRSACU/Text_2016_p.pdf;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Botswana, Lesotho, Namibia, South Africa, Swaziland;NA;2;MRSACU_2008O:MRSACU_2004O
 1040;CHINNW_2008O;ChinaNew;01/01/2008;01/01/2008;http://images.mofcom.gov.cn/gjs/accessory/200804/1208158780064.pdf;NA;NA;;NA;NA;CHINNW_2008O
 1041;GTM-PAN[NA]_2008P;Guatemala Panama Protocol2008;01/01/2008;01/01/2008;NA;NA;NA;;NA;NA;GTM-PAN[NA]_2008P
 1042;EFTCND_2008O;EFTA Canada;26/01/2008;01/07/2009;https://raw.github.com/mappingtreaties/tota/master/xml/pta_143.xml;NA;NA;;NA;NA;EFTCND_2008O
@@ -1089,7 +1089,7 @@
 1087;ASNIND_2009O;ASEAN India;13/08/2009;01/01/2010;https://raw.github.com/mappingtreaties/tota/master/xml/pta_328.xml;NA;NA;;NA;NA;ASNIND_2009O
 1088;EE04IE_2009O;EU Eastern And Southern Africa States Interim EPA;29/08/2009;14/05/2012;https://raw.github.com/mappingtreaties/tota/master/xml/pta_332.xml;NA;NA;;NA;NA;EE04IE_2009O
 1089;MYS-NZL[NA]_2009O;New Zealand Malaysia;26/10/2009;01/08/2010;https://www.mfat.govt.nz/assets/Trade-agreements/Malaysia-NZ-FTA/mnzfta-text-of-agreement.pdf;NA;NA;New Zealand, Malaysia;NA;2;MYS-NZL[NA]_2009O
-1090;IND-NPL[NA]_2009O:IND-NPL[NA]_1991O;India Nepal;27/10/2009;27/10/2009;https://commerce.gov.in/wp-content/uploads/2020/05/nepal.pdfhttps://raw.github.com/mappingtreaties/tota/master/xml/pta_324.xml;NA;NA;India, Nepal;NA;2;IND-NPL[NA]_2009O
+1090;IND-NPL[NA]_2009O:IND-NPL[NA]_1991O;India Nepal;27/10/2009;27/10/2009;https://commerce.gov.in/wp-content/uploads/2020/05/nepal.pdf;NA;NA;India, Nepal;NA;2;IND-NPL[NA]_2009O
 1091;JOR-TUR[NA]_2009O;Turkey Jordan;01/12/2009;01/03/2011;https://edit.wti.org/document/show/1da7f26d-faee-4e3f-9d99-ac52016d290a;22/11/2018;NA;Turkey, Jordan;NA;1;JOR-TUR[NA]_2009O
 1092;EFTALB_2009O;EFTA Albania;17/12/2009;01/11/2010;https://raw.github.com/mappingtreaties/tota/master/xml/pta_365.xml;NA;NA;;NA;NA;EFTALB_2009O
 1093;EFTSRB_2009O;EFTA Serbia;17/12/2009;01/10/2010;https://www.efta.int/media/documents/legal-texts/free-trade-relations/serbia/EFTA-Serbia%20Free%20Trade%20Agreement.pdf;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Serbia;NA;1;EFTSRB_2009O
@@ -1131,8 +1131,8 @@
 1129;PAN-USA[ENS]_2012A;Panama US Environmental Side Agreement;01/01/2012;01/01/2012;https://2009-2017.state.gov/documents/organization/189455.pdf;NA;NA;;NA;NA;PAN-USA[ENS]_2012A
 1130;CNTRAE_2012O;Central America EC;29/06/2012;01/10/2013;http://publications.europa.eu/resource/cellar/1a276cfe-9e67-4a5f-9a85-93a7037ab020.0014.04/DOC_1;NA;NA;Belgium, Bulgaria, Czechia, Denmark, United Kingdom, Germany, Estonia, Ireland, Greece, Spain, France, Croatia, Italy, Cyprus, Latvia, Lithuania, Luxembourg, Hungary, Malta,  Netherlands, Austria, Poland, Portugal, Romania, Slovenia, Slovakia, Finland,  Sweden, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama;NA;1;CNTRAE_2012O
 1131;COL-PER[NA]_2012O;Colombia EC Peru;26/06/2012;01/03/2012;http://publications.europa.eu/resource/cellar/42e02e6c-1698-465e-923c-d2d12f91c728.0017.04/DOC_1;NA;NA;Belgium, Bulgaria, Czechia, Denmark, United Kingdom, Germany, Estonia, Ireland, Greece, Spain, France, Croatia, Italy, Cyprus, Latvia, Lithuania, Luxembourg, Hungary, Malta,  Netherlands, Austria, Poland, Portugal, Romania, Slovenia, Slovakia, Finland,  Sweden, Colombia, Peru;NA;1;COL-PER[NA]_2012O
-1132;PCFCAL_2012O;Pacific Alliance;06/06/2012;20/07/2015;http://www.sice.oas.org/tpd/pacific_alliance/Agreements/Framework_Agreement_Pacific_Alliance_s.pdf;NA;NA;Colombia, Chile, Mexico, Peru;NA;2;PCFCAL_2012O
-1133;PER-VEN[VNZ]_2012O;Peru Venezuela;01/01/2012;01/01/2012;NA;NA;NA;;NA;NA;PER-VEN[VNZ]_2012O
+1132;PCFCAL_2012O;Pacific Alliance;06/06/2012;20/07/2015;http://www.sice.oas.org/tpd/pacific_alliance/Agreements/Framework_Agreement_Pacific_Alliance_s.pdf;NA;NA;Colombia, Chile, Mexico, Peru;1;2;PCFCAL_2012O
+1133;PER-VEN[VNZ]_2012O;Peru Venezuela;07/01/2012;01/08/2013;http://www.sice.oas.org/TPD/PER_VEN/Texts/Text_s.pdf;NA;NA;Peru, Venezuela;1;2;PER-VEN[VNZ]_2012O
 1134;CHILE_2012O;Chile Hong Kong;07/09/2012;09/10/2014;http://www.sice.oas.org/Trade/CHL_HKG_FTA/Index_e.asp;NA;NA;Hong Kong, Chile;NA;2;CHILE_2012O
 1135;IDN-PAK[NA]_2012O;Indonesia Pakistan;01/01/2012;01/01/2013;https://www.commerce.gov.pk/wp-content/uploads/pdf/Indonesia_Pakistan_PTA.pdf;NA;NA;;NA;NA;IDN-PAK[NA]_2012O
 1136;BRA-VEN[VNZ]_2012O:BRA-VEN[VNZ]_1994O;Brazil Venezuela;01/01/2012;01/01/2014;NA;NA;NA;;NA;NA;BRA-VEN[VNZ]_2012O:BRA-VEN[VNZ]_1994O
@@ -1184,7 +1184,7 @@
 1182;MDA-TUR[MLD]_2014O;Turkey Moldova Republic Of;11/09/2014;01/11/2016;https://trade.gov.tr/data/5b910b3d13b8770becf1e6b6/6fd73dff48a5cfbccde2a4f78613a037.doc;NA;NA;Turkey, Moldova;NA;1;MDA-TUR[MLD]_2014O
 1183;CAN-KOR[RPK]_2014O;Canada Rep Of Korea;22/09/2014;01/01/2015;https://raw.github.com/mappingtreaties/tota/master/xml/pta_146.xml;NA;NA;;NA;NA;CAN-KOR[RPK]_2014O
 1184;EEUAKR_2014O;Eurasian Economic Union (EAEU) Accession Of Armenia;10/10/2014;02/01/2015;http://rtais.wto.org/rtadocs/910/TOA/English/Accession Treaty_RF Jul 05.docx;NA;1;Belarus, Russia, Kazakhstan, Armenia;NA;NA;EREUAA_2014O
-1185;EEUAKR_2014O;Eurasian Economic Union (EAEU) Accession Of The Kyrgyz Republic;23/12/2014;06/08/2015;https://raw.github.com/mappingtreaties/tota/master/xml/pta_444.xml;NA;1;Belarus, Russia, Kazakhstan, Armenia, Kyrgyzstan;NA;NA;EEUAKR_2014O
+1185;EEUAKR_2014O;Eurasian Economic Union (EAEU) Accession Of The Kyrgyz Republic;23/12/2014;06/08/2015;http://rtais.wto.org/rtadocs/922/TOA/English/Treaty on accession_KR_EAEU_UnoffTransENG.doc;NA;1;Belarus, Russia, Kazakhstan, Armenia, Kyrgyzstan;NA;2;EEUAKR_2014O
 1186;GTM-TTO[NA]_2015O;Guatemala Trinidad And Tobago;01/01/2015;NA;NA;NA;NA;;NA;NA;GTM-TTO[NA]_2015O
 1187;CHN-KOR[KOR]_2015O;China Korea;01/01/2015;01/01/2015;https://edit.wti.org/app.php/document/show/pdf/a591392b-4607-4f04-9737-ab79380a226f;NA;NA;;NA;NA;CHN-KOR[KOR]_2015O
 1188;KOR-NZL[KOR]_2015O;Korea New Zealand;23/03/2015;20/12/2015;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/5578/download;NA;NA;South Korea, New Zealand;NA;1;KOR-NZL[KOR]_2015O
@@ -1207,7 +1207,7 @@
 1205;AUS-CHN[NA]_2015O;Australia China;17/06/2015;20/12/2015;https://www.dfat.gov.au/sites/default/files/chafta-agreement-text.pdf;NA;NA;Australia, China;NA;1;AUS-CHN[NA]_2015O
 1206;AUS-SGP[NA]_2016E;Australia Singapore Amended;01/01/2016;01/01/2017;https://www.dfat.gov.au/sites/default/files/agreement-to-amend-the-singapore-australia-free-trade-agreement.pdf;NA;NA;;NA;NA;AUS-SGP[NA]_2016E
 1207;CANDEC_2016O:CANDEC_2016O;Canada EC (CETA);30/11/2016;;https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/canada/eu-canada-agreement/ceta-chapter-chapter_en;NA;NA;Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, United Kingdom, Canada;NA;1;CANDEC_2016O
-1208;CHL-URY[NA]_2016O:CHL-URY[NA]_1985O;Chile Uruguay;04/10/2016;13/12/2018;http://www.sice.oas.org/Trade/CHL_URY/CHL_URY_index_PDF_s.asp;NA;NA;Chile, Uruguay;NA;1;CHL-URY[NA]_2016O:CHL-URY[NA]_1985O
+1208;CHL-URY[NA]_2016O:CHL-URY[NA]_1985O;Chile Uruguay;04/10/2016;13/12/2018;http://www.sice.oas.org/Trade/CHL_URY/CHL_URY_index_PDF_s.asp;NA;NA;Chile, Uruguay;1;1;CHL-URY[NA]_2016O:CHL-URY[NA]_1985O
 1209;ESADCE_2016O;EC South African Development Community (SADC) EPA;01/01/2016;01/01/2016;https://edit.wti.org/app.php/document/show/pdf/f9412a83-4052-4e21-b089-eeb38ce09fa5;NA;NA;;NA;NA;ESADCE_2016O
 1210;EFTGRG_2016O;EFTA Georgia;27/06/2016;01/09/2017;https://www.efta.int/sites/default/files/documents/legal-texts/free-trade-relations/georgia/EFTA-Georgia-FTA-Main-Agreement.PDF;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Georgia;NA;1;EFTGRG_2016O
 1211;ECVTNM_2016O;EC Viet Nam2016;01/01/2016;01/01/2016;NA;NA;NA;;NA;NA;ECVTNM_2016O
@@ -1216,7 +1216,7 @@
 1214;ECSADC_2016O;EC SADC2016;01/01/2016;01/01/2016;NA;NA;NA;;NA;NA;ECSADC_2016O
 1215;TRNSPP_2016O:TRNSPP_2016O;Trans-Pacific Partnership;04/02/2016;;https://ustr.gov/trade-agreements/free-trade-agreements/trans-pacific-partnership/tpp-full-text;NA;NA;Australia, Brunei, Canada, Chile, Japan, Malaysia, Mexico, New Zealand, Peru, Singapore, Vietnam, United States;NA;1;TRNSPP_2016O:TRNSPP_2016O
 1216;TRNSPP_2016O:TRNSPP_2016O;Trans-Pacific Partnership;03/02/2016;01/01/2016;https://raw.github.com/mappingtreaties/tota/master/xml/pta_450.xml;NA;NA;;NA;NA;TRNSPP_2016O:TRNSPP_2016O
-1217;EFTPHL_2016O;EFTA Philippines;28/04/2016;01/01/2018;https://raw.github.com/mappingtreaties/tota/master/xml/pta_446.xml;NA;NA;;NA;NA;EFTPHL_2016O
+1217;EFTPHL_2016O;EFTA Philippines;28/04/2016;01/06/2018;https://www.efta.int/sites/default/files/documents/legal-texts/free-trade-relations/philippines/EFTA-Philippines-Rectification-Main-Agreement.pdf;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Phillipines;NA;1;EFTPHL_2016O
 1218;CAN-UKR[UKR]_2016O;Canada Ukraine;11/07/2016;01/08/2017;https://www.international.gc.ca/trade-commerce/trade-agreements-accords-commerciaux/agr-acc/ukraine/text-texte/toc-tdm.aspx?lang=eng;NA;NA;Canada, Ukraine;NA;2;CAN-UKR[UKR]_2016O
 1219;EUE-GHA[NA]_2016O;EU Ghana;28/07/2016;15/12/2016;https://raw.github.com/mappingtreaties/tota/master/xml/pta_448.xml;NA;NA;;NA;NA;EUE-GHA[NA]_2016O
 1220;CAN-UKR[UKR]_2017O;Canada Ukraine;01/01/2017;01/01/2017;NA;NA;NA;;NA;NA;CAN-UKR[UKR]_2017O
@@ -1226,7 +1226,7 @@
 1224;MACAO_2017O;Hong Kong Macao;27/10/2017;27/10/2017;https://www.tid.gov.hk/english/ita/fta/hkmacao/files/full_text_of_the_agreement.pdf;NA;NA;Hong Kong, Macao;NA;1;MACAO_2017O
 1225;CHN-GEO[NA]_2017O;China Georgia;13/05/2017;01/01/2018;https://www.economy.ge/uploads/files/2017/foreign_trade/tavisufali_vachrobis_shetanxmeba_georgia_china/shetankhmeba_2018/page_0_60_145_179_china_georgia_fta_for_georgia_.pdf;NA;NA;Georgia, China;NA;1;CHN-GEO[NA]_2017O
 1226;CHN-MDV[NA]_2017O;China Maldives;01/01/2017;NA;NA;NA;NA;;NA;NA;CHN-MDV[NA]_2017O
-1227;ARG-CHL[NA]_2017O:ARG-CHL[NA]_1991O;Argentina Chile;02/11/2017;01/05/2019;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/5682/download;NA;NA;Argentina, Chile;NA;1;ARG-CHL[NA]_2017O:ARG-CHL[NA]_1991O
+1227;ARG-CHL[NA]_2017O:ARG-CHL[NA]_1991O;Argentina Chile;02/11/2017;01/05/2019;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/5682/download;NA;NA;Argentina, Chile;1;1;ARG-CHL[NA]_2017O:ARG-CHL[NA]_1991O
 1228;CLMBMR_2017O;Colombia MERCOSUR;21/07/2017;20/12/2017;http://www.sice.oas.org/Trade/COL_MER/COL_MER_index_s.asp;NA;NA;Colombia, Argentina, Brazil, Paraguay, Uruguay;NA;NA;CLMBMR_2017O
 1229;ECU-SLV[NA]_2017O;Ecuador El Salvador;01/01/2017;01/01/2017;NA;NA;NA;;NA;NA;ECU-SLV[NA]_2017O
 1230;PRY-TWN[TWN]_2017O;Paraguay Taiwan;01/01/2017;01/01/2018;http://www.sice.oas.org/Trade/PAR_TWN/PAR_TWN_ECA_e.pdf;NA;NA;;NA;NA;PRY-TWN[TWN]_2017O
