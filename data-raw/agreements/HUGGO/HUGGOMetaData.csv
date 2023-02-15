@@ -39,7 +39,7 @@
 37;BFA-GHA[UVT]_1961A;Ghana Upper Volta Trade Agreement;28/06/1961;NA;https://www.wto.org/gatt_docs/English/SULPDF/90750288.pdf;NA;1;Upper Volta, Ghana;NA;2;BFA-GHA[UVT]_1961A
 38;GRC-EC[ECA]_1961A;EEC Greece Association Agreement;09/07/1961;01/11/1962;https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:31963D0106&from=HR;01/01/1981;1;Belgium, Germany, France, Italy, Luxembourg, Netherlands, Greece;NA;1;GRC-EC[ECA]_1961A
 39;BRNFTA_1961O;Borneo Free Trade Area;24/10/1961;01/01/1962;https://raw.github.com/mappingtreaties/tota/master/xml/pta_175.xml;NA;NA;Sarawak, North Borneo;NA;NA;BRNFTA_1961O
-40;ARBCMM_1962O;Arab Common Market;06/06/1962;30/04/1964;https://www.wto.org/gatt_docs/English/SULPDF/90780034.pdf;NA;1;Jordan, Syria, The United Arab Republic, Kuwait, Morocco;NA;NA;ARBCMM_1962O
+40;ARBCMM_1962O;Arab Common Market;06/06/1962;30/04/1964;https://www.wto.org/gatt_docs/English/SULPDF/90780034.pdf;NA;1;Jordan, Syria, The United Arab Republic, Kuwait, Morocco;NA;2;ARBCMM_1962O
 41;JOR-SAU[SDA]_1962O;Jordan Saudi Arabia;01/01/1962;01/01/1962;NA;NA;NA;;1;NA;JOR-SAU[SDA]_1962O
 42;SEN-TUN[NA]_1962O;Senegal Tunisia;01/01/1962;NA;NA;NA;NA;;NA;NA;SEN-TUN[NA]_1962O
 43;AFRCCM_1962O;African Common Market;01/04/1962;01/07/1963;https://www.wto.org/gatt_docs/English/SULPDF/90760013.pdf;NA;1;Algeria, United Arab Republic, Ghana, Republic of Guinea, Mali, Morocco;NA;2;AFRCCM_1962O
@@ -65,11 +65,11 @@
 63;EGY-JOR[NA]_1967O:EGY-JOR[NA]_1967O;Egypt Jordan;01/01/1967;01/01/1967;NA;NA;NA;;1;NA;EGY-JOR[NA]_1967O:EGY-JOR[NA]_1967O
 64;IRQ-LBN[NA]_1967O:IRQ-LBN[NA]_1967O;Iraq Lebanon;01/01/1967;NA;NA;NA;NA;;NA;NA;IRQ-LBN[NA]_1967O:IRQ-LBN[NA]_1967O
 65;MWI-ZAF[NA]_1967A;Malawi South Africa;13/03/1967;01/04/1967;https://www.cambridge.org/core/journals/international-legal-materials/article/abs/malawi-and-south-africa-trade-agreement/9515AE7108E50CB0A58A16CBCF37C977;NA;NA;Malawi, South Africa;NA;NA;MWI-ZAF[NA]_1967A
-66;KENNDY_1967P;Kennedy Protocols1967;30/06/1967;01/07/1968;https://www.wto.org/english/docs_e/legal_e/kennedy_e.pdf;NA;1;;NA;NA;KENNDY_1967P
+66;KENNDY_1967P;Kennedy Protocols1967;30/06/1967;01/07/1968;https://www.wto.org/english/docs_e/legal_e/kennedy_e.pdf;NA;1;;NA;2;KENNDY_1967P
 67;TRPRTT_1967A;Tripartite Agreement;23/12/1967;01/04/1968;https://www.wto.org/gatt_docs/English/SULPDF/90800292.pdf;NA;1;India, United Arab Republic, Yugoslavia;NA;2;TRPRTT_1967A
 68;ARUSHA_1968A1:ARUSHA_1968A1;Arusha Agreement 1;01/01/1968;01/01/1971;NA;NA;NA;;NA;NA;ARUSHA_1968A1:ARUSHA_1968A1
 69;ESTCCM_1968O;East Caribbean Common Market;01/06/1968;01/07/1968;http://agc.gov.ms/wp-content/uploads/2013/04/East-Caribbean-Common-Market-Ratification-of-Agreement-Act.pdf;NA;NA;Dominica, Grenada, Montserrat, St. Lucia, St. Vincent, St. Kitts and Nevis, Antigua and Barbuda;1;2;ESTCCM_1968O
-70;CRBFTA_1968O:CRBFTA_1965O;Caribbean Free Trade Association (CARIFTA)1968;15/12/1965;01/05/1968;http://www.sice.oas.org/Trade/CCME/dikson.asp;01/01/1973;1;Antigua and Barbuda, Barbados, Guyana, Trinidad and Tobago, Dominica, Grenada, St Kitts-Nevis-Anguilla, Saint Lucia, St Vincent and the Grenadines, Montserrat, Jamaica;NA;NA;CRBFTA_1968O:CRBFTA_1965O
+70;CRBFTA_1968O:CRBFTA_1965O;Caribbean Free Trade Association (CARIFTA)1968;15/12/1965;01/05/1968;http://www.sice.oas.org/Trade/CCME/dikson.asp;01/01/1973;1;Antigua and Barbuda, Barbados, Guyana, Trinidad and Tobago, Dominica, Grenada, St Kitts-Nevis-Anguilla, Saint Lucia, St Vincent and the Grenadines, Montserrat, Jamaica;NA;1;CRBFTA_1968O:CRBFTA_1965O
 71;ARUSHI_1968A;Arusha Agreement I1968;01/01/1968;01/01/1968;NA;NA;NA;;NA;NA;ARUSHI_1968A
 72;ANDNGC_1969A;Andean Group Cartagena Agreement;26/05/1969;16/10/1969;https://www.jus.uio.no/english/services/library/treaties/09/9-01/andean_integration_consolidated.xml;NA;1;Bolivia, Colombia, Ecuador, Peru, Venezuela;NA;2;ANDNGC_1969A
 73;ARUSHA_1969A2:ARUSHA_1968A1;Arusha Agreement 2;24/09/1969;01/01/1971;https://www.wto.org/gatt_docs/English/SULPDF/90830169.pdf;31/01/1975;1;Belgium, Germany, France, italy, Luxembourg, Netherlands, Tanzania, Uganda, Kenya;NA;1;ARUSHA_1969A2:ARUSHA_1968A1
@@ -642,7 +642,7 @@
 640;EFTMRC_1997O;EFTA Morocco;19/06/1997;01/12/1999;https://www.efta.int/media/documents/legal-texts/free-trade-relations/morocco/EFTA-Morocco%20Free%20Trade%20Agreement%20EN.pdf;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Morocco;NA;1;EFTMRC_1997O
 641;CZE-TUR[NA]_1997O;Czech Republic Turkey;03/10/1997;;https://wits.worldbank.org/GPTAD/PDF/archive/CzechRepublic-Turkey.pdf;NA;NA;Czech Republic, Turkey;NA;2;CZE-TUR[NA]_1997O
 642;HUN-ISR[NA]_1997O;Hungary Israel;14/10/1997;;https://wits.worldbank.org/GPTAD/PDF/archive/Hungary-Israel.pdf;NA;NA;Israel, Hungary;NA;2;HUN-ISR[NA]_1997O
-643;SVK-TUR[SLV]_1997O;Slovak Republic Turkey;20/10/1997;01/08/1998;https://raw.github.com/mappingtreaties/tota/master/xml/pta_302.xml;NA;NA;;NA;NA;SVK-TUR[SLV]_1997O
+643;SVK-TUR[SLV]_1997O;Slovak Republic Turkey;20/10/1997;01/08/1998;https://raw.github.com/mappingtreaties/tota/master/xml/pta_302.xml;NA;NA;;1;NA;SVK-TUR[SLV]_1997O
 644;GEO-KAZ[NA]_1997O;Georgia Kazakhstan;11/11/1997;16/07/1999;https://wits.worldbank.org/GPTAD/PDF/archive/Georgia-Kazakstan.pdf;NA;NA;Georgia Kazakhstan;NA;2;GEO-KAZ[NA]_1997O
 645;BFTNTB_1997O;BAFTA Non Tarriff Barriers;20/11/1997;NA;https://wits.worldbank.org/GPTAD/PDF/archive/BAFTA-NonTariff.pdf;NA;NA;;NA;NA;BFTNTB_1997O
 646;EUE-JOR[NA]_1997O;EU Jordan;24/11/1997;01/05/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_61.xml;NA;NA;;NA;NA;EUE-JOR[NA]_1997O
@@ -683,7 +683,7 @@
 681;BGR-TUR[NA]_1998O;Bulgaria Turkey;11/07/1998;;https://wits.worldbank.org/GPTAD/PDF/archive/Bulgaria-Turkey.pdf;01/01/2007;NA;Turkey, Bulgaria;NA;2;BGR-TUR[NA]_1998O
 682;CEFTAB_1998A;Central European Free Trade Agreement (CEFTA) Accession Of Bulgaria;17/07/1998;01/01/1999;https://raw.github.com/mappingtreaties/tota/master/xml/pta_190.xml;NA;NA;;NA;NA;CEFTAB_1998A
 683;CRCMDR_1998O;CARICOM Dominican Republic;22/08/1998;01/01/1999;https://wits.worldbank.org/GPTAD/PDF/archive/CARICOM-DR.pdf;NA;NA;;NA;NA;CRCMDR_1998O
-684;EGY-JOR[NA]_1998O:EGY-JOR[NA]_1996O;Egypt Jordan;10/12/1998;;https://wits.worldbank.org/GPTAD/PDF/archive/Jordan-Egypt.pdf;NA;NA;Egypt, Jordan;NA;NA;EGY-JOR[NA]_1998O
+684;EGY-JOR[NA]_1998O:EGY-JOR[NA]_1996O;Egypt Jordan;10/12/1998;;https://wits.worldbank.org/GPTAD/PDF/archive/Jordan-Egypt.pdf;NA;NA;Egypt, Jordan;1;NA;EGY-JOR[NA]_1998O
 685;EST-HUN[NA]_1998O;Hungary Estonia;04/11/1998;01/03/2001;https://wits.worldbank.org/GPTAD/PDF/archive/Estonia-Hungary.pdf;NA;1; Estonia, Hungary;NA;2;EST-HUN[NA]_1998O
 686;FRO-POL[FRI]_1998O;Poland Faeroe Islands;03/11/1998;01/06/1998;https://raw.github.com/mappingtreaties/tota/master/xml/pta_287.xml;NA;NA;;NA;NA;FRO-POL[FRI]_1998O
 687;HUN-LTU[NA]_1998O;Hungary Lithuania;13/11/1998;01/03/2000;https://wits.worldbank.org/GPTAD/PDF/archive/Hungary-Lithuania.pdf;01/05/2004;NA;Hungary, Lithuania;NA;2;HUN-LTU[NA]_1998O
@@ -742,7 +742,7 @@
 740;ISR-MEX[NA]_2000O;Israel Mexico;10/04/2000;01/07/2000; http://www.sice.oas.org/Trade/meis_e/Text/MEX_ISR_FullText_e.pdf;NA;NA;Mexico, Israel;NA;2;ISR-MEX[NA]_2000O
 741;CRCMCB_2000O;CARICOM Cuba;07/05/2000;01/01/2001;https://wits.worldbank.org/GPTAD/PDF/archive/CARICOM-Cuba.pdf;NA;NA;;NA;NA;CRCMCB_2000O
 742;ARE-JOR[NA]_2000O;Jordan United Arab Emirates (UAE);21/05/2000;;https://wits.worldbank.org/GPTAD/PDF/archive/Jordon-UAE.pdf;NA;NA;Jordan, United Arab Emirates;NA;2;ARE-JOR[NA]_2000O
-743;EFFYRM_2000O;EFTA Former Yugoslav Republic Of Macedonia;19/06/2000;01/05/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_79.xml;NA;NA;;NA;NA;EFFYRM_2000O
+743;EFFYRM_2000O;EFTA Former Yugoslav Republic Of Macedonia;19/06/2000;01/05/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_79.xml;NA;NA;;1;NA;EFFYRM_2000O
 744;MXCNRT_2000O;Mexico Northern Triangle;29/06/2000;15/03/2001;http://www.sice.oas.org/Trade/mextnorte/Mex_TNorte_s.asp#pre%C3%A1mbulo;NA;NA;Mexico, El Salvador, Guatemala, Honduras;NA;2;MXCNRT_2000O
 745;CNTRAM_2000O;Central America Mexico;29/06/2000;15/03/2001;https://wits.worldbank.org/GPTAD/PDF/archive/Guatemala-Mexico Spanish.pdf;NA;NA;;NA;NA;CNTRAM_2000O
 746;GTM-MEX[NA]_2000O:GTM-MEX[NA]_1985O;Guatemala Mexico;29/06/2000;15/03/2001;;NA;NA;;1;NA;GTM-MEX[NA]_2000O
@@ -784,7 +784,7 @@
 782;BGR-LTU[NA]_2001O;Bulgaria Lithuania;08/05/2001;01/03/2002;https://wits.worldbank.org/GPTAD/PDF/archive/Bulgaria-Lithuania.pdf;01/05/2004;NA;Bulgaria, Lithuania;NA;1;BGR-LTU[NA]_2001O
 783;BGR-ISR[NA]_2001O;Bulgaria Israel;08/06/2001;01/01/2002;https://www.wipo.int/wipolex/en/text/242530;NA;NA;Bulgaria, Israel;NA;2;BGR-ISR[NA]_2001O
 784;EFTJRD_2001O;EFTA Jordan;21/06/2001;01/09/2002;https://www.efta.int/media/documents/legal-texts/free-trade-relations/Jordan/EFTA-Jordan%20Free%20Trade%20Agreement.pdf;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Jordan;NA;1;EFTJRD_2001O
-785;EFTCRT_2001O;EFTA Croatia;21/06/2001;01/04/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_67.xml;NA;NA;;NA;NA;EFTCRT_2001O
+785;EFTCRT_2001O;EFTA Croatia;21/06/2001;01/04/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_67.xml;NA;NA;;1;NA;EFTCRT_2001O
 786;EGY-EUE[NA]_2001O;EU Egypt;25/06/2001;01/06/2004;https://raw.github.com/mappingtreaties/tota/master/xml/pta_40.xml;NA;NA;;NA;NA;EGY-EUE[NA]_2001O
 787;TJK-UKR[UKR]_2001O;Ukraine Tajikistan;06/06/2001;11/07/2002;http://rtais.wto.org/rtadocs/576/TOA/English/FTA%20Ukraine%20-%20Tajikistan_ToA.doc;NA;NA;Ukraine, Tajikistan;NA;2;TJK-UKR[UKR]_2001O
 788;GUUAM_2001O;GUUAM;06/07/2001;NA;https://wits.worldbank.org/GPTAD/PDF/archive/GUAM.pdf;NA;NA;;NA;NA;GUUAM_2001O
@@ -795,7 +795,7 @@
 793;ECCROT_2001O;EC Croatia;29/10/2001;03/01/2002;https://wits.worldbank.org/GPTAD/PDF/archive/EC-Croatia.pdf;NA;NA;;NA;NA;ECCROT_2001O
 794;BNGKAC_2001A;Bangkok Agreement (now APTA) Accession Of China;04/12/2001;01/01/2002;https://wits.worldbank.org/GPTAD/PDF/archive/Bangkok Agreement-Accession of China.pdf;NA;NA;;NA;NA;BNGKAC_2001A
 795;BGR-EST[NA]_2001O;Bulgaria Estonia;11/12/2001;01/01/2002;https://wits.worldbank.org/GPTAD/PDF/archive/Bulgaria-Estonia.pdf;NA;NA;Bulgaria, Estonia;NA;2;BGR-EST[NA]_2001O
-796;GLFCPC_2001O:GLFCPC_2001O;Gulf Cooperation Council (GCC);31/12/2001;01/01/2003;https://raw.github.com/mappingtreaties/tota/master/xml/pta_15.xml;NA;NA;;NA;NA;GLFCPC_2001O:GLFCPC_2001O
+796;GLFCPC_2001O:GLFCPC_2001O;Gulf Cooperation Council (GCC);31/12/2001;01/01/2003;https://raw.github.com/mappingtreaties/tota/master/xml/pta_15.xml;NA;NA;;1;NA;GLFCPC_2001O:GLFCPC_2001O
 797;ALEEMA_2002A;Algeria EC Euro-Med Association Agreement;22/04/2002;01/09/2005;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/2643/download;NA;NA;Belgium, Denmark, Germany, Greece, Spain, France, Ireland, Italy, Luxembourg, Netherlands, Austria, Portugal, Finland, Sweden, United Kingdom, Algeria;NA;2;ALEEMA_2002A
 798;ARM-EST[NA]_2002O;Armenia Estonia;01/01/2002;01/01/2002;NA;NA;NA;;1;NA;ARM-EST[NA]_2002O
 799;BIH-MKD[MCD]_2002O:BIH-MKD[MCD]_1997O;Bosnia And Herzegovina Macedonia;26/04/2002;15/07/2002;https://wits.worldbank.org/GPTAD/PDF/archive/FYROM-Bosnia-Herzegovina.pdf;NA;NA;Bosnia And Herzegovina, Macedonia;NA;2;BIH-MKD[MCD]_2002O:BIH-MKD[MCD]_1997O
@@ -823,7 +823,7 @@
 821;ALB-MKD[YGM]_2002O;Albania Former Yugoslav Republic Of Macedonia;29/03/2002;01/07/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_167.xml;NA;NA;;NA;NA;ALB-MKD[YGM]_2002O
 822;ASNCHN_2002O;ASEAN China;11/04/2002;07/01/2003;https://wits.worldbank.org/GPTAD/PDF/archive/ASEAN-China.pdf;NA;NA;;NA;NA;ASNCHN_2002O
 823;EUE-ALG[NA]_2002O;EU Algeria;22/04/2002;01/09/2005;https://raw.github.com/mappingtreaties/tota/master/xml/pta_16.xml;NA;NA;;NA;NA;EUE-ALG[NA]_2002O
-824;BIH-MKD[BHM]_2002O;Former Yugoslav Republic Of Macedonia Bosnia And Herzegovina;24/04/2002;15/07/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_265.xml;NA;NA;;NA;NA;BIH-MKD[YGM]_2002O
+824;BIH-MKD[BHM]_2002O;Former Yugoslav Republic Of Macedonia Bosnia And Herzegovina;24/04/2002;15/07/2002;https://raw.github.com/mappingtreaties/tota/master/xml/pta_265.xml;NA;NA;;1;NA;BIH-MKD[YGM]_2002O
 825;ECCHIL_2002O;EC Chile;26/04/2002;02/01/2003;https://wits.worldbank.org/GPTAD/PDF/archive/EC-Chile.pdf;NA;NA;;NA;NA;ECCHIL_2002O
 826;CFTCRT_2002O;CEFTA Croatia;12/05/2002;03/01/2003;https://wits.worldbank.org/GPTAD/PDF/archive/CEFTA-Croatia.pdf;NA;NA;;NA;NA;CFTCRT_2002O
 827;CFTACC_2002O;CEFTA Accession Of Croatia;12/05/2002;03/01/2003;https://wits.worldbank.org/GPTAD/PDF/archive/CEFTA-Croatia.pdf;NA;NA;;NA;NA;CFTACC_2002O
@@ -870,11 +870,11 @@
 868;SGP-USA[NA]_2003O;US Singapore;06/05/2003;01/01/2004;https://ustr.gov/sites/default/files/uploads/agreements/fta/singapore/asset_upload_file708_4036.pdf;NA;NA;United States, Singapore;NA;2;SGP-USA[NA]_2003O
 869;ALB-ROU[NA]_2003O;Albania Romania;;;https://wits.worldbank.org/GPTAD/PDF/archive/albania-romania.pdf;NA;NA;Albania, Romania;NA;2;ALB-ROU[NA]_2003O
 870;CHL-USA[NA]_2003O;US Chile;06/06/2003;01/01/2004;https://wits.worldbank.org/GPTAD/PDF/archive/UnitedStates-Chile.pdf;NA;NA;United States, Chile;NA;1;CHL-USA[NA]_2003O
-871;EFTCHL_2003O;EFTA Chile;26/06/2003;01/12/2004;https://raw.github.com/mappingtreaties/tota/master/xml/pta_39.xml;NA;NA;;NA;NA;EFTCHL_2003O
+871;EFTCHL_2003O;EFTA Chile;26/06/2003;01/12/2004;https://raw.github.com/mappingtreaties/tota/master/xml/pta_39.xml;NA;NA;;1;NA;EFTCHL_2003O
 872;CHNCHN_2003O;China Hong Kong China;29/06/2003;29/06/2003;https://raw.github.com/mappingtreaties/tota/master/xml/pta_51.xml;NA;NA;;NA;NA;CHNCHN_2003O
 873;CHINA_2003O;China Hong Kong (CEPA);29/09/2003;01/01/2004;https://wits.worldbank.org/GPTAD/PDF/archive/China-HongKong.pdf;NA;NA;China, Hong Kong;NA;2;CHINA_2003O
 874;ALB-KOS[NA]_2003O;Albania UNMICKosovo;07/07/2003;;https://www.worldtradelaw.net/document.php?id=fta/agreements/albunmikfta.pdf&mode=download;NA;NA;Albania, Kosovo;NA;2;ALB-KOS[UNM]_2003O
-875;ECNMCO_2003O;Economic Cooperation Organization (ECO);17/07/2003;17/02/1992;https://raw.github.com/mappingtreaties/tota/master/xml/pta_117.xml;NA;NA;;NA;NA;ECNMCO_2003O
+875;ECNMCO_2003O;Economic Cooperation Organization (ECO);17/07/2003;17/02/1992;https://raw.github.com/mappingtreaties/tota/master/xml/pta_117.xml;NA;NA;;1;NA;ECNMCO_2003O
 876;ASNIND_2003O;ASEAN India;10/08/2003;NA;https://wits.worldbank.org/GPTAD/PDF/archive/ASEAN-India.pdf;NA;NA;;NA;NA;ASNIND_2003O
 877;ASNJPN_2003O;ASEAN-Japan;10/08/2003;NA;https://wits.worldbank.org/GPTAD/PDF/archive/ASEAN-Japan.pdf;NA;NA;;NA;NA;ASNJPN_2003O
 878;PAN-TWN[NA]_2003O;Panama Chinese Taipei;21/08/2003;01/01/2004;https://raw.github.com/mappingtreaties/tota/master/xml/pta_326.xml;NA;NA;;NA;NA;PAN-TWN[NA]_2003O
@@ -914,7 +914,7 @@
 912;STHAFT_2004A;South Asian Free Trade Agreement (SAFTA);06/01/2004;01/01/2006;https://raw.github.com/mappingtreaties/tota/master/xml/pta_162.xml;NA;NA;;NA;NA;STHAFT_2004A
 913;DOM-USA[CNT]_2004O;Central America Dominican Republic United States (CAFTADR);08/01/2004;03/01/2006;https://wits.worldbank.org/GPTAD/PDF/archive/UnitedStates-DominicanRepublic(CAFTA).pdf;NA;NA;;NA;NA;DOM-USA[CNT]_2004O
 914;HRV-MNE[SRB]_2004O;Croatia Serbia And Montenegro;14/01/2004;01/07/2004;https://wits.worldbank.org/GPTAD/PDF/archive/Croatia-Serbia-Montenegro.pdf;NA;NA;Croatia, Serbia and Montenegro;NA;2;HRV-MNE[SRB]_2004O
-915;MRCSRI_2004O:MRCSRI_2004O;MERCOSUR India;25/01/2004;01/06/2009;https://raw.github.com/mappingtreaties/tota/master/xml/pta_340.xml;NA;NA;;NA;NA;MRCSRI_2004O
+915;MRCSRI_2004O:MRCSRI_2004O;MERCOSUR India;25/01/2004;01/06/2009;https://raw.github.com/mappingtreaties/tota/master/xml/pta_340.xml;NA;NA;;1;NA;MRCSRI_2004O
 916;MDA-MKD[MCM]_2004O;Moldova Former Yugoslav Republic Of Macedonia;28/01/2004;01/12/2004;https://raw.github.com/mappingtreaties/tota/master/xml/pta_285.xml;NA;NA;;NA;NA;MDA-MKD[MYM]_2004O
 917;MDA-MKD[FYM]_2004O;FYROM Moldova;28/01/2004;;https://wits.worldbank.org/GPTAD/PDF/archive/Moldova-FYROM.pdf;NA;NA;Macedonia, Moldova;NA;2;MDA-MKD[FYM]_2004O
 918;CHL-SLV[NA]_2004O;Chile El Salvador (Central America);29/01/2004;01/01/2002;https://wits.worldbank.org/GPTAD/PDF/archive/Chile-ElSalvador.pdf;NA;NA;;NA;NA;CHL-SLV[NA]_2004O
@@ -940,7 +940,7 @@
 938;SYR-TUR[SYR]_2004O;Turkey Syria;22/12/2004;01/01/2007;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/2702/download;NA;NA;Turkey, Syria;NA;1;SYR-TUR[SYR]_2004O
 939;ASPCFT_2005A;Asia Pacific Trade Agreement (Bangkok Agreement Amended);02/11/2005;01/09/2006;https://www.unescap.org/sites/default/files/2-1-First-Amendment-to-Bangkok-Agreement.pdf;NA;NA;Bangladesh, China, India, Laos, South Korea, Sri Lanka;NA;2;ASPCFT_2005A
 940;BRA-SUR[NA]_2005O;Brazil Suriname;21/04/2005;26/07/2006;http://www.sice.oas.org/Trade/BRA_SUR/BRA_SUR_s.asp#CAP%C3%8DTULO_I;NA;NA;Brazil, Suriname;NA;2;BRA-SUR[NA]_2005O
-941;GTM-TWN[TWN]_2005O;Guatemala Taiwan;22/09/2005;01/07/2006;http://www.sice.oas.org/Trade/GTM_TWN_s/Text_s.asp#Preambulo;NA;NA;Guatemala, Taiwan;NA;NA;GTM-TWN[TWN]_2005O
+941;GTM-TWN[TWN]_2005O;Guatemala Taiwan;22/09/2005;01/07/2006;http://www.sice.oas.org/Trade/GTM_TWN_s/Text_s.asp#Preambulo;NA;NA;Guatemala, Taiwan;NA;2;GTM-TWN[TWN]_2005O
 942;KOS-MKD[MCD]_2005O;Kosovo Macedonia;01/01/2005;01/01/2006;https://unmik.unmissions.org/sites/default/files/regulations/02english/IAE/IAE2005_01.pdf;NA;NA;;NA;NA;KOS-MKD[MCD]_2005O
 943;MOZ-MWI[NA]_2005A;Malawi Mozambique;01/01/2005;01/01/2006;NA;NA;NA;;1;NA;MOZ-MWI[NA]_2005A
 944;MRCSRP_2005O;MERCOSUR Peru;30/11/2005;06/02/2006;http://www.sice.oas.org/Trade/MRCSRPerACE58/ACE.asp;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Peru;NA;2;MRCSRP_2005O
