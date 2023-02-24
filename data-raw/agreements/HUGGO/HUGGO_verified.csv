@@ -260,7 +260,7 @@ HUGGOO_RowNumber;manyID;Title;Signature;Force;url;End;Checked_HUGGO;Parties;No_s
 707;ECSWTB_1999O1;EC Switzerland Bilaterals 1;21/06/1999;01/06/2002;NA;NA;NA;;1;2;ECSWTB_1999O1
 711;HUN-LVA[NA]_1999O;Hungary Latvia;10/06/1999;;https://m.likumi.lv/ta/id/224344-free-trade-agreement-the-republic-of-latvia-and-the-republic-of-hungary;NA;NA;Hungary, Latvia;NA;2;HUN-LVA[NA]_1999O
 713;ARM-KAZ[NA]_1999O;Armenia Kazakhstan;02/09/1999;25/12/2001;https://wits.worldbank.org/GPTAD/PDF/archive/armenia-kazakhstan.pdf;NA;NA;Armenia, Kazakhstan;NA;2;ARM-KAZ[NA]_1999O
-715;POL-TUR[NA]_1999O;Turkey Poland;04/10/1999;01/05/2000;https://wits.worldbank.org/GPTAD/PDF/archive/Poland-Turkey.pdf;NA;NA;;NA;2;POL-TUR[NA]_1999O
+715;POL-TUR[NA]_1999O;Turkey Poland;04/10/1999;01/05/2000;https://wits.worldbank.org/GPTAD/PDF/archive/Poland-Turkey.pdf;NA;NA;Turkey, Poland;NA;2;POL-TUR[NA]_1999O
 718;BGR-MKD[MCD]_1999O;Bulgaria Macedonia;13/10/1999;01/01/2000;https://wits.worldbank.org/GPTAD/PDF/archive/Bulgaria-Macedonia.pdf;NA;1;Macedonia, Bulgaria;NA;2;BGR-MKD[MCD]_1999O
 721;ECSTHA_1999O;EC South Africa;11/10/1999;01/05/2004;https://wits.worldbank.org/GPTAD/PDF/archive/EC-South Africa.pdf;NA;NA;Belgium, Denmark, Germany, Greece, Spain, France, Ireland, Italy, Luxembourg, Netherlands, Austria, Portugal, Finland, Sweden, United Kingdom, South Africa;NA;1;ECSTHA_1999O
 722;ESTAFC_1999O:ESTAFC_1966O;East African Community (EAC);30/11/1999;07/07/2000;https://edit.wti.org/app.php/document/show/6152dafa-e2dd-423c-abc2-94cb4669c45a;NA;NA;Uganda, Kenya, Tanzania;NA;2;ESTAFC_1999O
@@ -319,7 +319,7 @@ HUGGOO_RowNumber;manyID;Title;Signature;Force;url;End;Checked_HUGGO;Parties;No_s
 837;STHACU_2002O:STHACU_1969O;Southern African Customs Union (SACU);21/10/2002;15/07/2004;https://wits.worldbank.org/GPTAD/PDF/archive/SACU.pdf;NA;NA;Botswana, Lesotho, Namibia, South Africa, Swaziland;NA;2;STHACU_2002O
 838;HRV-LTU[NA]_2002O;Croatia Lithuania;24/10/2002;01/05/2003;https://wits.worldbank.org/GPTAD/PDF/archive/Croatia-Lithuania.pdf;01/05/2004;NA;Croatia, Lithuania;NA;1;HRV-LTU[NA]_2002O
 841;BIH-MDA[MLD]_2002O;Moldova Bosnia And Herzegovina;23/12/2002;01/10/2004;https://wits.worldbank.org/GPTAD/PDF/archive/Moldova-BosniaHerzegovina.pdf;26/07/2007;NA;Moldova, Bosnia and Herzegovina;NA;1;BIH-MDA[MLD]_2002O
-844;BGR-SRB[SRB]_2003O;Bulgaria Serbia;13/11/2003;01/06/2004;;NA;NA;;1;2;BGR-SRB[SRB]_2003O
+844;BGR-SRB[SRB]_2003O;Bulgaria Serbia;13/11/2003;01/06/2004;;NA;NA;Bulgaria, Serbia;1;2;BGR-SRB[SRB]_2003O
 845;CHILFT_2003O;Chile EFTA;26/06/2003;01/12/2004;https://www.efta.int/media/documents/legal-texts/free-trade-relations/chile/EFTA-Chile%20Free%20Trade%20Agreement.pdf;NA;NA;Iceland, Liechtenstein, Norway, Switzerland, Chile;NA;1;CHLEFT_2003O
 847;ECNCOT_2003A;Economic Cooperation Organization Trade Agreement (ECOTA);17/07/2003;01/01/2008;https://wits.worldbank.org/GPTAD/PDF/archive/ECO.pdf;NA;NA;Afghanistan, Azerbaijan, Iran, Kazakhstan, Kyrgystan, Pakistan, Tajikistan, Turkey, Turkmenistan, Uzbekistan;NA;2;ECNCOT_2003A
 850;MKD-ROU[MCD]_2003O;Macedonia Romania;07/02/2003;;https://www.worldtradelaw.net/document.php?id=fta/agreements/romfyromfta.pdf&mode=download;NA;NA;Macedonia, Romania;NA;2;MKD-ROU[MCD]_2003O
