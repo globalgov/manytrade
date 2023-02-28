@@ -190,7 +190,7 @@ HUGGOO_RowNumber;manyID;Title;Signature;Force;url;End;Checked_HUGGO;Parties;No_s
 553;CHLMRC_1996O;Chile MERCOSUR;25/06/1996;01/10/1996;http://www.sice.oas.org/Trade/msch/mschind.asp;NA;NA;Argentina, Brazil, Paraguay, Uruguay, Chile;NA;2;CHLMRC_1996O
 554;ECMEMA_1996A;EC Morocco Euro-Med Association Agreement;26/02/1996;01/03/2000;https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:22000A0318(01)&from=EN;NA;NA;Belgium, Denmark, Germany, Greece, Spain, France, ireland, Italy, Luxembourg, Netherlands, Austria, Portugal, Finland, Sweden, United Kingdom, Morocco;NA;1;ECMEMA_1996A
 556;EST-SVK[NA]_1996O;Estonia Slovakia;28/05/1996;01/07/1996;https://wits.worldbank.org/GPTAD/PDF/archive/Estonia-Slovakia.pdf;NA;NA;Slovakia, Estonia;NA;2;EST-SVK[NA]_1996O
-559;ISR-SVK[NA]_1996O;Israel Slovakia;;01/01/1997;https://wits.worldbank.org/GPTAD/PDF/archive/Israel-Slovakia.pdf;NA;NA;Israel, Slovakia;NA;2;ISR-SVK[NA]_1996O
+559;ISR-SVK[NA]_1996O;Israel Slovakia;20/05/1996;01/12/1997;https://wits.worldbank.org/GPTAD/PDF/archive/Israel-Slovakia.pdf;NA;NA;Israel, Slovakia;NA;2;ISR-SVK[NA]_1996O
 560;LVA-SVK[NA]_1996O;Latvia Slovakia;19/04/1996;01/07/1996;https://wits.worldbank.org/GPTAD/PDF/archive/Latvia-Slovakia.pdf;NA;NA;Slovakia, Latvia;NA;2;LVA-SVK[NA]_1996O
 562;MKD-SVN[MCD]_1996O;Macedonia Slovenia;01/07/1996;;https://wits.worldbank.org/GPTAD/PDF/archive/Slovenia-Macedonia.pdf;NA;NA;Macedonia, Slovenia;NA;2;MKD-SVN[MCD]_1996O
 570;AZE-GEO[NA]_1996O;Georgia Azerbaijan;08/03/1996;10/07/1996;https://www.wto.org/english/thewto_e/acc_e/geo_e/wtaccgeo4a1_leg_24.pdf;NA;NA;Georgia, Azerbaijan;NA;2;AZE-GEO[NA]_1996O
@@ -213,7 +213,7 @@ HUGGOO_RowNumber;manyID;Title;Signature;Force;url;End;Checked_HUGGO;Parties;No_s
 598;LTU-SVK[NA]_1996O;Lithuania Slovakian;27/11/1996;01/07/1997;https://wits.worldbank.org/GPTAD/PDF/archive/Lithuania-Slovakia.pdf;NA;NA;Slovakia, Lithuania;NA;2;LTU-SVK[NA]_1996O
 599;CAN-CHL[NA]_1996O;Canada Chile;05/12/1996;05/07/1997;https://investmentpolicy.unctad.org/international-investment-agreements/treaty-files/2456/download;05/02/2019;NA;Canada, Chile;NA;1;CAN-CHL[NA]_1996O
 603;KGZ-UZB[NA]_1996O;Kyrgyzstan Uzbekistann;24/12/1996;20/03/1998;https://wits.worldbank.org/GPTAD/PDF/archive/Kyrgyzstan-Uzbekistan.pdf;NA;NA;Kyrgyzstan, Uzbekistan;NA;2;KGZ-UZB[NA]_1996O
-605;JOR-ALG[NA]_1997O;Algeria Jordan;;31/01/1999;https://findrulesoforigin.org/documents/pdf/itc00059_full.pdf;NA;NA;Jordan, Algeria;NA;2;JOR-ALG[NA]_1997O
+605;JOR-ALG[NA]_1997O;Algeria Jordan;19/05/1997;31/01/1999;https://findrulesoforigin.org/documents/pdf/itc00059_full.pdf;NA;NA;Jordan, Algeria;NA;2;JOR-ALG[NA]_1997O
 606;ANDNCS_1997P;Andean Community Sucre Protocol;26/06/1997;14/04/2003;http://www.sice.oas.org/trade/junac/Carta_Ag/sucre_e.asp;NA;NA;Bolivia, Colombia, Ecuador, Peru, Venezuela;NA;2;ANDNCS_1997P
 608;BF04TB_1997O;Baltic Free Trade Area (BAFTA) Non Tariff Barriers;20/11/1997;07/01/1998;https://wits.worldbank.org/GPTAD/PDF/archive/BAFTA-NonTariff.pdf;01/05/2004;NA;Estonia, Latvia, Lithuania;NA;2;BF04TB_1997O
 609;CRBBCS_1997P;Caribbean Community (CARICOM) Protocol On Services;01/07/1997;;http://www.sice.oas.org/trade/ccme/PROTOCOL2.asp;NA;NA;Antigua and Barbuda, Belize, Dominica, Grenada, Haiti, Montserrat, St. Kitts and Nevis, St. Lucia, St. Vincent and the Grenadines, The Bahamas, Barbados, Guyana, Jamaica, Suriname, Trinidad and Tobago;NA;2;CRBBCS_1997P
@@ -329,10 +329,10 @@ HUGGOO_RowNumber;manyID;Title;Signature;Force;url;End;Checked_HUGGO;Parties;No_s
 863;AUS-SGP[NA]_2003O;Singapore Australia;17/02/2003;28/07/2003;https://wits.worldbank.org/GPTAD/PDF/archive/Singapore-Australia.pdf;NA;NA;Singapore, Australia;NA;1;AUS-SGP[NA]_2003O
 864;AFG-IND[NA]_2003O:AFG-IND[NA]_2003O;India Afghanistan;06/03/2003;13/05/2003;https://wits.worldbank.org/GPTAD/PDF/archive/Afghanistan-India.pdf;NA;NA;India, Afghanistan;NA;2;AFG-IND[NA]_2003O
 865;ALB-BGR[NA]_2003O;Albania Bulgaria;26/03/2003;;https://www.worldtradelaw.net/document.php?id=fta/agreements/albbulfta.pdf&mode=download;NA;NA;Albania, Bulgaria;NA;2;ALB-BGR[NA]_2003O
-866;BIH-ROU[NA]_2003O;Romania Bosnia And Herzegovina;;24/10/2003;https://www.worldtradelaw.net/document.php?id=fta/agreements/rombosherfta.pdf;NA;NA;Romania, Bosnia And Herzegovina;NA;2;BIH-ROU[NA]_2003O
+866;BIH-ROU[NA]_2003O;Romania Bosnia And Herzegovina;24/10/2003;14/02/2005;https://www.worldtradelaw.net/document.php?id=fta/agreements/rombosherfta.pdf;NA;NA;Romania, Bosnia And Herzegovina;NA;2;BIH-ROU[NA]_2003O
 867;ALB-BIH[NA]_2003O;Albania Bosnia And Herzegovina;15/04/2003;01/12/2004;https://www.wipo.int/wipolex/en/text/238588;;NA;Albania, Bosnia And Herzegovina;NA;2;ALB-BIH[NA]_2003O
 868;SGP-USA[NA]_2003O;US Singapore;06/05/2003;01/01/2004;https://ustr.gov/sites/default/files/uploads/agreements/fta/singapore/asset_upload_file708_4036.pdf;NA;NA;United States, Singapore;NA;2;SGP-USA[NA]_2003O
-869;ALB-ROU[NA]_2003O;Albania Romania;;;https://wits.worldbank.org/GPTAD/PDF/archive/albania-romania.pdf;NA;NA;Albania, Romania;NA;2;ALB-ROU[NA]_2003O
+869;ALB-ROU[NA]_2003O;Albania Romania;01/06/2003;;https://wits.worldbank.org/GPTAD/PDF/archive/albania-romania.pdf;NA;NA;Albania, Romania;NA;2;ALB-ROU[NA]_2003O
 870;CHL-USA[NA]_2003O;US Chile;06/06/2003;01/01/2004;https://wits.worldbank.org/GPTAD/PDF/archive/UnitedStates-Chile.pdf;NA;NA;United States, Chile;NA;1;CHL-USA[NA]_2003O
 873;CHINA_2003O;China Hong Kong (CEPA);29/09/2003;01/01/2004;https://wits.worldbank.org/GPTAD/PDF/archive/China-HongKong.pdf;NA;NA;China, Hong Kong;NA;2;CHINA_2003O
 874;ALB-KOS[NA]_2003O;Albania UNMICKosovo;07/07/2003;;https://www.worldtradelaw.net/document.php?id=fta/agreements/albunmikfta.pdf&mode=download;NA;NA;Albania, Kosovo;NA;2;ALB-KOS[UNM]_2003O

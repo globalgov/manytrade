@@ -301,9 +301,11 @@ HUGGO_verified <- HUGGO_verified %>%
   select(manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGOO_RowNumber)
 names(HUGGO_verified)[10] <- "RowNumbers"
 
-# 4) load agreements$HUGGO and add columns End + Parties
+# 4) load agreements$HUGGO and add columns End + Parties + RowNumbers
 
 HUGGO <- agreements$HUGGO
+HUGGO$End <- NA
+HUGGO$Parties <- ""
 HUGGO <- HUGGO %>% mutate(RowNumbers = row_number())
 
 # 5) Add HUGGO TreatyText column to HUGGO_verified
@@ -345,7 +347,18 @@ names(merged_df)[8] <- "url"
 names(merged_df)[9] <- "End"
 names(merged_df)[10] <- "Parties"
 
-# 11) inserting merged_df into HUGGO
+# 11) Apply messydates::as_messydate to Beg, Signature, Force, End columns
+merged_df <- merged_df %>%
+  mutate(Beg = as_messydate(Beg),
+         Signature = as_messydate(Signature),
+         Force = as_messydate(Force),
+         End = as_messydate(End))
+
+# 12) arrange merged_df by Beg Date, replace HUGGO with merged_df and push
+
+merged_df <- merged_df %>%
+  dplyr::arrange(Beg)
+
 HUGGO <- merged_df
 
 
