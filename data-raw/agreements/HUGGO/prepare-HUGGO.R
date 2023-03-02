@@ -297,8 +297,8 @@ HUGGO_verified <- dplyr::select(HUGGO_verified, -Checked_HUGGO, -No_source, -Met
 HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, "N/A"))
 
 # 3) change order of columns and name of RowNumbers variable
-HUGGO_verified <- dplyr::select(HUGGO_verified, manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGOO_RowNumber)
-HUGGO_verified <- dplyr::rename(HUGGO_verified, RowNumbers = HUGGOO_RowNumber )
+HUGGO_verified <- dplyr::select(HUGGO_verified, manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGO_RowNumber)
+HUGGO_verified <- dplyr::rename(HUGGO_verified, RowNumbers = HUGGO_RowNumber )
 
 # 4) load agreements$HUGGO and add columns End + Parties + RowNumbers
 
@@ -371,13 +371,10 @@ HUGGO_verified$TreatyTextStatus[is.na(HUGGO_verified$No_source)] <- 1
 
 HUGGO_verified <- dplyr::select(HUGGO_verified, manyID, url, Title, TreatyTextStatus)
 
-merged_df <- dplyr::select(
-  dplyr::mutate(
-    dplyr::left_join(HUGGO, HUGGO_verified, by = c("manyID", "Title")),
-    TreatyTextStatus = dplyr::if_else(is.na(TreatyTextStatus.y), TreatyTextStatus.x, TreatyTextStatus.y)
-  ),
-  -TreatyTextStatus.x, -TreatyTextStatus.y
-)
+merged_df <- HUGGO %>%
+  dplyr::left_join(HUGGO_verified, by = c("manyID", "Title")) %>%
+  dplyr::mutate(TreatyTextStatus = if_else(is.na(TreatyTextStatus.y), TreatyTextStatus.x, TreatyTextStatus.y)) %>%
+  dplyr::select(-TreatyTextStatus.x, -TreatyTextStatus.y)
 
 #remove url.y columns and rename url.x as url, order by metadata
 merged_df <- dplyr::select(merged_df, -url.y)

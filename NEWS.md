@@ -1,5 +1,15 @@
 # manytrade 0.2.0
 
+2023-03-02
+
+## Data 
+
+* Verified Signature, Force, End, Parties, Url in the HUGGO_verified.csv for 549 treaties. Also added 375 raw text treaties and 135 formatted treaty texts.
+
+Data
+* Closed issue Check Signature and Force dates, and add End dates #34 by verifying MetaData(Signature, Force, End, Parties, Url) for trade agreements in HUGGO dataset.
+* Added treaty texts for the agreements in HUGGO dataset.
+
 2022-10-17
 
 ## Data
