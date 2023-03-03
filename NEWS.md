@@ -1,6 +1,6 @@
-# manytrade 0.3.0
+# manytrade 0.2.1
 
-2023-03-03
+2023-03-02
 ## Data
 
 * Closed issue Check Signature and Force dates, and add End dates #34 by verifying MetaData(Signature, Force, End, Parties, Url) for trade agreements in HUGGO dataset.
