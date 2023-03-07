@@ -4,8 +4,9 @@
 
 ## Data
 
-* Closed issue Check Signature and Force dates, and add End dates #34 by verifying MetaData(Signature, Force, End, Parties, Url) for trade agreements in HUGGO dataset.
+* Closed issue Check Signature and Force dates, and add End dates #34 by verifying MetaData(Signature, Force, End, Parties, url) for trade agreements in HUGGO dataset.
 * Added treaty texts for the agreements in HUGGO dataset.
+* Metadata (Signature, Force, End, parties, url) confirmed for 549 agreements, Treaty Texts collected for 510 agreements (375 unformatted, 135 formatted)
 
 # manytrade 0.2.0
 
