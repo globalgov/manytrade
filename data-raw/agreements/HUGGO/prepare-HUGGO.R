@@ -379,10 +379,9 @@ merged_df <- HUGGO %>%
 #remove url.y columns and rename url.x as url, order by metadata
 merged_df <- dplyr::select(merged_df, -url.y)
 merged_df <- dplyr::rename(merged_df, url = url.x)
-merged_df <- dplyr::select(merged_df, manyID, Title, Beg, Signature, Force, End, Parties, url, treatyID, TreatyTextStatus)
-
 # push merged_df to HUGGO
-HUGGO <- merged_df
+HUGGO <- dplyr::select(merged_df, manyID, Title, Beg, Signature, Force, End, Parties, url, treatyID, TreatyTextStatus)
+
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
