@@ -23,12 +23,7 @@ Authors@R:
       person(given = "Esther",
              family = "Peev",
              role = "ctb",
-             comment = c("IHEID", ORCID = "0000-0002-9678-2777")),
-      person(given = "Anders",
-             family = "Viemose",
-             role = "ctb",
-             comment = c("IHEID", ORCID = "0009-0007-6537-0837")))
-
+             comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
 Description: The manytrade package provides an ensemble of data on international trade agreements,
     and states membership in them for research use.
 License: CC BY 4.0
