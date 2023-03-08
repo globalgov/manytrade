@@ -289,7 +289,7 @@ HUGGO$Confirmed_HUGGO <- NA
 # Merging HUGGO_verified.csv with HUGGO 
 
 # 1) load HUGGO_verified.csv file & remove non-metadata columns
-HUGGO_verified <- read.csv2(file.choose())
+HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 
 HUGGO_verified <- dplyr::select(HUGGO_verified, -Checked_HUGGO, -No_source, -MetaData_confirmed,)
 
@@ -363,7 +363,7 @@ HUGGO$TreatyTextStatus <- 0
 #Get list of confirmed treaty texts collected in HUGGO_verified
 #Sorting TreatyTexts column, No_source = 0, otherwise = 1
 
-HUGGO_verified <- read.csv2(file.choose())
+HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 HUGGO_verified$TreatyTextStatus <- 0
 HUGGO_verified$TreatyTextStatus[is.na(HUGGO_verified$No_source)] <- 1
 
