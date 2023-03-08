@@ -334,7 +334,7 @@ merged_df$Parties.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Parties.y, m
 # 10) remove .y variables and remove .x ending to column names
 merged_df <- dplyr::select(merged_df, -manyID.y, -Beg.y, -Signature.y, -Force.y, -url.y, -End.y, -Parties.y)
 
-merged_df <- dplyr::rename(merged_df, manyID = `1`,
+merged_df <- manydata::transmutate(merged_df, manyID = `1`,
          Title = `2`,
          Beg = `3`,
          Signature = `4`,
