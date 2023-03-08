@@ -294,7 +294,7 @@ HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 HUGGO_verified <- dplyr::select(HUGGO_verified, -Checked_HUGGO, -No_source, -MetaData_confirmed,)
 
 # 2) add updated 'Beg' column in HUGGO_verified using coalesce()
-HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, "N/A"))
+HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, NA_character_))
 
 # 3) change order of columns and name of RowNumbers variable
 HUGGO_verified <- dplyr::select(HUGGO_verified, manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGO_RowNumber)
