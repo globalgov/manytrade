@@ -1,6 +1,7 @@
 on:
   pull_request:
     branches:
+      - master
       - main
 
 name: Binary checks
@@ -63,16 +64,9 @@ jobs:
           path: build/
 
       - name: Lint
-        if: runner.os == 'macOS-latest'
         run: lintr::lint_package()
         shell: Rscript {0}
 
-      # - name: Goodpractice # check if available on CRAN again in the future
-      #   run: |
-      #     goodpractice::gp()
-      #   shell: Rscript {0}
-
       - name: Spell check
-        if: runner.os == 'macOS-latest'
         run: spelling::spell_check_package()
         shell: Rscript {0}
