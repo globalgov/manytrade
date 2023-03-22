@@ -4,9 +4,9 @@
 
 ## Data
 
-* Closed #34 by verifying MetaData (`Signature`, `Force`, `End`, `Parties`, `url`) for trade agreements in agreements.rda HUGGO dataset
-* Added 510 treaty texts (375 unformatted, 135 formatted ) for the agreements in agreements.rda HUGGO dataset
-* Metadata (`Signature`, `Force`, `End`, `Parties`, `url`) confirmed for 549 agreement in agreements.rda HUGGO dataset
+* Closed #34 by verifying MetaData (`Signature`, `Force`, `End`, `Parties`, `url`) for trade agreements in the HUGGO dataset in the agreements database
+* Added 510 treaty texts (375 unformatted, 135 formatted ) for the agreements in the HUGGO dataset in the agreements database
+* Metadata (`Signature`, `Force`, `End`, `Parties`, `url`) confirmed for 549 agreements in the HUGGO dataset in the agreements database
 
 # manytrade 0.2.0
 
