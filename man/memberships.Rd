@@ -6,17 +6,9 @@
 \title{memberships database documentation}
 \format{
 The memberships database is a list that contains the
-following 2 datasets: GPTAD_MEM, DESTA_MEM.
+following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
-\describe{
-\item{GPTAD_MEM: }{A dataset with 2198 observations and the following
-9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
-gptadID, treatyID.}
-\item{DESTA_MEM: }{A dataset with 7492 observations and the following
-9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
-destaID, treatyID.}
-}
 }
 \usage{
 memberships
@@ -54,6 +46,23 @@ memberships database documentation
 #> |   StateName   |  character  |            7492|     0     |       0       |
 #> |    destaID    |  character  |            7492|     0     |       0       |
 #> |   treatyID    |  character  |            7492|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $HUGGO_MEM
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |            8973|     0     |       0       |
+#> |    stateID    |  character  |            8973|     0     |       0       |
+#> |     Title     |  character  |            8973|     0     |       0       |
+#> |      Beg      |    mdate    |            8973|    720    |     8.02      |
+#> |   Signature   |    mdate    |            8973|    932    |     10.39     |
+#> |     Force     |    mdate    |            8973|   3121    |     34.78     |
+#> |   StateName   |  character  |            8973|     0     |       0       |
+#> |   treatyID    |  character  |            8973|     0     |       0       |
+#> |    gptadID    |  character  |            8973|   6905    |     76.95     |
+#> |    destaID    |  character  |            8973|   1491    |     16.62     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

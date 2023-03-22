@@ -1,3 +1,13 @@
+# manytrade 0.3.0
+
+2023-03-22
+
+## Data
+
+* Closed #34 by verifying MetaData (`Signature`, `Force`, `End`, `Parties`, `url`) for trade agreements in the HUGGO dataset in the agreements database
+* Added 510 treaty texts (375 unformatted, 135 formatted ) for the agreements in the HUGGO dataset in the agreements database
+* Metadata (`Signature`, `Force`, `End`, `Parties`, `url`) confirmed for 549 agreements in the HUGGO dataset in the agreements database
+
 # manytrade 0.2.0
 
 2022-10-17

@@ -48,7 +48,7 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::filter(StateName != "NA",
                 StateName != "British") %>%
   #remove empty rows and redundant 'British' in data
-  dplyr::mutate(StateName = manystates::code_states(StateName)) %>%
+  dplyr::mutate(StateName = manypkgs::code_states(StateName)) %>%
   #translate French country names and correct spelling
   dplyr::mutate(StateName = dplyr::recode(StateName, "EC" = "European Community")) %>%
   #not included in regex list because of overlaps with other country names
