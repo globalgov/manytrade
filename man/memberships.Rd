@@ -9,6 +9,17 @@ The memberships database is a list that contains the
 following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
+\describe{
+\item{GPTAD_MEM: }{A dataset with 2192 observations and the following
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+gptadID, treatyID.}
+\item{DESTA_MEM: }{A dataset with 7586 observations and the following
+9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+destaID, treatyID.}
+\item{HUGGO_MEM: }{A dataset with 10185 observations and the following
+10 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
+treatyID, gptadID, destaID.}
+}
 }
 \usage{
 memberships
@@ -21,15 +32,15 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            2198|     0     |       0       |
-#> |    stateID    |  character  |            2198|    130    |     5.91      |
-#> |     Title     |  character  |            2198|     0     |       0       |
-#> |      Beg      |    mdate    |            2198|    99     |      4.5      |
-#> |   Signature   |    mdate    |            2198|    328    |     14.92     |
-#> |     Force     |    mdate    |            2198|    283    |     12.88     |
-#> |   StateName   |  character  |            2198|     0     |       0       |
-#> |    gptadID    |  character  |            2198|     0     |       0       |
-#> |   treatyID    |  character  |            2198|     0     |       0       |
+#> |    manyID     |  character  |            2192|     0     |       0       |
+#> |    stateID    |  character  |            2192|    55     |     2.51      |
+#> |     Title     |  character  |            2192|     0     |       0       |
+#> |      Beg      |    mdate    |            2192|    99     |     4.52      |
+#> |   Signature   |    mdate    |            2192|    310    |     14.14     |
+#> |     Force     |    mdate    |            2192|    285    |      13       |
+#> |   StateName   |  character  |            2192|    36     |     1.64      |
+#> |    gptadID    |  character  |            2192|     0     |       0       |
+#> |   treatyID    |  character  |            2192|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -37,15 +48,15 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            7492|     0     |       0       |
-#> |    stateID    |  character  |            7492|    10     |     0.13      |
-#> |     Title     |  character  |            7492|     0     |       0       |
-#> |      Beg      |    mdate    |            7492|    630    |     8.41      |
-#> |   Signature   |    mdate    |            7492|    630    |     8.41      |
-#> |     Force     |    mdate    |            7492|   2886    |     38.52     |
-#> |   StateName   |  character  |            7492|     0     |       0       |
-#> |    destaID    |  character  |            7492|     0     |       0       |
-#> |   treatyID    |  character  |            7492|     0     |       0       |
+#> |    manyID     |  character  |            7586|     0     |       0       |
+#> |    stateID    |  character  |            7586|    10     |     0.13      |
+#> |     Title     |  character  |            7586|     0     |       0       |
+#> |      Beg      |    mdate    |            7586|    630    |      8.3      |
+#> |   Signature   |    mdate    |            7586|    630    |      8.3      |
+#> |     Force     |    mdate    |            7586|   2947    |     38.85     |
+#> |   StateName   |  character  |            7586|     0     |       0       |
+#> |    destaID    |  character  |            7586|     0     |       0       |
+#> |   treatyID    |  character  |            7586|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -53,16 +64,16 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            8973|     0     |       0       |
-#> |    stateID    |  character  |            8973|     0     |       0       |
-#> |     Title     |  character  |            8973|     0     |       0       |
-#> |      Beg      |    mdate    |            8973|    720    |     8.02      |
-#> |   Signature   |    mdate    |            8973|    932    |     10.39     |
-#> |     Force     |    mdate    |            8973|   3121    |     34.78     |
-#> |   StateName   |  character  |            8973|     0     |       0       |
-#> |   treatyID    |  character  |            8973|     0     |       0       |
-#> |    gptadID    |  character  |            8973|   6905    |     76.95     |
-#> |    destaID    |  character  |            8973|   1491    |     16.62     |
+#> |    manyID     |  character  |           10185|     0     |       0       |
+#> |    stateID    |  character  |           10185|     0     |       0       |
+#> |     Title     |  character  |           10185|     0     |       0       |
+#> |      Beg      |    mdate    |           10185|   1442    |     14.16     |
+#> |   Signature   |    mdate    |           10185|   1664    |     16.34     |
+#> |     Force     |    mdate    |           10185|   4093    |     40.19     |
+#> |   StateName   |  character  |           10185|     0     |       0       |
+#> |   treatyID    |  character  |           10185|     0     |       0       |
+#> |    gptadID    |  character  |           10185|   7871    |     77.28     |
+#> |    destaID    |  character  |           10185|   1716    |     16.85     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

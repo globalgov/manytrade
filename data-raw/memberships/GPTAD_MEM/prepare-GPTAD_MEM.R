@@ -10,6 +10,7 @@ GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD_MEM.csv")
 # In this stage you will want to correct the variable names and
 # formats of the 'GPTAD_MEM' object until the object created
 # below (in stage three) passes all the tests.
+library(dplyr)
 GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(StateName = gsub("\\\\r\\\\n", "", Membership)) %>%
@@ -48,13 +49,13 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::filter(StateName != "NA",
                 StateName != "British") %>%
   #remove empty rows and redundant 'British' in data
-  dplyr::mutate(StateName = manypkgs::code_states(StateName)) %>%
+  dplyr::mutate(StateName = manypkgs::code_states(StateName, activity = FALSE,
+                                                  replace = "names")) %>%
   #translate French country names and correct spelling
   dplyr::mutate(StateName = dplyr::recode(StateName, "EC" = "European Community")) %>%
   #not included in regex list because of overlaps with other country names
-  dplyr::mutate(stateID = countrycode::countrycode(StateName, 
-                                                     origin = 'country.name',
-                                                     destination = 'iso3c')) %>%
+  dplyr::mutate(stateID = manypkgs::code_states(StateName, activity = FALSE,
+                                                replace = "ID")) %>%
   #add iso code for country names
   dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
                                              NA, `Date.of.Signature`)) %>%
@@ -65,7 +66,8 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
                      Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, stateID, StateName, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg)
+  dplyr::arrange(Beg) %>%
+  dplyr::distinct()
 
 #Add treatyID column
 GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
@@ -75,7 +77,8 @@ GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title,
 manyID <- manypkgs::condense_agreements(manytrade::memberships,
                                         var = c(DESTA_MEM$treatyID, 
                                                 GPTAD_MEM$treatyID))
-GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID")
+GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID") %>%
+  dplyr::distinct()
 
 # Re-order the columns
 GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Beg, 
@@ -85,9 +88,6 @@ GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Beg,
 # duplicates <- GPTAD_MEM %>%
 #   dplyr::mutate(duplicates = duplicated(GPTAD_MEM[, c(1,2)])) %>%
 #   dplyr::relocate(manyID, stateID,  duplicates)
-
-# delete rows that only have diff title but same Beg and other variables
-GPTAD_MEM <- subset(GPTAD_MEM, subset = !duplicated(GPTAD_MEM[, c(1,2,4,7,9)]))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

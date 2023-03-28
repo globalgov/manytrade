@@ -9,6 +9,26 @@ The agreements database is a list that contains the
 following 7 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, HUGGO, AIGGO.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
+\describe{
+\item{DESTA: }{A dataset with 959 observations and the following
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+Signature, Force, treatyID, destaID.}
+\item{GPTAD: }{A dataset with 340 observations and the following
+10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
+Signature, Force, treatyID, gptadID.}
+\item{LABPTA: }{A dataset with 483 observations and the following
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
+\item{TOTA: }{A dataset with 450 observations and the following
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
+\item{TREND: }{A dataset with 729 observations and the following
+7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
+\item{HUGGO: }{A dataset with 1391 observations and the following
+9 variables: manyID, Title, Beg, Signature, Force, End, url, treatyID,
+TreatyTextStatus.}
+\item{AIGGO: }{A dataset with 1391 observations and the following
+8 variables: manyID, Title, Beg, Signature, Force, accessionC, accessionP,
+treatyID.}
+}
 }
 \usage{
 agreements
@@ -94,25 +114,19 @@ agreements database documentation
 #> 
 #> 
 #> $HUGGO
-#> ----------------------------------------------------------------------------
-#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            1391|     0     |       0       |
-#> |     Title     |  character  |            1391|     0     |       0       |
-#> |      Beg      |    mdate    |            1391|    116    |     8.34      |
-#> |   Signature   |    mdate    |            1391|    135    |     9.71      |
-#> |     Force     |    mdate    |            1391|    247    |     17.76     |
-#> |   treatyID    |  character  |            1391|     0     |       0       |
-#> |  TreatyText   |  character  |            1391|    520    |     37.38     |
-#> |      url      |  character  |            1391|    650    |     46.73     |
-#> |   MainText    |  character  |            1391|    517    |     37.17     |
-#> | AppendixText  |  character  |            1391|   1321    |     94.97     |
-#> |   AnnexText   |  character  |            1391|    945    |     67.94     |
-#> |      End      |    mdate    |            1391|   1389    |     99.86     |
-#> | Checked_HUGGO |   numeric   |            1391|   1348    |     96.91     |
-#> |Confirmed_HUGGO|  character  |            1391|   1348    |     96.91     |
-#> |    Parties    |  character  |            1391|     0     |       0       |
-#> ----------------------------------------------------------------------------
+#> -----------------------------------------------------------------------------
+#> |  Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> -----------------------------------------------------------------------------
+#> |     manyID     |  character  |            1391|     0     |       0       |
+#> |     Title      |  character  |            1391|     0     |       0       |
+#> |      Beg       |    mdate    |            1391|    116    |     8.34      |
+#> |   Signature    |    mdate    |            1391|    135    |     9.71      |
+#> |     Force      |    mdate    |            1391|    250    |     17.97     |
+#> |      End       |    mdate    |            1391|   1335    |     95.97     |
+#> |      url       |  character  |            1391|    528    |     37.96     |
+#> |    treatyID    |  character  |            1391|     0     |       0       |
+#> |TreatyTextStatus|   numeric   |            1391|     0     |       0       |
+#> -----------------------------------------------------------------------------
 #> 
 #> 
 #> $AIGGO
