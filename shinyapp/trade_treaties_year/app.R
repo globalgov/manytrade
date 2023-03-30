@@ -1,15 +1,29 @@
 library(dplyr)
+library(ggplot2)
 library(shiny)
 library(shinydashboard)
 
 # Prepare data
 trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
-    dplyr::select(manyID, CountryID, Title, Beg)
+    dplyr::select(manyID, stateID, Title, Beg)
 trade_mem2 <- manytrade::memberships$DESTA_MEM %>%
-    dplyr::select(manyID, CountryID, Title, Beg)
+    dplyr::select(manyID, stateID, Title, Beg)
 trade_mem <- dplyr::full_join(trade_mem1, trade_mem2) %>%
     unique() %>% dplyr::arrange(Beg) %>%
-    dplyr::filter(Beg != "NA")
+    dplyr::filter(Beg != "NA") %>%
+    dplyr::mutate(Type = "NA")
+i <- 0
+manyID <- NA
+for(i in 1:nrow(trade_mem)){
+  manyID <- as.character(trade_mem[i, 1])
+  if(sum(trade_mem$manyID == manyID) > 2) {
+    trade_mem[i, 5] <- "Multilateral"
+  }
+  else {
+    trade_mem[i, 5] <- "Bilateral"
+  }
+}
+
 
 # Define dashboard interface
 ui <- dashboardPage(
@@ -19,18 +33,36 @@ ui <- dashboardPage(
         sidebarMenu(
             selectInput("country",
                         "Select country(s):",
-                        choices = c("choose" = "", trade_mem$CountryID),
+                        choices = c("choose" = "", stringr::str_sort(trade_mem$stateID)),
+                        selected = "choose",
+                        multiple = T),
+            selectInput("type",
+                        "Select type:",
+                        choices = c("choose" = "", "Bilateral", "Multilateral"),
                         selected = "choose",
                         multiple = T),
             menuItem(sliderInput("num", "Dates", value = 1980, min = 1948, max = 2020, width = 350))
-        )),
+            ),
+        wellPanel(
+          style = " background: #222D32; border-color: #222D32; margin-left: 20px",
+          textOutput("click_info"),
+          tags$head(tags$style(".shiny-output-error{visibility: hidden}")),
+          tags$head(tags$style(".shiny-output-error:after{content: 'No treaties found. Please try again with different inputs.';
+visibility: visible}"))
+        )
+        ),
     dashboardBody(
-        plotOutput("distPlot", height = "550px")
-    )
+        plotOutput("distPlot", height = "550px",
+                   click = "plot_click")
+    ),
 )
 
 # Connect the data with the interface
 server <- function(input, output){
+    titles <- trade_mem %>%
+      distinct(manyID, .keep_all = TRUE) %>%
+      select(manyID, Title)
+    
     filteredData <- reactive({
         trade_mem <- trade_mem %>%
             dplyr::filter(Beg %in% input$num) %>%
@@ -39,17 +71,99 @@ server <- function(input, output){
     filteredData2 <- reactive({
         trade_mem <- trade_mem %>%
             dplyr::filter(Beg %in% input$num) %>%
-            dplyr::filter(CountryID %in% input$country) %>%
+            dplyr::filter(stateID %in% input$country) %>%
+            migraph::as_tidygraph()
+        
+    })
+    filteredData3 <- reactive({
+        trade_mem <- trade_mem %>%
+            dplyr::filter(Beg %in% input$num) %>%
+            dplyr::filter(Type %in% input$type) %>%
             migraph::as_tidygraph()
     })
+    filteredData4 <- reactive({
+        trade_mem <- trade_mem %>%
+            dplyr::filter(Beg %in% input$num) %>%
+            dplyr::filter(stateID %in% input$country) %>%
+            dplyr::filter(Type %in% input$type) %>%
+            migraph::as_tidygraph()
+    })
+    coords1 <- reactive({
+      ggdata1 <- ggplot_build(migraph::autographr(filteredData()))$data[[1]]
+    })
+    coords2 <- reactive({
+      ggdata2 <- ggplot_build(migraph::autographr(filteredData2()))$data[[1]]
+    })
+    coords3 <- reactive({
+      ggdata3 <- ggplot_build(migraph::autographr(filteredData3()))$data[[1]]
+    })
+    coords4 <- reactive({
+      ggdata4 <- ggplot_build(migraph::autographr(filteredData4()))$data[[1]]
+    })
+    
     output$distPlot <- renderPlot({
-        if(is.null(input$country)){
+        if(is.null(input$country) & is.null(input$type)){
             migraph::autographr(filteredData())
+            
         }
-        else if(!is.null(input$country)){
+        else if(!is.null(input$country) & !is.null(input$type)){
+            migraph::autographr(filteredData4())
+            
+        }
+        else if(is.null(input$type)){
             migraph::autographr(filteredData2())
         }
-        else {}
+        else if(is.null(input$country)){
+            migraph::autographr(filteredData3())
+        }
+    })
+    
+      output$click_info <- renderText({
+        if(is.null(input$country) & is.null(input$type)){
+        point <- nearPoints(coords1(), input$plot_click, 
+                   addDist = TRUE)
+        title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+        else if(is.null(input$type)){
+          point <- nearPoints(coords2(), input$plot_click, 
+                     addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+          
+        else if(is.null(input$country)){
+          point <- nearPoints(coords3(), input$plot_click, 
+                              addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+        else if(!is.null(input$country) & !is.null(input$type)){
+          point <- nearPoints(coords4(), input$plot_click, 
+                              addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
     })
 }
 
