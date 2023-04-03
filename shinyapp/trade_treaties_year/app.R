@@ -49,13 +49,11 @@ ui <- dashboardPage(
           tags$head(tags$style(".shiny-output-error{visibility: hidden}")),
           tags$head(tags$style(".shiny-output-error:after{content: 'No treaties found. Please try again with different inputs.';
 visibility: visible}"))
-        )
-        ),
+        )),
     dashboardBody(
         plotOutput("distPlot", height = "550px",
                    click = "plot_click")
-    ),
-)
+    ))
 
 # Connect the data with the interface
 server <- function(input, output){
