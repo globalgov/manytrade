@@ -58,8 +58,8 @@ visibility: visible}"))
 # Connect the data with the interface
 server <- function(input, output){
     titles <- trade_mem %>%
-      distinct(manyID, .keep_all = TRUE) %>%
-      select(manyID, Title)
+      dplyr::distinct(manyID, .keep_all = TRUE) %>%
+      dplyr::select(manyID, Title)
     
     filteredData <- reactive({
         trade_mem <- trade_mem %>%
@@ -87,16 +87,16 @@ server <- function(input, output){
             migraph::as_tidygraph()
     })
     coords1 <- reactive({
-      ggdata1 <- ggplot_build(migraph::autographr(filteredData()))$data[[1]]
+      ggdata1 <- ggplot2::ggplot_build(migraph::autographr(filteredData()))$data[[1]]
     })
     coords2 <- reactive({
-      ggdata2 <- ggplot_build(migraph::autographr(filteredData2()))$data[[1]]
+      ggdata2 <- ggplot2::ggplot_build(migraph::autographr(filteredData2()))$data[[1]]
     })
     coords3 <- reactive({
-      ggdata3 <- ggplot_build(migraph::autographr(filteredData3()))$data[[1]]
+      ggdata3 <- ggplot2::ggplot_build(migraph::autographr(filteredData3()))$data[[1]]
     })
     coords4 <- reactive({
-      ggdata4 <- ggplot_build(migraph::autographr(filteredData4()))$data[[1]]
+      ggdata4 <- ggplot2::ggplot_build(migraph::autographr(filteredData4()))$data[[1]]
     })
     
     output$distPlot <- renderPlot({
