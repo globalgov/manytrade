@@ -2,6 +2,7 @@ library(dplyr)
 library(ggplot2)
 library(shiny)
 library(shinydashboard)
+library(tidygraph)
 
 # Prepare data
 trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
@@ -41,7 +42,8 @@ ui <- dashboardPage(
                         choices = c("choose" = "", "Bilateral", "Multilateral"),
                         selected = "choose",
                         multiple = T),
-            menuItem(sliderInput("num", "Dates", value = 1980, min = 1948, max = 2020, width = 350))
+            menuItem(sliderInput("range", "Dates", value = c(1950, 1957), min = 1948, 
+                                 max = 2020, width = 350, sep = ""))
             ),
         wellPanel(
           style = " background: #222D32; border-color: #222D32; margin-left: 20px",
@@ -63,31 +65,41 @@ server <- function(input, output){
     
     filteredData <- reactive({
         trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
-            migraph::as_tidygraph()
+            dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+            migraph::as_tidygraph() %>%
+            tidygraph::activate(nodes) %>%
+            dplyr::mutate(color = "blue")
     })
     filteredData2 <- reactive({
         trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
+            dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
             dplyr::filter(stateID %in% input$country) %>%
-            migraph::as_tidygraph()
+            migraph::as_tidygraph() %>%
+            tidygraph::activate(nodes) %>%
+            dplyr::mutate(color = "blue")
+        
         
     })
     filteredData3 <- reactive({
         trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
+            dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
             dplyr::filter(Type %in% input$type) %>%
-            migraph::as_tidygraph()
+            migraph::as_tidygraph() %>%
+            tidygraph::activate(nodes) %>%
+            dplyr::mutate(color = "blue")
     })
     filteredData4 <- reactive({
         trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
+            dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
             dplyr::filter(stateID %in% input$country) %>%
             dplyr::filter(Type %in% input$type) %>%
-            migraph::as_tidygraph()
+            migraph::as_tidygraph() %>%
+            tidygraph::activate(nodes) %>%
+            dplyr::mutate(color = "blue")
     })
     coords1 <- reactive({
       ggdata1 <- ggplot2::ggplot_build(migraph::autographr(filteredData()))$data[[1]]
+      
     })
     coords2 <- reactive({
       ggdata2 <- ggplot2::ggplot_build(migraph::autographr(filteredData2()))$data[[1]]
@@ -101,18 +113,17 @@ server <- function(input, output){
     
     output$distPlot <- renderPlot({
         if(is.null(input$country) & is.null(input$type)){
-            migraph::autographr(filteredData())
-            
+            migraph::autographr(filteredData(), node_color = "color")
         }
         else if(!is.null(input$country) & !is.null(input$type)){
-            migraph::autographr(filteredData4())
+            migraph::autographr(filteredData4(), node_color = "color")
             
         }
         else if(is.null(input$type)){
-            migraph::autographr(filteredData2())
+            migraph::autographr(filteredData2(), node_color = "color")
         }
         else if(is.null(input$country)){
-            migraph::autographr(filteredData3())
+            migraph::autographr(filteredData3(), node_color = "color")
         }
     })
     
@@ -286,3 +297,5 @@ server <- function(input, output){
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
+           
