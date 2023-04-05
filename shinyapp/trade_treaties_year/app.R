@@ -68,7 +68,12 @@ server <- function(input, output){
             dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
             migraph::as_tidygraph() %>%
             tidygraph::activate(nodes) %>%
-            dplyr::mutate(color = "blue")
+            dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+            dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                         TRUE ~ 1.5)) %>%
+            dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                         TRUE ~ "square"))
     })
     filteredData2 <- reactive({
         trade_mem <- trade_mem %>%
@@ -76,9 +81,12 @@ server <- function(input, output){
             dplyr::filter(stateID %in% input$country) %>%
             migraph::as_tidygraph() %>%
             tidygraph::activate(nodes) %>%
-            dplyr::mutate(color = "blue")
-        
-        
+            dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                         TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                          TRUE ~ "square"))
     })
     filteredData3 <- reactive({
         trade_mem <- trade_mem %>%
@@ -86,7 +94,12 @@ server <- function(input, output){
             dplyr::filter(Type %in% input$type) %>%
             migraph::as_tidygraph() %>%
             tidygraph::activate(nodes) %>%
-            dplyr::mutate(color = "blue")
+            dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+            dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                         TRUE ~ 1.5)) %>%
+            dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                          TRUE ~ "square"))
     })
     filteredData4 <- reactive({
         trade_mem <- trade_mem %>%
@@ -95,7 +108,12 @@ server <- function(input, output){
             dplyr::filter(Type %in% input$type) %>%
             migraph::as_tidygraph() %>%
             tidygraph::activate(nodes) %>%
-            dplyr::mutate(color = "blue")
+            dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+            dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                          TRUE ~ 1.5)) %>%
+            dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                          TRUE ~ "square"))
     })
     coords1 <- reactive({
       ggdata1 <- ggplot2::ggplot_build(migraph::autographr(filteredData()))$data[[1]]
@@ -113,17 +131,21 @@ server <- function(input, output){
     
     output$distPlot <- renderPlot({
         if(is.null(input$country) & is.null(input$type)){
-            migraph::autographr(filteredData(), node_color = "color")
+            migraph::autographr(filteredData(), node_color = "color", node_size = "size",
+                                node_shape = "shape")
         }
         else if(!is.null(input$country) & !is.null(input$type)){
-            migraph::autographr(filteredData4(), node_color = "color")
+            migraph::autographr(filteredData4(), node_color = "color", node_size = "size",
+                                node_shape = "shape")
             
         }
         else if(is.null(input$type)){
-            migraph::autographr(filteredData2(), node_color = "color")
+            migraph::autographr(filteredData2(), node_color = "color", node_size = "size",
+                                node_shape = "shape")
         }
         else if(is.null(input$country)){
-            migraph::autographr(filteredData3(), node_color = "color")
+            migraph::autographr(filteredData3(), node_color = "color", node_size = "size",
+                                node_shape = "shape")
         }
     })
     
@@ -133,7 +155,7 @@ server <- function(input, output){
                    addDist = TRUE)
         title <- as.character(titles[titles$manyID %in% point$label, 2])
           if(title == "character(0)"){
-            print("Please click on a node representing a treaty to display its title.")
+            print("Please click on a node representing a treaty (red circle) to display its title.")
           }
           else if(!(title == "character(0)")){
             print(title)
@@ -144,7 +166,7 @@ server <- function(input, output){
                      addDist = TRUE)
           title <- as.character(titles[titles$manyID %in% point$label, 2])
           if(title == "character(0)"){
-            print("Please click on a node representing a treaty to display its title.")
+            print("Please click on a node representing a treaty (red circle) to display its title.")
           }
           else if(!(title == "character(0)")){
             print(title)
@@ -156,7 +178,7 @@ server <- function(input, output){
                               addDist = TRUE)
           title <- as.character(titles[titles$manyID %in% point$label, 2])
           if(title == "character(0)"){
-            print("Please click on a node representing a treaty to display its title.")
+            print("Please click on a node representing a treaty (red circle) to display its title.")
           }
           else if(!(title == "character(0)")){
             print(title)
@@ -167,7 +189,7 @@ server <- function(input, output){
                               addDist = TRUE)
           title <- as.character(titles[titles$manyID %in% point$label, 2])
           if(title == "character(0)"){
-            print("Please click on a node representing a treaty to display its title.")
+            print("Please click on a node representing a treaty (red circle) to display its title.")
           }
           else if(!(title == "character(0)")){
             print(title)
