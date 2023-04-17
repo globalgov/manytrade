@@ -26,12 +26,7 @@ LABPTA <- tibble::as_tibble(LABPTA) %>%
 LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                        var = c(DESTA$treatyID, 
-                                                GPTAD$treatyID,
-                                                LABPTA$treatyID, 
-                                                TREND$treatyID,
-                                                TOTA$treatyID))
+manyID <- manypkgs::condense_agreements(manytrade::agreements)
 LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns

@@ -74,9 +74,7 @@ GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title,
                                                 GPTAD_MEM$Beg)
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::memberships,
-                                        var = c(DESTA_MEM$treatyID, 
-                                                GPTAD_MEM$treatyID))
+manyID <- manypkgs::condense_agreements(manytrade::memberships)
 GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID") %>%
   dplyr::distinct()
 

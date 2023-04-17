@@ -44,12 +44,7 @@ TOTA <- TOTA %>%
 TOTA$treatyID <- manypkgs::code_agreements(TOTA, TOTA$Title, TOTA$Beg)
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::agreements, 
-                                        var = c(DESTA$treatyID,
-                                                GPTAD$treatyID,
-                                                LABPTA$treatyID,
-                                                TREND$treatyID,
-                                                TOTA$treatyID))
+manyID <- manypkgs::condense_agreements(manytrade::agreements)
 TOTA <- dplyr::left_join(TOTA, manyID, by = "treatyID")
 
 # Re-order the columns
