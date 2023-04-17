@@ -11,14 +11,14 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2192 observations and the following
-9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
-gptadID, treatyID.}
+9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
+StateName, gptadID.}
 \item{DESTA_MEM: }{A dataset with 7586 observations and the following
-9 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
-destaID, treatyID.}
-\item{HUGGO_MEM: }{A dataset with 10185 observations and the following
-10 variables: manyID, stateID, Title, Beg, Signature, Force, StateName,
-treatyID, gptadID, destaID.}
+9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
+StateName, destaID.}
+\item{HUGGO_MEM: }{A dataset with 9170 observations and the following
+10 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
+StateName, gptadID, destaID.}
 }
 }
 \usage{
@@ -33,14 +33,14 @@ memberships database documentation
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
 #> |    manyID     |  character  |            2192|     0     |       0       |
-#> |    stateID    |  character  |            2192|    55     |     2.51      |
+#> |   treatyID    |  character  |            2192|     0     |       0       |
 #> |     Title     |  character  |            2192|     0     |       0       |
 #> |      Beg      |    mdate    |            2192|    99     |     4.52      |
+#> |    stateID    |  character  |            2192|    55     |     2.51      |
 #> |   Signature   |    mdate    |            2192|    310    |     14.14     |
 #> |     Force     |    mdate    |            2192|    285    |      13       |
 #> |   StateName   |  character  |            2192|    36     |     1.64      |
 #> |    gptadID    |  character  |            2192|     0     |       0       |
-#> |   treatyID    |  character  |            2192|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -49,14 +49,14 @@ memberships database documentation
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
 #> |    manyID     |  character  |            7586|     0     |       0       |
-#> |    stateID    |  character  |            7586|    10     |     0.13      |
+#> |   treatyID    |  character  |            7586|     0     |       0       |
 #> |     Title     |  character  |            7586|     0     |       0       |
 #> |      Beg      |    mdate    |            7586|    630    |      8.3      |
+#> |    stateID    |  character  |            7586|    10     |     0.13      |
 #> |   Signature   |    mdate    |            7586|    630    |      8.3      |
 #> |     Force     |    mdate    |            7586|   2947    |     38.85     |
 #> |   StateName   |  character  |            7586|     0     |       0       |
 #> |    destaID    |  character  |            7586|     0     |       0       |
-#> |   treatyID    |  character  |            7586|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -64,16 +64,16 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |           10185|     0     |       0       |
-#> |    stateID    |  character  |           10185|     0     |       0       |
-#> |     Title     |  character  |           10185|     0     |       0       |
-#> |      Beg      |    mdate    |           10185|   1442    |     14.16     |
-#> |   Signature   |    mdate    |           10185|   1664    |     16.34     |
-#> |     Force     |    mdate    |           10185|   4093    |     40.19     |
-#> |   StateName   |  character  |           10185|     0     |       0       |
-#> |   treatyID    |  character  |           10185|     0     |       0       |
-#> |    gptadID    |  character  |           10185|   7871    |     77.28     |
-#> |    destaID    |  character  |           10185|   1716    |     16.85     |
+#> |    manyID     |  character  |            9170|     0     |       0       |
+#> |   treatyID    |  character  |            9170|     0     |       0       |
+#> |     Title     |  character  |            9170|     0     |       0       |
+#> |      Beg      |    mdate    |            9170|    726    |     7.92      |
+#> |    stateID    |  character  |            9170|     0     |       0       |
+#> |   Signature   |    mdate    |            9170|    948    |     10.34     |
+#> |     Force     |    mdate    |            9170|   3185    |     34.73     |
+#> |   StateName   |  character  |            9170|     0     |       0       |
+#> |    gptadID    |  character  |            9170|   6990    |     76.23     |
+#> |    destaID    |  character  |            9170|   1594    |     17.38     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
