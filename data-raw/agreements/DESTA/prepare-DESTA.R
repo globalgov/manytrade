@@ -47,12 +47,7 @@ DESTA <- tibble::as_tibble(DESTA) %>%
 DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::agreements,
-                                        var=c(DESTA$treatyID, 
-                                              GPTAD$treatyID,
-                                              LABPTA$treatyID, 
-                                              TREND$treatyID,
-                                              TOTA$treatyID))
+manyID <- manypkgs::condense_agreements(manytrade::agreements)
 
 DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 

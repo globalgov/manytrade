@@ -289,12 +289,12 @@ HUGGO$Confirmed_HUGGO <- NA
 # Merging HUGGO_verified.csv with HUGGO 
 
 # 1) load HUGGO_verified.csv file & remove non-metadata columns
-HUGGO_verified <- read.csv2(file.choose())
+HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 
 HUGGO_verified <- dplyr::select(HUGGO_verified, -Checked_HUGGO, -No_source, -MetaData_confirmed,)
 
 # 2) add updated 'Beg' column in HUGGO_verified using coalesce()
-HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, "N/A"))
+HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, NA_character_))
 
 # 3) change order of columns and name of RowNumbers variable
 HUGGO_verified <- dplyr::select(HUGGO_verified, manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGO_RowNumber)
@@ -334,7 +334,7 @@ merged_df$Parties.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Parties.y, m
 # 10) remove .y variables and remove .x ending to column names
 merged_df <- dplyr::select(merged_df, -manyID.y, -Beg.y, -Signature.y, -Force.y, -url.y, -End.y, -Parties.y)
 
-merged_df <- dplyr::rename(merged_df, manyID = `1`,
+merged_df <- manydata::transmutate(merged_df, manyID = `1`,
          Title = `2`,
          Beg = `3`,
          Signature = `4`,
@@ -363,7 +363,7 @@ HUGGO$TreatyTextStatus <- 0
 #Get list of confirmed treaty texts collected in HUGGO_verified
 #Sorting TreatyTexts column, No_source = 0, otherwise = 1
 
-HUGGO_verified <- read.csv2(file.choose())
+HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 HUGGO_verified$TreatyTextStatus <- 0
 HUGGO_verified$TreatyTextStatus[is.na(HUGGO_verified$No_source)] <- 1
 
@@ -379,10 +379,9 @@ merged_df <- HUGGO %>%
 #remove url.y columns and rename url.x as url, order by metadata
 merged_df <- dplyr::select(merged_df, -url.y)
 merged_df <- dplyr::rename(merged_df, url = url.x)
-merged_df <- dplyr::select(merged_df, manyID, Title, Beg, Signature, Force, End, Parties, url, treatyID, TreatyTextStatus)
-
 # push merged_df to HUGGO
-HUGGO <- merged_df
+HUGGO <- dplyr::select(merged_df, manyID, Title, Beg, Signature, Force, End, Parties, url, treatyID, TreatyTextStatus)
+
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

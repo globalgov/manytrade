@@ -38,10 +38,9 @@ DESTA_MEM$treatyID <- manypkgs::code_agreements(DESTA_MEM, DESTA_MEM$Title,
                                                 DESTA_MEM$Beg)
 
 # Add manyID column
-manyID <- manypkgs::condense_agreements(manytrade::memberships,
-                                        var = c(DESTA_MEM$treatyID, 
-                                                GPTAD_MEM$treatyID))
-DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID")
+manyID <- manypkgs::condense_agreements(manytrade::memberships)
+DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID") %>%
+  dplyr::distinct()
 
 # Re-order the columns
 DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, stateID, Title, Beg, 
@@ -51,10 +50,6 @@ DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, stateID, Title, Beg,
 # duplicates <- DESTA_MEM %>%
 #   dplyr::mutate(duplicates = duplicated(DESTA_MEM[, c(1,2)])) %>%
 #   dplyr::relocate(manyID, stateID,  duplicates)
-
-# delete rows that only have diff title but same Beg and other variables
-DESTA_MEM <- subset(DESTA_MEM, subset = !duplicated(DESTA_MEM[, c(1,2,4,7,9)]))
-
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
@@ -79,4 +74,3 @@ manypkgs::export_data(DESTA_MEM, database = "memberships",
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(memberships, DESTA_MEM)`.
-

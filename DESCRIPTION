@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
-Version: 0.2.0
-Date: 2022-10-17
+Version: 0.3.0
+Date: 2023-03-22
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -23,7 +23,11 @@ Authors@R:
       person(given = "Esther",
              family = "Peev",
              role = "ctb",
-             comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
+             comment = c("IHEID", ORCID = "0000-0002-9678-2777")),
+      person(given = "Anders",
+             family = "Viemose",
+             role = "ctb",
+             comment = c("IHEID", ORCID = "0009-0007-6537-0837")))
 Description: The manytrade package provides an ensemble of data on international trade agreements,
     and states membership in them for research use.
 License: CC BY 4.0
@@ -38,5 +42,5 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3

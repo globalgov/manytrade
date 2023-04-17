@@ -4,26 +4,25 @@
 #' following 7 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, HUGGO, AIGGO.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
-#' @imports manydata
 #'\describe{
 #' \item{DESTA: }{A dataset with 959 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-#' Signature, Force, treatyID, destaID.}
+#' 10 variables: manyID, treatyID, Title, Beg, AgreementType, DocType,
+#' GeogArea, Signature, Force, destaID.}
 #' \item{GPTAD: }{A dataset with 340 observations and the following
-#' 10 variables: manyID, Title, Beg, AgreementType, DocType, GeogArea,
-#' Signature, Force, treatyID, gptadID.}
+#' 10 variables: manyID, treatyID, Title, Beg, AgreementType, DocType,
+#' GeogArea, Signature, Force, gptadID.}
 #' \item{LABPTA: }{A dataset with 483 observations and the following
-#' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, labptaID.}
+#' 7 variables: manyID, treatyID, Title, Beg, Signature, Force, labptaID.}
 #' \item{TOTA: }{A dataset with 450 observations and the following
-#' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, totaID.}
+#' 7 variables: manyID, treatyID, Title, Beg, Signature, Force, totaID.}
 #' \item{TREND: }{A dataset with 729 observations and the following
-#' 7 variables: manyID, Title, Beg, Signature, Force, treatyID, trendID.}
-#' \item{HUGGO: }{A dataset with 1391 observations and the following
-#' 10 variables: manyID, Title, Beg, Signature, Force, End, Parties,
-#' url, treatyID, TreatyTextStatus.}
-#' \item{AIGGO: }{A dataset with 1391 observations and the following
-#' 8 variables: manyID, Title, Beg, Signature, Force, accessionC,
-#' accessionP, treatyID.}
+#' 7 variables: manyID, treatyID, Title, Beg, Signature, Force, trendID.}
+#' \item{HUGGO: }{A dataset with 1389 observations and the following
+#' 9 variables: manyID, treatyID, Title, Beg, Signature, Force, End, url,
+#' TreatyTextStatus.}
+#' \item{AIGGO: }{A dataset with 1389 observations and the following
+#' 8 variables: manyID, treatyID, Title, Beg, Signature, Force, accessionC,
+#' accessionP.}
 #' }
 
 #'
