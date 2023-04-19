@@ -87,6 +87,25 @@ for(i in seq(nrow(HUGGO_MEM))) {
 # remove HUGGO_row column
 HUGGO_MEM <- subset(HUGGO_MEM, select = -HUGGO_row)
 
+# Create a new column in HUGGO_MEM that indicates if manyID exists in HUGGO when changes=0
+HUGGO_MEM$manyID_in_HUGGO <- ifelse(HUGGO_MEM$changes != 0, NA, ifelse(HUGGO_MEM$manyID %in% HUGGO$manyID, TRUE, FALSE))
+
+# Update the rows in HUGGO_MEM where manyID exists in HUGGO
+affected_rows <- !is.na(HUGGO_MEM$manyID_in_HUGGO) & HUGGO_MEM$manyID_in_HUGGO
+
+if (sum(affected_rows) > 0) {
+  HUGGO_MEM$Signature[affected_rows] <- HUGGO$Signature[match(HUGGO_MEM$manyID[affected_rows], HUGGO$manyID)]
+  HUGGO_MEM$Force[affected_rows] <- HUGGO$Force[match(HUGGO_MEM$manyID[affected_rows], HUGGO$manyID)]
+  HUGGO_MEM$changes[affected_rows] <- 1
+}
+
+# remove manyID_in_HUGGO
+HUGGO_MEM <- subset(HUGGO_MEM, select = -manyID_in_HUGGO)
+
+# create subset of agreements to be manually checked and coded (save as.csv)
+HUGGO_MEM_changes_0 <- subset(HUGGO_MEM, changes == 0)
+
+write.csv(HUGGO_MEM_changes_0, file = "HUGGO_MEM_changes_0.csv", row.names = FALSE)
 
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
