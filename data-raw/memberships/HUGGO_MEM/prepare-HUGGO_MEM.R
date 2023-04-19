@@ -59,6 +59,33 @@ for (i in matching_manyIDs) {
 HUGGO_MEM$changes <- ifelse(is.na(HUGGO_MEM$changes), 0, HUGGO_MEM$changes)
 
 
+# Correcting data for rows that have matching title + year date
+# add a new column to HUGGO_MEM
+HUGGO_MEM$HUGGO_row <- NA
+
+# loop through each row in HUGGO_MEM
+for(i in seq(nrow(HUGGO_MEM))) {
+  # check if the changes column is 0 and if the Title value in HUGGO_MEM exists in the Title column of HUGGO
+  if(HUGGO_MEM$changes[i] == 0 && HUGGO_MEM$Title[i] %in% HUGGO$Title) {
+    # find the row number in HUGGO where the Title matches
+    match_row <- match(HUGGO_MEM$Title[i], HUGGO$Title)
+    # check if the Signature of HUGGO_MEM and HUGGO match for the first 4 digits and are not missing
+    if(!is.na(HUGGO_MEM$Signature[i]) && !is.na(HUGGO$Signature[match_row]) && substr(HUGGO_MEM$Signature[i], 1, 4) == substr(HUGGO$Signature[match_row], 1, 4)) {
+      # if all conditions are met, record the row number in HUGGO_MEM's new column
+      HUGGO_MEM$HUGGO_row[i] <- match_row
+      
+      # update Signature and Force columns in HUGGO_MEM
+      HUGGO_MEM$Signature[i] <- HUGGO$Signature[match_row]
+      HUGGO_MEM$Force[i] <- HUGGO$Force[match_row]
+      
+      # update changes column in HUGGO_MEM
+      HUGGO_MEM$changes[i] <- 1
+    }
+  }
+}
+
+# remove HUGGO_row column
+HUGGO_MEM <- subset(HUGGO_MEM, select = -HUGGO_row)
 
 
 # Stage three: Connecting data
