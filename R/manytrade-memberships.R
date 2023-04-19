@@ -6,14 +6,11 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2192 observations and the following
-#' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
-#' StateName, gptadID.}
+#' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, gptadID.}
 #' \item{DESTA_MEM: }{A dataset with 7586 observations and the following
-#' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
-#' StateName, destaID.}
+#' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, destaID.}
 #' \item{HUGGO_MEM: }{A dataset with 9170 observations and the following
-#' 10 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
-#' StateName, gptadID, destaID.}
+#' 11 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, gptadID, destaID, changes.}
 #' }
 
 #'

@@ -24,6 +24,43 @@ HUGGO_MEM <- HUGGO_MEM %>%
                 Beg = messydates::as_messydate(Beg)) %>%
   dplyr::arrange(Beg)
 
+# Correcting HUGGO_MEM using agreements$HUGGO
+# Load data
+HUGGO_MEM <- memberships$HUGGO_MEM
+HUGGO <- agreements$HUGGO
+
+# Add new column to HUGGO_MEM to track progress 1 = data corrected
+HUGGO_MEM$changes <- NA
+
+# Step 1: Find matching manyIDs in both dataframes
+matching_manyIDs <- intersect(HUGGO$manyID, HUGGO_MEM$manyID)
+
+# Step 2: Loop through the matching manyIDs and update the rows in HUGGO_MEM
+for (i in matching_manyIDs) {
+  # Get the rows in HUGGO and HUGGO_MEM that match the current manyID
+  hug_row <- HUGGO[HUGGO$manyID == i, ]
+  mem_rows <- HUGGO_MEM[HUGGO_MEM$manyID == i, ]
+  
+  # Update each matching row in HUGGO_MEM with values from HUGGO
+  for (j in 1:nrow(mem_rows)) {
+    # Update only columns that exist in both dataframes
+    common_cols <- intersect(names(hug_row), names(mem_rows[j, ]))
+    mem_rows[j, common_cols] <- hug_row[, common_cols]
+    
+    # Update the 'changes' column to 1
+    mem_rows[j, "changes"] <- 1
+  }
+  
+  # Update the rows in HUGGO_MEM
+  HUGGO_MEM[HUGGO_MEM$manyID == i, ] <- mem_rows
+}
+
+# identify missing changes
+HUGGO_MEM$changes <- ifelse(is.na(HUGGO_MEM$changes), 0, HUGGO_MEM$changes)
+
+
+
+
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
 # within the package.
