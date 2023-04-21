@@ -107,6 +107,52 @@ HUGGO_MEM_changes_0 <- subset(HUGGO_MEM, changes == 0)
 
 write.csv(HUGGO_MEM_changes_0, file = "HUGGO_MEM_changes_0.csv", row.names = FALSE)
 
+# create dataframe with identified corresponding manyIDs between HUGGO and HUGGO_MEM
+
+HUGGO_MEMIDS <- data.frame(
+  HUGGO_MEMID = c("ECISRL_1975O", "ECLBNN_1977O", "STPTEO_1980A", "LAO-THA[LAS]_1991O", "ERPNEA_1992O", "RUS-TJK[RSS]_1992O", "RUS-UZB[RSS]_1992O", "ECSLVK_1993O", "RUS-UKR[RSU]_1993O", "MDA-ROU[MLN]_1994O", "GEO-RUS[RSS]_1994O", "ECESTN_1994O", "ECLATV_1995O", "ECISRL_1995O", "CNTADR_1998O", "ARE-JOR[UAE]_2000O", "MKD-UKR[FYU]_2001O", "BIH-MKD[BHM]_2002O", "MEX-URY[NA]_2004O", "PSE-TUR[PLS]_2004O", "ALBNES_2006O", "ELSLHT_2007O", "CAN-PAN[NA]_2009O", "ECJAPN_2018O"),
+  HUGGOID = c("ECISRL_1975O:ECISRL_1970A", "ECLBNN_1977O:ECLBNC_1977A", "SPRTEC_1980A", "LAO-THA[LPD]_1991O", "EEA_1992O", "RUS-TJK[RSF]_1992O", "RUS-UZB[RSF]_1992O", "ECSLRE_1993A", "RUS-UKR[URF]_1993O", "MDA-ROU[MLD]_1994O", "GEO-RUS[RSF]_1994O", "ECESTN_1994O:ECESTN_1994A", "ECLTVE_1995A", "EUE-ISR[NA]_1995O", "DMNRCA_1998O", "ARE-JOR[NA]_2000O", "MKD-UKR[UYM]_2001O", "BIH-MKD[MCD]_2002O", "MEX-URY[NA]_2003O", "PSE-TUR[PLA]_2004O", "ECALBN_2006O", "ELSHCT_2007O", "CAN-PAN[NA]_2010O", "ECJAPN_2017O")
+)
+# Add Signature, Force, Title to HUGGO_MEMIDS
+HUGGO_MEMIDS$Title <- NA
+HUGGO_MEMIDS$Signature <- NA
+HUGGO_MEMIDS$Force <- NA
+
+# loop through unique manyIDs in HUGGO_MEMIDS
+for (i in unique(HUGGO_MEMIDS$HUGGOID)) {
+  
+  # identify rows in HUGGO and HUGGO_MEMIDS with matching manyID
+  hugo_row <- HUGGO$manyID == i
+  memids_row <- HUGGO_MEMIDS$HUGGOID == i
+  
+  # extract Title, Signature, and Force values from HUGGO and insert into HUGGO_MEMIDS
+  HUGGO_MEMIDS[memids_row, "Title"] <- HUGGO[hugo_row, "Title"]
+  HUGGO_MEMIDS[memids_row, "Signature"] <- HUGGO[hugo_row, "Signature"]
+  HUGGO_MEMIDS[memids_row, "Force"] <- HUGGO[hugo_row, "Force"]
+}
+# remove HUGGOID column
+HUGGO_MEMIDS <- HUGGO_MEMIDS %>% select(-HUGGOID)
+
+HUGGO_MEMIDS$changes <- 1
+HUGGO_MEMIDS <- HUGGO_MEMIDS %>%
+  rename(manyID = HUGGO_MEMID)
+
+# find matching rows
+match_rows <- which(HUGGO_MEM$manyID %in% HUGGO_MEMIDS$manyID)
+
+# loop through matching manyID values
+for (id in unique(HUGGO_MEM$manyID[match_rows])) {
+  # find rows in HUGGO_MEM and HUGGO_MEMIDS with matching manyID
+  mem_rows <- which(HUGGO_MEM$manyID == id)
+  id_rows <- which(HUGGO_MEMIDS$manyID == id)
+  # replace values in HUGGO_MEM with values from HUGGO_MEMIDS
+  HUGGO_MEM$Signature[mem_rows] <- HUGGO_MEMIDS$Signature[id_rows]
+  HUGGO_MEM$Force[mem_rows] <- HUGGO_MEMIDS$Force[id_rows]
+  HUGGO_MEM$Title[mem_rows] <- HUGGO_MEMIDS$Title[id_rows]
+  HUGGO_MEM$changes[mem_rows] <- HUGGO_MEMIDS$changes[id_rows]
+}
+
+
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
 # within the package.
