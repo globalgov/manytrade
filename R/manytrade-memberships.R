@@ -9,7 +9,7 @@
 #' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, gptadID.}
 #' \item{DESTA_MEM: }{A dataset with 7586 observations and the following
 #' 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, destaID.}
-#' \item{HUGGO_MEM: }{A dataset with 9170 observations and the following
+#' \item{HUGGO_MEM: }{A dataset with 9066 observations and the following
 #' 11 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force, StateName, gptadID, destaID, changes.}
 #' }
 
