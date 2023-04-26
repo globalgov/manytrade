@@ -152,27 +152,6 @@ for (id in unique(HUGGO_MEM$manyID[match_rows])) {
   HUGGO_MEM$changes[mem_rows] <- HUGGO_MEMIDS$changes[id_rows]
 }
 
-# fix sign/force issues
-
-HUGGO_MEM[101:107, 6] <- messydates::as_messydate("1960-01-04")
-HUGGO_MEM[1567:1568, 7] <- NA
-HUGGO_MEM[2313:2318, 7] <- NA
-HUGGO_MEM[3498:3502, 7] <- NA
-HUGGO_MEM[3934:3935, 6] <- messydates::as_messydate("1998-12-10")
-HUGGO_MEM[3934:3935, 7] <- NA
-HUGGO_MEM[5384:5393, 7] <- NA
-HUGGO_MEM[5598:5603, 7] <- NA
-HUGGO_MEM[5772:5790, 7] <- NA
-HUGGO_MEM[6124, 7] <- NA
-HUGGO_MEM[6986:7014, 7] <- NA
-HUGGO_MEM[7268:7287, 7] <- NA
-HUGGO_MEM[7855:7866, 6] <- messydates::as_messydate("2016-02-04")
-HUGGO_MEM[7855:7866, 7] <- NA 
-HUGGO_MEM[8226:8227, 7] <- NA 
-
-# remove duplicates
-HUGGO_MEM <- HUGGO_MEM[-c(4013, 4014, 6110:6120),]
-HUGGO_MEM <- HUGGO_MEM[!(HUGGO_MEM$manyID %in% c("EFTA_1960O:EFTA_1960A", "CARICM_1973O", "ECCRSE_2008O")), ]
 
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
