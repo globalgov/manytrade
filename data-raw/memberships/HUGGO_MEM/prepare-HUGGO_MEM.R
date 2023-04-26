@@ -155,8 +155,8 @@ for (id in unique(HUGGO_MEM$manyID[match_rows])) {
   HUGGO_MEM$changes[mem_rows] <- HUGGO_MEMIDS$changes[id_rows]
 }
 
-# Cleaning up instances where Signature date is after Force date
-# create Check column,  Error = Signature date is before Force date
+# Cleaning up instances where Signature date is later than Force date
+# create Check column,  Error = Signature date is later than Force date
 HUGGO_MEM$Check <- ifelse(HUGGO_MEM$Signature <= HUGGO_MEM$Force, "OK", "Error")
 
 ## Manually verify with agreements HUGGO dataset for 'Error' observations
