@@ -16,9 +16,9 @@ StateName, gptadID.}
 \item{DESTA_MEM: }{A dataset with 7586 observations and the following
 9 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
 StateName, destaID.}
-\item{HUGGO_MEM: }{A dataset with 9170 observations and the following
-10 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
-StateName, gptadID, destaID.}
+\item{HUGGO_MEM: }{A dataset with 9078 observations and the following
+11 variables: manyID, treatyID, Title, Beg, stateID, Signature, Force,
+StateName, gptadID, destaID, changes.}
 }
 }
 \usage{
@@ -64,16 +64,17 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            9170|     0     |       0       |
-#> |   treatyID    |  character  |            9170|     0     |       0       |
-#> |     Title     |  character  |            9170|     0     |       0       |
-#> |      Beg      |    mdate    |            9170|    726    |     7.92      |
-#> |    stateID    |  character  |            9170|     0     |       0       |
-#> |   Signature   |    mdate    |            9170|    948    |     10.34     |
-#> |     Force     |    mdate    |            9170|   3185    |     34.73     |
-#> |   StateName   |  character  |            9170|     0     |       0       |
-#> |    gptadID    |  character  |            9170|   6990    |     76.23     |
-#> |    destaID    |  character  |            9170|   1594    |     17.38     |
+#> |    manyID     |  character  |            9078|     0     |       0       |
+#> |   treatyID    |  character  |            9078|     0     |       0       |
+#> |     Title     |  character  |            9078|     0     |       0       |
+#> |      Beg      |    mdate    |            9078|    726    |       8       |
+#> |    stateID    |  character  |            9078|     0     |       0       |
+#> |   Signature   |    mdate    |            9078|    916    |     10.09     |
+#> |     Force     |    mdate    |            9078|   3146    |     34.66     |
+#> |   StateName   |  character  |            9078|     0     |       0       |
+#> |    gptadID    |  character  |            9078|   6925    |     76.28     |
+#> |    destaID    |  character  |            9078|   1567    |     17.26     |
+#> |    changes    |   numeric   |            9078|     0     |       0       |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

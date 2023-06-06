@@ -15,14 +15,14 @@ HUGGO_MEM <- manydata::consolidate(manytrade::memberships,
 # formats of the 'HUGGO_MEM' object until the object created
 # below (in stage three) passes all the tests.
 HUGGO_MEM <- HUGGO_MEM %>%
-  dplyr::relocate(manyID, stateID, Title, Beg, Signature, Force, StateName) %>%
+  dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, StateName) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
   dplyr::distinct() %>%
   dplyr::mutate(Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
-                Beg = messydates::as_messydate(Beg)) %>%
-  dplyr::arrange(Beg)
+                Begin = messydates::as_messydate(Begin)) %>%
+  dplyr::arrange(Begin)
 
 # Correcting HUGGO_MEM using agreements$HUGGO
 # Load data
