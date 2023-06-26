@@ -38,10 +38,14 @@ TOTA <- TOTA %>%
   dplyr::mutate(Title = manypkgs::standardise_titles(as.character(Title))) %>%
   dplyr::mutate(Signature = messydates::as_messydate(as.character(Signature)),
                 Force = messydates::as_messydate(as.character(Force))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force))
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force))
+
+# Remove accession observations
+TOTA <- TOTA %>%
+  dplyr::filter(!stringr::str_detect(TOTA$Title, "Accession"))
 
 # Add treatyID column
-TOTA$treatyID <- manypkgs::code_agreements(TOTA, TOTA$Title, TOTA$Beg)
+TOTA$treatyID <- manypkgs::code_agreements(TOTA, TOTA$Title, TOTA$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -49,8 +53,8 @@ TOTA <- dplyr::left_join(TOTA, manyID, by = "treatyID")
 
 # Re-order the columns
 TOTA <- TOTA %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID) %>% 
+  dplyr::arrange(Begin)
 
 # Add totaID column
 TOTA$totaID <- rownames(TOTA)

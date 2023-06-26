@@ -24,12 +24,16 @@ TREND <- tibble::as_tibble(TREND) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
                         Signature = messydates::as_messydate(as.character(Year)),
                         Force = messydates::as_messydate(as.character(Year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(trendID, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(trendID, Title, Begin, Signature, Force) %>%
+  dplyr::arrange(Begin)
+
+# Remove accession observations
+TREND <- TREND %>%
+  dplyr::filter(!stringr::str_detect(Title, "Accession|Enlargement"))
 
 # Add treatyID column
-TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
+TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -37,8 +41,8 @@ TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, trendID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, trendID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- TREND %>%
