@@ -11,22 +11,22 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{DESTA: }{A dataset with 959 observations and the following
-10 variables: manyID, treatyID, Title, Beg, AgreementType, DocType,
+10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType,
 GeogArea, Signature, Force, destaID.}
 \item{GPTAD: }{A dataset with 340 observations and the following
-10 variables: manyID, treatyID, Title, Beg, AgreementType, DocType,
+10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType,
 GeogArea, Signature, Force, gptadID.}
 \item{LABPTA: }{A dataset with 483 observations and the following
-7 variables: manyID, treatyID, Title, Beg, Signature, Force, labptaID.}
-\item{TOTA: }{A dataset with 450 observations and the following
-7 variables: manyID, treatyID, Title, Beg, Signature, Force, totaID.}
-\item{TREND: }{A dataset with 729 observations and the following
-7 variables: manyID, treatyID, Title, Beg, Signature, Force, trendID.}
-\item{HUGGO: }{A dataset with 1389 observations and the following
-9 variables: manyID, treatyID, Title, Beg, Signature, Force, End, url,
-TreatyTextStatus.}
+7 variables: manyID, treatyID, Title, Begin, Signature, Force, labptaID.}
+\item{TOTA: }{A dataset with 442 observations and the following
+7 variables: manyID, treatyID, Title, Begin, Signature, Force, totaID.}
+\item{TREND: }{A dataset with 710 observations and the following
+7 variables: manyID, treatyID, Title, Begin, Signature, Force, trendID.}
+\item{HUGGO: }{A dataset with 548 observations and the following
+10 variables: manyID, treatyID, Title, Begin, Signature, Force, End, url,
+TreatyTextStatus, Coder.}
 \item{AIGGO: }{A dataset with 1389 observations and the following
-8 variables: manyID, treatyID, Title, Beg, Signature, Force, accessionC,
+8 variables: manyID, treatyID, Title, Begin, Signature, Force, accessionC,
 accessionP.}
 }
 }
@@ -44,7 +44,7 @@ agreements database documentation
 #> |    manyID     |  character  |             959|     0     |       0       |
 #> |   treatyID    |  character  |             959|     0     |       0       |
 #> |     Title     |  character  |             959|     0     |       0       |
-#> |      Beg      |    mdate    |             959|    81     |     8.45      |
+#> |     Begin     |    mdate    |             959|    81     |     8.45      |
 #> | AgreementType |  character  |             959|     0     |       0       |
 #> |    DocType    |  character  |             959|     0     |       0       |
 #> |   GeogArea    |  character  |             959|     0     |       0       |
@@ -61,7 +61,7 @@ agreements database documentation
 #> |    manyID     |  character  |             340|     0     |       0       |
 #> |   treatyID    |  character  |             340|     0     |       0       |
 #> |     Title     |  character  |             340|     0     |       0       |
-#> |      Beg      |    mdate    |             340|    30     |     8.82      |
+#> |     Begin     |    mdate    |             340|    30     |     8.82      |
 #> | AgreementType |  character  |             340|     0     |       0       |
 #> |    DocType    |  character  |             340|     0     |       0       |
 #> |   GeogArea    |  character  |             340|    75     |     22.06     |
@@ -78,7 +78,7 @@ agreements database documentation
 #> |    manyID     |  character  |             483|     0     |       0       |
 #> |   treatyID    |  character  |             483|     0     |       0       |
 #> |     Title     |  character  |             483|     0     |       0       |
-#> |      Beg      |    mdate    |             483|     0     |       0       |
+#> |     Begin     |    mdate    |             483|     0     |       0       |
 #> |   Signature   |    mdate    |             483|     0     |       0       |
 #> |     Force     |    mdate    |             483|     0     |       0       |
 #> |   labptaID    |  character  |             483|     0     |       0       |
@@ -89,13 +89,13 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             450|     0     |       0       |
-#> |   treatyID    |  character  |             450|     0     |       0       |
-#> |     Title     |  character  |             450|     0     |       0       |
-#> |      Beg      |    mdate    |             450|     0     |       0       |
-#> |   Signature   |    mdate    |             450|     0     |       0       |
-#> |     Force     |    mdate    |             450|     3     |     0.67      |
-#> |    totaID     |  character  |             450|     0     |       0       |
+#> |    manyID     |  character  |             442|     0     |       0       |
+#> |   treatyID    |  character  |             442|     0     |       0       |
+#> |     Title     |  character  |             442|     0     |       0       |
+#> |     Begin     |    mdate    |             442|     0     |       0       |
+#> |   Signature   |    mdate    |             442|     0     |       0       |
+#> |     Force     |    mdate    |             442|     3     |     0.68      |
+#> |    totaID     |  character  |             442|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -103,13 +103,13 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             729|     0     |       0       |
-#> |   treatyID    |  character  |             729|     0     |       0       |
-#> |     Title     |  character  |             729|     0     |       0       |
-#> |      Beg      |    mdate    |             729|     5     |     0.69      |
-#> |   Signature   |    mdate    |             729|     5     |     0.69      |
-#> |     Force     |    mdate    |             729|     5     |     0.69      |
-#> |    trendID    |  character  |             729|     0     |       0       |
+#> |    manyID     |  character  |             710|     0     |       0       |
+#> |   treatyID    |  character  |             710|     0     |       0       |
+#> |     Title     |  character  |             710|     0     |       0       |
+#> |     Begin     |    mdate    |             710|     5     |      0.7      |
+#> |   Signature   |    mdate    |             710|     5     |      0.7      |
+#> |     Force     |    mdate    |             710|     5     |      0.7      |
+#> |    trendID    |  character  |             710|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -117,15 +117,16 @@ agreements database documentation
 #> -----------------------------------------------------------------------------
 #> |  Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> -----------------------------------------------------------------------------
-#> |     manyID     |  character  |            1389|     0     |       0       |
-#> |    treatyID    |  character  |            1389|     0     |       0       |
-#> |     Title      |  character  |            1389|     0     |       0       |
-#> |      Beg       |    mdate    |            1389|    116    |     8.35      |
-#> |   Signature    |    mdate    |            1389|    135    |     9.72      |
-#> |     Force      |    mdate    |            1389|    250    |      18       |
-#> |      End       |    mdate    |            1389|   1333    |     95.97     |
-#> |      url       |  character  |            1389|    527    |     37.94     |
-#> |TreatyTextStatus|   numeric   |            1389|     0     |       0       |
+#> |     manyID     |  character  |             548|     0     |       0       |
+#> |    treatyID    |  character  |             548|     0     |       0       |
+#> |     Title      |  character  |             548|     0     |       0       |
+#> |     Begin      |    mdate    |             548|     0     |       0       |
+#> |   Signature    |    mdate    |             548|     0     |       0       |
+#> |     Force      |    mdate    |             548|     8     |     1.46      |
+#> |      End       |    mdate    |             548|    492    |     89.78     |
+#> |      url       |  character  |             548|     0     |       0       |
+#> |TreatyTextStatus|  character  |             548|     0     |       0       |
+#> |     Coder      |  character  |             548|     0     |       0       |
 #> -----------------------------------------------------------------------------
 #> 
 #> 
@@ -136,7 +137,7 @@ agreements database documentation
 #> |    manyID     |  character  |            1389|     0     |       0       |
 #> |   treatyID    |  character  |            1389|     0     |       0       |
 #> |     Title     |  character  |            1389|     0     |       0       |
-#> |      Beg      |    mdate    |            1389|    115    |     8.28      |
+#> |     Begin     |    mdate    |            1389|    115    |     8.28      |
 #> |   Signature   |    mdate    |            1389|    137    |     9.86      |
 #> |     Force     |    mdate    |            1389|    252    |     18.14     |
 #> |  accessionC   |  character  |            1389|   1000    |     71.99     |

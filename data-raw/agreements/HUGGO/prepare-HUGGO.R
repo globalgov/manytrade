@@ -286,102 +286,42 @@ HUGGO$MetaData_confirmed <- NA
 HUGGO$Checked_HUGGO <- NA
 HUGGO$Confirmed_HUGGO <- NA
 
-# Merging HUGGO_verified.csv with HUGGO 
+# Export HUGGO dataset after manually verifying data
+# 1) load HUGGO_reconciled.csv file containing reconciled observations
+HUGGO <- read.csv("data-raw/agreements/HUGGO/HUGGO_reconciled.csv")
 
-# 1) load HUGGO_verified.csv file & remove non-metadata columns
-HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
+# 2) add updated 'Begin' column in HUGGO_verified using coalesce()
+HUGGO <- dplyr::mutate(HUGGO,
+                       Begin = dplyr::coalesce(Signature, NA_character_))
 
-HUGGO_verified <- dplyr::select(HUGGO_verified, -Checked_HUGGO, -No_source, -MetaData_confirmed,)
+# 3) Standardise class of date variables ('mdate')
+HUGGO <- HUGGO %>%
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
+                Signature = messydates::as_messydate(Signature),
+                Force = messydates::as_messydate(Force),
+                End = messydates::as_messydate(End))
 
-# 2) add updated 'Beg' column in HUGGO_verified using coalesce()
-HUGGO_verified <- dplyr::mutate(HUGGO_verified, Beg = dplyr::coalesce(Signature, NA_character_))
-
-# 3) change order of columns and name of RowNumbers variable
-HUGGO_verified <- dplyr::select(HUGGO_verified, manyID,Title,Beg,Signature,Force,treatyID,url,End,Parties, HUGGO_RowNumber)
-HUGGO_verified <- dplyr::rename(HUGGO_verified, RowNumbers = HUGGO_RowNumber )
-
-# 4) load agreements$HUGGO and add columns End + Parties + RowNumbers
-
-HUGGO <- agreements$HUGGO
-HUGGO$End <- NA
-HUGGO$Parties <- ""
-HUGGO <- HUGGO %>% mutate(RowNumbers = row_number())
-
-# 5) Add HUGGO TreatyText column to HUGGO_verified
-
-row_numbers <- HUGGO_verified$RowNumbers
-treaty_texts <- HUGGO$TreatyText[row_numbers]
-HUGGO_verified <- cbind(HUGGO_verified, TreatyText = treaty_texts)
-
-# 6) Reorder columns in HUGGO_verified  to match HUGGO
-
-HUGGO_verified <- HUGGO_verified[, c("manyID", "Title", "Beg", "Signature", "Force", "treatyID", "TreatyText", "url", "End", "Parties", "RowNumbers")]
-
-# 7) Join the two dataframes based on "RowNumbers"
-merged_df <- full_join(HUGGO, HUGGO_verified, by = "RowNumbers")
-
-# 8) remove variables that should not change
-merged_df <- dplyr::select(merged_df, -TreatyText.y, -Title.y, -treatyID.y, -RowNumbers)
-
-# 9) replace metadata for HUGGO_verified observations
-merged_df$Beg.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Beg.y, merged_df$Beg.x)
-merged_df$Signature.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Signature.y, merged_df$Signature.x)
-merged_df$Force.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Force.y, merged_df$Force.x)
-merged_df$url.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$url.y, merged_df$url.x)
-merged_df$End.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$End.y, merged_df$End.x)
-merged_df$Parties.x <- ifelse(!is.na(merged_df$manyID.y), merged_df$Parties.y, merged_df$Parties.x)
-
-# 10) remove .y variables and remove .x ending to column names
-merged_df <- dplyr::select(merged_df, -manyID.y, -Beg.y, -Signature.y, -Force.y, -url.y, -End.y, -Parties.y)
-
-merged_df <- manydata::transmutate(merged_df, manyID = `1`,
-         Title = `2`,
-         Beg = `3`,
-         Signature = `4`,
-         Force = `5`,
-         treatyID = `6`,
-         TreatyText = `7`,
-         url = `8`,
-         End = `9`,
-         Parties = `10`)
-
-# 11) Apply messydates::as_messydate to Beg, Signature, Force, End columns
-merged_df <- dplyr::mutate(merged_df, Beg = as_messydate(Beg),
-         Signature = as_messydate(Signature),
-         Force = as_messydate(Force),
-         End = as_messydate(End))
-
-# 12) arrange merged_df by Beg Date and push to HUGGO
-
-merged_df <- dplyr::arrange(merged_df,Beg)
-
-# Remove TreatyText column, Add new TreatyTextStatus column
-# TreatyTextStatus: 0 = No text collected, 1 = Either Raw or formatted text collected
-HUGGO <- dplyr::select(HUGGO, -TreatyText)
+# 4) Add new TreatyTextStatus column
+# TreatyTextStatus: 0 = No text collected, 1 = Treaty text collected in
+# 'data-raw/agreements/HUGGO/TreatyTexts' folder
 HUGGO$TreatyTextStatus <- 0
+HUGGO$TreatyTextStatus[is.na(HUGGO$No_source)] <- 1
 
-#Get list of confirmed treaty texts collected in HUGGO_verified
-#Sorting TreatyTexts column, No_source = 0, otherwise = 1
+# Add name of Coder
+HUGGO <- dplyr::mutate(HUGGO, Coder = "Anders Viemose")
 
-HUGGO_verified <- read.csv2("data-raw/agreements/HUGGO/HUGGO_verified.csv")
-HUGGO_verified$TreatyTextStatus <- 0
-HUGGO_verified$TreatyTextStatus[is.na(HUGGO_verified$No_source)] <- 1
-
-#integrate TreatyTexts column into corresponding rows
-
-HUGGO_verified <- dplyr::select(HUGGO_verified, manyID, url, Title, TreatyTextStatus)
-
-merged_df <- HUGGO %>%
-  dplyr::left_join(HUGGO_verified, by = c("manyID", "Title")) %>%
-  dplyr::mutate(TreatyTextStatus = if_else(is.na(TreatyTextStatus.y), TreatyTextStatus.x, TreatyTextStatus.y)) %>%
-  dplyr::select(-TreatyTextStatus.x, -TreatyTextStatus.y)
-
-#remove url.y columns and rename url.x as url, order by metadata
-merged_df <- dplyr::select(merged_df, -url.y)
-merged_df <- dplyr::rename(merged_df, url = url.x)
-# push merged_df to HUGGO
-HUGGO <- dplyr::select(merged_df, manyID, Title, Beg, Signature, Force, End, Parties, url, treatyID, TreatyTextStatus)
-
+# Reorder columns and arrange observations by 'Begin' variable for export
+HUGGO <- HUGGO %>%
+  dplyr::select(manyID, treatyID, Title, Begin, Signature, Force, End,
+                url, TreatyTextStatus, Coder) %>%
+  dplyr::mutate(across(everything(),
+                       ~stringr::str_replace_all(.,
+                                                 "^NA$", NA_character_))) %>%
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
+                Signature = messydates::as_messydate(Signature),
+                Force = messydates::as_messydate(Force),
+                End = messydates::as_messydate(End)) %>%
+  dplyr::distinct()
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
