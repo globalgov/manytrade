@@ -37,14 +37,14 @@ DESTA <- tibble::as_tibble(DESTA) %>%
   dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
-  manydata::transmutate(Beg = messydates::as_messydate(as.character(beg)),
+  manydata::transmutate(Begin = messydates::as_messydate(as.character(beg)),
                         Signature = messydates::as_messydate(as.character(year)),
                         Force = messydates::as_messydate(as.character(entryforceyear))) %>%
-  dplyr::select(destaID, Title, Beg, Signature, Force, AgreementType, DocType, 
+  dplyr::select(destaID, Title, Begin, Signature, Force, AgreementType, DocType, 
                 GeogArea)
 
 # Add treatyID column
-DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Beg) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
+DESTA$treatyID <- manypkgs::code_agreements(DESTA, DESTA$Title, DESTA$Begin) # 30 duplicated IDs mostly from consolidated version/amendments of treaty
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -53,16 +53,16 @@ DESTA <- dplyr::left_join(DESTA, manyID, by = "treatyID")
 
 # Re-order the columns
 DESTA <- DESTA %>% 
-  dplyr::select(manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, 
-                Force, treatyID, destaID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, AgreementType, DocType, GeogArea,
+                Signature, Force, treatyID, destaID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- DESTA %>%
 #   dplyr::mutate(duplicates = duplicated(DESTA[, 1])) %>%
 #   dplyr::relocate(manyID, duplicates)
 
-# delete rows that only have diff title but same Beg and other variables
+# delete rows that only have diff title but same Begin and other variables
 DESTA <- subset(DESTA, subset = !duplicated(DESTA[, c(1,3,4,9)]))
 
 # manypkgs includes several functions that should help cleaning and 

@@ -18,12 +18,12 @@ LABPTA <- tibble::as_tibble(LABPTA) %>%
                         Title = manypkgs::standardise_titles(Name),
                         Signature = messydates::as_messydate(as.character(year)),
                         Force = messydates::as_messydate(as.character(year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(labptaID, Title, Begin, Signature, Force) %>%
+  dplyr::arrange(Begin)
 
 # Add treatyID column
-LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -31,8 +31,8 @@ LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, labptaID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, labptaID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- LABPTA %>%

@@ -41,12 +41,13 @@ GPTAD <- tibble::as_tibble(GPTAD) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
                      Signature = messydates::as_messydate(`Date.of.Signature`),
                      Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(gptadID, Title, Beg, Signature, Force, AgreementType, DocType, GeogArea) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(gptadID, Title, Begin, Signature, Force, AgreementType, DocType,
+                GeogArea) %>%
+  dplyr::arrange(Begin)
 
 # Add treatyID column
-GPTAD$treatyID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Beg)
+GPTAD$treatyID <- manypkgs::code_agreements(GPTAD, GPTAD$Title, GPTAD$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -54,8 +55,9 @@ GPTAD <- dplyr::left_join(GPTAD, manyID, by = "treatyID")
 
 # Re-order the columns
 GPTAD <- GPTAD %>%
-  dplyr::select(manyID, Title, Beg, AgreementType, DocType, GeogArea, Signature, Force, treatyID, gptadID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, AgreementType, DocType, GeogArea,
+                Signature, Force, treatyID, gptadID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- GPTAD %>%
@@ -64,7 +66,6 @@ GPTAD <- GPTAD %>%
 
 # delete rows that only have diff title but same Beg and other variables
 GPTAD <- subset(GPTAD, subset = !duplicated(GPTAD[, c(1,3,4,9)]))
-
 
 # manydata includes several functions that should help cleaning
 # and standardising your data.
