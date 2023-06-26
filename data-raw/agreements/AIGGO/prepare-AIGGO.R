@@ -46,7 +46,7 @@ AIGGO$dates <- lapply(AIGGO$TreatyText, function(s){
 })
 
 AIGGO <- AIGGO %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, dates) %>%
+  dplyr::relocate(manyID, Title, Begin, Signature, dates) %>%
   dplyr::mutate(Sign.rev = ifelse(grepl("[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}",
                                          dates, perl = T), dates, NA)) %>%
   dplyr::mutate(Sign.rev = unlist(Sign.rev)) %>%
@@ -61,7 +61,7 @@ AIGGO <- AIGGO %>%
   mutate(across(everything(), ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
   mutate(Signature = messydates::as_messydate(Signature),
          Force = messydates::as_messydate(Force),
-         Beg = messydates::as_messydate(Beg)) %>% 
+         Begin = messydates::as_messydate(Begin)) %>% 
   dplyr::distinct(.keep_all = TRUE)
 
 
