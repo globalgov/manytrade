@@ -7,187 +7,25 @@
 # ready for the many packages universe.
 
 # Stage one: Collecting data
-HUGGO_MEM <- manydata::consolidate(manytrade::memberships,
-                                   key= c("manyID", "stateID"))
+HUGGO_MEM <- read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM_additional.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
 # formats of the 'HUGGO_MEM' object until the object created
 # below (in stage three) passes all the tests.
 HUGGO_MEM <- HUGGO_MEM %>%
-  dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, StateName) %>%
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
   dplyr::distinct() %>%
-  dplyr::mutate(Signature = messydates::as_messydate(Signature),
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
+                Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
-                Begin = messydates::as_messydate(Begin)) %>%
+                StateRatification = messydates::as_messydate(StateRatification),
+                StateSignature = messydates::as_messydate(StateSignature),
+                StateForce = messydates::as_messydate(StateForce),
+                StateEnd = messydates::as_messydate(StateEnd)) %>%
   dplyr::arrange(Begin)
-
-# Correcting HUGGO_MEM using agreements$HUGGO
-# Load data
-HUGGO_MEM <- memberships$HUGGO_MEM
-HUGGO <- agreements$HUGGO
-
-# Add new 'changes' column to HUGGO_MEM to track progress 1 = data corrected
-HUGGO_MEM$changes <- NA
-
-# Step 1: Find matching manyIDs in both dataframes
-matching_manyIDs <- intersect(HUGGO$manyID, HUGGO_MEM$manyID)
-
-# Step 2: Loop through the matching manyIDs and update the rows in HUGGO_MEM using HUGGO
-for (i in matching_manyIDs) {
-  # Get the rows in HUGGO and HUGGO_MEM that match the current manyID
-  hug_row <- HUGGO[HUGGO$manyID == i, ]
-  mem_rows <- HUGGO_MEM[HUGGO_MEM$manyID == i, ]
-  
-  # Update each matching row in HUGGO_MEM with values from HUGGO when manyID matches
-  for (j in 1:nrow(mem_rows)) {
-    # Update only columns that exist in both dataframes
-    common_cols <- intersect(names(hug_row), names(mem_rows[j, ]))
-    mem_rows[j, common_cols] <- hug_row[, common_cols]
-    
-    # update the 'changes' column to 1 if row has been changed
-    mem_rows[j, "changes"] <- 1
-  }
-  
-  # Update the rows in HUGGO_MEM
-  HUGGO_MEM[HUGGO_MEM$manyID == i, ] <- mem_rows
-}
-
-# identify missing changes, where manyID matches did not work
-HUGGO_MEM$changes <- ifelse(is.na(HUGGO_MEM$changes), 0, HUGGO_MEM$changes)
-
-
-# Correcting data for rows that have matching title + year date but no matching manyID
-# add a new column to HUGGO_MEM to indicate corresponding agreements row number in HUGGO agreements
-HUGGO_MEM$HUGGO_row <- NA
-
-# using title + signature date to find matching agreements between HUGGO_MEM and HUGGO
-# loop through each row in HUGGO_MEM
-for(i in seq(nrow(HUGGO_MEM))) {
-  # check if the changes column is 0 and if the Title value in HUGGO_MEM exists in the Title column of HUGGO
-  if(HUGGO_MEM$changes[i] == 0 && HUGGO_MEM$Title[i] %in% HUGGO$Title) {
-    # find the row number in HUGGO where the Title matches
-    match_row <- match(HUGGO_MEM$Title[i], HUGGO$Title)
-    # check if the Signature of HUGGO_MEM and HUGGO match for the first 4 digits and are not missing
-    if(!is.na(HUGGO_MEM$Signature[i]) && !is.na(HUGGO$Signature[match_row]) && substr(HUGGO_MEM$Signature[i], 1, 4) == substr(HUGGO$Signature[match_row], 1, 4)) {
-      # if all conditions are met, record the row number in HUGGO_MEM's new column
-      HUGGO_MEM$HUGGO_row[i] <- match_row
-      
-      # update Signature and Force columns in HUGGO_MEM for identified agreements
-      HUGGO_MEM$Signature[i] <- HUGGO$Signature[match_row]
-      HUGGO_MEM$Force[i] <- HUGGO$Force[match_row]
-      
-      # update changes column in HUGGO_MEM
-      HUGGO_MEM$changes[i] <- 1
-    }
-  }
-}
-
-# remove HUGGO_row column
-HUGGO_MEM <- subset(HUGGO_MEM, select = -HUGGO_row)
-
-# Checking if any matching manyID remains
-# Create a new column in HUGGO_MEM that indicates if manyID exists in HUGGO when changes = 0
-HUGGO_MEM$manyID_in_HUGGO <- ifelse(HUGGO_MEM$changes != 0, NA, ifelse(HUGGO_MEM$manyID %in% HUGGO$manyID, TRUE, FALSE))
-
-# Update the rows in HUGGO_MEM where manyID exists in HUGGO
-affected_rows <- !is.na(HUGGO_MEM$manyID_in_HUGGO) & HUGGO_MEM$manyID_in_HUGGO
-
-if (sum(affected_rows) > 0) {
-  HUGGO_MEM$Signature[affected_rows] <- HUGGO$Signature[match(HUGGO_MEM$manyID[affected_rows], HUGGO$manyID)]
-  HUGGO_MEM$Force[affected_rows] <- HUGGO$Force[match(HUGGO_MEM$manyID[affected_rows], HUGGO$manyID)]
-  HUGGO_MEM$changes[affected_rows] <- 1
-}
-
-# remove manyID_in_HUGGO
-HUGGO_MEM <- subset(HUGGO_MEM, select = -manyID_in_HUGGO)
-
-# create subset of agreements that have not been changed
-# to be manually checked and coded (save as.csv)
-HUGGO_MEM_changes_0 <- subset(HUGGO_MEM, changes == 0)
-
-write.csv(HUGGO_MEM_changes_0, file = "HUGGO_MEM_changes_0.csv", row.names = FALSE)
-
-# create dataframe with manually identified corresponding manyIDs between HUGGO and HUGGO_MEM
-
-HUGGO_MEMIDS <- data.frame(
-  HUGGO_MEMID = c("ECISRL_1975O", "ECLBNN_1977O", "STPTEO_1980A", "LAO-THA[LAS]_1991O", "ERPNEA_1992O", "RUS-TJK[RSS]_1992O", "RUS-UZB[RSS]_1992O", "ECSLVK_1993O", "RUS-UKR[RSU]_1993O", "MDA-ROU[MLN]_1994O", "GEO-RUS[RSS]_1994O", "ECESTN_1994O", "ECLATV_1995O", "ECISRL_1995O", "CNTADR_1998O", "ARE-JOR[UAE]_2000O", "MKD-UKR[FYU]_2001O", "BIH-MKD[BHM]_2002O", "MEX-URY[NA]_2004O", "PSE-TUR[PLS]_2004O", "ALBNES_2006O", "ELSLHT_2007O", "CAN-PAN[NA]_2009O", "ECJAPN_2018O"),
-  HUGGOID = c("ECISRL_1975O:ECISRL_1970A", "ECLBNN_1977O:ECLBNC_1977A", "SPRTEC_1980A", "LAO-THA[LPD]_1991O", "EEA_1992O", "RUS-TJK[RSF]_1992O", "RUS-UZB[RSF]_1992O", "ECSLRE_1993A", "RUS-UKR[URF]_1993O", "MDA-ROU[MLD]_1994O", "GEO-RUS[RSF]_1994O", "ECESTN_1994O:ECESTN_1994A", "ECLTVE_1995A", "EUE-ISR[NA]_1995O", "DMNRCA_1998O", "ARE-JOR[NA]_2000O", "MKD-UKR[UYM]_2001O", "BIH-MKD[MCD]_2002O", "MEX-URY[NA]_2003O", "PSE-TUR[PLA]_2004O", "ECALBN_2006O", "ELSHCT_2007O", "CAN-PAN[NA]_2010O", "ECJAPN_2017O")
-)
-# Add Signature, Force, Title to HUGGO_MEMIDS
-HUGGO_MEMIDS$Title <- NA
-HUGGO_MEMIDS$Signature <- NA
-HUGGO_MEMIDS$Force <- NA
-
-# loop through unique manyIDs in HUGGO_MEMIDS
-for (i in unique(HUGGO_MEMIDS$HUGGOID)) {
-  
-  # identify rows in HUGGO and HUGGO_MEMIDS with matching manyID
-  hugo_row <- HUGGO$manyID == i
-  memids_row <- HUGGO_MEMIDS$HUGGOID == i
-  
-  # extract Title, Signature, and Force values from HUGGO and insert into HUGGO_MEMIDS
-  HUGGO_MEMIDS[memids_row, "Title"] <- HUGGO[hugo_row, "Title"]
-  HUGGO_MEMIDS[memids_row, "Signature"] <- HUGGO[hugo_row, "Signature"]
-  HUGGO_MEMIDS[memids_row, "Force"] <- HUGGO[hugo_row, "Force"]
-}
-# remove HUGGOID column
-HUGGO_MEMIDS <- HUGGO_MEMIDS %>% select(-HUGGOID)
-
-HUGGO_MEMIDS$changes <- 1
-HUGGO_MEMIDS <- HUGGO_MEMIDS %>%
-  rename(manyID = HUGGO_MEMID)
-
-# find matching rows
-match_rows <- which(HUGGO_MEM$manyID %in% HUGGO_MEMIDS$manyID)
-
-# loop through matching manyID values
-for (id in unique(HUGGO_MEM$manyID[match_rows])) {
-  # find rows in HUGGO_MEM and HUGGO_MEMIDS with matching manyID
-  mem_rows <- which(HUGGO_MEM$manyID == id)
-  id_rows <- which(HUGGO_MEMIDS$manyID == id)
-  # replace values in HUGGO_MEM with values from HUGGO_MEMIDS
-  HUGGO_MEM$Signature[mem_rows] <- HUGGO_MEMIDS$Signature[id_rows]
-  HUGGO_MEM$Force[mem_rows] <- HUGGO_MEMIDS$Force[id_rows]
-  HUGGO_MEM$Title[mem_rows] <- HUGGO_MEMIDS$Title[id_rows]
-  HUGGO_MEM$changes[mem_rows] <- HUGGO_MEMIDS$changes[id_rows]
-}
-
-# Cleaning up instances where Signature date is later than Force date
-# create Check column,  Error = Signature date is later than Force date
-HUGGO_MEM$Check <- ifelse(HUGGO_MEM$Signature <= HUGGO_MEM$Force, "OK", "Error")
-
-## Manually verify with agreements HUGGO dataset for 'Error' observations
-# Note: these are primarily non-verified agreements, where force date defaults to YYYY-01-01 
-#Force date edits: 
-
-HUGGO_MEM$Force[HUGGO_MEM$manyID %in% c("PAN-SLV[NA]_1986O", "EFTSLR_1992O", "ANDNCM_1996O", "EGY-JOR[NA]_1998O",
-                                     "ECNMCO_2003O", "CHL-SLV[NA]_2004O", "CM04LA_2005O", "KOR-SGP[KOR]_2006O",
-                                     "ECCMRN_2009O", "SDN-SSD[MAA]_2011O", "TRNSPP_2016O", "BIH-TUR[NA]_2019O")] <- NA # force date not found
-# Signature date edits
-
-HUGGO_MEM[HUGGO_MEM$manyID == "EFTA_1960A", 6] <- messydates::as_messydate("1960-01-04") # Signature month/day flipped
-HUGGO_MEM[HUGGO_MEM$manyID == "EGY-JOR[NA]_1998O", 6] <- messydates::as_messydate("1998-12-10") # Signature month/day flipped
-HUGGO_MEM[HUGGO_MEM$manyID == "TRNSPP_2016O", 6] <- messydates::as_messydate("2016-02-04") # date edited
-
-# Update changes column
-
-HUGGO_MEM[HUGGO_MEM$manyID == "EFTSLR_1992O", 11] <- 1
-HUGGO_MEM[HUGGO_MEM$manyID == "CM04LA_2005O", 11] <- 1
-HUGGO_MEM[HUGGO_MEM$manyID == "SDN-SSD[MAA]_2011O", 11] <- 1
-
-# Remove duplicates agreements (duplicate manyID)
-
-HUGGO_MEM <- HUGGO_MEM[-c(4013:4014, 6110:6120, 6494:6522), ] # EGY-JOR[NA]_1998O, ASEANK_2006O & BSNHES_2008O all occur twice (for entire membership)
-
-# Remove duplicate agreements (different manyID, same agreement)
-
-HUGGO_MEM <- HUGGO_MEM[!(HUGGO_MEM$manyID %in% c("EFTA_1960O:EFTA_1960A", "CARICM_1973O")), ] # Duplicated with EFTA_1960A & CRBBNC_1973O 
-
-# Delete Check column
-HUGGO_MEM$Check <- NULL
 
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
