@@ -6,11 +6,9 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{DESTA: }{A dataset with 959 observations and the following
-#' 10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType,
-#' GeogArea, Signature, Force, destaID.}
+#' 10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType, GeogArea, Signature, Force, destaID.}
 #' \item{GPTAD: }{A dataset with 340 observations and the following
-#' 10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType,
-#' GeogArea, Signature, Force, gptadID.}
+#' 10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType, GeogArea, Signature, Force, gptadID.}
 #' \item{LABPTA: }{A dataset with 483 observations and the following
 #' 7 variables: manyID, treatyID, Title, Begin, Signature, Force, labptaID.}
 #' \item{TOTA: }{A dataset with 442 observations and the following
@@ -18,12 +16,11 @@
 #' \item{TREND: }{A dataset with 710 observations and the following
 #' 7 variables: manyID, treatyID, Title, Begin, Signature, Force, trendID.}
 #' \item{HUGGO: }{A dataset with 1389 observations and the following
-#' 9 variables: manyID, treatyID, Title, Beg, Signature, Force, End, url,
-#' TreatyTextStatus.}
+#' 9 variables: manyID, treatyID, Title, Beg, Signature, Force, End, url, TreatyTextStatus.}
 #' \item{AIGGO: }{A dataset with 1389 observations and the following
-#' 8 variables: manyID, treatyID, Title, Beg, Signature, Force, accessionC,
-#' accessionP.}
+#' 8 variables: manyID, treatyID, Title, Begin, Signature, Force, accessionC, accessionP.}
 #' }
+
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
