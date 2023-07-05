@@ -80,5 +80,5 @@ TOTA$totaID <- rownames(TOTA)
 # that you're including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("agreements", "TOTA")`.
-manypkgs::export_data(TOTA, database = "agreements",
+manypkgs::export_data(TOTA, datacube = "agreements",
                      URL = "https://github.com/mappingtreaties/tota.git")

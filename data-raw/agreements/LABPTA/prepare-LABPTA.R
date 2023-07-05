@@ -12,7 +12,7 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- tibble::as_tibble(LABPTA) %>%
-  # standardise date formats across agreements database
+  # standardise date formats across agreements datacube
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   manydata::transmutate(labptaID = as.character(`Number`),
                         Title = manypkgs::standardise_titles(Name),
@@ -48,7 +48,7 @@ LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1,3,6)]))
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available within the many universe.
-manypkgs::export_data(LABPTA, database = "agreements", 
+manypkgs::export_data(LABPTA, datacube = "agreements", 
                       URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

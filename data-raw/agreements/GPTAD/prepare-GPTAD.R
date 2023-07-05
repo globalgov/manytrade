@@ -14,7 +14,7 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 GPTAD <- tibble::as_tibble(GPTAD) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
-  #removing entries relating to membership as membership changes will be logged in memberships database
+  #removing entries relating to membership as membership changes will be logged in memberships datacube
   dplyr::mutate(DocType = dplyr::recode(`Type`, 
                                         "Association Free Trade Agreement" = "P", 
                                         "Bilateral Free Trade Agreement"= "B", 
@@ -74,7 +74,7 @@ GPTAD <- subset(GPTAD, subset = !duplicated(GPTAD[, c(1,3,4,9)]))
 # Stage three: Connecting data
 # Next run the following line to make GPTAD available
 # within the many universe.
-manypkgs::export_data(GPTAD, database = "agreements", 
+manypkgs::export_data(GPTAD, datacube = "agreements", 
                       URL="https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

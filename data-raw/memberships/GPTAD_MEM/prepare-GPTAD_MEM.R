@@ -94,7 +94,7 @@ GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Begin,
 # Stage three: Connecting data
 # Next run the following line to make GPTAD_MEM available 
 # within the many universe.
-manypkgs::export_data(GPTAD_MEM, database = "memberships",
+manypkgs::export_data(GPTAD_MEM, datacube = "memberships",
                      URL = "https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

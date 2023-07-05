@@ -1,7 +1,7 @@
 # AIGGO Preparation Script
 
 # The AIGGO dataset lists the trade agreements
-# listed in the other five datasets in the manytrade::agreements database
+# listed in the other five datasets in the manytrade::agreements datacube
 # (DESTA, GPTAD, TOTA, LABPTA, TREND) and adds additional information,
 # such as accession conditions and procedures for joining agreements, 
 # and increases the precision of Signature dates.
@@ -13,7 +13,7 @@
 
 # Stage one: Assembling data
 
-# consolidated version of agreements database
+# consolidated version of agreements datacube
 AIGGO <- manytrade::agreements$HUGGO
 
 # Stage two: Adding membership conditions and procedures columns
@@ -86,7 +86,7 @@ AIGGO <- AIGGO %>%
 # that you are including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("agreements", "AIGGO")`.
-manypkgs::export_data(AIGGO, database = "agreements", 
+manypkgs::export_data(AIGGO, datacube = "agreements", 
                       URL = c("https://www.designoftradeagreements.org/downloads/",
                               "https://wits.worldbank.org/gptad/library.aspx",
                               "https://doi.org/10.1007/s11558-018-9301-z",

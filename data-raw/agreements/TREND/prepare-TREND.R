@@ -19,7 +19,7 @@ TREND <- tibble::as_tibble(TREND) %>%
   tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
   #combining variables to obtain full name of treaty
   tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
-  # standardise date formats across agreements database
+  # standardise date formats across agreements datacube
   dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
                         Signature = messydates::as_messydate(as.character(Year)),
@@ -58,7 +58,7 @@ TREND <- subset(TREND, subset = !duplicated(TREND[, c(1,3,6)]))
 
 # Stage three: Connecting data
 # Next run the following line to make TREND available within the many universe.
-manypkgs::export_data(TREND, database = "agreements", 
+manypkgs::export_data(TREND, datacube = "agreements", 
                       URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

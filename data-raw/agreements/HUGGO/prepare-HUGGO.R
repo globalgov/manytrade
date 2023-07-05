@@ -2,7 +2,7 @@
 
 # The HUGGO dataset contains treaty texts scrapped from their websites
 # (see 'links.xlsx' file for the links collected)
-# or other databases such as TOTA (Alschner, Seiermann, and Skougarevskiy, 2017),
+# or other datasets such as TOTA (Alschner, Seiermann, and Skougarevskiy, 2017),
 # GPTAD (World Bank Group, 2014),
 # and EDIT (Alschner, Elsig, and Polanco, 2021).
 # Please see Step 3 and the Bibliography file for the links to these websites.
@@ -44,8 +44,8 @@ TOTA_TXT <- TOTA_TXT %>%
   dplyr::select(Title, TreatyText, url, totaID)
 
 # Merge texts from TOTA database with the rest of the datasets in the 
-# agreements database
-# consolidate agreements database so that entries across datasets are not duplicated
+# agreements datacube
+# consolidate agreements datacube so that entries across datasets are not duplicated
 HUGGO <- manydata::favour(manytrade::agreements, c("GPTAD", "TOTA")) %>% 
   manydata::consolidate("any",
                         "any",
@@ -344,14 +344,14 @@ HUGGO <- HUGGO %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("agreements", "HUGGO")`.
-manypkgs::export_data(HUGGO, database = "agreements",
+manypkgs::export_data(HUGGO, datacube = "agreements",
                       URL = c("https://wits.worldbank.org/gptad/library.aspx",
                               "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
                               "https://edit.wti.org/app.php/document/investment-treaty/search",
                               "https://github.com/mappingtreaties/tota.git"))
 
 # To reduce size of text data stored in package:
-# 1. after exporting HUGGO to agreements database, 
+# 1. after exporting HUGGO to agreements datacube, 
 # load 'agreements.rda' in environment.
 # 2. Delete 'agreements.rda' in 'data' folder.
 # 3. Run `usethis::use_data(agreements, internal = F, overwrite = T, compress = "xz")`

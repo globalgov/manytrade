@@ -17,7 +17,7 @@ DESTA <- tibble::as_tibble(DESTA) %>%
   dplyr::filter(typememb != "5", typememb != "6",  typememb != "7", 
                 entry_type != "accession", entry_type != "withdrawal") %>%
   #categories removed because they relate to changes in membership that are 
-  #reflected in the memberships database
+  #reflected in the memberships datacube
   dplyr::rename("DocType" = "typememb", "AgreementType" = "entry_type") %>%
   dplyr::mutate(DocType = dplyr::recode(DocType, "1" = "B", "2"= "P", "3"="P", "4"="M")) %>%
   dplyr::mutate(AgreementType = dplyr::recode(AgreementType, "base_treaty" = "A", 
@@ -33,7 +33,7 @@ DESTA <- tibble::as_tibble(DESTA) %>%
                         Title = manypkgs::standardise_titles(name)) %>%
   dplyr::mutate(beg = dplyr::coalesce(year, entryforceyear)) %>%
   dplyr::arrange(beg) %>%
-  # standardise date formats across agreements database
+  # standardise date formats across agreements datacube
   dplyr::mutate(beg = ifelse(beg == "NA", "NA", paste0(beg, "-01-01"))) %>%
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   dplyr::mutate(entryforceyear = ifelse(entryforceyear == "NA", "NA", paste0(entryforceyear, "-01-01"))) %>%
@@ -71,7 +71,7 @@ DESTA <- subset(DESTA, subset = !duplicated(DESTA[, c(1,3,4,9)]))
 
 # Stage three: Connecting data
 # Next run the following line to make DESTA available within the many universe.
-manypkgs::export_data(DESTA, database = "agreements", 
+manypkgs::export_data(DESTA, datacube = "agreements", 
                       URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence to 

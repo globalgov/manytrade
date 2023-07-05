@@ -1,5 +1,5 @@
 # HUGGO_MEM Preparation Script
-# This data contains consolidated membership data from the memberships database,
+# This data contains consolidated membership data from the memberships datacube,
 # specifically the DESTA_MEM and GPTAD_MEM datasets, as well as handcoded data
 # to fill in the gaps in these datasets.
 
@@ -30,7 +30,7 @@ HUGGO_MEM <- HUGGO_MEM %>%
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
 # within the package.
-manypkgs::export_data(HUGGO_MEM, database = "memberships",
+manypkgs::export_data(HUGGO_MEM, datacube = "memberships",
                       URL = "Hand-coded by the GGO team")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

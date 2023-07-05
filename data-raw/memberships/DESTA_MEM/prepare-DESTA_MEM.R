@@ -93,7 +93,7 @@ DESTA_MEM <- DESTA_MEM %>%
 # Stage three: Connecting data
 # Next run the following line to make DESTA_MEM available
 # within the many universe.
-manypkgs::export_data(DESTA_MEM, database = "memberships",
+manypkgs::export_data(DESTA_MEM, datacube = "memberships",
                      URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
