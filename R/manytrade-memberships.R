@@ -16,7 +16,48 @@
 #' StateName, gptadID, destaID, StateRatification, StateSignature, StateForce,
 #' StateEnd, DataCollection.}
 #' }
+#' @source
+#'\itemize{
+#' \item{GPTAD_MEM: }{
+#' [1] W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_.https://wits.worldbank.org/gptad/library.aspx. 2013.}
+#' \item{DESTA_MEM: }{
+#' [1] A. Dür, L. Baccini, and M. Elsig. _The Design of International Trade Agreements: Introducing a NewDatabase_. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.}
+#' \item{HUGGO_MEM: }{
+#' [1] A. Dür, L. Baccini, and M. Elsig. _The Design of International Trade Agreements: Introducing a NewDatabase_. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.[2] W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_.https://wits.worldbank.org/gptad/library.aspx. 2014.}
+#' }
+#' @section URL:
+#'\itemize{
+#' \item{GPTAD_MEM: }{ \url https://wits.worldbank.org/gptad/library.aspx}
+#' \item{DESTA_MEM: }{ \url https://www.designoftradeagreements.org/downloads/}
+#' \item{HUGGO_MEM: }{ \url Hand-coded by the GGO team}
+#' }
+#' @section Mapping:
+#'\itemize{
+#' \item{GPTAD_MEM: }{
+#' Variable Mapping
 #'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | Membership | StateName |
+#' | Common.Name | Title |
+#' | Date.of.Signature | Signature |
+#' | Date.of.Entry.into.Force | Force
+#' 
+#' }
+#' \item{DESTA_MEM: }{
+#' Variable Mapping
+#'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | base_treaty | destaID |
+#' | name | Title |
+#' | year | Signature |
+#' | entryforceyear | Force |
+#' | c1:c91 | stateID |
+#' 
+#' }
+#' }
+#' @md
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
 #' lapply(memberships, messydates::mreport)
