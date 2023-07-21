@@ -14,6 +14,12 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 3 variables: treatyID1, treatyID2, RefType.}
 }
 }
+\source{
+\itemize{
+\item{DESTA_REF: }{
+\link{1} A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+}
+}
 \usage{
 references
 }
@@ -31,4 +37,25 @@ references datacube documentation
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{DESTA_REF: }{ \url https://www.designoftradeagreements.org/downloads/}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{DESTA_REF: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   entry_type \tab RefType \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}

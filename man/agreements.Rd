@@ -24,10 +24,28 @@ GeogArea, Signature, Force, gptadID.}
 7 variables: manyID, treatyID, Title, Begin, Signature, Force, trendID.}
 \item{HUGGO: }{A dataset with 548 observations and the following
 10 variables: manyID, treatyID, Title, Begin, Signature, Force, End, url,
-TreatyTextStatus, Coder.}
+TreatyText, Coder.}
 \item{AIGGO: }{A dataset with 1389 observations and the following
 8 variables: manyID, treatyID, Title, Begin, Signature, Force, accessionC,
 accessionP.}
+}
+}
+\source{
+\itemize{
+\item{DESTA: }{
+\link{1} A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+\item{GPTAD: }{
+\link{1} World Bank Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}. Online database. publisher:World Bank Group. 2014. \url{https://wits.worldbank.org/gptad/library.aspx}.}
+\item{LABPTA: }{
+\link{1} D. Raess, A. Dür, and D. Sari. “Protecting labor rights in preferential trade agreements: The roleof trade unions, left governments, and skilled labor”. In: _The Review of International Organizations_2.13 (2018), pp. 143-162. DOI: 10.1007/s11558-018-9301-z.}
+\item{TOTA: }{
+\link{1} W. Alschner, J. Seiermann, and D. Skougarevskiy. \emph{Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape}. 2017. \url{https://github.com/mappingtreaties/tota.git}.}
+\item{TREND: }{
+\link{1} J. Morin, A. Dür, and L. Lechner. “Mapping the trade and environment nexus: Insights from a newdataset”. In: \emph{Global Environmental Politics} 18.1 (2018), pp. 122-139.}
+\item{HUGGO: }{
+\link{1} J. Hollway. Trade agreements for manydata. (2021).}
+\item{AIGGO: }{
+\link{1} J. Hollway. Trade agreements for manydata. (2021).}
 }
 }
 \usage{
@@ -114,20 +132,20 @@ agreements datacube documentation
 #> 
 #> 
 #> $HUGGO
-#> -----------------------------------------------------------------------------
-#> |  Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> -----------------------------------------------------------------------------
-#> |     manyID     |  character  |             548|     0     |       0       |
-#> |    treatyID    |  character  |             548|     0     |       0       |
-#> |     Title      |  character  |             548|     0     |       0       |
-#> |     Begin      |    mdate    |             548|     0     |       0       |
-#> |   Signature    |    mdate    |             548|     0     |       0       |
-#> |     Force      |    mdate    |             548|     8     |     1.46      |
-#> |      End       |    mdate    |             548|    492    |     89.78     |
-#> |      url       |  character  |             548|     0     |       0       |
-#> |TreatyTextStatus|  character  |             548|     0     |       0       |
-#> |     Coder      |  character  |             548|     0     |       0       |
-#> -----------------------------------------------------------------------------
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             548|     0     |       0       |
+#> |   treatyID    |  character  |             548|     0     |       0       |
+#> |     Title     |  character  |             548|     0     |       0       |
+#> |     Begin     |    mdate    |             548|     0     |       0       |
+#> |   Signature   |    mdate    |             548|     0     |       0       |
+#> |     Force     |    mdate    |             548|     8     |     1.46      |
+#> |      End      |    mdate    |             548|    492    |     89.78     |
+#> |      url      |  character  |             548|     0     |       0       |
+#> |  TreatyText   |  character  |             548|     0     |       0       |
+#> |     Coder     |  character  |             548|     0     |       0       |
+#> ----------------------------------------------------------------------------
 #> 
 #> 
 #> $AIGGO
@@ -145,4 +163,81 @@ agreements datacube documentation
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{DESTA: }{ \url https://www.designoftradeagreements.org/downloads/}
+\item{GPTAD: }{ \url https://wits.worldbank.org/gptad/library.aspx}
+\item{LABPTA: }{ \url https://doi.org/10.1007/s11558-018-9301-z}
+\item{TOTA: }{ \url https://github.com/mappingtreaties/tota.git}
+\item{TREND: }{ \url http://www.chaire-epi.ulaval.ca/en/trend}
+\item{HUGGO: }{ \url https://github.com/globalgov/manytrade}
+\item{AIGGO: }{ \url https://github.com/globalgov/manytrade}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{DESTA: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   base_treaty \tab destaID \cr
+   name \tab Title \cr
+   year \tab Signature \cr
+   entryforceyear \tab Force \cr
+   typememb \tab DocType \cr
+   entry_type \tab AgreementType \cr
+   regioncon \tab GeogArea \cr
+}
+
+
+}
+\item{GPTAD: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Common.Name \tab Title \cr
+   Date.of.Signature \tab Signature \cr
+   Date.of.Entry.into.Force \tab Force \cr
+   Type \tab DocType \cr
+   Type \tab AgreementType \cr
+   Type \tab GeogArea \cr
+}
+
+
+}
+\item{LABPTA: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Number \tab labptaID \cr
+   Name \tab Title \cr
+   year \tab Signature \cr
+   year \tab Force \cr
+}
+
+
+}
+\item{TOTA: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   name \tab Title \cr
+   date_signed \tab Signature \cr
+   date_into_force \tab Force \cr
+}
+
+
+}
+\item{TREND: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Trade.Agreement \tab Title \cr
+   Year \tab Signature \cr
+   Year \tab Force \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}

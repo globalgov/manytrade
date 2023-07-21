@@ -22,6 +22,16 @@ StateName, gptadID, destaID, StateRatification, StateSignature, StateForce,
 StateEnd, DataCollection.}
 }
 }
+\source{
+\itemize{
+\item{GPTAD_MEM: }{
+\link{1} W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.https://wits.worldbank.org/gptad/library.aspx. 2013.}
+\item{DESTA_MEM: }{
+\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.}
+\item{HUGGO_MEM: }{
+\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.\link{2} W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.https://wits.worldbank.org/gptad/library.aspx. 2014.}
+}
+}
 \usage{
 memberships
 }
@@ -83,4 +93,42 @@ memberships datacube documentation
 #> ------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{GPTAD_MEM: }{ \url https://wits.worldbank.org/gptad/library.aspx}
+\item{DESTA_MEM: }{ \url https://www.designoftradeagreements.org/downloads/}
+\item{HUGGO_MEM: }{ \url Hand-coded by the GGO team}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{GPTAD_MEM: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Membership \tab StateName \cr
+   Common.Name \tab Title \cr
+   Date.of.Signature \tab Signature \cr
+   Date.of.Entry.into.Force \tab Force \cr
+}
+
+
+}
+\item{DESTA_MEM: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   base_treaty \tab destaID \cr
+   name \tab Title \cr
+   year \tab Signature \cr
+   entryforceyear \tab Force \cr
+   c1:c91 \tab stateID \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}
