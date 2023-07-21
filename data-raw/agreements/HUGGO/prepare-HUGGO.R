@@ -301,11 +301,11 @@ HUGGO <- HUGGO %>%
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End))
 
-# 4) Add new TreatyTextStatus column
-# TreatyTextStatus: 0 = No text collected, 1 = Treaty text collected in
+# 4) Add new TreatyText column to mark status of collection of texts
+# TreatyText: 0 = No text collected, 1 = Treaty text collected in
 # 'data-raw/agreements/HUGGO/TreatyTexts' folder
-HUGGO$TreatyTextStatus <- 0
-HUGGO$TreatyTextStatus[is.na(HUGGO$No_source)] <- 1
+HUGGO$TreatyText <- 0
+HUGGO$TreatyText[is.na(HUGGO$No_source)] <- 1
 
 # Add name of Coder
 HUGGO <- dplyr::mutate(HUGGO, Coder = "Anders Viemose")
@@ -313,7 +313,7 @@ HUGGO <- dplyr::mutate(HUGGO, Coder = "Anders Viemose")
 # Reorder columns and arrange observations by 'Begin' variable for export
 HUGGO <- HUGGO %>%
   dplyr::select(manyID, treatyID, Title, Begin, Signature, Force, End,
-                url, TreatyTextStatus, Coder) %>%
+                url, TreatyText, Coder) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(.,
                                                  "^NA$", NA_character_))) %>%
@@ -345,10 +345,7 @@ HUGGO <- HUGGO %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("agreements", "HUGGO")`.
 manypkgs::export_data(HUGGO, datacube = "agreements",
-                      URL = c("https://wits.worldbank.org/gptad/library.aspx",
-                              "http://rtais.wto.org/UI/PublicMaintainRTAHome.aspx",
-                              "https://edit.wti.org/app.php/document/investment-treaty/search",
-                              "https://github.com/mappingtreaties/tota.git"))
+                      URL = "Hand-coded data by the GGO team")
 
 # To reduce size of text data stored in package:
 # 1. after exporting HUGGO to agreements datacube, 
