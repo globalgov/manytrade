@@ -1,7 +1,7 @@
 # TOTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 # Download texts from TEXTS OF TRADE AGREEMENTS (TOTA) database

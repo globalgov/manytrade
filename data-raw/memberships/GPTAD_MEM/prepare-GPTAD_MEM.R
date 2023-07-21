@@ -1,7 +1,7 @@
 # GPTAD_MEM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 
 # Stage one: Collecting data 
 GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD_MEM.csv")

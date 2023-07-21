@@ -1,7 +1,7 @@
 # DESTA_MEM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 # Note that the original data (in excel format) has been converted and saved as

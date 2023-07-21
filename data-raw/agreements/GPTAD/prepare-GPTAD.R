@@ -1,7 +1,7 @@
 # GPTAD Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 library(manypkgs)
 
 # Stage one: Collecting data
