@@ -1,13 +1,14 @@
 # HUGGO_MEM Preparation Script
-# This data contains consolidated membership data from the memberships datacube,
-# specifically the DESTA_MEM and GPTAD_MEM datasets, as well as handcoded data
-# to fill in the gaps in these datasets.
+# This data contains handcoded membership data for trade agreements,
+# which builds upon the DESTA_MEM and GPTAD_MEM datasets,
+# adding state-specific dates for signature, ratification, entry into force,
+# and termination of agreements, as well as making dates more precise.
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the many packages universe.
 
 # Stage one: Collecting data
-HUGGO_MEM <- read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM_additional.csv")
+HUGGO_MEM <- readr::read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM_additional.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
@@ -15,7 +16,12 @@ HUGGO_MEM <- read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM_additional.csv")
 # below (in stage three) passes all the tests.
 HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::mutate(across(everything(),
+  dplyr::mutate(
+    stateID = ifelse(is.na(stateID),
+                     manypkgs::code_states(StateName, activity = FALSE,
+                                           replace = "ID"),
+                     stateID),
+    across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
   dplyr::distinct() %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),

@@ -17,9 +17,9 @@ StateName, gptadID.}
 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 StateName, destaID.}
 \item{HUGGO_MEM: }{A dataset with 7202 observations and the following
-15 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
+18 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 StateName, gptadID, destaID, StateRatification, StateSignature, StateForce,
-StateEnd, DataCollection.}
+StateEnd, Rat=Notif, Coder, Source.}
 }
 }
 \source{
@@ -29,7 +29,7 @@ StateEnd, DataCollection.}
 \item{DESTA_MEM: }{
 \link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.}
 \item{HUGGO_MEM: }{
-\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.\link{2} W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.https://wits.worldbank.org/gptad/library.aspx. 2014.}
+Hand-coded by the GGO team.
 }
 }
 \usage{
