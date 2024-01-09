@@ -27,11 +27,13 @@ HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
+                End = messydates::as_messydate(End),
                 StateRatification = messydates::as_messydate(StateRatification),
                 StateSignature = messydates::as_messydate(StateSignature),
                 StateForce = messydates::as_messydate(StateForce),
                 StateEnd = messydates::as_messydate(StateEnd)) %>%
-  dplyr::arrange(Begin)
+  dplyr::arrange(Begin) %>%
+  dplyr::select(-`...1`)
 
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
