@@ -1,3 +1,14 @@
+# manytrade 0.4.0
+
+2024-01-12
+
+## Data
+
+* Closed #37 by adding HUGGO_MEM dataset
+* Closed #40 by removing accession and withdrawal observations in HUGGO_MEM and HUGGO datasets.
+* Closed #41 by recoding `End` dates in HUGGO and HUGGO_MEM datasets, coding agreements that are still in force '9999-12-31' instead of 'NA'.
+* Closed #42 by renaming `Beg` variable `Begin` across all datasets.
+
 # manytrade 0.3.0
 
 2023-03-22
