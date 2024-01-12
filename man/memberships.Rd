@@ -8,7 +8,7 @@
 The memberships datacube is a list that contains the
 following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 For more information and references to each of the datasets used,
-please use the \code{data_source()} and \code{data_contrast()} functions.
+please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
 \item{GPTAD_MEM: }{A dataset with 2192 observations and the following
 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
@@ -16,10 +16,10 @@ StateName, gptadID.}
 \item{DESTA_MEM: }{A dataset with 7466 observations and the following
 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 StateName, destaID.}
-\item{HUGGO_MEM: }{A dataset with 7202 observations and the following
-18 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
-StateName, gptadID, destaID, StateRatification, StateSignature, StateForce,
-StateEnd, Rat=Notif, Coder, Source.}
+\item{HUGGO_MEM: }{A dataset with 5608 observations and the following
+20 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force, End,
+StateName, gptadID, destaID, StateSignature, StateRatification, StateForce,
+StateEnd, Rat=Notif, Coder, Source, Succession, Accession.}
 }
 }
 \source{
@@ -27,9 +27,9 @@ StateEnd, Rat=Notif, Coder, Source.}
 \item{GPTAD_MEM: }{
 \link{1} W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.https://wits.worldbank.org/gptad/library.aspx. 2013.}
 \item{DESTA_MEM: }{
-\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375,publisher Springer. 2014.}
+\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375, publisherSpringer. 2013.}
 \item{HUGGO_MEM: }{
-Hand-coded by the GGO team.
+\link{1} A. Dür, L. Baccini, and M. Elsig. \emph{The Design of International Trade Agreements: Introducing a NewDatabase}. Journal The Review of International Organizations, volume 9, number 3, pages 353-375, publisherSpringer. 2014.\link{2} W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.https://wits.worldbank.org/gptad/library.aspx. 2014.}
 }
 }
 \usage{
@@ -75,21 +75,26 @@ memberships datacube documentation
 #> ------------------------------------------------------------------------------
 #> |   Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ------------------------------------------------------------------------------
-#> |     manyID      |  character  |            7202|     0     |       0       |
-#> |    treatyID     |  character  |            7202|     0     |       0       |
-#> |      Title      |  character  |            7202|     0     |       0       |
-#> |      Begin      |    mdate    |            7202|    721    |     10.01     |
-#> |     stateID     |  character  |            7202|     0     |       0       |
-#> |    Signature    |    mdate    |            7202|    904    |     12.55     |
-#> |      Force      |    mdate    |            7202|   1676    |     23.27     |
-#> |    StateName    |  character  |            7202|     0     |       0       |
-#> |     gptadID     |  character  |            7202|   5028    |     69.81     |
-#> |     destaID     |  character  |            7202|   1384    |     19.22     |
-#> |StateRatification|    mdate    |            7202|   6572    |     91.25     |
-#> | StateSignature  |    mdate    |            7202|   5936    |     82.42     |
-#> |   StateForce    |    mdate    |            7202|   6134    |     85.17     |
-#> |    StateEnd     |    mdate    |            7202|   6913    |     95.99     |
-#> | DataCollection  |  character  |            7202|    447    |     6.21      |
+#> |     manyID      |  character  |            5608|     1     |     0.02      |
+#> |    treatyID     |  character  |            5608|     1     |     0.02      |
+#> |      Title      |  character  |            5608|     1     |     0.02      |
+#> |      Begin      |    mdate    |            5608|     1     |     0.02      |
+#> |     stateID     |  character  |            5608|     2     |     0.04      |
+#> |    Signature    |    mdate    |            5608|     3     |     0.05      |
+#> |      Force      |    mdate    |            5608|    367    |     6.54      |
+#> |       End       |    mdate    |            5608|    556    |     9.91      |
+#> |    StateName    |  character  |            5608|     1     |     0.02      |
+#> |     gptadID     |  character  |            5608|   3436    |     61.27     |
+#> |     destaID     |  character  |            5608|    553    |     9.86      |
+#> | StateSignature  |    mdate    |            5608|    903    |     16.1      |
+#> |StateRatification|    mdate    |            5608|   4893    |     87.25     |
+#> |   StateForce    |    mdate    |            5608|   1125    |     20.06     |
+#> |    StateEnd     |    mdate    |            5608|    630    |     11.23     |
+#> |    Rat=Notif    |  character  |            5608|   5536    |     98.72     |
+#> |      Coder      |  character  |            5608|    16     |     0.29      |
+#> |     Source      |  character  |            5608|   4886    |     87.13     |
+#> |   Succession    |  character  |            5608|     1     |     0.02      |
+#> |    Accession    |    mdate    |            5608|   4679    |     83.43     |
 #> ------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
@@ -112,22 +117,19 @@ Variable Mapping\tabular{cc}{
    Common.Name \tab Title \cr
    Date.of.Signature \tab Signature \cr
    Date.of.Entry.into.Force \tab Force \cr
+   } \tab  \cr
+   \item{DESTA_MEM: }{ \tab  \cr
+   Variable Mapping \tab  \cr
 }
-
-
-}
-\item{DESTA_MEM: }{
-Variable Mapping\tabular{cc}{
+\tabular{cc}{
    \emph{from} \tab \emph{to} \cr
    base_treaty \tab destaID \cr
    name \tab Title \cr
    year \tab Signature \cr
    entryforceyear \tab Force \cr
    c1:c91 \tab stateID \cr
-}
-
-
-}
+   } \tab  \cr
+   } \tab  \cr
 }
 }
 
