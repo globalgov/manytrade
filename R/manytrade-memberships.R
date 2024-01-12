@@ -3,8 +3,7 @@
 #' @format The memberships datacube is a list that contains the
 #' following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 #' For more information and references to each of the datasets used,
-#' please use the `manydata::call_sources()` and
-#' `manydata::compare_dimensions()` functions.
+#' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2192 observations and the following
 #' 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
@@ -12,7 +11,7 @@
 #' \item{DESTA_MEM: }{A dataset with 7466 observations and the following
 #' 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 #' StateName, destaID.}
-#' \item{HUGGO_MEM: }{A dataset with 5510 observations and the following
+#' \item{HUGGO_MEM: }{A dataset with 5608 observations and the following
 #' 20 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force, End,
 #' StateName, gptadID, destaID, StateSignature, StateRatification, StateForce,
 #' StateEnd, Rat=Notif, Coder, Source, Succession, Accession.}
@@ -43,7 +42,6 @@
 #' | Common.Name | Title |
 #' | Date.of.Signature | Signature |
 #' | Date.of.Entry.into.Force | Force
-#' 
 #' }
 #' \item{DESTA_MEM: }{
 #' Variable Mapping
@@ -55,7 +53,6 @@
 #' | year | Signature |
 #' | entryforceyear | Force |
 #' | c1:c91 | stateID |
-#' 
 #' }
 #' }
 #' @md
