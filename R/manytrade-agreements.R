@@ -25,37 +25,47 @@
 #' accessionP.}
 #' }
 #' @source
-#'\itemize{
+#' \itemize{
 #' \item{DESTA: }{
-#' [1] A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.}
+#' A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.}
 #' \item{GPTAD: }{
-#' [1] W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_. Online database. publisher: WorldBank Group. 2014. <https://wits.worldbank.org/gptad/library.aspx>.}
+#' W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_. Online database. publisher: WorldBank Group. 2014. <https://wits.worldbank.org/gptad/library.aspx>.}
 #' \item{LABPTA: }{
-#' [1] D. Raess, A. Dür, and D. Sari. “Protecting labor rights in preferential trade agreements: The role oftrade unions, left governments, and skilled labor”. In: _The Review of International Organizations_ 2.13(2018), pp. 143-162. DOI: 10.1007/s11558-018-9301-z.}
+#' D. Raess, A. Dür, and D. Sari. “Protecting labor rights in preferential trade agreements: The role oftrade unions, left governments, and skilled labor”. In: _The Review of International Organizations_ 2.13(2018), pp. 143-162. DOI: 10.1007/s11558-018-9301-z.}
 #' \item{TOTA: }{
-#' [1] W. Alschner, J. Seiermann, and D. Skougarevskiy. _Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape_. 2017. <https://github.com/mappingtreaties/tota.git>.}
+#' W. Alschner, J. Seiermann, and D. Skougarevskiy. _Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape_. 2017. <https://github.com/mappingtreaties/tota.git>.}
 #' \item{TREND: }{
-#' [1] J. Morin, A. Dür, and L. Lechner. “Mapping the trade and environment nexus: Insights from a newdataset”. In: _Global Environmental Politics_ 18.1 (2018), pp. 122-139.}
+#' J. Morin, A. Dür, and L. Lechner. “Mapping the trade and environment nexus: Insights from a newdataset”. In: _Global Environmental Politics_ 18.1 (2018), pp. 122-139.}
 #' \item{HUGGO: }{
-#' [1] W. Alschner, M. Elsig, and R. Polanco. _Introducing the Electronic Database of Investment Treaties(EDIT): The Genesis of a New Database and Its Use_. 2021. DOI: 10.1017/S147474562000035X.<https://edit.wti.org/app.php/document/investment-treaty/search>.[2] W. Alschner, J. Seiermann, and D. Skougarevskiy. _Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape_. 2017.<https://unctad.org/webflyer/text-data-analysis-preferential-trade-agreements-mapping-pta-landscape;%20https://github.com/mappingtreaties/tota.git>.[3] A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.[4] W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_. Online database. publisher: WorldBank Group. 2014. <https://wits.worldbank.org/gptad/library.aspx>.}
+#' NA}
 #' \item{AIGGO: }{
-#' [1] W. Alschner, J. Seiermann, and D. Skougarevskiy. _Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape, UNCTAD Research Paper No. 5, UNCTAD/SER.RP/2017/5_. 2017.<https://github.com/mappingtreaties/tota.git>.[2] A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.[3] W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_. Online database. publisher: WorldBank Group. 2014. <https://wits.worldbank.org/gptad/library.aspx>.[4] J. Morin, A. Dür, and L. Lechner. “Mapping the trade and environment nexus: Insights from a newdataset”. In: _Global Environmental Politics_ 18.1 (2018), pp. 122-139.[5] D. Raess, A. Dür, and D. Sari. “Protecting labor rights in preferential trade agreements: The role oftrade unions, left governments, and skilled labor”. In: _The Review of International Organizations_ 13.2(2018), pp. 143-162. ISSN: 1559-7431. DOI: 10.1007/s11558-018-9301-z.}
+#' NA}
 #' }
 #' @section URL:
-#'\itemize{
-#' \item{DESTA: }{ \url https://www.designoftradeagreements.org/downloads/}
-#' \item{GPTAD: }{ \url https://wits.worldbank.org/gptad/library.aspx}
-#' \item{LABPTA: }{ \url https://doi.org/10.1007/s11558-018-9301-z}
-#' \item{TOTA: }{ \url https://github.com/mappingtreaties/tota.git}
-#' \item{TREND: }{ \url http://www.chaire-epi.ulaval.ca/en/trend}
-#' \item{HUGGO: }{ \url Hand-coded data by the GGO team}
-#' \item{AIGGO: }{ \url c("https://www.designoftradeagreements.org/downloads/", "https://wits.worldbank.org/gptad/library.aspx", "https://doi.org/10.1007/s11558-018-9301-z", "http://www.chaire-epi.ulaval.ca/en/trend", "https://github.com/mappingtreaties/tota.git")}
+#' \itemize{
+#' \item{DESTA: }{
+#' \url{https://www.designoftradeagreements.org/downloads/}
+#' }
+#' \item{GPTAD: }{
+#' \url{https://wits.worldbank.org/gptad/library.aspx}
+#' }
+#' \item{LABPTA: }{
+#' \url{https://doi.org/10.1007/s11558-018-9301-z}
+#' }
+#' \item{TOTA: }{
+#' \url{https://github.com/mappingtreaties/tota.git}
+#' }
+#' \item{TREND: }{
+#' \url{http://www.chaire-epi.ulaval.ca/en/trend}
+#' }
+#' \item{HUGGO: }{Hand-coded data by the GGO team}
+#' \item{AIGGO: }{Machine-generated data by the GGO team}
 #' }
 #' @section Mapping:
-#'\itemize{
+#' \itemize{
 #' \item{DESTA: }{
 #' Variable Mapping
-#'
+#' 
 #' |  *from*  | *to*
 #' |:------------:|:------------:|
 #' | base_treaty | destaID |
@@ -65,10 +75,11 @@
 #' | typememb | DocType |
 #' | entry_type | AgreementType |
 #' | regioncon | GeogArea |
+#' 
 #' }
 #' \item{GPTAD: }{
 #' Variable Mapping
-#'
+#' 
 #' |  *from*  | *to*
 #' |:------------:|:------------:|
 #' | Common.Name | Title |
@@ -77,34 +88,38 @@
 #' | Type | DocType |
 #' | Type | AgreementType |
 #' | Type | GeogArea |
+#' 
 #' }
 #' \item{LABPTA: }{
 #' Variable Mapping
-#'
+#' 
 #' |  *from*  | *to*
 #' |:------------:|:------------:|
 #' | Number | labptaID |
 #' | Name | Title |
 #' | year | Signature |
 #' | year | Force |
+#' 
 #' }
 #' \item{TOTA: }{
 #' Variable Mapping
-#'
+#' 
 #' |  *from*  | *to*
 #' |:------------:|:------------:|
 #' | name | Title |
 #' | date_signed | Signature |
 #' | date_into_force | Force |
+#' 
 #' }
 #' \item{TREND: }{
 #' Variable Mapping
-#'
+#' 
 #' |  *from*  | *to*
 #' |:------------:|:------------:|
 #' | Trade.Agreement | Title |
 #' | Year | Signature |
 #' | Year | Force |
+#' 
 #' }
 #' }
 #' @md
