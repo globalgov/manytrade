@@ -73,7 +73,7 @@ server <- function(input, output){
       if(input$treatylabel == TRUE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                           TRUE ~ "black")) %>%
@@ -85,7 +85,7 @@ server <- function(input, output){
       else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -99,7 +99,7 @@ server <- function(input, output){
       else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -113,7 +113,7 @@ server <- function(input, output){
       else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -130,7 +130,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -143,7 +143,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                           TRUE ~ "black")) %>%
@@ -158,7 +158,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -173,7 +173,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -190,7 +190,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -203,7 +203,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -218,7 +218,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -233,7 +233,7 @@ server <- function(input, output){
         trade_mem1 <- trade_mem %>%
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -251,7 +251,7 @@ server <- function(input, output){
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -265,7 +265,7 @@ server <- function(input, output){
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -281,7 +281,7 @@ server <- function(input, output){
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -297,7 +297,7 @@ server <- function(input, output){
           dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
-          migraph::as_tidygraph() %>%
+          manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
                                                  TRUE ~ "black")) %>%
@@ -317,24 +317,24 @@ server <- function(input, output){
     coords1 <- reactive({
       ggdata1 <- trade_mem %>%
         dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
-        migraph::as_tidygraph() %>%
-        migraph::autographr()
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
       ggdata1 <- ggplot2::ggplot_build(ggdata1)$data[[1]]
     })
     coords2 <- reactive({
       ggdata2 <- trade_mem %>%
         dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
         dplyr::filter(stateID %in% input$country) %>%
-        migraph::as_tidygraph() %>%
-        migraph::autographr()
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
       ggdata2 <- ggplot2::ggplot_build(ggdata2)$data[[1]]
     })
     coords3 <- reactive({
       ggdata3 <- trade_mem %>%
         dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
         dplyr::filter(Type %in% input$type) %>%
-        migraph::as_tidygraph() %>%
-        migraph::autographr()
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
       ggdata3 <- ggplot2::ggplot_build(ggdata3)$data[[1]]
     })
     coords4 <- reactive({
@@ -342,26 +342,26 @@ server <- function(input, output){
         dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
         dplyr::filter(stateID %in% input$country) %>%
         dplyr::filter(Type %in% input$type) %>%
-        migraph::as_tidygraph() %>%
-        migraph::autographr()
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
       ggdata4 <- ggplot2::ggplot_build(ggdata4)$data[[1]]
     })
     # Render plots according to combination of inputs
     output$distPlot <- renderPlot({
         if(is.null(input$country) & is.null(input$type)){
-          migraph::autographr(filteredData(), node_color = "color", node_size = "size",
+          manynet::autographr(filteredData(), node_color = "color", node_size = "size",
                               node_shape = "shape", labels = TRUE)
         }
         else if(!is.null(input$country) & !is.null(input$type)){
-            migraph::autographr(filteredData4(), node_color = "color", node_size = "size",
+          manynet::autographr(filteredData4(), node_color = "color", node_size = "size",
                                 node_shape = "shape", labels = TRUE)
           }
         else if(is.null(input$type)){
-            migraph::autographr(filteredData2(), node_color = "color", node_size = "size",
+          manynet::autographr(filteredData2(), node_color = "color", node_size = "size",
                                 node_shape = "shape", labels = TRUE)
         }
         else if(is.null(input$country)){
-            migraph::autographr(filteredData3(), node_color = "color", node_size = "size",
+          manynet::autographr(filteredData3(), node_color = "color", node_size = "size",
                                 node_shape = "shape", labels = TRUE)
         }
     })
@@ -537,5 +537,3 @@ server <- function(input, output){
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
-           
