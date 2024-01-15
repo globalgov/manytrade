@@ -1,7 +1,7 @@
 # LABPTA Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -12,18 +12,18 @@ LABPTA <- read.csv("data-raw/agreements/LABPTA/LABPTA.csv")
 # formats of the 'LABPTA' object until the object created
 # below (in stage three) passes all the tests.
 LABPTA <- tibble::as_tibble(LABPTA) %>%
-  # standardise date formats across agreements database
+  # standardise date formats across agreements datacube
   dplyr::mutate(year = ifelse(year == "NA", "NA", paste0(year, "-01-01"))) %>%
   manydata::transmutate(labptaID = as.character(`Number`),
                         Title = manypkgs::standardise_titles(Name),
                         Signature = messydates::as_messydate(as.character(year)),
                         Force = messydates::as_messydate(as.character(year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(labptaID, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(labptaID, Title, Begin, Signature, Force) %>%
+  dplyr::arrange(Begin)
 
 # Add treatyID column
-LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Beg)
+LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -31,8 +31,8 @@ LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, labptaID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, labptaID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- LABPTA %>%
@@ -48,7 +48,7 @@ LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1,3,6)]))
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available within the many universe.
-manypkgs::export_data(LABPTA, database = "agreements", 
+manypkgs::export_data(LABPTA, datacube = "agreements", 
                       URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

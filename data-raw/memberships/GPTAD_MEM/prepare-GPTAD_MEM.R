@@ -1,7 +1,7 @@
 # GPTAD_MEM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 
 # Stage one: Collecting data 
 GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD_MEM.csv")
@@ -64,14 +64,14 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
                      Signature = messydates::as_messydate(`Date.of.Signature`),
                      Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(gptadID, stateID, StateName, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg) %>%
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(gptadID, stateID, StateName, Title, Begin, Signature, Force) %>%
+  dplyr::arrange(Begin) %>%
   dplyr::distinct()
 
 #Add treatyID column
 GPTAD_MEM$treatyID <- manypkgs::code_agreements(GPTAD_MEM, GPTAD_MEM$Title, 
-                                                GPTAD_MEM$Beg)
+                                                GPTAD_MEM$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::memberships)
@@ -79,7 +79,7 @@ GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID") %>%
   dplyr::distinct()
 
 # Re-order the columns
-GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Beg, 
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Begin, 
                              Signature, Force, StateName, gptadID)
 
 # Check for duplicates in manyID
@@ -94,7 +94,7 @@ GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Beg,
 # Stage three: Connecting data
 # Next run the following line to make GPTAD_MEM available 
 # within the many universe.
-manypkgs::export_data(GPTAD_MEM, database = "memberships",
+manypkgs::export_data(GPTAD_MEM, datacube = "memberships",
                      URL = "https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

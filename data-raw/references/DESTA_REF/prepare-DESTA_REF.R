@@ -1,7 +1,7 @@
 # DESTA_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 # Note that the original data (in excel format) has been converted and saved as
@@ -100,5 +100,5 @@ DESTA_REF <- dplyr::bind_rows(set1, set2) %>%
 
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, DESTA_REF)`.
-manypkgs::export_data(DESTA_REF, database = "references",
+manypkgs::export_data(DESTA_REF, datacube = "references",
                      URL = "https://www.designoftradeagreements.org/downloads/")

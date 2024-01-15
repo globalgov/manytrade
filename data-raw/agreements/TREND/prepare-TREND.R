@@ -1,7 +1,7 @@
 # TREND Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the many universe.
+# ready for the many package.
 library(manypkgs)
 
 # Stage one: Collecting data
@@ -19,17 +19,21 @@ TREND <- tibble::as_tibble(TREND) %>%
   tidyr::separate(trendID, into=c("trendID", "T1", "T2"), sep=" ") %>%
   #combining variables to obtain full name of treaty
   tidyr::unite(col="name", c("T1", "T2", "name", "year1"), na.rm=T) %>%
-  # standardise date formats across agreements database
+  # standardise date formats across agreements datacube
   dplyr::mutate(Year = ifelse(Year == "NA", "NA", paste0(Year, "-01-01"))) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(name),
                         Signature = messydates::as_messydate(as.character(Year)),
                         Force = messydates::as_messydate(as.character(Year))) %>%
-  dplyr::mutate(Beg = dplyr::coalesce(Signature, Force)) %>%
-  dplyr::select(trendID, Title, Beg, Signature, Force) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
+  dplyr::select(trendID, Title, Begin, Signature, Force) %>%
+  dplyr::arrange(Begin)
+
+# Remove accession observations
+TREND <- TREND %>%
+  dplyr::filter(!stringr::str_detect(Title, "Accession|Enlargement"))
 
 # Add treatyID column
-TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Beg)
+TREND$treatyID <- manypkgs::code_agreements(TREND, TREND$Title, TREND$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
@@ -37,8 +41,8 @@ TREND <- dplyr::left_join(TREND, manyID, by = "treatyID")
 
 # Re-order the columns
 TREND <- TREND %>%
-  dplyr::select(manyID, Title, Beg, Signature, Force, treatyID, trendID) %>% 
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, trendID) %>% 
+  dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
 # duplicates <- TREND %>%
@@ -54,7 +58,7 @@ TREND <- subset(TREND, subset = !duplicated(TREND[, c(1,3,6)]))
 
 # Stage three: Connecting data
 # Next run the following line to make TREND available within the many universe.
-manypkgs::export_data(TREND, database = "agreements", 
+manypkgs::export_data(TREND, datacube = "agreements", 
                       URL = "http://www.chaire-epi.ulaval.ca/en/trend")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
