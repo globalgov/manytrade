@@ -14,18 +14,19 @@ GPTAD <- read.csv("data-raw/agreements/GPTAD/GPTAD.csv")
 GPTAD <- tibble::as_tibble(GPTAD) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::filter(Type != "Customs Union Accession Agreement" ) %>%
-  #removing entries relating to membership as membership changes will be logged in memberships datacube
-  dplyr::mutate(DocType = dplyr::recode(`Type`, 
-                                        "Association Free Trade Agreement" = "P", 
-                                        "Bilateral Free Trade Agreement"= "B", 
+  #removing entries relating to membership as
+  # membership changes will be logged in memberships datacube
+  dplyr::mutate(DocType = dplyr::recode(`Type`,
+                                        "Association Free Trade Agreement" = "P",
+                                        "Bilateral Free Trade Agreement"= "B",
                                         "Customs Union Primary Agreement"="P", 
-                                        "Regional/Plurilateral Free Trade Agreement"="P", 
+                                        "Regional/Plurilateral Free Trade Agreement"="P",
                                         "Framework Agreement" = "M")) %>%
-  dplyr::mutate(AgreementType = dplyr::recode(`Type`, 
-                                              "Association Free Trade Agreement" = "A", 
-                                              "Bilateral Free Trade Agreement"= "A", 
-                                              "Customs Union Primary Agreement"="A", 
-                                              "Regional/Plurilateral Free Trade Agreement"="A", 
+  dplyr::mutate(AgreementType = dplyr::recode(`Type`,
+                                              "Association Free Trade Agreement" = "A",
+                                              "Bilateral Free Trade Agreement"= "A",
+                                              "Customs Union Primary Agreement"="A",
+                                              "Regional/Plurilateral Free Trade Agreement"="A",
                                               "Framework Agreement" = "A")) %>%
   dplyr::mutate(GeogArea = dplyr::recode(`Type`,
                                          "Association Free Trade Agreement" = "NA",
@@ -34,9 +35,9 @@ GPTAD <- tibble::as_tibble(GPTAD) %>%
                                          "Regional/Plurilateral Free Trade Agreement" = "R",
                                          "Framework Agreement" = "NA")) %>%
   dplyr::mutate(GeogArea = ifelse(GeogArea == "NA", NA, GeogArea)) %>%
-  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
+  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a",
                                              NA, `Date.of.Signature`)) %>%
-  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
+  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A",
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
                      Signature = messydates::as_messydate(`Date.of.Signature`),
@@ -74,7 +75,7 @@ GPTAD <- subset(GPTAD, subset = !duplicated(GPTAD[, c(1,3,4,9)]))
 # Stage three: Connecting data
 # Next run the following line to make GPTAD available
 # within the many universe.
-manypkgs::export_data(GPTAD, datacube = "agreements", 
+manypkgs::export_data(GPTAD, datacube = "agreements",
                       URL="https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

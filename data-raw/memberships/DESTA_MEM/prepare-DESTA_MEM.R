@@ -19,7 +19,8 @@ parties <- tibble::as_tibble(DESTA_MEM) %>%
   dplyr::mutate(base_treaty = as.character(base_treaty))
 basetitles <- DESTA_MEM %>%
   dplyr::select(number, name, entry_type, year) %>%
-  dplyr::filter(entry_type == "base_treaty" | entry_type == "protocol or amendment") %>%
+  dplyr::filter(entry_type == "base_treaty" |
+                  entry_type == "protocol or amendment") %>%
   dplyr::distinct() %>%
   dplyr::rename(Title2 = name) %>%
   manydata::transmutate(Sign1 = messydates::as_messydate(as.character(year))) %>%
@@ -30,14 +31,17 @@ DESTA_MEM <- tibble::as_tibble(DESTA_MEM) %>%
   dplyr::mutate(base_treaty = as.character(base_treaty)) %>%
   dplyr::left_join(basetitles, by = c("base_treaty" = "number")) %>%
   dplyr::left_join(parties, by = c("base_treaty", "year")) %>%
-  # rename agreement title to base treaty title for accession, withdrawal, and consolidated treaties
+  # rename agreement title to base treaty title for accession, withdrawal,
+  # and consolidated treaties
   dplyr::mutate(Title = ifelse(entry_type == "accession" |
                                  entry_type == "withdrawal",
                                Title2,
                                name)) %>%
-  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member", values_to = "stateID", 
+  tidyr::pivot_longer(c("c1":"c91"), names_to = "Member",
+                      values_to = "stateID",
                       values_drop_na = TRUE) %>%
-  #arrange columns containing countries into one column, with each stateID in rows corresponding to the treaty it is party to
+  # arrange columns containing countries into one column,
+  # with each stateID in rows corresponding to the treaty it is party to
   manydata::transmutate(destaID = as.character(`base_treaty`),
                         Signature = messydates::as_messydate(as.character(year)),
                         Force = messydates::as_messydate(as.character(entryforceyear))) %>%
@@ -49,11 +53,12 @@ DESTA_MEM <- tibble::as_tibble(DESTA_MEM) %>%
   dplyr::select(destaID, stateID, Title, Begin, Signature, Force) %>%
   dplyr::arrange(Begin)
 
-DESTA_MEM$StateName <- countrycode::countrycode(DESTA_MEM$stateID, 
-                                                  origin = "iso3n",
+DESTA_MEM$StateName <- countrycode::countrycode(DESTA_MEM$stateID,
+                                                origin = "iso3n",
                                                 destination = "country.name")
 DESTA_MEM <- DESTA_MEM %>%
-  dplyr::mutate(StateName = ifelse(stateID == 530, "Netherlands Antilles", StateName)) %>%
+  dplyr::mutate(StateName = ifelse(stateID == 530, "Netherlands Antilles",
+                                   StateName)) %>%
   dplyr::mutate(StateName = ifelse(stateID == 900, "Kosovo", StateName))
 
 #Change iso numeric to iso character code
@@ -71,14 +76,14 @@ DESTA_MEM <- dplyr::left_join(DESTA_MEM, manyID, by = "treatyID") %>%
   dplyr::distinct()
 
 # Re-order the columns
-DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, stateID, Title, Begin, 
+DESTA_MEM <- dplyr::relocate(DESTA_MEM, manyID, stateID, Title, Begin,
                              Signature, Force, StateName, destaID)
 DESTA_MEM <- DESTA_MEM %>% 
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
          Signature = messydates::as_messydate(Signature),
-         Force = messydates::as_messydate(Force)) %>% 
+         Force = messydates::as_messydate(Force)) %>%
   dplyr::distinct(.keep_all = TRUE)
 
 # Check for duplicates in manyID
@@ -94,7 +99,7 @@ DESTA_MEM <- DESTA_MEM %>%
 # Next run the following line to make DESTA_MEM available
 # within the many universe.
 manypkgs::export_data(DESTA_MEM, datacube = "memberships",
-                     URL = "https://www.designoftradeagreements.org/downloads/")
+                      URL = "https://www.designoftradeagreements.org/downloads/")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

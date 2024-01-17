@@ -17,7 +17,9 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 \source{
 \itemize{
 \item{DESTA_REF: }{
-A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+A. Dür, L. Baccini, and M. Elsig.
+“The Design of International Trade Agreements: Introducing a NewDatabase”.
+In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
 }
 }
 \usage{

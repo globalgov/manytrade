@@ -27,11 +27,11 @@ LABPTA$treatyID <- manypkgs::code_agreements(LABPTA, LABPTA$Title, LABPTA$Begin)
 
 # Add manyID column
 manyID <- manypkgs::condense_agreements(manytrade::agreements)
-LABPTA<- dplyr::left_join(LABPTA, manyID, by = "treatyID")
+LABPTA <- dplyr::left_join(LABPTA, manyID, by = "treatyID")
 
 # Re-order the columns
 LABPTA <- LABPTA %>%
-  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, labptaID) %>% 
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID, labptaID) %>%
   dplyr::arrange(Begin)
 
 # Check for duplicates in manyID
@@ -40,7 +40,7 @@ LABPTA <- LABPTA %>%
 #   dplyr::relocate(manyID, duplicates)
 
 # delete rows that only have diff title but same Beg and other variables
-LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1,3,6)]))
+LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1, 3, 6)]))
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
@@ -48,7 +48,7 @@ LABPTA <- subset(LABPTA, subset = !duplicated(LABPTA[, c(1,3,6)]))
 
 # Stage three: Connecting data
 # Next run the following line to make LABPTA available within the many universe.
-manypkgs::export_data(LABPTA, datacube = "agreements", 
+manypkgs::export_data(LABPTA, datacube = "agreements",
                       URL = "https://doi.org/10.1007/s11558-018-9301-z")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

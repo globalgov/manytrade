@@ -26,7 +26,7 @@ HUGGO <- dplyr::bind_rows(HUGGO_reconciled, HUGGO_additional)
 # formats of the 'HUGGO' object until the object created
 # below (in stage three) passes all the tests.
 
-# Add updated 'Begin' column in HUGGO_verified using coalesce()
+# Add updated 'Begin' column
 HUGGO <- HUGGO %>%
   dplyr::mutate(Begin = dplyr::coalesce(Signature, Force))
 

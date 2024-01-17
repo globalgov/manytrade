@@ -3,7 +3,7 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for the many package.
 
-# Stage one: Collecting data 
+# Stage one: Collecting data
 GPTAD_MEM <- read.csv("data-raw/memberships/GPTAD_MEM/GPTAD_MEM.csv")
 
 # Stage two: Correcting data
@@ -15,35 +15,61 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(gptadID = as.character(dplyr::row_number())) %>%
   dplyr::mutate(StateName = gsub("\\\\r\\\\n", "", Membership)) %>%
   #remove \r\n line break entries
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "China (Taiwan), Nicaragua", "Taiwan, Nicaragua")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "China (Taiwan), Nicaragua",
+                                                 "Taiwan, Nicaragua")) %>%
   #standardize delimitation of values by commas
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "St. Kitts-Nevis-Anguilla", "Saint Kitts and Nevis, Anguilla")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Singapore - Korea", "Singapore, Korea")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "St. Kitts-Nevis-Anguilla",
+                                                 "Saint Kitts and Nevis, Anguilla")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Singapore - Korea",
+                                                 "Singapore, Korea")) %>%
   dplyr::mutate(StateName = gsub("[()]", ",", StateName)) %>%
   dplyr::mutate(StateName = gsub("[;]", ",", StateName)) %>%
   dplyr::mutate(StateName = gsub("[.]", "", StateName)) %>%
   #add comma between country names
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Thailand Vietnam", "Thailand, Vietnam")) %>% 
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Finland France", "Finland, France")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Paraguay and Uruguay", "Paraguay, Uruguay")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Russian Federation and Ukraine", "Russian Federation, Ukraine")) %>% 
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Slovak Republic and Slovenia", "Slovak Republic, Slovenia")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Spain Sweden", "Spain, Sweden")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Ukraine and Uzbekistan", "Ukraine, Uzbekistan")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Uzbekistan and Ukraine", "Ukraine, Uzbekistan")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Thailand Vietnam",
+                                                 "Thailand, Vietnam")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Finland France",
+                                                 "Finland, France")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Paraguay and Uruguay",
+                                                 "Paraguay, Uruguay")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Russian Federation and Ukraine",
+                                                 "Russian Federation, Ukraine")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Slovak Republic and Slovenia",
+                                                 "Slovak Republic, Slovenia")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Spain Sweden",
+                                                 "Spain, Sweden")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Ukraine and Uzbekistan",
+                                                 "Ukraine, Uzbekistan")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Uzbekistan and Ukraine",
+                                                 "Ukraine, Uzbekistan")) %>%
   #remove 'and' between country names
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Suriname and Trinidad and Tobago", "Suriname, Trinidad and Tobago")) %>%
-  dplyr::mutate(StateName = stringr::str_replace(StateName, "Norway and Switzerland", "Norway, Switzerland")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Suriname and Trinidad and Tobago",
+                                                 "Suriname, Trinidad and Tobago")) %>%
+  dplyr::mutate(StateName = stringr::str_replace(StateName,
+                                                 "Norway and Switzerland",
+                                                 "Norway, Switzerland")) %>%
   tidyr::separate_rows(StateName, sep=",") %>%
   #separate column into rows by each country
   dplyr::mutate(StateName = gsub("^and | and$", "", StateName)) %>%
   dplyr::mutate(StateName = ifelse(StateName == "", NA, StateName)) %>%
-  #standardize empty rows and 
+  #standardize empty rows and rows with only whitespace to NA
   dplyr::mutate(StateName = ifelse(StateName == " ", NA, StateName)) %>%
-  #rows with only whitespace to NA
   dplyr::filter(StateName != "NA") %>% #remove missing rows
-  dplyr::mutate(StateName = trimws(StateName, which = c("both", "left", "right"), 
-                                 whitespace = "[ \t\r\n]")) %>%
+  dplyr::mutate(StateName = trimws(StateName,
+                                   which = c("both", "left", "right"),
+                                   whitespace = "[ \t\r\n]")) %>%
   #remove whitespace
   dplyr::mutate(StateName = ifelse(StateName == "", NA, StateName)) %>%
   dplyr::filter(StateName != "NA",
@@ -52,18 +78,19 @@ GPTAD_MEM <- tibble::as_tibble(GPTAD_MEM) %>%
   dplyr::mutate(StateName = manypkgs::code_states(StateName, activity = FALSE,
                                                   replace = "names")) %>%
   #translate French country names and correct spelling
-  dplyr::mutate(StateName = dplyr::recode(StateName, "EC" = "European Community")) %>%
+  dplyr::mutate(StateName = dplyr::recode(StateName,
+                                          "EC" = "European Community")) %>%
   #not included in regex list because of overlaps with other country names
   dplyr::mutate(stateID = manypkgs::code_states(StateName, activity = FALSE,
                                                 replace = "ID")) %>%
   #add iso code for country names
-  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a", 
+  dplyr::mutate(`Date.of.Signature` = ifelse(`Date.of.Signature`=="n/a",
                                              NA, `Date.of.Signature`)) %>%
-  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A", 
+  dplyr::mutate(`Date.of.Entry.into.Force` = ifelse(`Date.of.Entry.into.Force`=="N/A",
                                                     NA, `Date.of.Entry.into.Force`)) %>%
   manydata::transmutate(Title = manypkgs::standardise_titles(`Common.Name`),
-                     Signature = messydates::as_messydate(`Date.of.Signature`),
-                     Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
+                        Signature = messydates::as_messydate(`Date.of.Signature`),
+                        Force = messydates::as_messydate(`Date.of.Entry.into.Force`)) %>%
   dplyr::mutate(Begin = dplyr::coalesce(Signature, Force)) %>%
   dplyr::select(gptadID, stateID, StateName, Title, Begin, Signature, Force) %>%
   dplyr::arrange(Begin) %>%
@@ -79,7 +106,7 @@ GPTAD_MEM <- dplyr::left_join(GPTAD_MEM, manyID, by = "treatyID") %>%
   dplyr::distinct()
 
 # Re-order the columns
-GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Begin, 
+GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Begin,
                              Signature, Force, StateName, gptadID)
 
 # Check for duplicates in manyID
@@ -92,10 +119,10 @@ GPTAD_MEM <- dplyr::relocate(GPTAD_MEM, manyID, stateID, Title, Begin,
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
-# Next run the following line to make GPTAD_MEM available 
+# Next run the following line to make GPTAD_MEM available
 # within the many universe.
 manypkgs::export_data(GPTAD_MEM, datacube = "memberships",
-                     URL = "https://wits.worldbank.org/gptad/library.aspx")
+                      URL = "https://wits.worldbank.org/gptad/library.aspx")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

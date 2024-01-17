@@ -11,7 +11,9 @@
 #' @source
 #' \itemize{
 #' \item{DESTA_REF: }{
-#' A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.}
+#' A. Dür, L. Baccini, and M. Elsig.
+#' “The Design of International Trade Agreements: Introducing a NewDatabase”.
+#' In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.}
 #' }
 #' @section URL:
 #' \itemize{

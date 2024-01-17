@@ -8,7 +8,8 @@
 The agreements datacube is a list that contains the
 following 7 datasets: DESTA, GPTAD, LABPTA, TOTA, TREND, HUGGO, AIGGO.
 For more information and references to each of the datasets used,
-please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
+please use the \code{manydata::call_sources()} and
+\code{manydata::compare_dimensions()} functions.
 \describe{
 \item{DESTA: }{A dataset with 959 observations and the following
 10 variables: manyID, treatyID, Title, Begin, AgreementType, DocType,
@@ -33,19 +34,30 @@ accessionP.}
 \source{
 \itemize{
 \item{DESTA: }{
-A. Dür, L. Baccini, and M. Elsig. “The Design of International Trade Agreements: Introducing a NewDatabase”. In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+A. Dür, L. Baccini, and M. Elsig.
+“The Design of International Trade Agreements: Introducing a NewDatabase”.
+In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
 \item{GPTAD: }{
-W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}. Online database. publisher: WorldBank Group. 2014. \url{https://wits.worldbank.org/gptad/library.aspx}.}
+W. B. Group. \emph{Global Preferential Trade Agreement Database (GPTAD)}.
+Online database. publisher: WorldBank Group. 2014.
+\url{https://wits.worldbank.org/gptad/library.aspx}.}
 \item{LABPTA: }{
-D. Raess, A. Dür, and D. Sari. “Protecting labor rights in preferential trade agreements: The role oftrade unions, left governments, and skilled labor”. In: \emph{The Review of International Organizations} 2.13(2018), pp. 143-162. DOI: 10.1007/s11558-018-9301-z.}
+D. Raess, A. Dür, and D. Sari.
+“Protecting labor rights in preferential trade agreements: The role of trade unions, left governments, and skilled labor”.
+In: \emph{The Review of International Organizations} 2.13(2018), pp. 143-162.
+DOI: 10.1007/s11558-018-9301-z.}
 \item{TOTA: }{
-W. Alschner, J. Seiermann, and D. Skougarevskiy. \emph{Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape}. 2017. \url{https://github.com/mappingtreaties/tota.git}.}
+W. Alschner, J. Seiermann, and D. Skougarevskiy.
+\emph{Text-as-data analysis of preferential tradeagreements: Mapping the PTA landscape}.
+2017. \url{https://github.com/mappingtreaties/tota.git}.}
 \item{TREND: }{
-J. Morin, A. Dür, and L. Lechner. “Mapping the trade and environment nexus: Insights from a newdataset”. In: \emph{Global Environmental Politics} 18.1 (2018), pp. 122-139.}
+J. Morin, A. Dür, and L. Lechner.
+“Mapping the trade and environment nexus: Insights from a newdataset”.
+In: \emph{Global Environmental Politics} 18.1 (2018), pp. 122-139.}
 \item{HUGGO: }{
-NA}
+J. Hollway. Trade agreements for manydata. 2021.}
 \item{AIGGO: }{
-NA}
+J. Hollway. Trade agreements for manydata. 2021.}
 }
 }
 \usage{

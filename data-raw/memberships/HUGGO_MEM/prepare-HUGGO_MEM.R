@@ -24,7 +24,7 @@ HUGGO_MEM <- HUGGO_MEM %>%
                                            replace = "ID"),
                      stateID),
     across(everything(),
-                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
+           ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::distinct() %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
@@ -38,7 +38,7 @@ HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::arrange(Begin)
 
 # Add manyIDs and treatyIDs for newly added entries
-HUGGO_MEM$treatyID <- manypkgs::code_agreements(HUGGO_MEM, HUGGO_MEM$Title, 
+HUGGO_MEM$treatyID <- manypkgs::code_agreements(HUGGO_MEM, HUGGO_MEM$Title,
                                                 HUGGO_MEM$Begin)
 
 manyID <- manypkgs::condense_agreements(manytrade::memberships)

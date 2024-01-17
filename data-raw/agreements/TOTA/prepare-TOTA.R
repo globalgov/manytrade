@@ -53,7 +53,7 @@ TOTA <- dplyr::left_join(TOTA, manyID, by = "treatyID")
 
 # Re-order the columns
 TOTA <- TOTA %>%
-  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID) %>% 
+  dplyr::select(manyID, Title, Begin, Signature, Force, treatyID) %>%
   dplyr::arrange(Begin)
 
 # Add totaID column
@@ -81,4 +81,4 @@ TOTA$totaID <- rownames(TOTA)
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("agreements", "TOTA")`.
 manypkgs::export_data(TOTA, datacube = "agreements",
-                     URL = "https://github.com/mappingtreaties/tota.git")
+                      URL = "https://github.com/mappingtreaties/tota.git")

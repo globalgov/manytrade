@@ -3,7 +3,8 @@
 #' @format The memberships datacube is a list that contains the
 #' following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 #' For more information and references to each of the datasets used,
-#' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
+#' please use the `manydata::call_sources()` and
+#' `manydata::compare_dimensions()` functions.
 #'\describe{
 #' \item{GPTAD_MEM: }{A dataset with 2192 observations and the following
 #' 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
@@ -19,11 +20,15 @@
 #' @source
 #' \itemize{
 #' \item{GPTAD_MEM: }{
-#' W. B. Group. _Global Preferential Trade Agreement Database (GPTAD)_.https://wits.worldbank.org/gptad/library.aspx. 2013.}
+#' W. B. Group.
+#' _Global Preferential Trade Agreement Database (GPTAD)_.
+#' <https://wits.worldbank.org/gptad/library.aspx>. 2013.}
 #' \item{DESTA_MEM: }{
-#' A. Dür, L. Baccini, and M. Elsig. _The Design of International Trade Agreements: Introducing a NewDatabase_. Journal The Review of International Organizations, volume 9, number 3, pages 353-375, publisherSpringer. 2013.}
+#' A. Dür, L. Baccini, and M. Elsig.
+#' "The Design of International Trade Agreements: Introducing a NewDatabase".
+#' In: _The Review of International Organizations_ 9.3 (2014), pp. 353-375.}
 #' \item{HUGGO_MEM: }{
-#' NA}
+#' J. Hollway. Trade agreements for manydata. 2021.}
 #' }
 #' @section URL:
 #' \itemize{
@@ -33,7 +38,7 @@
 #' \item{DESTA_MEM: }{
 #' \url{https://www.designoftradeagreements.org/downloads/}
 #' }
-#' \item{HUGGO_MEM: }{Hand-coded data by the GGO team}
+#' \item{HUGGO_MEM: }{Hand-coded data by the GGO team.}
 #' }
 #' @section Mapping:
 #' \itemize{

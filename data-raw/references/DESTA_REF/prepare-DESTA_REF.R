@@ -52,7 +52,9 @@ set1 <- dplyr::left_join(subsqtreaties, basetreaties, by = "destaID") %>%
   dplyr::rename(treatyID2 = treatyID1.y) %>%
   dplyr::rename(RefType = RefType.x)
 
-treatyID2_NA <- set1 %>% # fill in treatyID2 NAs where treatyID1 agreements cite subsequent agreements instead of the original treaty
+# fill in treatyID2 NAs where treatyID1 agreements cite subsequent agreements
+# instead of the original treaty
+treatyID2_NA <- set1 %>%
   dplyr::filter(is.na(treatyID2)) %>%
   dplyr::select(-treatyID2) %>%
   dplyr::rename(number = destaID) %>%
@@ -101,4 +103,4 @@ DESTA_REF <- dplyr::bind_rows(set1, set2) %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, DESTA_REF)`.
 manypkgs::export_data(DESTA_REF, datacube = "references",
-                     URL = "https://www.designoftradeagreements.org/downloads/")
+                      URL = "https://www.designoftradeagreements.org/downloads/")
