@@ -1,9 +1,9 @@
 # AIGGO Preparation Script
 
 # The AIGGO dataset lists the trade agreements
-# listed in the other five datasets in the manytrade::agreements database
+# listed in the other five datasets in the manytrade::agreements datacube
 # (DESTA, GPTAD, TOTA, LABPTA, TREND) and adds additional information,
-# such as accession conditions and procedures for joining agreements, 
+# such as accession conditions and procedures for joining agreements,
 # and increases the precision of Signature dates.
 # This information is coded from the texts of the trade agreements,
 # which are stored in the HUGGO dataset.
@@ -13,7 +13,7 @@
 
 # Stage one: Assembling data
 
-# consolidated version of agreements database
+# consolidated version of agreements datacube
 AIGGO <- manytrade::agreements$HUGGO
 
 # Stage two: Adding membership conditions and procedures columns
@@ -26,7 +26,7 @@ AIGGO$accessionP <- manypkgs::code_accession_terms(AIGGO$TreatyText,
 AIGGO$accessionP <- gsub("NA", NA, AIGGO$accessionP)
 
 AIGGO <- AIGGO %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, Force, 
+  dplyr::relocate(manyID, Title, Beg, Signature, Force,
                   accessionC, accessionP) %>%
   dplyr::arrange(Beg)
 
@@ -46,11 +46,11 @@ AIGGO$dates <- lapply(AIGGO$TreatyText, function(s){
 })
 
 AIGGO <- AIGGO %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, dates) %>%
+  dplyr::relocate(manyID, Title, Begin, Signature, dates) %>%
   dplyr::mutate(Sign.rev = ifelse(grepl("[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}",
-                                         dates, perl = T), dates, NA)) %>%
+                                        dates, perl = TRUE), dates, NA)) %>%
   dplyr::mutate(Sign.rev = unlist(Sign.rev)) %>%
-  dplyr::mutate(Signature = ifelse(!is.na(Sign.rev) & messydates::year(Signature) == messydates::year(Sign.rev), 
+  dplyr::mutate(Signature = ifelse(!is.na(Sign.rev) & messydates::year(Signature) == messydates::year(Sign.rev),
                                    Sign.rev, Signature)) %>%
   dplyr::mutate(Signature = messydates::as_messydate(Signature)) %>%
   dplyr::select(-c(dates, Sign.rev, TreatyText, url,
@@ -58,10 +58,12 @@ AIGGO <- AIGGO %>%
 
 # Remove duplicates and convert NAs
 AIGGO <- AIGGO %>%
-  mutate(across(everything(), ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
+  mutate(
+    across(everything(), ~stringr::str_replace_all(.,
+                                                   "^NA$", NA_character_))) %>%
   mutate(Signature = messydates::as_messydate(Signature),
          Force = messydates::as_messydate(Force),
-         Beg = messydates::as_messydate(Beg)) %>% 
+         Begin = messydates::as_messydate(Begin)) %>%
   dplyr::distinct(.keep_all = TRUE)
 
 
@@ -86,7 +88,7 @@ AIGGO <- AIGGO %>%
 # that you are including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("agreements", "AIGGO")`.
-manypkgs::export_data(AIGGO, database = "agreements", 
+manypkgs::export_data(AIGGO, datacube = "agreements",
                       URL = c("https://www.designoftradeagreements.org/downloads/",
                               "https://wits.worldbank.org/gptad/library.aspx",
                               "https://doi.org/10.1007/s11558-018-9301-z",

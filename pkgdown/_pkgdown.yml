@@ -51,7 +51,7 @@ navbar:
           href: https://globalgov.github.io/manyenviron/
 reference:
    - title: "Data"
-     desc: "manytrade contains the following databases"
+     desc: "manytrade contains the following datacubes"
      contents:
      - agreements
      - memberships

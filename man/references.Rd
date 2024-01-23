@@ -3,9 +3,9 @@
 \docType{data}
 \name{references}
 \alias{references}
-\title{references database documentation}
+\title{references datacube documentation}
 \format{
-The references database is a list that contains the
+The references datacube is a list that contains the
 following 1 datasets: DESTA_REF.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
@@ -14,11 +14,19 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 3 variables: treatyID1, treatyID2, RefType.}
 }
 }
+\source{
+\itemize{
+\item{DESTA_REF: }{
+A. Dür, L. Baccini, and M. Elsig.
+“The Design of International Trade Agreements: Introducing a NewDatabase”.
+In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+}
+}
 \usage{
 references
 }
 \description{
-references database documentation
+references datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $DESTA_REF
@@ -31,4 +39,27 @@ references database documentation
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{DESTA_REF: }{
+\url{https://www.designoftradeagreements.org/downloads/}
+}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{DESTA_REF: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   entry_type \tab RefType \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}

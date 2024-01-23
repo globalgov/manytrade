@@ -16,7 +16,7 @@ test_that("datasets have the required variables", {
   pointblank::expect_col_exists(agreements[["TOTA"]],
                                 pointblank::vars(Title))
   pointblank::expect_col_exists(agreements[["TOTA"]],
-                                pointblank::vars(Beg))
+                                pointblank::vars(Begin))
   expect_true(any(grepl("ID$", colnames(agreements[["TOTA"]]))))
   pointblank::expect_col_exists(agreements[["TOTA"]],
                                 pointblank::vars(Signature))
@@ -31,16 +31,16 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(agreements[["TOTA"]]$Beg), "mdate")
-  expect_false(any(grepl("/", agreements[["TOTA"]]$Beg)))
+  expect_equal(class(agreements[["TOTA"]]$Begin), "mdate")
+  expect_false(any(grepl("/", agreements[["TOTA"]]$Begin)))
   expect_false(any(grepl("^[:alpha:]$",
-                         agreements[["TOTA"]]$Beg)))
+                         agreements[["TOTA"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{2}$",
-                         agreements[["TOTA"]]$Beg)))
+                         agreements[["TOTA"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{3}$",
-                         agreements[["TOTA"]]$Beg)))
+                         agreements[["TOTA"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{1}$",
-                         agreements[["TOTA"]]$Beg)))
+                         agreements[["TOTA"]]$Begin)))
 })
 
 test_that("Column `Signature` has standardised dates", {
@@ -56,12 +56,12 @@ test_that("Column `Signature` has standardised dates", {
                          agreements[["TOTA"]]$Signature)))
 })
 
-# Dataset should be ordered according to the "Beg" column
+# Dataset should be ordered according to the "Begin" column
 test_that("dataset is arranged by date variable", {
-  expect_true(agreements[["TOTA"]]$Beg[1] <
-                agreements[["TOTA"]]$Beg[10])
-  expect_true(agreements[["TOTA"]]$Beg[50] <
-                agreements[["TOTA"]]$Beg[75])
-  expect_true(agreements[["TOTA"]]$Beg[100] <
-                agreements[["TOTA"]]$Beg[120])
+  expect_true(agreements[["TOTA"]]$Begin[1] <
+                agreements[["TOTA"]]$Begin[10])
+  expect_true(agreements[["TOTA"]]$Begin[50] <
+                agreements[["TOTA"]]$Begin[75])
+  expect_true(agreements[["TOTA"]]$Begin[100] <
+                agreements[["TOTA"]]$Begin[120])
 })

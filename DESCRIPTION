@@ -1,7 +1,7 @@
 Package: manytrade
 Title: Trade Agreements for manydata
-Version: 0.3.0
-Date: 2023-03-22
+Version: 0.4.0
+Date: 2024-01-23
 Authors@R: 
      c(person(given = "James",
              family = "Hollway",
@@ -42,5 +42,7 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
+URL: https://globalgov.github.io/manytrade/, https://github.com/globalgov/manytrade
+BugReports: https://github.com/globalgov/manytrade/issues
 Config/testthat/edition: 3

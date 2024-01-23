@@ -3,33 +3,60 @@
 \docType{data}
 \name{memberships}
 \alias{memberships}
-\title{memberships database documentation}
+\title{memberships datacube documentation}
 \format{
-The memberships database is a list that contains the
+The memberships datacube is a list that contains the
 following 3 datasets: GPTAD_MEM, DESTA_MEM, HUGGO_MEM.
 For more information and references to each of the datasets used,
-please use the \code{data_source()} and \code{data_contrast()} functions.
+please use the \code{manydata::call_sources()} and
+\code{manydata::compare_dimensions()} functions.
+\describe{
+\item{GPTAD_MEM: }{A dataset with 2192 observations and the following
+9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
+StateName, gptadID.}
+\item{DESTA_MEM: }{A dataset with 7466 observations and the following
+9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
+StateName, destaID.}
+\item{HUGGO_MEM: }{A dataset with 5608 observations and the following
+20 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force, End,
+StateName, gptadID, destaID, StateSignature, StateRatification, StateForce,
+StateEnd, Rat=Notif, Coder, Source, Succession, Accession.}
+}
+}
+\source{
+\itemize{
+\item{GPTAD_MEM: }{
+W. B. Group.
+\emph{Global Preferential Trade Agreement Database (GPTAD)}.
+\url{https://wits.worldbank.org/gptad/library.aspx}. 2013.}
+\item{DESTA_MEM: }{
+A. Dür, L. Baccini, and M. Elsig.
+"The Design of International Trade Agreements: Introducing a NewDatabase".
+In: \emph{The Review of International Organizations} 9.3 (2014), pp. 353-375.}
+\item{HUGGO_MEM: }{
+J. Hollway. Trade agreements for manydata. 2021.}
+}
 }
 \usage{
 memberships
 }
 \description{
-memberships database documentation
+memberships datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $GPTAD_MEM
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            2198|     0     |       0       |
-#> |    stateID    |  character  |            2198|    130    |     5.91      |
-#> |     Title     |  character  |            2198|     0     |       0       |
-#> |      Beg      |    mdate    |            2198|    99     |      4.5      |
-#> |   Signature   |    mdate    |            2198|    328    |     14.92     |
-#> |     Force     |    mdate    |            2198|    283    |     12.88     |
-#> |   StateName   |  character  |            2198|     0     |       0       |
-#> |    gptadID    |  character  |            2198|     0     |       0       |
-#> |   treatyID    |  character  |            2198|     0     |       0       |
+#> |    manyID     |  character  |            2192|     0     |       0       |
+#> |   treatyID    |  character  |            2192|     0     |       0       |
+#> |     Title     |  character  |            2192|     0     |       0       |
+#> |     Begin     |    mdate    |            2192|    99     |     4.52      |
+#> |    stateID    |  character  |            2192|    55     |     2.51      |
+#> |   Signature   |    mdate    |            2192|    310    |     14.14     |
+#> |     Force     |    mdate    |            2192|    285    |      13       |
+#> |   StateName   |  character  |            2192|    36     |     1.64      |
+#> |    gptadID    |  character  |            2192|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -37,33 +64,85 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            7492|     0     |       0       |
-#> |    stateID    |  character  |            7492|    10     |     0.13      |
-#> |     Title     |  character  |            7492|     0     |       0       |
-#> |      Beg      |    mdate    |            7492|    630    |     8.41      |
-#> |   Signature   |    mdate    |            7492|    630    |     8.41      |
-#> |     Force     |    mdate    |            7492|   2886    |     38.52     |
-#> |   StateName   |  character  |            7492|     0     |       0       |
-#> |    destaID    |  character  |            7492|     0     |       0       |
-#> |   treatyID    |  character  |            7492|     0     |       0       |
+#> |    manyID     |  character  |            7466|     0     |       0       |
+#> |   treatyID    |  character  |            7466|     0     |       0       |
+#> |     Title     |  character  |            7466|     0     |       0       |
+#> |     Begin     |    mdate    |            7466|    630    |     8.44      |
+#> |    stateID    |  character  |            7466|    11     |     0.15      |
+#> |   Signature   |    mdate    |            7466|    630    |     8.44      |
+#> |     Force     |    mdate    |            7466|   2864    |     38.36     |
+#> |   StateName   |  character  |            7466|     0     |       0       |
+#> |    destaID    |  character  |            7466|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
 #> $HUGGO_MEM
-#> ----------------------------------------------------------------------------
-#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |            8973|     0     |       0       |
-#> |    stateID    |  character  |            8973|     0     |       0       |
-#> |     Title     |  character  |            8973|     0     |       0       |
-#> |      Beg      |    mdate    |            8973|    720    |     8.02      |
-#> |   Signature   |    mdate    |            8973|    932    |     10.39     |
-#> |     Force     |    mdate    |            8973|   3121    |     34.78     |
-#> |   StateName   |  character  |            8973|     0     |       0       |
-#> |   treatyID    |  character  |            8973|     0     |       0       |
-#> |    gptadID    |  character  |            8973|   6905    |     76.95     |
-#> |    destaID    |  character  |            8973|   1491    |     16.62     |
-#> ----------------------------------------------------------------------------
+#> ------------------------------------------------------------------------------
+#> |   Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ------------------------------------------------------------------------------
+#> |     manyID      |  character  |            5608|     1     |     0.02      |
+#> |    treatyID     |  character  |            5608|     1     |     0.02      |
+#> |      Title      |  character  |            5608|     1     |     0.02      |
+#> |      Begin      |    mdate    |            5608|     1     |     0.02      |
+#> |     stateID     |  character  |            5608|     2     |     0.04      |
+#> |    Signature    |    mdate    |            5608|     3     |     0.05      |
+#> |      Force      |    mdate    |            5608|    367    |     6.54      |
+#> |       End       |    mdate    |            5608|    556    |     9.91      |
+#> |    StateName    |  character  |            5608|     1     |     0.02      |
+#> |     gptadID     |  character  |            5608|   3436    |     61.27     |
+#> |     destaID     |  character  |            5608|    553    |     9.86      |
+#> | StateSignature  |    mdate    |            5608|    903    |     16.1      |
+#> |StateRatification|    mdate    |            5608|   4893    |     87.25     |
+#> |   StateForce    |    mdate    |            5608|   1125    |     20.06     |
+#> |    StateEnd     |    mdate    |            5608|    630    |     11.23     |
+#> |    Rat=Notif    |  character  |            5608|   5536    |     98.72     |
+#> |      Coder      |  character  |            5608|    16     |     0.29      |
+#> |     Source      |  character  |            5608|   4886    |     87.13     |
+#> |   Succession    |  character  |            5608|     1     |     0.02      |
+#> |    Accession    |    mdate    |            5608|   4679    |     83.43     |
+#> ------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{GPTAD_MEM: }{
+\url{https://wits.worldbank.org/gptad/library.aspx}
+}
+\item{DESTA_MEM: }{
+\url{https://www.designoftradeagreements.org/downloads/}
+}
+\item{HUGGO_MEM: }{Hand-coded data by the GGO team.}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{GPTAD_MEM: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Membership \tab StateName \cr
+   Common.Name \tab Title \cr
+   Date.of.Signature \tab Signature \cr
+   Date.of.Entry.into.Force \tab Force \cr
+}
+
+
+}
+\item{DESTA_MEM: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   base_treaty \tab destaID \cr
+   name \tab Title \cr
+   year \tab Signature \cr
+   entryforceyear \tab Force \cr
+   c1:c91 \tab stateID \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}

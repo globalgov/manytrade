@@ -1,15 +1,32 @@
 library(dplyr)
+library(ggplot2)
 library(shiny)
 library(shinydashboard)
+library(tidygraph)
 
 # Prepare data
-trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
-    dplyr::select(manyID, CountryID, Title, Beg)
-trade_mem2 <- manytrade::memberships$DESTA_MEM %>%
-    dplyr::select(manyID, CountryID, Title, Beg)
-trade_mem <- dplyr::full_join(trade_mem1, trade_mem2) %>%
-    unique() %>% dplyr::arrange(Beg) %>%
-    dplyr::filter(Beg != "NA")
+trade_mem <- manytrade::memberships$HUGGO_MEM %>%
+    dplyr::select(manyID, stateID, Title, StateSignature,
+                  StateRatification, StateForce) %>%
+    manydata::transmutate(StateBegin = dplyr::coalesce(messydates::year(StateSignature),
+                                                       messydates::year(StateRatification),
+                                                       messydates::year(StateForce))) %>%
+    dplyr::arrange(StateBegin) %>%
+    dplyr::filter(StateBegin != "NA") %>%
+    dplyr::mutate(Type = "NA")
+# Determine whether an agreement is bilateral or multilateral
+i <- 0
+manyID <- NA
+for(i in 1:nrow(trade_mem)){
+  manyID <- as.character(trade_mem[i, 1])
+  if(sum(trade_mem$manyID == manyID) > 2) {
+    trade_mem[i, 5] <- "Multilateral"
+  }
+  else {
+    trade_mem[i, 5] <- "Bilateral"
+  }
+}
+
 
 # Define dashboard interface
 ui <- dashboardPage(
@@ -19,37 +36,384 @@ ui <- dashboardPage(
         sidebarMenu(
             selectInput("country",
                         "Select country(s):",
-                        choices = c("choose" = "", trade_mem$CountryID),
+                        choices = c("choose" = "", stringr::str_sort(trade_mem$stateID)),
                         selected = "choose",
                         multiple = T),
-            menuItem(sliderInput("num", "Dates", value = 1980, min = 1948, max = 2020, width = 350))
+            selectInput("type",
+                        "Select type:",
+                        choices = c("choose" = "", "Bilateral", "Multilateral"),
+                        selected = "choose",
+                        multiple = T),
+            menuItem(sliderInput("range", "Dates", value = c(1950, 1957), min = 1948, 
+                                 max = 2020, width = 350, sep = "")),
+            checkboxInput("treatylabel", "Display treaty node labels", TRUE),
+            checkboxInput("countrylabel", "Display country node labels", TRUE)),
+        wellPanel(
+          style = " background: #222D32; border-color: #222D32; margin-left: 20px",
+          textOutput("click_info"),
+          tags$head(tags$style(".shiny-output-error{visibility: hidden}")),
+          tags$head(tags$style(".shiny-output-error:after{content: 'No treaties found. Please try again with different inputs.';
+visibility: visible}"))
         )),
     dashboardBody(
-        plotOutput("distPlot", height = "550px")
-    )
-)
+        plotOutput("distPlot", height = "550px",
+                   click = "plot_click")
+    ))
 
 # Connect the data with the interface
 server <- function(input, output){
+  # Save a data frame of agreement titles
+    titles <- trade_mem %>%
+      dplyr::distinct(manyID, .keep_all = TRUE) %>%
+      dplyr::select(manyID, Title)
+  # filteredData for each combination of inputs
+  # Four possibilities for each combination of inputs due to possible
+  # combinations of display labels checkboxes
+  # Preserve trade_mem dataframe for later use with coordinates
     filteredData <- reactive({
-        trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
-            migraph::as_tidygraph()
+      if(input$treatylabel == TRUE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                         TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                         TRUE ~ "square"))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ name,
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ name))
+      }
     })
     filteredData2 <- reactive({
-        trade_mem <- trade_mem %>%
-            dplyr::filter(Beg %in% input$num) %>%
-            dplyr::filter(CountryID %in% input$country) %>%
-            migraph::as_tidygraph()
+      if(input$treatylabel == TRUE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                          TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                         TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                          TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ name,
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square")) %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ name))
+      }
     })
+    filteredData3 <- reactive({
+      if(input$treatylabel == TRUE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))
+      }
+      if(input$treatylabel == FALSE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))  %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))  %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ name,
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))  %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ name))
+      }
+    })
+    filteredData4 <- reactive({
+      if (input$treatylabel == TRUE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))   %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))   %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ name,
+                                                TRUE ~ ""))
+      }
+      else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
+        trade_mem1 <- trade_mem %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+          dplyr::filter(stateID %in% input$country) %>%
+          dplyr::filter(Type %in% input$type) %>%
+          manynet::as_tidygraph() %>%
+          tidygraph::activate(nodes) %>%
+          dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
+                                                 TRUE ~ "black")) %>%
+          dplyr::mutate(size = dplyr::case_when(grepl("[0-9]", name) ~ 2,
+                                                TRUE ~ 1.5)) %>%
+          dplyr::mutate(shape = dplyr::case_when(grepl("[0-9]", name) ~ "circle",
+                                                 TRUE ~ "square"))   %>%
+          dplyr::mutate(name = dplyr::case_when(grepl("[0-9]", name) ~ "",
+                                                TRUE ~ name))
+      }
+    })
+    # Create a plot object, whose coordinates will serve as reference
+    # for the click interactivity on the plot that will be rendered.
+    # Using the original trade_mem data frame instead of the tidygraph object
+    # created after filtering data allows to display titles of agreements even
+    # if their labes are not rendered on the actual plot.
+    coords1 <- reactive({
+      ggdata1 <- trade_mem %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
+      ggdata1 <- ggplot2::ggplot_build(ggdata1)$data[[1]]
+    })
+    coords2 <- reactive({
+      ggdata2 <- trade_mem %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+        dplyr::filter(stateID %in% input$country) %>%
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
+      ggdata2 <- ggplot2::ggplot_build(ggdata2)$data[[1]]
+    })
+    coords3 <- reactive({
+      ggdata3 <- trade_mem %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+        dplyr::filter(Type %in% input$type) %>%
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
+      ggdata3 <- ggplot2::ggplot_build(ggdata3)$data[[1]]
+    })
+    coords4 <- reactive({
+      ggdata4 <- trade_mem %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
+        dplyr::filter(stateID %in% input$country) %>%
+        dplyr::filter(Type %in% input$type) %>%
+        manynet::as_tidygraph() %>%
+        manynet::autographr()
+      ggdata4 <- ggplot2::ggplot_build(ggdata4)$data[[1]]
+    })
+    # Render plots according to combination of inputs
     output$distPlot <- renderPlot({
-        if(is.null(input$country)){
-            migraph::autographr(filteredData())
+        if(is.null(input$country) & is.null(input$type)){
+          manynet::autographr(filteredData(), node_color = "color", node_size = "size",
+                              node_shape = "shape", labels = TRUE)
         }
-        else if(!is.null(input$country)){
-            migraph::autographr(filteredData2())
+        else if(!is.null(input$country) & !is.null(input$type)){
+          manynet::autographr(filteredData4(), node_color = "color", node_size = "size",
+                                node_shape = "shape", labels = TRUE)
+          }
+        else if(is.null(input$type)){
+          manynet::autographr(filteredData2(), node_color = "color", node_size = "size",
+                                node_shape = "shape", labels = TRUE)
         }
-        else {}
+        else if(is.null(input$country)){
+          manynet::autographr(filteredData3(), node_color = "color", node_size = "size",
+                                node_shape = "shape", labels = TRUE)
+        }
+    })
+    # Add interactivity to display the titles of agreements the user
+    # clicks on, according to possible input combinations.
+      output$click_info <- renderText({
+        if(is.null(input$country) & is.null(input$type)){
+        point <- nearPoints(coords1(), input$plot_click, 
+                   addDist = TRUE)
+        title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty (red circle) to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+        else if(is.null(input$type)){
+          point <- nearPoints(coords2(), input$plot_click, 
+                     addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty (red circle) to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+          
+        else if(is.null(input$country)){
+          point <- nearPoints(coords3(), input$plot_click, 
+                              addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty (red circle) to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
+        else if(!is.null(input$country) & !is.null(input$type)){
+          point <- nearPoints(coords4(), input$plot_click, 
+                              addDist = TRUE)
+          title <- as.character(titles[titles$manyID %in% point$label, 2])
+          if(title == "character(0)"){
+            print("Please click on a node representing a treaty (red circle) to display its title.")
+          }
+          else if(!(title == "character(0)")){
+            print(title)
+          }
+        }
     })
 }
 
