@@ -5,13 +5,14 @@ library(shinydashboard)
 library(tidygraph)
 
 # Prepare data
-trade_mem1 <- manytrade::memberships$GPTAD_MEM %>%
-    dplyr::select(manyID, stateID, Title, Beg)
-trade_mem2 <- manytrade::memberships$DESTA_MEM %>%
-    dplyr::select(manyID, stateID, Title, Beg)
-trade_mem <- dplyr::full_join(trade_mem1, trade_mem2) %>%
-    unique() %>% dplyr::arrange(Beg) %>%
-    dplyr::filter(Beg != "NA") %>%
+trade_mem <- manytrade::memberships$HUGGO_MEM %>%
+    dplyr::select(manyID, stateID, Title, StateSignature,
+                  StateRatification, StateForce) %>%
+    manydata::transmutate(StateBegin = dplyr::coalesce(messydates::year(StateSignature),
+                                                       messydates::year(StateRatification),
+                                                       messydates::year(StateForce))) %>%
+    dplyr::arrange(StateBegin) %>%
+    dplyr::filter(StateBegin != "NA") %>%
     dplyr::mutate(Type = "NA")
 # Determine whether an agreement is bilateral or multilateral
 i <- 0
@@ -72,7 +73,7 @@ server <- function(input, output){
     filteredData <- reactive({
       if(input$treatylabel == TRUE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
@@ -84,7 +85,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
@@ -98,7 +99,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
@@ -112,7 +113,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
           dplyr::mutate(color = dplyr::case_when(grepl("[0-9]", name) ~ "red",
@@ -128,7 +129,7 @@ server <- function(input, output){
     filteredData2 <- reactive({
       if(input$treatylabel == TRUE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -141,7 +142,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -156,7 +157,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -171,7 +172,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -188,7 +189,7 @@ server <- function(input, output){
     filteredData3 <- reactive({
       if(input$treatylabel == TRUE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -201,7 +202,7 @@ server <- function(input, output){
       }
       if(input$treatylabel == FALSE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -216,7 +217,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -231,7 +232,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
           tidygraph::activate(nodes) %>%
@@ -248,7 +249,7 @@ server <- function(input, output){
     filteredData4 <- reactive({
       if (input$treatylabel == TRUE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
@@ -262,7 +263,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
@@ -278,7 +279,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == TRUE & input$countrylabel == FALSE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
@@ -294,7 +295,7 @@ server <- function(input, output){
       }
       else if (input$treatylabel == FALSE & input$countrylabel == TRUE){
         trade_mem1 <- trade_mem %>%
-          dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+          dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
           dplyr::filter(stateID %in% input$country) %>%
           dplyr::filter(Type %in% input$type) %>%
           manynet::as_tidygraph() %>%
@@ -316,14 +317,14 @@ server <- function(input, output){
     # if their labes are not rendered on the actual plot.
     coords1 <- reactive({
       ggdata1 <- trade_mem %>%
-        dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
         manynet::as_tidygraph() %>%
         manynet::autographr()
       ggdata1 <- ggplot2::ggplot_build(ggdata1)$data[[1]]
     })
     coords2 <- reactive({
       ggdata2 <- trade_mem %>%
-        dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
         dplyr::filter(stateID %in% input$country) %>%
         manynet::as_tidygraph() %>%
         manynet::autographr()
@@ -331,7 +332,7 @@ server <- function(input, output){
     })
     coords3 <- reactive({
       ggdata3 <- trade_mem %>%
-        dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
         dplyr::filter(Type %in% input$type) %>%
         manynet::as_tidygraph() %>%
         manynet::autographr()
@@ -339,7 +340,7 @@ server <- function(input, output){
     })
     coords4 <- reactive({
       ggdata4 <- trade_mem %>%
-        dplyr::filter(Beg >= input$range[1] & Beg <= input$range[2]) %>%
+        dplyr::filter(StateBegin >= input$range[1] & StateBegin <= input$range[2]) %>%
         dplyr::filter(stateID %in% input$country) %>%
         dplyr::filter(Type %in% input$type) %>%
         manynet::as_tidygraph() %>%
