@@ -36,7 +36,7 @@ and then you can discover, install and update various 'many packages' from the c
 Once you have installed the package, you can see the different datasets included in a specific datacube in the {`manytrade`} package using the following function.
 
 ```{r datasets, warning=FALSE, message=FALSE}
-manydata::call_sources("manytrade", "agreements")
+# manydata::call_sources("manytrade", "agreements")
 ```
 
 Working with ensembles of related data has many advantages for robust analysis.
