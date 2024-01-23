@@ -27,7 +27,7 @@ and then you can discover, install and update various 'many packages' from the c
 
 ```{r install, warning=FALSE, message=FALSE}
 # prints a list of the publicly available data packages currently available
-manydata::call_packages()
+# manydata::call_packages()
 # manydata::call_packages("manytrade") # downloads and installs the named package
 ```
 
