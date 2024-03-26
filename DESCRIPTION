@@ -42,7 +42,7 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 URL: https://globalgov.github.io/manytrade/, https://github.com/globalgov/manytrade
 BugReports: https://github.com/globalgov/manytrade/issues
 Config/testthat/edition: 3
