@@ -49,6 +49,16 @@ HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::select(-c(manyID.x, manyID.y)) %>%
   dplyr::relocate(manyID, treatyID)
 
+# Reorder variables for clarity
+HUGGO_MEM <- HUGGO_MEM %>%
+  dplyr::relocate(manyID, Title, Begin, stateID, StateName, StateSignature,
+                  StateRatification, StateForce, StateEnd, `Rat=Notif`,
+                  Accession, Succession, treatyID, Signature, Force, End,
+                  gptadID, destaID, url, Coder)
+
+HUGGO_MEM <- HUGGO_MEM %>%
+  dplyr::arrange(Begin, manyID, stateID)
+
 # Stage three: Connecting data
 # Next run the following line to make HUGGO_MEM available
 # within the package.

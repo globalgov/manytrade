@@ -12,10 +12,11 @@
 #' \item{DESTA_MEM: }{A dataset with 7466 observations and the following
 #' 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 #' StateName, destaID.}
-#' \item{HUGGO_MEM: }{A dataset with 5608 observations and the following
-#' 20 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force, End,
-#' StateName, gptadID, destaID, StateSignature, StateRatification, StateForce,
-#' StateEnd, Rat=Notif, Coder, Source, Succession, Accession.}
+#' \item{HUGGO_MEM: }{A dataset with 5607 observations and the following
+#' 20 variables: manyID, Title, Begin, stateID, StateName, StateSignature,
+#' StateRatification, StateForce, StateEnd, Rat=Notif,
+#' Accession, Succession, treatyID, Signature, Force, End,
+#' gptadID, destaID, url, Coder}
 #' }
 #' @source
 #' \itemize{

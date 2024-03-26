@@ -17,10 +17,11 @@ StateName, gptadID.}
 \item{DESTA_MEM: }{A dataset with 7466 observations and the following
 9 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force,
 StateName, destaID.}
-\item{HUGGO_MEM: }{A dataset with 5608 observations and the following
-20 variables: manyID, treatyID, Title, Begin, stateID, Signature, Force, End,
-StateName, gptadID, destaID, StateSignature, StateRatification, StateForce,
-StateEnd, Rat=Notif, Coder, Source, Succession, Accession.}
+\item{HUGGO_MEM: }{A dataset with 5607 observations and the following
+20 variables: manyID, Title, Begin, stateID, StateName, StateSignature,
+StateRatification, StateForce, StateEnd, Rat=Notif,
+Accession, Succession, treatyID, Signature, Force, End,
+gptadID, destaID, url, Coder}
 }
 }
 \source{
@@ -80,26 +81,26 @@ memberships datacube documentation
 #> ------------------------------------------------------------------------------
 #> |   Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ------------------------------------------------------------------------------
-#> |     manyID      |  character  |            5608|     1     |     0.02      |
-#> |    treatyID     |  character  |            5608|     1     |     0.02      |
-#> |      Title      |  character  |            5608|     1     |     0.02      |
-#> |      Begin      |    mdate    |            5608|     1     |     0.02      |
-#> |     stateID     |  character  |            5608|     2     |     0.04      |
-#> |    Signature    |    mdate    |            5608|     3     |     0.05      |
-#> |      Force      |    mdate    |            5608|    367    |     6.54      |
-#> |       End       |    mdate    |            5608|    556    |     9.91      |
-#> |    StateName    |  character  |            5608|     1     |     0.02      |
-#> |     gptadID     |  character  |            5608|   3436    |     61.27     |
-#> |     destaID     |  character  |            5608|    553    |     9.86      |
-#> | StateSignature  |    mdate    |            5608|    903    |     16.1      |
-#> |StateRatification|    mdate    |            5608|   4893    |     87.25     |
-#> |   StateForce    |    mdate    |            5608|   1125    |     20.06     |
-#> |    StateEnd     |    mdate    |            5608|    630    |     11.23     |
-#> |    Rat=Notif    |  character  |            5608|   5536    |     98.72     |
-#> |      Coder      |  character  |            5608|    16     |     0.29      |
-#> |     Source      |  character  |            5608|   4886    |     87.13     |
-#> |   Succession    |  character  |            5608|     1     |     0.02      |
-#> |    Accession    |    mdate    |            5608|   4679    |     83.43     |
+#> |     manyID      |  character  |            5607|     0     |       0       |
+#> |      Title      |  character  |            5607|     0     |       0       |
+#> |      Begin      |    mdate    |            5607|     0     |       0       |
+#> |     stateID     |  character  |            5607|     1     |     0.02      |
+#> |    StateName    |  character  |            5607|     0     |       0       |
+#> | StateSignature  |    mdate    |            5607|    900    |     16.05     |
+#> |StateRatification|    mdate    |            5607|   4892    |     87.25     |
+#> |   StateForce    |    mdate    |            5607|   1124    |     20.05     |
+#> |    StateEnd     |    mdate    |            5607|    629    |     11.22     |
+#> |    Rat=Notif    |  character  |            5607|   5535    |     98.72     |
+#> |    Accession    |    mdate    |            5607|   4678    |     83.43     |
+#> |   Succession    |  character  |            5607|     0     |       0       |
+#> |    treatyID     |  character  |            5607|     0     |       0       |
+#> |    Signature    |    mdate    |            5607|     2     |     0.04      |
+#> |      Force      |    mdate    |            5607|    366    |     6.53      |
+#> |       End       |    mdate    |            5607|    555    |      9.9      |
+#> |     gptadID     |  character  |            5607|   3435    |     61.26     |
+#> |     destaID     |  character  |            5607|    552    |     9.84      |
+#> |       url       |  character  |            5607|   4757    |     84.84     |
+#> |      Coder      |  character  |            5607|    15     |     0.27      |
 #> ------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
